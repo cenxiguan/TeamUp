@@ -1,12 +1,22 @@
 <template name="about">
+  <style type="text/css">
+    article {
+      font-size: 20px;
+      text-align: justify;
+    }
+    section {
+      font-size: 18px;
+      text-align: justify;
+    }
+    </style>
   <h1>About Our <em>Team</em></h1><br>
   <div class="jumbotron">
-    <p>&nbsp;&nbsp;&nbsp;<strong>TeamUp is a social networking/communications application aimed toward
+    <article>&nbsp;&nbsp;&nbsp;<em><strong>TeamUp is a social networking/communications application aimed toward
       students and professionals. Essentially, TeamUp seeks to connect users with
       similar academic or career aspirations, and providing them with features
       such as page and group creation, as well as the ability to share resources
       on designated groups. We aim in creating an efficient search system so that
-      users can find individuals or groups to add or participate in.</strong></p>
+      users can find individuals or groups to add or participate in.</strong></em></article>
   </div>
 
   <hr>
@@ -32,7 +42,9 @@
           <img src="" alt="Yaxin">
         </td>
         <td>
-          Yaxin(Selina) Guo is a rising junior student in Computer Science. She created a group named "". Click <a href="">here</a> to join her group.
+          <section>Yaxin(Selina) Guo is a rising junior student in Computer Science.
+            She created a group named "". Click <a href="">here</a> to join her group.
+          </section>
         </td>
       </tr>
       <tr>
@@ -40,23 +52,50 @@
           <img src="" alt="Bechett">
         </td>
         <td>
-          Beckett Browning is a rising senior student in Computer Science. He created a group named "". Click <a href="">here</a> to join his group.
+          <section>Beckett Browning is a rising senior student in Computer Science.
+            He created a group named "". Click <a href="">here</a> to join his group.
+          </section>
         </td>
       </tr>
       <tr>
         <td>
-          <img src="https://scontent.fbos1-1.fna.fbcdn.net/v/t1.0-9/265020_2317098685914_7539527_n.jpg?oh=4599e4997e6a78f34dcc3a06f88c5202&oe=5A104915" width="200">
+          <img src="https://scontent.fbos1-1.fna.fbcdn.net/v/t1.0-9/265020_2317098685914_7539527_n.jpg?oh=4599e4997e6a78f34dcc3a06f88c5202&oe=5A104915" width="100">
         </td>
         <td>
-          Rong Guan is a Master student in Computer Science. She likes to develop
+          <section>Rong Guan is a Master student in Computer Science. She likes to develop
           different kinds of games. For example, console-based games such as memory
           card game and 3D Animation games such as "SuperApple" and "Hit Mushroom".
           You may check it out at <a href="https://sites.google.com/brandeis.edu/rongs3danimations/home?authuser=1">her
             3D Animation World</a>.
-          Rong received her Ph.D. degree in BioMedical Science at UT Southwestern Medical Center at Dallas. She created a forum "From Bio to CS". Click <a href="">here</a> to join her forum.
+          Rong received her Ph.D. degree in BioMedical Science at UT Southwestern
+          Medical Center at Dallas. So she created a forum "From Bio to CS". Click
+          <a href="">here</a> to join her forum.</section>
         </td>
       </tr>
     </tbody>
   </table>
 
 </template>
+
+
+<!-- <template name="talk">
+<button class="talk">Push the button to hear me talk</button>
+<br>
+<input type="text" name="words" id="words">
+<button class="say">Say</button>
+<hr/>
+<button class="getVoices">Get Voices</button>
+<hr/>
+<select id="voiceselect">
+	{{#each theVoices}}
+		{{> showvoice}}
+	{{/each}}
+</select>
+
+
+</template>
+
+
+<template name="showvoice">
+	<option class="voice"> {{name}} - {{lang}} </option>
+</template> -->
