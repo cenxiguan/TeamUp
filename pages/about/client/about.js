@@ -1,5 +1,5 @@
 Template.talk1.events({
-	'click button'(elt, instance){
+	'click span'(elt, instance){
 		var msg = new SpeechSynthesisUtterance('Joshua Alvarado is a rising junior pursuing his major in Computer Science. He is from Queens, New York City and has developed a love for coding during his time at Brandeis. Having once participated in Pito Salas’ class “Software Entrepreneurship”, he and his team worked on a startup named AmIFull, which served to provide businesses valuable metrics on their own customer tendencies, as well as their local competitors. He created a forum named “Mighty-IT”. Click here to join his forum');
 		window.speechSynthesis.speak(msg);
 	}
