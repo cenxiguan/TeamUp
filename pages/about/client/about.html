@@ -25,9 +25,10 @@
     <tbody>
       <tr>
         <td>
-          <img src="images/joshua.jpg" width="200" alt="Joshua">
+          <img src="images/joshua.jpg" width="220" alt="Joshua">
         </td>
         <td>
+          {{> talk1}}
           <section>Joshua Alvarado is a rising junior pursuing his major in Computer Science.
           He is from Queens, New York City and has developed a love for coding during
           his time at Brandeis. Having once participated in Pito Salas’ class
@@ -49,7 +50,7 @@
       </tr>
       <tr>
         <td>
-          <img src="" alt="Bechett">
+          <img src="" alt="Beckett">
         </td>
         <td>
           <section>Beckett Browning is a rising senior student in Computer Science.
@@ -59,11 +60,12 @@
       </tr>
       <tr>
         <td>
-          <img src="https://scontent.fbos1-1.fna.fbcdn.net/v/t1.0-9/265020_2317098685914_7539527_n.jpg?oh=4599e4997e6a78f34dcc3a06f88c5202&oe=5A104915" width="100">
+          <img src="https://scontent.fbos1-1.fna.fbcdn.net/v/t1.0-9/265020_2317098685914_7539527_n.jpg?oh=4599e4997e6a78f34dcc3a06f88c5202&oe=5A104915" width="150">
         </td>
         <td>
+          {{> talk4}}
           <section>Rong Guan is a Master student in Computer Science. She likes to develop
-          different kinds of games. For example, console-based games such as memory
+          different kinds of games. For example, console-based games such as the memory
           card game and 3D Animation games such as "SuperApple" and "Hit Mushroom".
           You may check it out at <a href="https://sites.google.com/brandeis.edu/rongs3danimations/home?authuser=1">her
             3D Animation World</a>.
@@ -78,24 +80,10 @@
 </template>
 
 
-<!-- <template name="talk">
-<button class="talk">Push the button to hear me talk</button>
-<br>
-<input type="text" name="words" id="words">
-<button class="say">Say</button>
-<hr/>
-<button class="getVoices">Get Voices</button>
-<hr/>
-<select id="voiceselect">
-	{{#each theVoices}}
-		{{> showvoice}}
-	{{/each}}
-</select>
-
-
+<template name="talk1">
+<button>Push to hear Joshua's introduction</button>
 </template>
 
-
-<template name="showvoice">
-	<option class="voice"> {{name}} - {{lang}} </option>
-</template> -->
+<template name="talk4">
+<button>Push to hear Rong's introduction</button>
+</template>
