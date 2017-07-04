@@ -1,6 +1,20 @@
 Template.talk1.events({
-	'click span'(elt, instance){
+	'click button'(elt, instance){
 		var msg = new SpeechSynthesisUtterance('Joshua Alvarado is a rising junior pursuing his major in Computer Science. He is from Queens, New York City and has developed a love for coding during his time at Brandeis. Having once participated in Pito Salas’ class “Software Entrepreneurship”, he and his team worked on a startup named AmIFull, which served to provide businesses valuable metrics on their own customer tendencies, as well as their local competitors. He created a forum named “Mighty-IT”. Click here to join his forum');
+		window.speechSynthesis.speak(msg);
+	}
+})
+
+Template.talk2.events({
+	'click button'(elt, instance){
+		var msg = new SpeechSynthesisUtterance('Selina Guo is a rising junior student in Computer Science. She created a forum named Pets Assistant. Click here to join her forum.');
+		window.speechSynthesis.speak(msg);
+	}
+})
+
+Template.talk3.events({
+	'click button'(elt, instance){
+		var msg = new SpeechSynthesisUtterance('Beckett Browning is a rising senior student studying Computer Science at Brandeis University. He is from San Diego, California and plans on continuing his studies in Computer Science in graduate school. In the past, Beckett has worked in programming languages such as Java and C and also worked on a logo identification project using the SIFT algorithm in MATLAB. Additionally, he enjoys design and has experimented with the 3d modeling software Blender​. Becketts forum is for Brandeis Computer Science Students. Click here to join his forum');
 		window.speechSynthesis.speak(msg);
 	}
 })
