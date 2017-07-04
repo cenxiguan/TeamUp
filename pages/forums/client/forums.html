@@ -1,0 +1,45 @@
+<template name="forums">
+  <body id="pageForums">
+    {{#if currentUser}}
+      <h1>Open Forum</h1><br>
+        {{> addmessages}}
+        <hr>
+    {{else}}
+      <h1>You must be logged in to submit a BranVan reservation.</h1>
+    {{/if}}
+  </body>
+</template>
+
+<template name="addmessages">
+  <div class="jumbotron">
+    <p>Type a message...</p>
+    <textarea id="messagebox" rows="5" cols="70"></textarea><br><br>
+    Name:
+    <input id="name" type="text">
+    &nbsp;&nbsp;<button id="addmessages"><strong>Send</strong></button><br>
+    <hr>
+    {{> showmessages}}
+  </div>
+</template>
+
+<template name="showmessages">
+  <div class="flex-container">
+    {{#if currentUser}}
+    <ul>
+      {{#each m in messagelist}}
+        {{> messagerow message=m}}
+      {{/each}}
+    </ul>
+    {{else}}
+      <h1>You must be logged in.</h1>
+    {{/if}}
+  </div>
+</template>
+
+<template name="messagerow">
+  <li> {{message.messagebox}}
+    <br><strong>- {{message.name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    <hr size="100">
+  </li>
+</template>
