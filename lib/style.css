@@ -1,3 +1,24 @@
+/* General CSS */
+
+body {
+  background-image:url("../images/shattered.png");
+  background-repeat: repeat;
+}
+
+/* About CSS */
+
+#pageAbout article {
+    font-size: 20px;
+    text-align: justify;
+}
+
+#pageAbout section {
+    font-size: 18px;
+    text-align: justify;
+}
+
+/* Forums CSS */
+
 #pageForums .flex-container {
     display: -webkit-flex;
     display: flex;
