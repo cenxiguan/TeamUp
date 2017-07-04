@@ -1,9 +1,49 @@
 <template name="home">
+  {{#if currentUser}}
+    {{> logged}}
+  {{else}}
+    {{> signup}}
+  {{/if}}
+</template>
 
-    <h1 style="text-align: center">TeamUp</h1>
+<template name="signup">
+  <h1>Please Sign-Up!</h1>
+</template>
 
-    Joshua Alvarado<br>
-    Yaxin(Selina) Guo<br>
-    Beckett Browning<br>
-    Rong Guan<br>
+<template name="logged">
+  <div class="slideshow-container">
+
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 4</div>
+    <img src="images/1.jpg" style="width:100%">
+    <div class="text">Caption Text</div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 4</div>
+    <img src="images/2.jpg" style="width:100%">
+    <div class="text">Caption Two</div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">3 / 4</div>
+    <img src="images/3.jpg" style="width:100%">
+    <div class="text">Caption Three</div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">4 / 4</div>
+    <img src="images/4.jpg" style="width:100%">
+    <div class="text">Caption Four</div>
+  </div>
+
+  </div>
+  <br>
+
+  <div style="text-align:center">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
 </template>

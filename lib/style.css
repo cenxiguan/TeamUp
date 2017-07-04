@@ -1,0 +1,69 @@
+/* General CSS */
+
+body {
+  background-image:url("../images/shattered.png");
+  background-repeat: repeat;
+}
+
+/* About CSS */
+
+#pageAbout article {
+    font-size: 20px;
+    text-align: justify;
+}
+
+#pageAbout section {
+    font-size: 18px;
+    text-align: justify;
+}
+
+/* Forums CSS */
+
+#pageForums .flex-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 820px;
+    height: 470px;
+    background-color: white;
+    border: 15px solid: #fffff;
+    border: 1px solid  black;
+    border-radius: 50px;
+    padding: 25px 10px;
+}
+
+
+#pageForums .flex-item {
+    background-color: #004d99;
+    width: 500px;
+    height: 340px;
+    margin: 50px;
+    border: 15px solid  #004d99;
+    border-radius: 40px;
+}
+
+#pageForums button {
+    background-color: #d9d9d9; /* Green */
+    border: none;
+    color: black;
+    border: 2px solid;
+    border-radius: 25px;
+    padding: 4px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+}
+
+#pageForums textarea {
+    border-radius: 50px;
+    padding: 7px 25px;
+}
+
+#pageForums li {
+    font-size: 20px;
+}
+
+#pageForums hr {
+    height: 3px;
+    background-color: lightgrey;
+}
