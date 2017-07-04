@@ -1,3 +1,7 @@
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
+
 <template name="layout">
 	<body id="pageLayout">
 	<div class="container">
@@ -6,7 +10,7 @@
 		<nav class="navbar navbar-default">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
-		    <div class="navbar-header">
+		    <div class="navbar-header navbar-left">
 		      <button type="button" class="navbar-toggle collapsed"
 			  			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 		        <span class="sr-only">Toggle navigation</span>
@@ -22,14 +26,20 @@
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      	<ul class="nav navbar-nav">
               <li><a href="{{pathFor 'about'}}">About</a></li>
-              <li><a href="{{pathFor 'profile'}}">Profile</a></li>
+							<li><a href="{{pathFor 'profile'}}">Profile</a></li>
+              <li><a href="{{pathFor 'forums'}}">Forums</a></li>
 						</ul>
-			   <!-- <ul class="nav navbar-nav navbar-right">
+			   		<ul class="nav navbar-nav navbar-right">
 			            {{> loginButtons}}
-			    </ul> -->
+			      </ul>
 		    </div>
 			</div><!-- /.container-fluid -->
 		</nav>
+
+		<!--
+		<div class="logodiv">
+			<img src="../images/TeamUp1.png" width="auto" height="auto" class="logoimg" href="{{pathFor 'home'}}">
+		</div> -->
 
 		<!-- Here is where the actual content of the page gets inserted by the router! -->
 		{{> yield}}
