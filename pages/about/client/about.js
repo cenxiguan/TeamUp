@@ -7,7 +7,7 @@ Template.talk1.events({
 
 Template.talk2.events({
 	'click button'(elt, instance){
-		var msg = new SpeechSynthesisUtterance('Selina Guo is a rising junior student in Computer Science. She created a forum named Pets Assistant. Click here to join her forum.');
+		var msg = new SpeechSynthesisUtterance('Selina Guo is a rising junior student, whose major is Economics in Brandeis University. She is interested in Computer Science, Probability and Statistics,and Econometrics. She created a forum named Pets Assistant. Click here to join her forum.');
 		window.speechSynthesis.speak(msg);
 	}
 })
