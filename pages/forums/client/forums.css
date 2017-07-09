@@ -5,7 +5,7 @@
     height: 470px;
     background-color: white;
     border: 15px solid: #fffff;
-    border: 1px solid rgba(0, 68, 102, 1);
+    border: 1px solid  black;
     border-radius: 50px;
     padding: 25px 10px;
 }
@@ -21,7 +21,7 @@
 }
 
 #pageForums button {
-    background-color: #d9d9d9; /* Grey */
+    background-color: #d9d9d9; /* Green */
     border: none;
     color: rgba(0, 68, 102, 1);
     border: 2px solid;
@@ -34,7 +34,6 @@
 }
 
 #pageForums textarea {
-    border: 1px solid rgba(0, 68, 102, 1);
     border-radius: 50px;
     padding: 7px 25px;
 }
@@ -45,5 +44,5 @@
 
 #pageForums hr {
     height: 3px;
-    background-color: rgba(0, 68, 102, 1);
+    background-color: lightgrey;
 }
