@@ -1,6 +1,8 @@
 * {box-sizing:border-box}
 body {font-family: Verdana,sans-serif;}
-.mySlides {display:none}
+.mySlides {
+  transition: display, opacity, visibility 1s ease;
+}
 
 /* Slideshow container */
 .slideshow-container {
@@ -50,6 +52,7 @@ body {font-family: Verdana,sans-serif;}
   -webkit-animation-duration: 1.5s;
   animation-name: fade;
   animation-duration: 1.5s;
+  transition: display 1.6s ease;
 }
 
 @-webkit-keyframes fade {
@@ -65,4 +68,8 @@ body {font-family: Verdana,sans-serif;}
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
+}
+
+div.mySlides.fade {
+  /*transition: visibility 0.5s linear;*/
 }

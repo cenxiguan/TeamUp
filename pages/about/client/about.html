@@ -1,11 +1,107 @@
 <template name="about">
+  <body id="pageAbout">
   <h1>About Our <em>Team</em></h1><br>
   <div class="jumbotron">
-    <p>&nbsp;&nbsp;&nbsp;<strong>TeamUp is a social networking/communications application aimed toward
-      students and professionals. Essentially, TeamUp seeks to connect users with
-      similar academic or career aspirations, and providing them with features
-      such as page and group creation, as well as the ability to share resources
-      on designated groups. We aim in creating an efficient search system so that
-      users can find individuals or groups to add or participate in.</strong></p>
+    <article><em><strong>TeamUp is a social networking/communications application
+      aimed toward students and professionals. Essentially, TeamUp seeks to connect
+      users with similar academic or career aspirations, and providing them with features
+      such as page and group creations (private and public), as well as the ability
+      to share resources on designated groups. We aim in creating an efficient search
+      system so that users can find individuals and groups containing similar interests,
+      as well as allowing groups to work together effeciently.
+    </strong></em></article>
   </div>
+
+  <hr>
+  <div class="founders">
+    <h2>Founding Members</h2>
+    <table class="table table-striped">
+      <tbody class="founderstable">
+        <tr class="foundersrow">
+          <td>
+            <img src="images/joshua.jpg" width="220" alt="Joshua">
+          </td>
+          <td>
+            {{> talk1}}
+            <br><br>
+            <section><strong>Joshua Alvarado</strong> is a rising junior pursuing his major in Computer Science.
+            He is from Queens, New York City and has developed a love for coding during
+            his time at Brandeis. Having once participated in Pito Salas’ class
+            “Software Entrepreneurship”, he and his team worked on a startup named
+            AmIFull, which served to provide businesses valuable metrics on their own
+            customer tendencies, as well as their local competitors. He created a forum
+            named “IT. What is IT?”. Click <a href="">here</a> to join his forum.</section>
+          </td>
+        </tr>
+        <tr class="foundersrow">
+          <td>
+            <img src="images/yaxin.jpg" width="220" alt="Yaxin">
+          </td>
+          <td>
+            {{> talk2}}
+            <br><br>
+            <section><strong>Yaxin(Selina) Guo</strong>
+              is a rising junior student, whose major is Economics in Brandeis
+              University. She is interested in Computer Science, Probability and
+              Statistics,and Econometrics.
+              She created a forum named "Pets' Assistant". Click <a href="">here</a> to join her group.
+            </section>
+          </td>
+        </tr>
+        <tr class="foundersrow">
+          <td>
+            <img src="images/beckett.jpg" width="220" alt="Beckett">
+          </td>
+          <td>
+            {{> talk3}}
+            <br><br>
+            <section><strong>Beckett Browning</strong> is a rising senior student studying Computer
+              Science at Brandeis University. He is from San Diego, California and
+              plans on continuing his studies in Computer Science in graduate school.
+              In the past, Beckett has worked in programming languages such as Java
+              and C and also worked on a logo identification project using the SIFT
+              algorithm in MATLAB. Additionally, he enjoys design and has experimented
+              with the 3d modeling software Blender​. Beckett's forum is for "Brandeis
+              Computer Science Students". Click <a href="">here</a> to join his forum.
+            </section>
+          </td>
+        </tr>
+        <tr class="foundersrow">
+          <td>
+            <img src="images/Rong.JPG" width="220" alt="Rong">
+          </td>
+          <td>
+            {{> talk4}}
+            <br><br>
+            <section><strong>Rong Guan</strong> is a Master student in Computer Science. She likes to develop
+            different kinds of games. For example, console-based games such as the memory
+            card game and 3D Animation games such as "SuperApple" and "Hit Mushroom".
+            You may check it out at <a href="https://sites.google.com/brandeis.edu/rongs3danimations/home?authuser=1">her
+              3D Animation World</a>.
+            Rong received her Ph.D. degree in BioMedical Science at UT Southwestern
+            Medical Center at Dallas. So she created a forum "From Bio to CS". Click
+            <a href="">here</a> to join her forum.</section>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </body>
+</template>
+
+
+<template name="talk1">
+<button class="btn btn-primary">Push to hear Joshua's introduction</button>
+</template>
+
+<template name="talk2">
+<button class="btn btn-primary">Push to hear Selina's introduction</button>
+</template>
+
+<template name="talk3">
+<button class="btn btn-primary">Push to hear Beckett's introduction</button>
+</template>
+
+<template name="talk4">
+<button class="btn btn-primary">Push to hear Rong's introduction</button>
 </template>

@@ -23,7 +23,7 @@ Template.home.onRendered(
             //console.log("sl"+slides.length);
             //console.log("d"+dots.length);
             if (slideIndex== slides.length) {slideIndex = 0}
-            slides._slideTo( slides.index );
+            //slides._slideTo( slides.index );
             for (i = 0; i < dots.length; i++) {
                 dots[i].className = dots[i].className.replace("active", "");
             }

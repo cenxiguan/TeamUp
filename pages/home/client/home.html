@@ -1,7 +1,17 @@
 <template name="home">
+  {{#if currentUser}}
+    {{> logged}}
+  {{else}}
+    {{> signup}}
+  {{/if}}
+</template>
 
-    <h1 style="text-align: center">TeamUp</h1>
+<template name="signup">
+  <h1>Please Sign-Up!</h1>
+</template>
 
+<template name="logged">
+  <h1>Logged-In</h1>
     Joshua Alvarado<br>
     Yaxin(Selina) Guo<br>
     Beckett Browning<br>
@@ -52,5 +62,4 @@
     <span class="dot"></span>
     <span class="dot"></span>
   </div>
-
 </template>
