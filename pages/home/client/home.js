@@ -33,4 +33,4 @@ Template.home.onRendered(
             //setTimeout(showSlides, 3000); // Change image every 2 seconds
         }
     })
->>>>>>> Selina
+
