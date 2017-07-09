@@ -12,6 +12,7 @@ Template.home.onRendered(
     }
 
     function showSlides() {
+
             var i;
             slides = $(".mySlides");
             dots = $(".dot");
@@ -31,4 +32,4 @@ Template.home.onRendered(
             $(dots[slideIndex-1]).attr("class", $(dots[slideIndex-1]).attr("class") + " active");
             //setTimeout(showSlides, 3000); // Change image every 2 seconds
         }
-    })
+})
