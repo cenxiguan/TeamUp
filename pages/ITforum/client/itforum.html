@@ -1,0 +1,46 @@
+<template name="itforum">
+  <body id="pageForums">
+    {{#if currentUser}}
+      <h1>IT. What is IT?</h1><br>
+        {{> addmessages}}
+    {{else}}
+
+      <h1>You must be logged in.</h1>
+
+    {{/if}}
+  </body>
+</template>
+
+<!-- <template name="addITmessages">
+  <div class="jumbotron">
+    <p>Type a message...</p>
+    <textarea id="messagebox" rows="5" cols="70"></textarea><br><br>
+    Name:
+    <input id="name" type="text">
+    &nbsp;&nbsp;<button id="addmessages"><strong>Send</strong></button><br>
+    <hr>
+    {{> showmessages}}
+  </div>
+</template>
+
+<template name="showITmessages">
+  <div class="flex-container">
+    {{#if currentUser}}
+    <ul>
+      {{#each m in messagelist}}
+        {{> messagerow message=m}}
+      {{/each}}
+    </ul>
+    {{else}}
+      <h1>You must be logged in.</h1>
+    {{/if}}
+  </div>
+</template>
+
+<template name="messagerow">
+  <li> {{message.messagebox}}
+    <br><strong>- {{message.name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    <hr size="100">
+  </li>
+</template> -->
