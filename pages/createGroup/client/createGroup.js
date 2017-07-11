@@ -7,6 +7,9 @@ Template.groupInfo.events({
     elt.preventDefault();
 
     console.log('this: '+this);
+    console.log('this._id: '+this._id);
+    console.log('this.id: '+this.id);
+    console.log
     console.dir('this');
     console.log('adding group: '+groupname);
     instance.$('#js-groupname').val("");
@@ -21,6 +24,7 @@ Template.groupInfo.events({
         // Need to implement groupid somehow which makes
         // individual pages and unique groups
       };
+      console.log('id: '+groupinfo._id);
 
     //first need to check if groupname is free, if not return error
     Meteor.call('groups.insert', groupinfo);
