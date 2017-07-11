@@ -1,15 +1,15 @@
-#pageAbout article {
+#pageJoinus article {
     font-size: 20px;
     text-align: justify;
 }
 
-#pageAbout section {
+#pageJoinus section {
     font-size: 18px;
     text-align: justify;
 }
 
-#pageAbout a:link, a:visited, a:hover, a:active {
-  color: cornflowerblue;
+#pageJoinus a:link, a:visited, a:hover, a:active {
+  color: lightblue;
 }
 
 .founders{

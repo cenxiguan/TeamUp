@@ -1,11 +1,9 @@
-<template name="forums">
+<template name="itforum">
   <body id="pageForums">
     {{#if currentUser}}
-      <h1>Open Forum</h1><br>
+      <h1>IT. What is IT?</h1><br>
         {{> addmessages}}
     {{else}}
-
-      <!-- <h1>You must be logged in to submit a BranVan reservation.</h1> -->
 
       <h1>You must be logged in.</h1>
 
@@ -13,7 +11,7 @@
   </body>
 </template>
 
-<template name="addmessages">
+<!-- <template name="addITmessages">
   <div class="jumbotron">
     <p>Type a message...</p>
     <textarea id="messagebox" rows="5" cols="70"></textarea><br><br>
@@ -25,7 +23,7 @@
   </div>
 </template>
 
-<template name="showmessages">
+<template name="showITmessages">
   <div class="flex-container">
     {{#if currentUser}}
     <ul>
@@ -45,4 +43,4 @@
     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
     <hr size="100">
   </li>
-</template>
+</template> -->
