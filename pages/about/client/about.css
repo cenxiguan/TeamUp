@@ -8,6 +8,10 @@
     text-align: justify;
 }
 
+#pageAbout a:link, a:visited, a:hover, a:active {
+  color: cornflowerblue;
+}
+
 .founders{
   background-color: lightgrey;
   color: rgba(0, 68, 102, 1);
