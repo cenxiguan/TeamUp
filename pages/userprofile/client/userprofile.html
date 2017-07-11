@@ -1,0 +1,201 @@
+<template name="userprofile">
+  <h1>User profile</h1>
+  {{#if currentUser}}
+    {{#if hasProfile}}
+      <h2>User Profile</h2>
+      {{> showprofile}}
+    {{else}}
+      <h2>Create User Profile</h2>
+      {{> addprofile}}
+    {{/if}}
+  {{else}}
+      <h2>Please either log in or create an account in order to continue</h2>
+  {{/if}}
+</template>
+
+
+
+<template name="addprofile">
+  <div class="addprofilediv">
+  <div class="table-container">
+      <table class="table table-striped table-hoverable" >
+        <tbody>
+
+          <tr>
+            <td>First Name</td>
+            <td><input type="text" id="firstname" placeholder="First Name"></td>
+          </tr>
+
+          <tr>
+            <td>Last Name</td>
+            <td><input type="text" id="lastname" placeholder="Last Name"></td>
+          </tr>
+
+          <tr>
+            <td>E-mail  <i class="glyphicon glyphicon-envelope"></i></td>
+            <td><input type="email" id="email" placeholder="E-mail"></td>
+          </tr>
+
+          <tr>
+            <td>Phone Number  <i class="glyphicon glyphicon-earphone"></i></td>
+            <td><input type="text" id="phone" placeholder="Phone Number"></td>
+          </tr>
+
+          <tr>
+            <td>Date of Birth  <i class="glyphicon glyphicon-calendar"></i></td>
+            <td><input type="date" id="dateofbirth" max="2017-12-31"></td>
+          </tr>
+
+          <tr>
+            <td>Gender</td>
+              <td>
+                <select id="gender">
+                  <option> male</option>
+                  <option> female</option>
+                  <option> other</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Occupation</td> <td><input type="text" id="occupation" placeholder="Occupation"></td>
+            </tr>
+
+            <tr>
+              <td>Institution</td> <td><input type="text" id="institution" placeholder="Institution"></td>
+            </tr>
+
+            <tr>
+              <td>Location</td> <td><input type="text" id="location" placeholder="Location"></td>
+            </tr>
+
+            <tr>
+              <td>Bio</td> <td><textarea id="bio" placeholder="Enter bio here"></textarea></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <label class="form-check-label">
+          <input class="checkbox" type="checkbox" display=“inline-block” id="agree" style="zoom:2">
+          <h-c>I agree to allow my info to be published</h-c>
+          </label>
+      </div>
+        <hr>
+        <button id="submit" class="btn btn-lg btn-primary"><h-c>Submit My Info</h-c></button>
+        <hr>
+  </div>
+</template>
+
+<template name="showprofile">
+  <div class="showprofilediv">
+      <table class="table table-striped table-hoverable" >
+        <tbody>
+            <tr>
+              <td>First Name: {{user.firstname}}</td>
+            </tr>
+            <tr>
+              <td>Last Name: {{user.lastname}}</td>
+            </tr>
+            <tr>
+              <td>E-mail: {{user.email}}</td>
+            </tr>
+            <tr>
+              <td>Phone Number: {{user.phone}}</td>
+            </tr>
+            <tr>
+              <td>Date Of Birth: {{user.dateofbirth}}</td>
+            </tr>
+            <tr>
+              <td>Gender: {{user.gender}}</td>
+            </tr>
+            <tr>
+              <td>Occupaton: {{user.occupation}}</td>
+            </tr>
+            <tr>
+              <td>Institution: {{user.institution}}</td>
+            </tr>
+            <tr>
+              <td>Location: {{user.location}}</td>
+            </tr>
+            <tr>
+              <td>Bio: {{user.bio}}</td>
+            </tr>
+        </tbody>
+      </table>
+      <button id="edit" class="btn btn-info btn-lg">Edit Info</button>
+  </div>
+
+
+  <div class="editinfo">
+
+        <table class="table table-striped table-hoverable" >
+                <tbody>
+
+                  <tr>
+                    <td>First Name</td>
+                    <td><input type="text" class="editfirstname" value="{{user.firstname}}"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Last Name</td>
+                    <td><input type="text" class="editlastname" placeholder="Last Name" value="{{user.lastname}}"></td>
+                  </tr>
+
+                  <tr>
+                    <td>E-mail  <i class="glyphicon glyphicon-envelope"></i></td>
+                    <td><input type="email" class="editemail" placeholder="E-mail" value="{{user.email}}"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Phone Number  <i class="glyphicon glyphicon-earphone"></i></td>
+                    <td><input type="text" class="editphone" placeholder="Phone Number" value="{{user.phone}}"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Date of Birth  <i class="glyphicon glyphicon-calendar"></i></td>
+                    <td><input type="date" class="editdateofbirth" max="2017-12-31" value="{{user.dateofbirth}}"></td>
+                  </tr>
+
+                  <tr>
+                    <td>Gender</td>
+                      <td>
+                        <select class="editgender" option="{{user.gender}}">
+                          <option> male</option>
+                          <option> female</option>
+                          <option> other</option>
+                        </select>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Occupation</td> <td><input type="text" class="editoccupation" placeholder="Occupation" value="{{user.occupation}}"></td>
+                    </tr>
+
+                    <tr>
+                      <td>Institution</td> <td><input type="text" class="editinstitution" placeholder="Institution" value="{{user.institution}}"></td>
+                    </tr>
+
+                    <tr>
+                      <td>Location</td> <td><input type="text" class="editlocation" placeholder="Location" value="{{user.location}}"></td>
+                    </tr>
+
+                    <tr>
+                      <td>Bio</td> <td><textarea class="editbio" placeholder="Enter bio here" value="{{user.bio}}"></textarea></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <label class="form-check-label">
+                  <input class="editagree" type="checkbox" display=“inline-block” id="editagree" style="zoom:2">
+                  <h-c>I agree to allow my info to be published</h-c>
+                </label>
+
+                <hr>
+                <button id="save" class="btn btn-lg btn-primary"><h-c>Save My Changes</h-c></button>
+                <hr>
+  </div>
+
+</template>

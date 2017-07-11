@@ -1,0 +1,25 @@
+.table{
+
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 25px;
+    padding:8px;
+    text-align: left;
+    border: 5px solid grey;
+    background-color: white;
+    color:rgb(33, 69, 124);
+
+
+}
+
+h-c{
+    font-size: 25px;
+    color:rgb(33, 69, 124);;
+    font-weight: bold;
+    background-color: white;
+}
+
+
+.editinfo{
+  display: none;
+}
