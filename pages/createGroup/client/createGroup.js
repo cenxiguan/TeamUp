@@ -28,8 +28,19 @@ Template.groupInfo.events({
 
     //first need to check if groupname is free, if not return error
     Meteor.call('groups.insert', groupinfo);
+    //Router.go('');
     //Router.go('templatename',{},{query: {group:groupId}});
+    console.log(Groups.find({}));
+    console.dir(Groups.find({}).fetch());
   }
+})
+
+Template.groupInfo.onCreated(function() {
+  Meteor.subscribe('groups');
+})
+
+Template.createGroup.onCreated(function() {
+  Meteor.subscribe('groups');
 })
 
 //onCreated() function blahblah on the group page
