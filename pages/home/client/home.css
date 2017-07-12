@@ -1,8 +1,8 @@
 * {box-sizing:border-box}
 body {font-family: Verdana,sans-serif;}
-.mySlides {
+/*.mySlides {
   transition: display, opacity, visibility 1s ease;
-}
+}*/
 
 /* Slideshow container */
 .slideshow-container {
@@ -47,7 +47,7 @@ body {font-family: Verdana,sans-serif;}
 }
 
 /* Fading animation */
-.fade {
+/*.fade {
   -webkit-animation-name: fade;
   -webkit-animation-duration: 1.5s;
   animation-name: fade;
@@ -63,13 +63,14 @@ body {font-family: Verdana,sans-serif;}
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
-}
+}*/
 
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
 }
 
-div.mySlides.fade {
+div.mySlides {
   /*transition: visibility 0.5s linear;*/
+  display: none;
 }

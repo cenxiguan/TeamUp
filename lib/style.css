@@ -2,6 +2,7 @@ body {
   background-image:url("../images/Shatteredblue.png");
   background-repeat: repeat;
   color: rgba(255, 255, 255, 1);
+  font-size: 25px;
 }
 
 .jumbotron{
