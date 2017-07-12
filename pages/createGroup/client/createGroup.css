@@ -1,7 +1,18 @@
 .js-submitgroupbtn{
-  background-color: grey;
+  background-color: lightgrey;
+  border-color: rgba(0, 68, 102, 1);
+  border-radius:20px;
+  padding-left:10px;
+  padding-right:10px;
 }
 
 .blacktext{
   color: black;
+}
+
+.teamBox{
+  background-color: lightgrey;
+  padding:40px;
+  border-radius:6px;
+  color: rgba(0, 68, 102, 1);
 }

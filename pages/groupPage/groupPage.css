@@ -1,0 +1,22 @@
+.groupTitle{
+  text-align: center;
+}
+
+.descriptionBox{
+  background-color: lightgrey;
+  color: rgba(0, 68, 102, 1);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.js-joingroupbtn{
+    background-color: lightgrey;
+    border-color: rgba(0, 68, 102, 1);
+    border-radius:20px;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.joinButton{
+  text-align: center;
+}

@@ -1,6 +1,15 @@
 <template name="groupPage">
   <!--Show group data back to user-->
-  Group name: {{groupname}}<br>
-  Group description: {{groupdesc}}<br>
-  Group location: {{grouploc}}<br>
+  <h2 class="groupTitle">Team: {{groupname}}</h2>
+  <hr>
+  <div class="descriptionBox">
+    Description: {{groupdesc}}<br>
+    Location: {{grouploc}}<br>
+    <div class="joinButton">
+      <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
+    </div>
+  </div>
+
+  <!--check if user is group member, if they are show the following-->
+  <!--if not-->
 </template>
