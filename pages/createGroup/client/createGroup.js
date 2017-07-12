@@ -39,7 +39,7 @@ Template.groupInfo.onCreated(function() {
   Meteor.subscribe('groups');
 })
 
-Template.createGroup.onCreated(function() {
+Template.createTeam.onCreated(function() {
   Meteor.subscribe('groups');
 })
 
