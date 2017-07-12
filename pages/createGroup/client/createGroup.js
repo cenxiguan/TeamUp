@@ -22,13 +22,16 @@ Template.groupInfo.events({
         groupdesc:groupdesc,
         grouploc:grouploc,
         owner:Meteor.userId()
+        //members:[];  //members array, IF LEFT UNCOMMENTED, BREAKS CODE
         // Need to implement groupid somehow which makes
         // individual pages and unique groups
       };
 
     //first need to check if groupname is free, if not return error
     Meteor.call('groups.insert', groupinfo);
-    //Router.go('');
+    
+
+    Router.go('teamPage/:_id');
     //Router.go('templatename',{},{query: {group:groupId}});
     console.log(Groups.find({}));
     console.dir(Groups.find({}).fetch());
@@ -39,7 +42,7 @@ Template.groupInfo.onCreated(function() {
   Meteor.subscribe('groups');
 })
 
-Template.createGroup.onCreated(function() {
+Template.createTeam.onCreated(function() {
   Meteor.subscribe('groups');
 })
 
