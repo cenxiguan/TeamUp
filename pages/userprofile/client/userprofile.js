@@ -1,13 +1,12 @@
 Template.userprofile.onCreated(function(){
   Meteor.subscribe('user');
 });
+
 Template.userprofile.helpers({
   "hasProfile": function(){
     return User.findOne({owner: Meteor.userId()});
   },
 })
-
-
 
 Template.showprofile.helpers({
   "user": function(){

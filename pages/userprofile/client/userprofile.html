@@ -1,8 +1,7 @@
 <template name="userprofile">
-  <h1>User profile</h1>
+  <h1>User Profile</h1><br>
   {{#if currentUser}}
     {{#if hasProfile}}
-      <h2>User Profile</h2>
       {{> showprofile}}
     {{else}}
       <h2>Create User Profile</h2>
@@ -77,12 +76,10 @@
         </table>
       </div>
 
-      <div>
         <label class="form-check-label">
-          <input class="checkbox" type="checkbox" display=“inline-block” id="agree" style="zoom:2">
-          <h-c>I agree to allow my info to be published</h-c>
-          </label>
-      </div>
+          <input class="checkbox" type="checkbox" id="agree" style="zoom:2">&emsp;I agree to allow my info to be published.
+        </label>
+
         <hr>
         <button id="submit" class="btn btn-lg btn-primary"><h-c>Submit My Info</h-c></button>
         <hr>
@@ -189,8 +186,7 @@
                 </table>
 
                 <label class="form-check-label">
-                  <input class="editagree" type="checkbox" display=“inline-block” id="editagree" style="zoom:2">
-                  <h-c>I agree to allow my info to be published</h-c>
+                  <input class="editagree" type="checkbox" id="editagree" style="zoom:2">&emsp;I agree to allow my info to be published.
                 </label>
 
                 <hr>

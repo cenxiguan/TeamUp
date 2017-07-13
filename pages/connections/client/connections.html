@@ -1,0 +1,24 @@
+<template name="connections">
+  <h1>Add/Remove Connections</h1>
+  <hr>
+  <table class="table table-bordered table-striped">
+    <tbody>
+      {{#each u in connectionslist}}
+        {{> person u=u}}
+      {{/each}}
+    </tbody>
+  </table>
+</template>
+
+<template name="person">
+  <tr>
+    <td>{{u.name}}</td>
+    <td>
+      {{#if isConnection}}
+        <button id="js-deconnect" class="btn btn-sm">Unconnect</button>
+      {{else}}
+        <button id="js-connect" class="btn btn-sm">Add Connection</button>
+      {{/if}}
+    </td>
+  </tr>
+</template>
