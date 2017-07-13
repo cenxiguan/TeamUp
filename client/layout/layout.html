@@ -26,11 +26,13 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      	<ul class="nav navbar-nav">
-              <li><a href="{{pathFor 'about'}}">About</a></li>
-							<li><a href="{{pathFor 'profile'}}">Profile</a></li>
-              <li><a href="{{pathFor 'forums'}}">Forums</a></li>
-							<li><a href="{{pathFor 'userprofile'}}">User Profile</a></li>
-							<li><a href="{{pathFor 'createTeam'}}">Create team</a></li>
+							{{#if currentUser}}
+							<li><a href="{{pathFor 'userprofile'}}">Profile</a></li>
+							<li><a href="{{pathFor 'connections'}}">Connections</a></li>
+							<li><a href="{{pathFor 'forums'}}">Public Forums</a></li>
+							<li><a href="{{pathFor 'createTeam'}}">Create Team</a></li>
+							{{/if}}
+							<li><a href="{{pathFor 'about'}}">About</a></li>
 							<li><a href="{{pathFor 'joinus'}}">Join Us</a></li>
 						</ul>
 			   		<ul class="nav navbar-nav navbar-right">

@@ -1,15 +1,14 @@
 <template name="userprofile">
-  <h1>User profile</h1>
+  <h1>User Profile</h1>
   {{#if currentUser}}
     {{#if hasProfile}}
-      <h2>User Profile</h2>
       {{> showprofile}}
     {{else}}
-      <h2>Create User Profile</h2>
+      <h2>Create User Profile</h2><br>
       {{> addprofile}}
     {{/if}}
   {{else}}
-      <h2>Please either log in or create an account in order to continue</h2>
+  <h1>Please sign-up for an account.</h1>
   {{/if}}
 </template>
 
@@ -50,9 +49,9 @@
             <td>Gender</td>
               <td>
                 <select id="gender">
-                  <option> male</option>
-                  <option> female</option>
-                  <option> other</option>
+                  <option> Male</option>
+                  <option> Female</option>
+                  <option> Other</option>
                 </select>
               </td>
             </tr>
@@ -77,19 +76,19 @@
         </table>
       </div>
 
-      <div>
         <label class="form-check-label">
-          <input class="checkbox" type="checkbox" display=“inline-block” id="agree" style="zoom:2">
-          <h-c>I agree to allow my info to be published</h-c>
-          </label>
-      </div>
-        <hr>
-        <button id="submit" class="btn btn-lg btn-primary"><h-c>Submit My Info</h-c></button>
-        <hr>
+          <input type="checkbox" id="agree" style="zoom:2">&emsp;I agree to allow my info to be published.
+        </label>
+
+        <br><br>
+
+        <button id="submit" class="btn btn-lg btn-primary">Submit My Info</button><br><br>
+
   </div>
 </template>
 
 <template name="showprofile">
+  <br>
   <div class="showprofilediv">
       <table class="table table-striped table-hoverable" >
         <tbody>
@@ -125,7 +124,7 @@
             </tr>
         </tbody>
       </table>
-      <button id="edit" class="btn btn-info btn-lg">Edit Info</button>
+      <button id="edit" class="btn btn-info btn-lg">Edit Info</button><br><br>
   </div>
 
 
@@ -163,9 +162,9 @@
                     <td>Gender</td>
                       <td>
                         <select class="editgender" option="{{user.gender}}">
-                          <option> male</option>
-                          <option> female</option>
-                          <option> other</option>
+                          <option> Male</option>
+                          <option> Female</option>
+                          <option> Other</option>
                         </select>
                       </td>
                     </tr>
@@ -189,13 +188,10 @@
                 </table>
 
                 <label class="form-check-label">
-                  <input class="editagree" type="checkbox" display=“inline-block” id="editagree" style="zoom:2">
-                  <h-c>I agree to allow my info to be published</h-c>
+                  <input class="editagree" type="checkbox" id="editagree" style="zoom:2">&emsp;I agree to allow my info to be published.
                 </label>
-
-                <hr>
-                <button id="save" class="btn btn-lg btn-primary"><h-c>Save My Changes</h-c></button>
-                <hr>
+                <br><br>
+                <button id="save" class="btn btn-lg btn-primary"><h-c>Save My Changes</h-c></button><br><br>
   </div>
 
 </template>

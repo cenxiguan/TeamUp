@@ -1,0 +1,28 @@
+<template name="connections">
+  {{#if currentUser}}
+  <h1>Add/Remove Connections</h1>
+  <hr>
+  <table class="table table-bordered table-striped">
+    <tbody>
+      {{#each u in connectionslist}}
+        {{> person u=u}}
+      {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  <h1>Please sign-up for an account.</h1>
+  {{/if}}
+</template>
+
+<template name="person">
+  <tr>
+    <td>{{u.firstname}} {{u.lastname}}</td>
+    <td>
+      {{#if isConnection}}
+        <button id="unconnect" class="btn btn-sm">Unconnect</button>
+      {{else}}
+        <button id="connect" class="btn btn-sm">Add Connection</button>
+      {{/if}}
+    </td>
+  </tr>
+</template>
