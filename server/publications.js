@@ -7,3 +7,6 @@ Meteor.publish('groups', function(){
 Meteor.publish('user', function(){
   return User.find();
 })
+Meteor.publish('connections', function(){
+  return Connections.find();
+})
