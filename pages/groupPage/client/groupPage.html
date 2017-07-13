@@ -7,10 +7,14 @@
     Description: {{groupdesc}}<br>
     Location: {{grouploc}}<br>
     <div class="joinButton">
-      <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
+      {{> joinTemplate}}
     </div>
   </div>
 
   <!--check if user is group member, if they are show the following-->
   <!--if not-->
+</template>
+
+<template name="joinTemplate">
+    <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
 </template>
