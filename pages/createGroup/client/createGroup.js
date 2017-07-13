@@ -6,12 +6,12 @@ Template.groupInfo.events({
 
     elt.preventDefault();
 
-    console.log('this: '+this);
-    console.log('this._id: '+this._id);
-    console.log('this.id: '+this.id);
-    console.log
-    console.dir('this');
-    console.log('adding group: '+groupname);
+    // console.log('this: '+this);
+    // console.log('this._id: '+this._id);
+    // console.log('this.id: '+this.id);
+    // console.log
+    // console.dir('this');
+    // console.log('adding group: '+groupname);
 
     instance.$('#js-groupname').val("");
     instance.$('#js-groupdescription').val("");
@@ -30,10 +30,14 @@ Template.groupInfo.events({
     //first need to check if groupname is free, if not return error
     Meteor.call('groups.insert', groupinfo);
 
+    
+    //find all groups where user is owner
 
-    Router.go('teamPage/:_id');
+
+    console.dir('this');
+    //Router.go('teamPage/:'+_id); //must define group id to add to path, possibly without :
+
     //Router.go('templatename',{},{query: {group:groupId}});
-    console.log(Groups.find({}));
     console.dir(Groups.find({}).fetch());
   }
 })
