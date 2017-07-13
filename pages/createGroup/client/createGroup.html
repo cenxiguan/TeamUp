@@ -1,6 +1,8 @@
 <template name="createTeam">
   {{#if currentUser}}
     {{> groupInfo}}
+  {{else}}
+  <h1>Please sign-up for an account.</h1>
   {{/if}}
 </template>
 
@@ -9,16 +11,16 @@
     <h3>Create a team:</h3>
     <br>
     <div class="teamBox">
-      Team name:<br>
-      <textarea rows="1" cols="50" id="js-groupname" placeholder="Enter team name here" class="blacktext"></textarea>
+      Team Name:<br>
+      <textarea rows="1" cols="50" id="js-groupname" placeholder="Enter team name here." class="blacktext"></textarea>
       <br><br>
-      Team description:<br>
-      <textarea rows="4" cols="50" id="js-groupdescription" placeholder="Enter team description here" class="blacktext"></textarea>
+      Team Description:<br>
+      <textarea rows="4" cols="50" id="js-groupdescription" placeholder="Enter team description here." class="blacktext"></textarea>
       <br><br>
-      Location (optional):<br>
-      <textarea rows="1" cols="50" id="js-grouplocation" placeholder="Enter the location of your team here" class="blacktext"></textarea>
+      Location (Optional):<br>
+      <textarea rows="1" cols="50" id="js-grouplocation" placeholder="Enter the location of your team here." class="blacktext"></textarea>
       <br><br>
-      <button id="js-submitgroupname" class="js-submitgroupbtn">Create team</button>
+      <button id="js-submitgroupname" class="js-submitgroupbtn">Create Team</button>
     </div>
   </form>
 </template>
