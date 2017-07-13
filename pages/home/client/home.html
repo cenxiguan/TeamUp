@@ -1,7 +1,6 @@
 <template name="home">
 
   <div class="slideshow-container">
-
   <div class="mySlides">
     <div class="numbertext">1 / 5</div>
     <img src="images/home1.jpg" style="width:100%">
@@ -32,15 +31,18 @@
     <div class="text">Caption Five</div>
   </div>
 
-  </div>
-  <br>
+  <button class="button" id="prev"><i class="glyphicon glyphicon-chevron-left"></i></button>
+  <button class="button" id="next"><i class="glyphicon glyphicon-chevron-right"></i></button>
+</div>
+<br>
 
-  <div style="text-align:center">
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
+<div style="text-align:center">
+  <span class="dot" id="slide1"></span>
+  <span class="dot" id="slide2"></span>
+  <span class="dot" id="slide3"></span>
+  <span class="dot" id="slide4"></span>
+  <span class="dot" id="slide5"></span>
+</div>
+    <br>
 
 </template>

@@ -29,6 +29,7 @@ Template.showprofile.events({
     const editemail = instance.$('.editemail').val();
     const editphone = instance.$('.editphone').val();
     const editdateofbirth = instance.$('.editdateofbirth').val();
+  //  var editgender = var conceptName = $('#gender').find(":selected").text();
     const editgender = instance.$('.editgender').val();
     const editoccupation = instance.$('.editoccupation').val();
     const editinstitution = instance.$('.editinstitution').val();
