@@ -93,6 +93,7 @@ Template.addprofile.events({
       }
     }else alert('This is not an image file!');
   },
+
   'click button#submit'(elt,instance) {
     const firstname = instance.$('#firstname').val();
     const lastname = instance.$('#lastname').val();
@@ -105,7 +106,7 @@ Template.addprofile.events({
     const institution = instance.$('#institution').val();
     const location = instance.$('#location').val();
     const bio = instance.$('#bio').val();
-    const pic=instance.$('#pic').files();
+    const pic=instance.$('#pic')[0].files[0];
     const agree = $("#agree").is(":checked");
 
     //usernameinputs = instance,$("#")
@@ -121,7 +122,7 @@ Template.addprofile.events({
     instance.$('#institution').val("");
     instance.$('#location').val("");
     instance.$('#bio').val("");
-    instance.$('#pic').files("");
+    instance.$('#pic').val("");
 
     users = User.find({owner:Meteor.userId()}).fetch();
 
@@ -139,12 +140,46 @@ Template.addprofile.events({
                    bio:bio,
                    owner:Meteor.userId()};
     if (agree) {
-          Meteor.call('userprofile.insert',userprofile);
-          instance.$(".addprofilediv").css("display", "none");
-          instance.$(".showprofilediv").css("display", "block");
+      var reader = new FileReader();
+      reader.onload = function() {
+        var dataUrl = reader.result;
+        var img_base64 = dataUrl.split(',')[1];
+        userprofile.pic = img_base64;
+        Meteor.call('userprofile.insert',userprofile);
+
+        instance.$(".addprofilediv").css("display", "none");
+        instance.$(".showprofilediv").css("display", "block");
+
+      };
+      reader.readAsDataURL(pic);
     }else{
           alert('you must check the box to insert your profile');
     }
   },
-
+  // "change #pic": function(event){
+  //   if($("#pic").val()){
+  //     const file_type = event.currentTarget.files[0].type;
+  //
+  //     //check if there is image to load
+  //     if(file_type.substring(0,5) !== "image"){
+  //       alert("Please upload an image");
+  //       $("#pic").val("");
+  //       $("#pic1").attr("src","");
+  //       return;
+  //     }else{
+  //       var reader = new FileReader();
+  //       reader.onload = function(event) {
+  //         //get loaded data and render pic1
+  //         $("#pic1").attr("src",event.currentTarget.result);
+  //         $("#pic1").css("display","block");
+  //       };
+  //
+  //       //read the image as a img_base64
+  //       reader.
+  //
+  //       } {
+  //
+  //       }
+  //     }
+  //   }
 })
