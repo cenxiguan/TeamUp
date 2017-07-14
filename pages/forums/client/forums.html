@@ -11,6 +11,8 @@
 
 <template name="addmessages">
   <div class="jumbotron">
+    {{> listen}}
+    <hr>
     <p>Type a message...</p>
     <textarea id="messagebox" rows="5" cols="70"></textarea><br><br>
     Name:
@@ -19,7 +21,9 @@
     <hr>
     {{> showmessages}}
   </div>
+
 </template>
+
 
 <template name="showmessages">
   <div class="flex-container">
@@ -30,7 +34,7 @@
       {{/each}}
     </ul>
     {{else}}
-      <h1>Please sign-up for an account.</h1>   
+      <h1>Please sign-up for an account.</h1>
     {{/if}}
   </div>
 </template>
@@ -41,4 +45,15 @@
     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
     <hr size="100">
   </li>
+</template>
+
+<template name="listen">
+  <div>
+    <a href="#" id="start_button">Press to record your voice message</a>
+  </div>
+
+  <div id="results" class="bg-info">
+	  <h1>Your message</h1>
+    <span id="final_span" class="final"></span>
+  </div>
 </template>
