@@ -63,6 +63,10 @@
             </tr>
 
             <tr>
+              <td>Academic Field(s)</td> <td><input type="text" id="academicfield" placeholder="Academic Field(s)"></td>
+            </tr>
+
+            <tr>
               <td>Institution</td> <td><input type="text" id="institution" placeholder="Institution"></td>
             </tr>
 
@@ -74,8 +78,12 @@
               <td>Bio</td> <td><textarea id="bio" placeholder="Enter bio here"></textarea></td>
             </tr>
 
+            <tr>
+              <td>Upload Pic</td> <td><input type="file" id="pic" name="pic" accept="image/*" data-type='image' /></td>
+            </tr>
           </tbody>
         </table>
+        <img style="display:none; max-width:150px;" id="pic1">
       </div>
 
         <label class="form-check-label">
@@ -114,6 +122,9 @@
             </tr>
             <tr>
               <td>Occupaton: {{user.occupation}}</td>
+            </tr>
+            <tr>
+              <td>Academic Field(s): {{user.academicfield}}</td>
             </tr>
             <tr>
               <td>Institution: {{user.institution}}</td>
@@ -173,6 +184,10 @@
 
                     <tr>
                       <td>Occupation</td> <td><input type="text" class="editoccupation" placeholder="Occupation" value="{{user.occupation}}"></td>
+                    </tr>
+
+                    <tr>
+                      <td>Academic Field(s)</td> <td><input type="text" class="editacademicfield" placeholder="Academic Field(s)" value="{{user.academicfield}}"></td>
                     </tr>
 
                     <tr>

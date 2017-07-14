@@ -33,7 +33,7 @@ Template.home.onRendered(
 
 
 Template.home.events({
-  'click button#prev'(elt,instance) {
+/*  'click button#prev'(elt,instance) {
     var i;
     instance.slideIndex--;
     var slideIndex = instance.slideIndex;
@@ -73,7 +73,7 @@ Template.home.events({
     };
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
-  },
+  },*/
 
   'click span#slide1'(elt,instance) {
     var mySlides = instance.$(".mySlides");

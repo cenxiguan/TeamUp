@@ -31,6 +31,7 @@ Template.showprofile.events({
   //  var editgender = var conceptName = $('#gender').find(":selected").text();
     const editgender = instance.$('.editgender').val();
     const editoccupation = instance.$('.editoccupation').val();
+    const editacademicfield = instance.$('.editacademicfield').val();
     const editinstitution = instance.$('.editinstitution').val();
     const editlocation = instance.$('.editlocation').val();
     const editbio = instance.$('.editbio').val();
@@ -45,6 +46,7 @@ Template.showprofile.events({
     instance.$('.editdateofbirth').val("");
     instance.$('.editgender').val("");
     instance.$('.editoccupation').val("");
+    instance.$('.editacademicfield').val("");
     instance.$('.editinstitution').val("");
     instance.$('.editlocation').val("");
     instance.$('.editbio').val("");
@@ -56,6 +58,7 @@ Template.showprofile.events({
                  dateofbirth:editdateofbirth,
                  gender:editgender,
                  occupation:editoccupation,
+                 academicfield:editacademicfield,
                  institution:editinstitution,
                  location:editlocation,
                  bio:editbio,
@@ -75,7 +78,21 @@ Template.showprofile.events({
 })
 
 Template.addprofile.events({
-
+  'change #pic': function(event){
+    if(event.currentTarget.files&&event.currentTarget.files[0] && event.currentTarget.files[0].type.match(/(jpg|jpeg|png|gif)$/)) {
+      if(event.currentTarget.files[0].size>1048576) {
+        alert('File size is larger than 1MB!');
+      }else{
+        var reader = new FileReader();
+        reader.onload = function(event){
+          var result = event.currentTarget.result;
+          $('#pic1').attr('src', result);
+          $('#pic1').css('display', 'block');
+        };
+        reader.readAsDataURL(event.currentTarget.files[0]);
+      }
+    }else alert('This is not an image file!');
+  },
   'click button#submit'(elt,instance) {
     const firstname = instance.$('#firstname').val();
     const lastname = instance.$('#lastname').val();
@@ -84,9 +101,11 @@ Template.addprofile.events({
     const dateofbirth = instance.$('#dateofbirth').val();
     const gender = instance.$('#gender').val();
     const occupation = instance.$('#occupation').val();
+    const academicfield = instance.$('#academicfield').val();
     const institution = instance.$('#institution').val();
     const location = instance.$('#location').val();
     const bio = instance.$('#bio').val();
+    const pic=instance.$('#pic').files();
     const agree = $("#agree").is(":checked");
 
     //usernameinputs = instance,$("#")
@@ -98,9 +117,11 @@ Template.addprofile.events({
     instance.$('#dateofbirth').val("");
     instance.$('#gender').val("");
     instance.$('#occupation').val("");
+    instance.$('#academicfield').val("");
     instance.$('#institution').val("");
     instance.$('#location').val("");
     instance.$('#bio').val("");
+    instance.$('#pic').files("");
 
     users = User.find({owner:Meteor.userId()}).fetch();
 
@@ -112,6 +133,7 @@ Template.addprofile.events({
                    dateofbirth:dateofbirth,
                    gender:gender,
                    occupation:occupation,
+                   academicfield:academicfield,
                    institution:institution,
                    location:location,
                    bio:bio,
