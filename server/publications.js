@@ -10,3 +10,7 @@ Meteor.publish('user', function(){
 Meteor.publish('connections', function(){
   return Connections.find();
 })
+
+Meteor.publish('calendar', function(){
+  return Calendar.find();
+})
