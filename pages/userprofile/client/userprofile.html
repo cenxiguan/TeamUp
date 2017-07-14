@@ -1,4 +1,5 @@
 <template name="userprofile">
+  <body id="pageProfile">
   <h1>User Profile</h1>
   {{#if currentUser}}
     {{#if hasProfile}}
@@ -10,6 +11,7 @@
   {{else}}
   <h1>Please sign-up for an account.</h1>
   {{/if}}
+  </body>
 </template>
 
 
@@ -82,7 +84,7 @@
 
         <br><br>
 
-        <button id="submit" class="btn btn-lg btn-primary">Submit My Info</button><br><br>
+        <button id="submit">Submit My Info</button><br><br>
 
   </div>
 </template>
@@ -124,7 +126,7 @@
             </tr>
         </tbody>
       </table>
-      <button id="edit" class="btn btn-info btn-lg">Edit Info</button><br><br>
+      <button id="edit">Edit Info</button><br>
   </div>
 
 
@@ -192,9 +194,10 @@
                   I agree to allow my info to be published
                 </label>
 
-                <hr>
-                <button id="save" class="btn btn-lg btn-primary">Save My Changes</button>
-                <hr>
+                <br><br>
+                <button id="save">Save My Changes</button>
+                <br><br>
+
   </div>
 
 </template>

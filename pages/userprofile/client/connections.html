@@ -1,4 +1,5 @@
 <template name="connections">
+  <body id="pageConnections">
   {{#if currentUser}}
   <h1>Add/Remove Connections</h1><br>
   <table class="table table-bordered table-striped">
@@ -11,16 +12,17 @@
   {{else}}
   <h1>Please sign-up for an account.</h1>
   {{/if}}
+</body>
 </template>
 
 <template name="person">
   <tr>
-    <td>{{u.firstname}} {{u.lastname}}</td>
+    <td>&nbsp;<strong>{{u.firstname}} {{u.lastname}}</strong><br><p class="infoformat"><em>&nbsp;&nbsp;&nbsp;&#9679;&nbsp;{{u.occupation}} at {{u.institution}}</em></p></td>
     <td>
       {{#if isConnection}}
-        <button id="unconnect" class="btn btn-sm">Unconnect</button>
+        <button id="unconnect">Unconnect</button>
       {{else}}
-        <button id="connect" class="btn btn-sm">Add Connection</button>
+        <button id="connect">Add Connection</button>
       {{/if}}
     </td>
   </tr>
