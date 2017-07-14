@@ -1,186 +1,93 @@
-Template.voiceDemo.onCreated(function(){
-  //create a reactive dict that stores the status of user speaking
-  this.voiceDict = new ReactiveDict();
+/*
+  This code comes from this blog post by Amit Agarwal
+      http://ctrlq.org/code/19680-html5-web-speech-api
+*/
+	var text = "";
+	var recognizing = false;
 
-  //set the status of the recording
-  //inactive - user is not speaking or the recognition has ended
-  //speaking - user is speaking
-  //waiting - wait for the result from Google Speech API
-  this.voiceDict.set("recording_status", "inactive");
+	if ('webkitSpeechRecognition' in window) {
+		console.log("webkit is available!");
+		var recognition = new webkitSpeechRecognition();
+	    recognition.continuous = true;
 
-  //set the status of API.ai request
-  this.voiceDict.set("api_status", "inactive");
-  this.voiceDict.set("API_recording", false);
-  this.voiceDict.set("hasResult", false);
+	    recognition.onstart = function() {
+	      recognizing = true;
+	    };
 
-  //set the status of WAV files request
-  this.voiceDict.set("WAV_files_status", "inactive");
-  this.voiceDict.set("WAV_recording", false);
+	    recognition.onerror = function(event) {
+	      console.log(event.error);
+	    };
 
-  //get the recordRTC package
-  $.getScript("https://webrtcexperiment-webrtc.netdna-ssl.com/RecordRTC.js");
-  $.getScript("https://webrtcexperiment-webrtc.netdna-ssl.com/gif-recorder.js");
-  $.getScript("https://webrtcexperiment-webrtc.netdna-ssl.com/getScreenId.js");
-})
+	    recognition.onend = function() {
+	      recognizing = false;
+	    };
 
-Template.voiceDemo.helpers({
-  ifInactive: function(){
-    const voiceDict = Template.instance().voiceDict
-    return voiceDict.get("recording_status") == "inactive";
-  },
+	    recognition.onresult = function(event) {
 
-  ifSpeaking: function(){
-    const voiceDict = Template.instance().voiceDict
-    return voiceDict.get("recording_status") == "speaking";
-  },
+				text = event.results[0][0].transcript;
+	      final_span.innerHTML = text;
 
-  ifWaiting: function(){
-    const voiceDict = Template.instance().voiceDict
-    return voiceDict.get("recording_status") == "waiting";
-  },
+				Meteor.call("send_text_for_APIAI_processing", event.results[0][0].transcript, function(err, result){
+					if(err){
+						window.alert(err);
+						return;
+					}
 
-  ifAPI: function(){
-    const voiceDict = Template.instance().voiceDict
-    return voiceDict.get("api_status") !== "waiting";
-  },
+					console.log(result);
+				})
+	    };
+	}
 
-  ifWAVRecording: function(){
-    const voiceDict = Template.instance().voiceDict
-    return voiceDict.get("WAV_recording");
-  },
+	function startDictation(event) {
+	  if (recognizing) {
+	    recognition.stop();
+	    return;
+	  }
+	  	final_transcript = '';
+	  	recognition.lang = 'en-US';
+	  	recognition.start();
+	  	final_span.innerHTML = '';
+	  	//interim_span.innerHTML = '';
+		}
 
-  ifWAVProcessingDone: function() {
-    return RecognitionResults.findOne({status: {$exists: true}}).status === "done";
-  },
+  Template.calendar.events({
+	'click #start_button': function(event){
+		startDictation(event);
+	},
 
-  hasResult: function(){
-    const voiceDict = Template.instance().voiceDict
-    return voiceDict.get("hasResult");
-  },
+	"click .js-submit-to-api-ai": function(event){
 
-  getResultEntities: function(){
-    return Template.instance().voiceDict.get("entitiesResult");
-  },
+		var accessToken = "bdd417b8051c40e187c2fa728eca2242";
+		var baseUrl = "https://api.api.ai/v1/";
 
-  getIntentName: function(){
-    return Template.instance().voiceDict.get("intentResult");
-  },
-})
+		Meteor.call("send_text_for_APIAI_processing", text, function(err, result){
+			if(err){
+				window.alert(err);
+				voiceDict.set("api_status", "inactive");
+				return;
+			}
 
-Template.voiceDemo.events({
-  "click #voiceIconMic": function(event){
-    $("#recognitionBox").val("");
-    const voiceDict = Template.instance().voiceDict;
-    const template = Template.instance();
+			if(!!result.data.result.parameters){
+				const parameters = result.data.result.parameters;
+				const entities = [];
 
-    //set the status to be speaking
-    voiceDict.set("recording_status", "speaking");
-    voiceDict.set("API_recording", true);
-    voiceDict.set("hasResult", false);
+				//save results to ReactiveDict
+				for(entity in parameters){
+					if(parameters[entity]){
+						entities.push({
+							name: entity,
+							value: parameters[entity]
+						})
+					}
+				}
 
-    // request permission to access audio stream
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-      // create media recorder instance to initialize recording
-      var options = {
-          recorderType: StereoAudioRecorder,
-          mimeType: 'audio/wave',
-          numberOfAudioChannels: 1,
-          desiredSampRate: 16000,
-      };
+				voiceDict.set("entitiesResult", entities);
+				voiceDict.set("intentResult", result.data.result.metadata.intentName);
+			}
 
-      var recorder = RecordRTC(stream, options);
+			voiceDict.set("api_status", "inactive");
+			voiceDict.set("hasResult", true);
+		});
 
-      //save the varibles to the template
-      template.recorderObject = recorder;
-      template.stream = stream;
-
-      //start recording
-      recorder.startRecording();
-    })
-  },
-
-
-  "click #voiceIconSpeaking": function(){
-    const voiceDict = Template.instance().voiceDict;
-    var recorder = Template.instance().recorderObject;
-    var stream = Template.instance().stream;
-
-    //set the status to be waiting
-    voiceDict.set("recording_status", "waiting");
-
-    recorder.stopRecording(function(){
-      //get the recorded blob data and convert it to base64 form
-      var blob = this.getBlob();
-      var blobToBase64 = function(blob, callback) {
-        var reader = new FileReader();
-        reader.onload = function() {
-          var dataUrl = reader.result;
-          var base64 = dataUrl.split(',')[1];
-          callback(base64);
-        };
-        reader.readAsDataURL(blob);
-      };
-
-      //send the data to the sever and save it to the local disk
-      blobToBase64(blob, function(base64){ // encode
-        Meteor.call("send_audio_for_recognition", base64, function(err, result){
-          if(err){
-            window.alert(err);
-          } else {
-            $("#recognitionBox").val(result[0]);
-          }
-
-          stream.getTracks()[0].stop();
-          voiceDict.set("recording_status", "inactive");
-          voiceDict.set("API_recording", false);
-        })
-      })
-    })
-  },
-
-  "click .js-submit-to-api-ai": function(event){
-      //start only when the recorer is not active
-      const voiceDict = Template.instance().voiceDict;
-      if(voiceDict.get("recording_status") !== "inactive"){
-        return;
-      }
-
-      //get the result text
-      if($("#recognitionBox").val() !== ""){
-        voiceDict.set("api_status", "waiting");
-        const text = $("#recognitionBox").val();
-
-        Meteor.call("send_text_for_APIAI_processing", text, function(err, result){
-          if(err){
-            window.alert(err);
-            voiceDict.set("api_status", "inactive");
-            return;
-          }
-
-          if(!!result.data.result.parameters){
-            const parameters = result.data.result.parameters;
-            const entities = [];
-
-            //save results to ReactiveDict
-            for(entity in parameters){
-              if(parameters[entity]){
-                entities.push({
-                  name: entity,
-                  value: parameters[entity]
-                })
-              }
-            }
-
-            voiceDict.set("entitiesResult", entities);
-            voiceDict.set("intentResult", result.data.result.metadata.intentName);
-          }
-
-          voiceDict.set("api_status", "inactive");
-          voiceDict.set("hasResult", true);
-        });
-      } else {
-        window.alert("Plase type/say something first");
-      }
-  },
-
-})
+}
+});

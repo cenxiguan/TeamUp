@@ -39,7 +39,6 @@
 	  recognition.lang = 'en-US';
 	  recognition.start();
 	  final_span.innerHTML = '';
-	  interim_span.innerHTML = '';
 	}
 
   Template.listen.events({
