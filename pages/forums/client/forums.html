@@ -1,7 +1,7 @@
 <template name="forums">
   <body id="pageForums">
     {{#if currentUser}}
-      <h1>Open Forum</h1><br>
+      <h1>Public Forum</h1><br>
         {{> addmessages}}
     {{else}}
       <h1>You must be logged in.</h1>
@@ -49,11 +49,10 @@
 
 <template name="listen">
   <div>
-    <a href="#" id="start_button">Press to record your voice message</a>
+    <a href="#" id="start_button">Press to Record</a>
   </div>
-
+  <br>
   <div id="results" class="bg-info">
-	  <h1>Your message</h1>
-    <span id="final_span" class="final"></span>
+	  <p><strong>Output:</strong></p> <span id="final_span" class="final"></span>
   </div>
 </template>
