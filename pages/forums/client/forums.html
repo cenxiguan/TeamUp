@@ -11,9 +11,7 @@
 
 <template name="addmessages">
   <div class="jumbotron">
-    {{> listen}}
-    <hr>
-    <p>Type a message...</p>
+    {{> listen}} or type a message...<br>
     <textarea id="messagebox" rows="5" cols="70"></textarea><br><br>
     Name:
     <input id="name" type="text">
@@ -48,11 +46,5 @@
 </template>
 
 <template name="listen">
-  <div>
     <a href="#" id="start_button">Press to Record</a>
-  </div>
-  <br>
-  <div id="results" class="bg-info">
-	  <p><strong>Output:</strong></p> <span id="final_span" class="final"></span>
-  </div>
 </template>
