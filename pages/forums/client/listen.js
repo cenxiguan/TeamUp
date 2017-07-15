@@ -33,6 +33,8 @@
 	function startDictation(event) {
 	  if (recognizing) {
 	    recognition.stop();
+			var msgsave = new SpeechSynthesisUtterance('message is saved!');
+	    window.speechSynthesis.speak(msgsave);
 	    return;
 	  }
 	  final_transcript = '';
