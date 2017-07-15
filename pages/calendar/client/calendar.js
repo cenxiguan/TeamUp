@@ -32,7 +32,6 @@
 						window.alert(err);
 						return;
 					}
-
 					console.log(result);
 				})
 	    };

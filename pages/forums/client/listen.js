@@ -38,7 +38,7 @@
 	  final_transcript = '';
 	  recognition.lang = 'en-US';
 	  recognition.start();
-	  final_span.innerHTML = '';
+	  messagebox.innerHTML = '';
 	}
 
   Template.listen.events({
