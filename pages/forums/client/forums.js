@@ -3,7 +3,11 @@ Template.forums.onCreated(function() {
 })
 
 Template.showmessages.helpers({
-  messagelist() {return Messages.find()},
+  messagelist() {
+
+    return Messages.find()
+
+  },
 })
 
 Template.addmessages.events({
@@ -18,8 +22,12 @@ Template.addmessages.events({
         //owner:Meteor.userID()
       };
     Meteor.call('messages.insert', messagesinfo);
+
+    var msg = new SpeechSynthesisUtterance('message is sent!');
+    window.speechSynthesis.speak(msg);
   }
 })
+
 
 Template.messagerow.events({
   'click span'(elt,instance) {
