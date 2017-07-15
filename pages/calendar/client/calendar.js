@@ -27,7 +27,7 @@
 				text = event.results[0][0].transcript;
 	      final_span.innerHTML = text;
 
-				Meteor.call("send_text_for_APIAI_processing", event.results[0][0].transcript, function(err, result){
+				Meteor.call("send_text_for_APIAI_processing", text, function(err, result){
 					if(err){
 						window.alert(err);
 						return;
