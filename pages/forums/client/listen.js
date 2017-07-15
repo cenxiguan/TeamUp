@@ -25,8 +25,8 @@
 	    recognition.onresult = function(event) {
 
 				const text = event.results[0][0].transcript;
-	      final_span.innerHTML = text;
-
+	      //final_span.innerHTML = text;
+				messagebox.innerHTML = text;
 	    };
 	}
 
