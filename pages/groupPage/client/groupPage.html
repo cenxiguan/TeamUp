@@ -1,20 +1,51 @@
 <template name="groupPage">
   <!--Show group data back to user-->
   <!--{{_id}}-->
-  <h2 class="groupTitle">Team: {{groupname}}</h2>
-  <hr>
-  <div class="descriptionBox">
-    Description: {{groupdesc}}<br>
-    Location: {{grouploc}}<br>
-    <div class="joinButton">
-      {{> joinTemplate}}
+  {{> groupMain}}
+  {{> groupMessage}}
+</template>
+
+
+<template name="groupMain">
+  <div class="groupMainDiv">
+    <h2 class="groupTitle">Team: {{groupname}}</h2>
+    <hr>
+    <div class="descriptionBox">
+      Description: {{groupdesc}}<br>
+      Location: {{grouploc}}<br>
+      <div class="joinButton">
+        <button id="js-editGroup" class="editGroup">Edit Group</button>
+        <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
+      </div>
     </div>
+    <!--check if user is group member, if they are show the following-->
+    <!--if not-->
   </div>
 
-  <!--check if user is group member, if they are show the following-->
-  <!--if not-->
+  <div class="groupEditDiv">
+      <h2 class="groupTitle-edit">Team: <input type="text" class="editgroupname" value="{{groupname}}"></h2>
+    <hr>
+    <div class="descriptionBox">
+      Description: <input type="text" class="editgroupdesc" value="{{groupdesc}}">
+      Location: <input type="text" class="editgrouploc" value="{{grouploc}}">
+    </div>
+    <button id="js-saveGroup" class="js-savegroup">Save My Changes</button>
+  </div>
 </template>
 
-<template name="joinTemplate">
-    <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
+<template name="groupMessage">
+  <input type="text" class="messageString" id="js-messageString">
+  <button id="js-sendGroupMessage" class="js-sendGrpMsg">Send message</button>
 </template>
+
+<!--
+
+<template name="groupEdit">
+  <h2 class="groupTitle">Team: <input type="text" class="editgroupname" value="{{groupname}}"></h2>
+  <hr>
+  <div class="descriptionBox">
+    Description: <input type="text" class="editgroupdesc" value="{{groupdesc}}">
+    Location: <input type="text" class="editgrouploc" value="{{grouploc}}">
+  </div>
+  <button id="saveGroup" class="btn btn-lg btn-primary"><h-c>Save My Changes</h-c></button>
+</template> -->

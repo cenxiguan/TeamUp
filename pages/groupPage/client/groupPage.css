@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+.editgroupname{
+  color: rgba(0, 68, 102, 1);
+}
+
+.groupTitle-edit{
+  text-align: center;
+}
+
+.messageString{
+  color: black;
+}
+
 .descriptionBox{
   background-color: lightgrey;
   color: rgba(0, 68, 102, 1);
@@ -17,6 +29,31 @@
     padding-right:10px;
 }
 
+.editGroup{
+  background-color: lightgrey;
+  border-color: rgba(0, 68, 102, 1);
+  border-radius:20px;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+.js-savegroup{
+  background-color: lightgrey;
+  border-color: rgba(0, 68, 102, 1);
+  border-radius:20px;
+  padding-left:10px;
+  padding-right:10px;
+  color: rgba(0, 68, 102, 1);
+}
+
+.js-sendGrpMsg{
+  background-color: grey;
+}
+
 .joinButton{
   text-align: center;
+}
+
+.groupEditDiv{
+  display: none;
 }
