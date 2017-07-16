@@ -25,7 +25,39 @@ if ('webkitSpeechRecognition' in window) {
 
 			const text = event.results[0][0].transcript;
 			final_span.innerHTML = text;
-		};
+
+			Meteor.call("send_text_for_APIAI_processing", text, function(err, result){
+				if(err){
+					window.alert(err);
+					//voiceDict.set("api_status", "inactive");
+					return;
+				}
+
+				console.log(result);
+				console.log(result.data.result);
+
+				if(!!result.data.result.parameters){
+					const parameters = result.data.result.parameters;
+					const entities = [];
+
+				//save results to ReactiveDict
+				for(entity in parameters){
+					if(parameters[entity]){
+						entities.push({
+							name: entity,
+							value: parameters[entity]
+						})
+					}
+				}
+
+		//voiceDict.set("entitiesResult", entities);
+		//voiceDict.set("intentResult", result.data.result.metadata.intentName);
+			}
+
+	//voiceDict.set("api_status", "inactive");
+	//voiceDict.set("hasResult", true);
+		});
+	};
 }
 
 function startDictation(event) {
