@@ -30,6 +30,8 @@
 			var words = event.results[i][0].transcript;
 			if (words.includes("message is finished")) {
 				recognition.stop();
+				var msgsave0 = new SpeechSynthesisUtterance('message is saved!');
+		    window.speechSynthesis.speak(msgsave0);
 			} else if (words.includes("read it back")){
 				var msg = new SpeechSynthesisUtterance(words);
 				window.speechSynthesis.speak(msg);
