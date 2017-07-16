@@ -39,7 +39,7 @@
 	        if (event.results[i].isFinal) {
 	        	console.log("final result is |"+event.results[i][0].transcript.trim()+"|");
 	          final_transcript +=
-	                Math.round(100*event.results[i][0].confidence)+"% -- "+
+	                ""+
 	                capitalize(event.results[i][0].transcript.trim()) +".\n";
 			  console.log('final events.results[i][0].transcript = '+ JSON.stringify(event.results[i][0].transcript));
 	        } else {
