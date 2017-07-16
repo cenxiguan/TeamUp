@@ -3,6 +3,7 @@
       http://ctrlq.org/code/19680-html5-web-speech-api
 */
 
+	var final_transcript = '';
 	var recognizing = false;
 
 	if ('webkitSpeechRecognition' in window) {
@@ -23,12 +24,44 @@
 	    };
 
 	    recognition.onresult = function(event) {
-
+				myevent = event;
+				for (var i = event.resultIndex; i < event.results.length; ++i) {
+			  console.log("i="+i+" words="+words);
+			var words = event.results[i][0].transcript;
+			if (words.includes("message is finished")) {
+				recognition.stop();
+			} else if (words.includes("read it back")){
+				var msg = new SpeechSynthesisUtterance(words);
+				window.speechSynthesis.speak(msg);
+			}
+	        if (event.results[i].isFinal) {
+	        	console.log("final result is |"+event.results[i][0].transcript.trim()+"|");
+	          final_transcript +=
+	                Math.round(100*event.results[i][0].confidence)+"% -- "+
+	                capitalize(event.results[i][0].transcript.trim()) +".\n";
+			  console.log('final events.results[i][0].transcript = '+ JSON.stringify(event.results[i][0].transcript));
+	        } else {
+	          //interim_transcript += Math.round(100*event.results[i][0].confidence) + "%: "+ event.results[i][0].transcript+"<br>";
+			  //console.log('interim events.results[i][0].transcript = '+ JSON.stringify(event.results[i][0].transcript));
+	        }
+	      }
+	      final_transcript = capitalize(final_transcript);
+	      messagebox.innerHTML = linebreak(final_transcript);
 				const text = event.results[0][0].transcript;
 	      //final_span.innerHTML = text;
-				messagebox.innerHTML = text;
+				//messagebox.innerHTML = text;
 	    };
 	}
+
+var two_line = /\n\n/g;
+var one_line = /\n/g;
+function linebreak(s) {
+	return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+}
+
+function capitalize(s) {
+	return s.replace(s.substr(0,1), function(m) { return m.toUpperCase(); });
+}
 
 	function startDictation(event) {
 	  if (recognizing) {
