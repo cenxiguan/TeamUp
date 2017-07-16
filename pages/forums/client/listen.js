@@ -75,6 +75,7 @@ function capitalize(s) {
 
   Template.listen.events({
 	'click #start_button': function(event){
+		alert("Please speak out your message and end it with 'message is finished'!");
 		startDictation(event);
 	}
   });
