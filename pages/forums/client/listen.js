@@ -42,23 +42,18 @@
 	                ""+
 	                capitalize(event.results[i][0].transcript.trim()) +".\n";
 			  console.log('final events.results[i][0].transcript = '+ JSON.stringify(event.results[i][0].transcript));
-	        } else {
-	          //interim_transcript += Math.round(100*event.results[i][0].confidence) + "%: "+ event.results[i][0].transcript+"<br>";
-			  //console.log('interim events.results[i][0].transcript = '+ JSON.stringify(event.results[i][0].transcript));
 	        }
 	      }
 	      final_transcript = capitalize(final_transcript);
 	      messagebox.innerHTML = linebreak(final_transcript);
 				const text = event.results[0][0].transcript;
-	      //final_span.innerHTML = text;
-				//messagebox.innerHTML = text;
 	    };
 	}
 
 var two_line = /\n\n/g;
 var one_line = /\n/g;
 function linebreak(s) {
-	return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+	return s.replace(two_line, '<p></p>').replace(one_line, ' ');
 }
 
 function capitalize(s) {
