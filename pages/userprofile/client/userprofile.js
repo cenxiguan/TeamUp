@@ -16,12 +16,37 @@ Template.showprofile.helpers({
 })
 
 Template.showprofile.events({
+  "change #editpic": function(event){
+    if($("#editpic").val()){
+      if(event.currentTarget.files&&event.currentTarget.files[0] && event.currentTarget.files[0].type.match(/(jpg|jpeg|png|gif)$/)) {
+        if(event.currentTarget.files[0].size>1048576) {
+          alert('File size is larger than 1MB!');
+        }else{
+          var reader = new FileReader();
+          reader.onload = function(event){
+            var result = event.currentTarget.result;
+            $('#editpic1').attr('src', result);
+            $('#editpic1').css('display', 'block');
+          };
+          //read the image file as a data URL
+          reader.readAsDataURL(event.currentTarget.files[0]);
+        }
+      }else{
+         alert('This is not an image file!');
+      }
+    }else{
+      $("#editpic1").attr("src","");
+      $("#editpic1").css("display","none");
+    }
+  },
+
   'click button#edit'(elt,instance) {
     instance.$(".showprofilediv").css("display", "none");
     instance.$(".editinfo").css("display", "block");
   },
 
   'click button#save'(elt,instance) {
+    $("#save").attr("class", "ui right floated blue loading disabled button");
     console.log("clicked");
     const editfirstname = instance.$('.editfirstname').val();
     const editlastname = instance.$('.editlastname').val();
@@ -35,21 +60,12 @@ Template.showprofile.events({
     const editinstitution = instance.$('.editinstitution').val();
     const editlocation = instance.$('.editlocation').val();
     const editbio = instance.$('.editbio').val();
+    const editpic=instance.$('#editpic')[0].files[0];
     const editagree = $(".editagree").is(":checked");
 
   //usernameinputs = instance,$("#")
   //console.log('adding '+name);
-    instance.$('.editfirstname').val("");
-    instance.$('.editlastname').val("");
-    instance.$('.editemail').val("");
-    instance.$('.editphone').val("");
-    instance.$('.editdateofbirth').val("");
-    instance.$('.editgender').val("");
-    instance.$('.editoccupation').val("");
-    instance.$('.editacademicfield').val("");
-    instance.$('.editinstitution').val("");
-    instance.$('.editlocation').val("");
-    instance.$('.editbio').val("");
+
 
     var userprofile = {firstname:editfirstname,
                  lastname:editlastname,
@@ -65,16 +81,52 @@ Template.showprofile.events({
                  owner:Meteor.userId()};
                  console.log(userprofile);
      if (editagree) {
-       Meteor.call('userprofile.update',Meteor.userId(), userprofile);
-       instance.$(".editinfo").css("display", "none");
-       instance.$(".showprofilediv").css("display", "block");
-     }else{
-       alert('you must check the box to insert your profile');
-     }
+       var image_base64;
+       //client-side validation
+       if($("#editpic").val()){
+         if($("#editpic")[0].files&&($("#editpic")[0].files[0]) && ($("#editpic")[0].files[0].type).match(/(jpg|jpeg|png|gif)$/)) {
+           if(($("#editpic")[0].files[0].size)>1048576) {
+             alert('File size is larger than 1MB!');
+           } else {
+             //get the image file and convert it to base64 form
+             var image_file = $("#editpic")[0].files[0];
+             var imgToBase64 = function(image_file, callback) {
+               var reader = new FileReader();
+               reader.onload = function() {
+                 var dataUrl = reader.result;
+                 img_base64 = dataUrl.split(',')[1];
+                 callback(img_base64);
+               };
+               reader.readAsDataURL(editpic);
+             };
 
-     instance.$(".showprofilediv").css("display", "block");
-     instance.$(".editinfo").css("display", "none");
-  },
+             //send the data to the sever
+             imgToBase64(image_file, function(image_base64){
+               userprofile.pic = img_base64;
+               Meteor.call('userprofile.update',Meteor.userId(), userprofile, function(err, result){
+                 if(err){
+                   alert(err.message);
+                   $("#save").attr("class","ui right floated blue botton");
+                   return;
+                 }
+                 instance.$(".editinfo").css("display", "none");
+                 instance.$(".showprofilediv").css("display", "block");
+               });
+             });
+           }
+          }else{
+           $("#editpic1").attr("src","");
+           $("#editpic1").css("display","none");
+           alert('This is not an image file!');
+           $("#save").attr("class", "ui right floated blue button");
+         }
+       }else{
+         alert('There is no image file');
+       }
+     }else{
+           alert('You must check the box to insert your profile');
+     }
+   },
 })
 
 Template.addprofile.events({
