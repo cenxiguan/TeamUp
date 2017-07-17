@@ -21,6 +21,14 @@
   border-radius: 10px;
 }
 
+.groupMessageBox{
+  background-color: lightgrey;
+  color: rgba(0, 68, 102, 1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
 .js-joingroupbtn{
     background-color: lightgrey;
     border-color: rgba(0, 68, 102, 1);

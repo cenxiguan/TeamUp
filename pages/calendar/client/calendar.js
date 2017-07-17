@@ -34,7 +34,12 @@ if ('webkitSpeechRecognition' in window) {
 				}
 
 				console.log(result);
-				console.log(result.data.result);
+				console.log(result.data.result.metadata.intentName);
+				console.log(result.data.result.parameters.date);
+				console.log(result.data.result.parameters.person);
+				console.log(result.data.result.parameters.time);
+				console.log(result.data.result.parameters.event);
+				console.log(result.data.result.parameters);
 
 				if(!!result.data.result.parameters){
 					const parameters = result.data.result.parameters;
