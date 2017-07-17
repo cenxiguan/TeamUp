@@ -24,9 +24,7 @@
             </a>
           </td>
           <td>
-            {{> talk1}}
-            <br><br>
-            <section><strong>Joshua Alvarado</strong> is a rising junior pursuing his major in Computer Science.
+            <section>{{> talk1}} <strong>Joshua Alvarado</strong> is a rising junior pursuing his major in Computer Science.
             He is from Queens, New York City and has developed a love for coding during
             his time at Brandeis. Having once participated in Pito Salas’ class
             “Software Entrepreneurship”, he and his team worked on a startup named
@@ -42,9 +40,7 @@
             </a>
           </td>
           <td>
-            {{> talk2}}
-            <br><br>
-            <section><strong>Yaxin(Selina) Guo</strong>
+            <section>{{> talk2}} <strong>Yaxin(Selina) Guo</strong>
               is a rising junior student, whose major is Economics in Brandeis
               University. She is interested in Computer Science, Probability and
               Statistics,and Econometrics.
@@ -59,9 +55,7 @@
             </a>
           </td>
           <td>
-            {{> talk3}}
-            <br><br>
-            <section><strong>Beckett Browning</strong> is a rising senior student studying Computer
+            <section>{{> talk3}} <strong>Beckett Browning</strong> is a rising senior student studying Computer
               Science at Brandeis University. He is from San Diego, California and
               plans on continuing his studies in Computer Science in graduate school.
               In the past, Beckett has worked in programming languages such as Java
@@ -79,9 +73,7 @@
             </a>
           </td>
           <td>
-            {{> talk4}}
-            <br><br>
-            <section><strong>Rong Guan</strong> is a Master student in Computer Science. She likes to develop
+            <section>{{> talk4}} <strong>Rong Guan</strong> is a Master student in Computer Science. She likes to develop
             different kinds of games. For example, console-based games such as the memory
             card game and 3D Animation games such as "SuperApple" and "Hit Mushroom".
             You may check it out at <a href="https://sites.google.com/brandeis.edu/rongs3danimations/home?authuser=1">her
@@ -99,17 +91,21 @@
 
 
 <template name="talk1">
-<button class="btn btn-primary">Push to hear Joshua's introduction</button>
+  <a href="#" id="start_button"><img width="50" id="voiceIconSpeaking" class="voiceDemoIcon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MDggNTA4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MDggNTA4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGNpcmNsZSBzdHlsZT0iZmlsbDojMzI0QTVFOyIgY3g9IjI1NCIgY3k9IjI1NCIgcj0iMjU0Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRkQwNUI7IiBkPSJNMTgxLjIsMTE4LjRjLTQsMi44LTUuNiw4LTQuOCwxMi40YzEuNiw3LjYsMCwxNi40LDAsMjQuNGMwLjQsMTYuOCw3LjIsMzMuMiw0LDUwICBjLTMuNiwxOS42LTIwLjgsMjMuMi0zMCw0MC40Yy0yLjQsNC40LDAuOCw5LjYsNS42LDEwLjRjMy42LDAuNCw2LjgsMiw3LjYsNS42YzAuOCwyLjQtMC44LDEzLjItMC44LDE1LjYgIGMwLDkuMiwyNi40LDE0LjgsMzQuNCwxOS4yYy02LjQsMS4yLTIzLjYsNi40LTI4LjQsMTIuNGMtMS4yLDEuNi0wLjQsNCwxLjYsNC40YzYuOCwyLjQsMTEuMiwxMC40LDEyLjQsMThjMS4yLDguOC0wLjQsMTcuNiwxLjYsMjYgIGM0LjQsMTguNCwzMC40LDEyLDQ3LjIsMi44bC0xLjYsNDguNGwxMTkuMi0yMHYtMTAuOGMwLDAtMy4yLTQwLDEwLjgtNjZjNy42LTE0LjQsMTMuMi0yOCwyMC44LTQyLjRjMTAtMjAsMTQuNC00MS42LDE1LjYtNjMuNiAgQzQwMS42LDEwNC40LDI4NCw0MCwxODEuMiwxMTguNHoiLz4KPGc+Cgk8cmVjdCB4PSI2NCIgeT0iMjkyIiBzdHlsZT0iZmlsbDojRTZFOUVFOyIgd2lkdGg9IjgxLjYiIGhlaWdodD0iMTIuNCIvPgoJPHBvbHlnb24gc3R5bGU9ImZpbGw6I0U2RTlFRTsiIHBvaW50cz0iMTQwLjQsMjc2LjggOTAuOCwyNTUuMiA5NiwyNDQgMTQ1LjIsMjY1LjYgICIvPgoJPHBvbHlnb24gc3R5bGU9ImZpbGw6I0U2RTlFRTsiIHBvaW50cz0iMTQwLjQsMzE5LjIgOTAuOCwzNDAuOCA5NiwzNTIuNCAxNDUuMiwzMzAuOCAgIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
+  </a>
 </template>
 
 <template name="talk2">
-<button class="btn btn-primary">Push to hear Selina's introduction</button>
+  <a href="#" id="start_button"><img width="50" id="voiceIconSpeaking" class="voiceDemoIcon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MDggNTA4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MDggNTA4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGNpcmNsZSBzdHlsZT0iZmlsbDojMzI0QTVFOyIgY3g9IjI1NCIgY3k9IjI1NCIgcj0iMjU0Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRkQwNUI7IiBkPSJNMTgxLjIsMTE4LjRjLTQsMi44LTUuNiw4LTQuOCwxMi40YzEuNiw3LjYsMCwxNi40LDAsMjQuNGMwLjQsMTYuOCw3LjIsMzMuMiw0LDUwICBjLTMuNiwxOS42LTIwLjgsMjMuMi0zMCw0MC40Yy0yLjQsNC40LDAuOCw5LjYsNS42LDEwLjRjMy42LDAuNCw2LjgsMiw3LjYsNS42YzAuOCwyLjQtMC44LDEzLjItMC44LDE1LjYgIGMwLDkuMiwyNi40LDE0LjgsMzQuNCwxOS4yYy02LjQsMS4yLTIzLjYsNi40LTI4LjQsMTIuNGMtMS4yLDEuNi0wLjQsNCwxLjYsNC40YzYuOCwyLjQsMTEuMiwxMC40LDEyLjQsMThjMS4yLDguOC0wLjQsMTcuNiwxLjYsMjYgIGM0LjQsMTguNCwzMC40LDEyLDQ3LjIsMi44bC0xLjYsNDguNGwxMTkuMi0yMHYtMTAuOGMwLDAtMy4yLTQwLDEwLjgtNjZjNy42LTE0LjQsMTMuMi0yOCwyMC44LTQyLjRjMTAtMjAsMTQuNC00MS42LDE1LjYtNjMuNiAgQzQwMS42LDEwNC40LDI4NCw0MCwxODEuMiwxMTguNHoiLz4KPGc+Cgk8cmVjdCB4PSI2NCIgeT0iMjkyIiBzdHlsZT0iZmlsbDojRTZFOUVFOyIgd2lkdGg9IjgxLjYiIGhlaWdodD0iMTIuNCIvPgoJPHBvbHlnb24gc3R5bGU9ImZpbGw6I0U2RTlFRTsiIHBvaW50cz0iMTQwLjQsMjc2LjggOTAuOCwyNTUuMiA5NiwyNDQgMTQ1LjIsMjY1LjYgICIvPgoJPHBvbHlnb24gc3R5bGU9ImZpbGw6I0U2RTlFRTsiIHBvaW50cz0iMTQwLjQsMzE5LjIgOTAuOCwzNDAuOCA5NiwzNTIuNCAxNDUuMiwzMzAuOCAgIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
+  </a>
 </template>
 
 <template name="talk3">
-<button class="btn btn-primary">Push to hear Beckett's introduction</button>
+  <a href="#" id="start_button"><img width="50" id="voiceIconSpeaking" class="voiceDemoIcon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MDggNTA4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MDggNTA4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGNpcmNsZSBzdHlsZT0iZmlsbDojMzI0QTVFOyIgY3g9IjI1NCIgY3k9IjI1NCIgcj0iMjU0Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRkQwNUI7IiBkPSJNMTgxLjIsMTE4LjRjLTQsMi44LTUuNiw4LTQuOCwxMi40YzEuNiw3LjYsMCwxNi40LDAsMjQuNGMwLjQsMTYuOCw3LjIsMzMuMiw0LDUwICBjLTMuNiwxOS42LTIwLjgsMjMuMi0zMCw0MC40Yy0yLjQsNC40LDAuOCw5LjYsNS42LDEwLjRjMy42LDAuNCw2LjgsMiw3LjYsNS42YzAuOCwyLjQtMC44LDEzLjItMC44LDE1LjYgIGMwLDkuMiwyNi40LDE0LjgsMzQuNCwxOS4yYy02LjQsMS4yLTIzLjYsNi40LTI4LjQsMTIuNGMtMS4yLDEuNi0wLjQsNCwxLjYsNC40YzYuOCwyLjQsMTEuMiwxMC40LDEyLjQsMThjMS4yLDguOC0wLjQsMTcuNiwxLjYsMjYgIGM0LjQsMTguNCwzMC40LDEyLDQ3LjIsMi44bC0xLjYsNDguNGwxMTkuMi0yMHYtMTAuOGMwLDAtMy4yLTQwLDEwLjgtNjZjNy42LTE0LjQsMTMuMi0yOCwyMC44LTQyLjRjMTAtMjAsMTQuNC00MS42LDE1LjYtNjMuNiAgQzQwMS42LDEwNC40LDI4NCw0MCwxODEuMiwxMTguNHoiLz4KPGc+Cgk8cmVjdCB4PSI2NCIgeT0iMjkyIiBzdHlsZT0iZmlsbDojRTZFOUVFOyIgd2lkdGg9IjgxLjYiIGhlaWdodD0iMTIuNCIvPgoJPHBvbHlnb24gc3R5bGU9ImZpbGw6I0U2RTlFRTsiIHBvaW50cz0iMTQwLjQsMjc2LjggOTAuOCwyNTUuMiA5NiwyNDQgMTQ1LjIsMjY1LjYgICIvPgoJPHBvbHlnb24gc3R5bGU9ImZpbGw6I0U2RTlFRTsiIHBvaW50cz0iMTQwLjQsMzE5LjIgOTAuOCwzNDAuOCA5NiwzNTIuNCAxNDUuMiwzMzAuOCAgIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
+  </a>
 </template>
 
 <template name="talk4">
-<button class="btn btn-primary">Push to hear Rong's introduction</button>
+  <a href="#" id="start_button"><img width="50" id="voiceIconSpeaking" class="voiceDemoIcon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MDggNTA4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MDggNTA4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGNpcmNsZSBzdHlsZT0iZmlsbDojMzI0QTVFOyIgY3g9IjI1NCIgY3k9IjI1NCIgcj0iMjU0Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRkQwNUI7IiBkPSJNMTgxLjIsMTE4LjRjLTQsMi44LTUuNiw4LTQuOCwxMi40YzEuNiw3LjYsMCwxNi40LDAsMjQuNGMwLjQsMTYuOCw3LjIsMzMuMiw0LDUwICBjLTMuNiwxOS42LTIwLjgsMjMuMi0zMCw0MC40Yy0yLjQsNC40LDAuOCw5LjYsNS42LDEwLjRjMy42LDAuNCw2LjgsMiw3LjYsNS42YzAuOCwyLjQtMC44LDEzLjItMC44LDE1LjYgIGMwLDkuMiwyNi40LDE0LjgsMzQuNCwxOS4yYy02LjQsMS4yLTIzLjYsNi40LTI4LjQsMTIuNGMtMS4yLDEuNi0wLjQsNCwxLjYsNC40YzYuOCwyLjQsMTEuMiwxMC40LDEyLjQsMThjMS4yLDguOC0wLjQsMTcuNiwxLjYsMjYgIGM0LjQsMTguNCwzMC40LDEyLDQ3LjIsMi44bC0xLjYsNDguNGwxMTkuMi0yMHYtMTAuOGMwLDAtMy4yLTQwLDEwLjgtNjZjNy42LTE0LjQsMTMuMi0yOCwyMC44LTQyLjRjMTAtMjAsMTQuNC00MS42LDE1LjYtNjMuNiAgQzQwMS42LDEwNC40LDI4NCw0MCwxODEuMiwxMTguNHoiLz4KPGc+Cgk8cmVjdCB4PSI2NCIgeT0iMjkyIiBzdHlsZT0iZmlsbDojRTZFOUVFOyIgd2lkdGg9IjgxLjYiIGhlaWdodD0iMTIuNCIvPgoJPHBvbHlnb24gc3R5bGU9ImZpbGw6I0U2RTlFRTsiIHBvaW50cz0iMTQwLjQsMjc2LjggOTAuOCwyNTUuMiA5NiwyNDQgMTQ1LjIsMjY1LjYgICIvPgoJPHBvbHlnb24gc3R5bGU9ImZpbGw6I0U2RTlFRTsiIHBvaW50cz0iMTQwLjQsMzE5LjIgOTAuOCwzNDAuOCA5NiwzNTIuNCAxNDUuMiwzMzAuOCAgIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
+  </a>
 </template>

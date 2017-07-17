@@ -1,4 +1,4 @@
-#pageProfile .table {
+#pageConnections .table{
     border-collapse: collapse;
     width: 100%;
     font-size: 25px;
@@ -9,11 +9,11 @@
     color:rgb(33, 69, 124);
 }
 
-#pageProfile .editinfo {
-  display: none;
+#pageConnections .infoformat {
+  font-size: 20px;
 }
 
-#pageProfile button {
+#pageConnections button {
     background-color: #d9d9d9; /* Grey */
     border: none;
     color: rgba(0, 68, 102, 1);
@@ -24,10 +24,4 @@
     text-decoration: none;
     display: inline-block;
     font-size: 22px;
-}
-
-h-b {
-  background-color: white;
-  color: blue;
-  font-size: 25px;
 }

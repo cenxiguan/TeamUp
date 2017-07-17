@@ -1,8 +1,4 @@
 * {box-sizing:border-box}
-body {font-family: Verdana,sans-serif;}
-/*.mySlides {
-  transition: display, opacity, visibility 1s ease;
-}*/
 
 /* Slideshow container */
 .slideshow-container {
@@ -11,10 +7,53 @@ body {font-family: Verdana,sans-serif;}
   margin: auto;
 }
 
+.mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  position:left;
+}
+
+/* Position the "next button" to the right */
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+  position:right;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
 /* Caption text */
 .text {
   color: #f2f2f2;
-  font-size: 15px;
+  font-size: 25px;
   padding: 8px 12px;
   position: absolute;
   bottom: 8px;
@@ -33,6 +72,7 @@ body {font-family: Verdana,sans-serif;}
 
 /* The dots/bullets/indicators */
 .dot {
+  cursor:pointer;
   height: 13px;
   width: 13px;
   margin: 0 2px;
@@ -42,19 +82,31 @@ body {font-family: Verdana,sans-serif;}
   transition: background-color 0.6s ease;
 }
 
-.active {
+.active, .dot:hover {
   background-color: #717171;
 }
 
 /* Fading animation */
-/*.fade {
+.fade {
   -webkit-animation-name: fade;
   -webkit-animation-duration: 1.5s;
   animation-name: fade;
   animation-duration: 1.5s;
-  transition: display 1.6s ease;
 }
-
+#prev{
+  float:left;
+  color:black;
+  background-color: white;
+  border-color:grey:
+  border:5px;
+}
+#next{
+  float:right;
+  color:black;
+  background-color: white;
+  border-color:grey:
+  border:5px;
+}
 @-webkit-keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
@@ -63,14 +115,4 @@ body {font-family: Verdana,sans-serif;}
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
-}*/
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .text {font-size: 11px}
-}
-
-div.mySlides {
-  /*transition: visibility 0.5s linear;*/
-  display: none;
 }
