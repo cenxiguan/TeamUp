@@ -23,8 +23,8 @@ Template.addmessages.events({
       };
     Meteor.call('messages.insert', messagesinfo);
 
-    var msg = new SpeechSynthesisUtterance('message is sent!');
-    window.speechSynthesis.speak(msg);
+    // var msg = new SpeechSynthesisUtterance('message is sent!');
+    // window.speechSynthesis.speak(msg);
   }
 })
 
