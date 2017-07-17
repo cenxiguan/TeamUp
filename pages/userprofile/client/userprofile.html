@@ -4,6 +4,7 @@
   {{#if currentUser}}
     {{#if hasProfile}}
       {{> showprofile}}
+      {{> friendlist}}
     {{else}}
       <h2>Create User Profile</h2><br>
       {{> addprofile}}
@@ -221,4 +222,15 @@
 
   </div>
 
+</template>
+
+<template name="friendlist">
+  <div class="showprofilediv">
+    <h2> Friend List</h2>
+      <ol>
+         <li>friendA</li>
+         <li>friendB</li>
+         <li>friendC</li>
+      </ol>
+  </div>
 </template>
