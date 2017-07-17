@@ -2,8 +2,12 @@
   <!--Show group data back to user-->
   <!--{{_id}}-->
   {{> groupMain}}
-  {{> groupMessage}}
-  {{> showMessages}}
+  <br>
+  <hr>
+  <div class="groupMessageBox">
+    {{> showMessages}}
+    {{> groupMessage}}
+  </div>
 </template>
 
 
@@ -12,8 +16,8 @@
     <h2 class="groupTitle">Team: {{groupname}}</h2>
     <hr>
     <div class="descriptionBox">
-      Description: {{groups.groupdesc}}<br>
-      Location: {{groups.grouploc}}<br>
+      Description: {{groupdesc}}<br>
+      Location: {{grouploc}}<br>
       <div class="joinButton">
         <button id="js-editGroup" class="editGroup">Edit Group</button>
         <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
