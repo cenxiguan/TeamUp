@@ -4,8 +4,9 @@ Meteor.publish('messages', function(){
 Meteor.publish('groups', function(){
   return Groups.find();
 })
+
 Meteor.publish('user', function(){
-  return User.find({owner: this.userId});
+  return User.find();
 })
 Meteor.publish('connections', function(){
   return Connections.find();

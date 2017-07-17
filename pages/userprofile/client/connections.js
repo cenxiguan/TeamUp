@@ -3,7 +3,7 @@ Template.connections.onCreated(function(){
 });
 
 Template.connections.helpers({
-  connectionslist() {return User.find()},
+  connectionslist(){return User.find()},
 })
 
 Template.person.helpers({
@@ -21,5 +21,3 @@ Template.person.events({
     Meteor.call('connections.remove',r._id);
   },
 })
-
-//        Meteor.call('userprofile.update',Meteor.userId(), userprofile);
