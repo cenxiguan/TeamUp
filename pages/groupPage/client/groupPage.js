@@ -48,24 +48,22 @@ Template.groupMessage.events({
           messagesArray: [
             {
               "message": messageString,
-              "messageOwner":Meteor.userId()
+              "messageOwner": Meteor.userId()
             }
           ]
         }
 
-
         //if Groupmessages collection exists for the group add message
         if (Groupmessages.findOne({groupid:this._id})) {
           console.log('updating message');
-          Meteor.call('groupmessages.addmessage', this._id, messageString);
+          Meteor.call('groupmessages.addmessage', this._id, messageData.messagesArray);
         } else { //else, add init message
-
           Meteor.call('groupmessages.addinitmessage', messageData);
           console.log('adding init message');
         }
 
         console.log('Groupmessages findOne: ');
-        console.dir(Groupmessages.findOne());
+        console.dir(Groupmessages.findOne({groupid:this._id}));
     }
 })
 

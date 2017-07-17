@@ -7,3 +7,6 @@ Meteor.publish('groups', function(){
 Meteor.publish('user', function(){
   return User.find();
 })
+Meteor.publish('groupmessages', function(_id){
+  return Groupmessages.find({groupid:_id});
+})
