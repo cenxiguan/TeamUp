@@ -79,7 +79,7 @@
             </tr>
 
             <tr>
-              <td>Upload Pic</td> <td><input type="file" id="pic" name="pic" accept="image/*" data-type='image' /></td>
+              <td>Picture</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="pic" name="pic" accept="image/*" data-type='image' /></td>
             </tr>
           </tbody>
         </table>
@@ -136,11 +136,11 @@
               <td>Bio: {{user.bio}}</td>
             </tr>
             <tr>
-              <td>Pic: <img src="data:image/jpeg;base64, {{user.pic}}" style="display:block; max-width:300px;"></td>
+              <td>Picture: <img class="center" src="data:image/jpeg;base64, {{user.pic}}" style="display:block; max-width:300px;"></td>
             </tr>
         </tbody>
       </table>
-      <button id="edit">Edit Info</button><br>
+      <button id="edit">Edit Info</button><br><br>
   </div>
 
 
@@ -198,14 +198,14 @@
                     </tr>
 
                     <tr>
-                      <td>Location</td> <td><input type="text" class="editlocation" placeholder="Location" value="{{user.location}}"></td>
+                      <td>Locatio</td> <td><input type="text" class="editlocation" placeholder="Location" value="{{user.location}}"></td>
                     </tr>
 
                     <tr>
-                      <td>Bio</td> <td><textarea class="editbio" placeholder="Enter bio here" value="{{user.bio}}"></textarea></td>
+                      <td>Biography</td> <td><textarea class="editbio" placeholder="Enter bio here" value="{{user.bio}}"></textarea></td>
                     </tr>
                     <tr>
-                      <td>Pic</td> <td><input type="file" id="editpic" name="pic" accept="image/*" data-type='image'/></td>
+                      <td>Picture</td> <td><input type="file" id="editpic" name="pic" accept="image/*" data-type='image'/></td>
                     </tr>
                   </tbody>
                 </table>
