@@ -61,10 +61,13 @@ Template.groupMessage.events({
           Meteor.call('groupmessages.addinitmessage', messageData);
           console.log('adding init message');
         }
-
         console.log('Groupmessages findOne: ');
         console.dir(Groupmessages.findOne({groupid:this._id}));
     }
+})
+
+Template.showMessages.helpers({
+  showingMessages() {return Groupmessages.find()},
 })
 
 // Template.groupPage.onCreated(function() {
