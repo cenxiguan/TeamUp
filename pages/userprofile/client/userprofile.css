@@ -31,3 +31,10 @@ h-b {
   color: blue;
   font-size: 25px;
 }
+
+.center {
+  margin: auto;
+    width: 50%;
+    border: 5px solid navy;
+    padding: 5px;
+}
