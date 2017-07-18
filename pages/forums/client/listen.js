@@ -28,10 +28,11 @@
 				for (var i = event.resultIndex; i < event.results.length; ++i) {
 			  console.log("i="+i+" words="+words);
 			var words = event.results[i][0].transcript;
-			if (words.includes("message is finished")) {
+			if (words.includes("finish")) {
 				recognition.stop();
 				var msgsave0 = new SpeechSynthesisUtterance('message is saved!');
 		    window.speechSynthesis.speak(msgsave0);
+				return;
 			} else if (words.includes("read it back")){
 				var msg = new SpeechSynthesisUtterance(words);
 				window.speechSynthesis.speak(msg);
@@ -75,7 +76,7 @@ function capitalize(s) {
 
   Template.listen.events({
 	'click #start_button': function(event){
-		alert("Please speak out your message and end it with 'message is finished'!");
+		alert("Please speak your message slowly with break between sentences and end it with 'finish'!");
 		startDictation(event);
 	}
   });

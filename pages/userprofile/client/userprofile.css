@@ -38,3 +38,8 @@ h-b {
     border: 5px solid navy;
     padding: 5px;
 }
+
+.fonting {
+  font-size: 15px;
+  padding-top: 10px;
+}

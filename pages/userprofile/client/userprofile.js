@@ -4,15 +4,14 @@ Template.userprofile.onCreated(function(){
 
 Template.userprofile.helpers({
   "hasProfile": function(){
-    return User.findOne({owner: Meteor.userId()});
+    return Template.instance().data;
   },
 })
 
 Template.showprofile.helpers({
   "user": function(){
-    return User.findOne({owner:Meteor.userId()});
+    return User.findOne();
   },
-
 })
 
 Template.showprofile.events({
