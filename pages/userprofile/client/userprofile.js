@@ -6,6 +6,12 @@ Template.userprofile.helpers({
   "hasProfile": function(){
     return Template.instance().data;
   },
+  "makeProfile": function(){
+    if (User.findOne({owner: Meteor.userId()})) {
+      return false;
+    }
+    return true;
+  },
 })
 
 Template.showprofile.helpers({

@@ -2,11 +2,13 @@
   <body id="pageProfile">
   <h1>User Profile</h1>
   {{#if currentUser}}
-    {{#if hasProfile}}
-      {{> showprofile}}
-    {{else}}
+    {{#if makeProfile}}
       <h2>Create User Profile</h2><br>
       {{> addprofile}}
+    {{else}}
+      {{#if hasProfile}}
+        {{> showprofile}}
+      {{/if}}
     {{/if}}
   {{else}}
   <h1>Please sign-up for an account.</h1>
