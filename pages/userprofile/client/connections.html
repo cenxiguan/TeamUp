@@ -2,6 +2,12 @@
   <body id="pageConnections">
   {{#if currentUser}}
   <h1>Add/Remove Connections</h1><br>
+  <ul>
+      {{#each u in madeconnectionslist}}
+        {{> madeconnections u=u}}
+      {{/each}}
+  </ul>
+  <br>
   <table class="table table-bordered table-striped">
     <tbody>
       {{#each u in connectionslist}}
@@ -27,4 +33,8 @@
       &nbsp;&nbsp;&nbsp;<button id="messagebutton">Send Message</button>
     </td>
   </tr>
+</template>
+
+<template name="madeconnections">
+    <li>&nbsp;<strong>{{u.firstname}} {{u.lastname}}</strong></li>
 </template>

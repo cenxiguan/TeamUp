@@ -4,6 +4,7 @@ Template.connections.onCreated(function(){
 
 Template.connections.helpers({
   connectionslist(){return User.find()},
+  madeconnectionslist(){return Connections.find()},
 })
 
 Template.person.helpers({
