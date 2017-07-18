@@ -8,6 +8,15 @@ Template.userprofile.helpers({
   },
 })
 
+Template.userprofile.events({
+  'click button#sbopen'(elt,instance) {
+    instance.$("#sidebar").css("display", "block");
+  },
+  'click button#sbclose'(elt,instance) {
+    instance.$("#sidebar").css("display", "none");
+  },
+})
+
 Template.showprofile.helpers({
   "user": function(){
     return User.findOne({owner:Meteor.userId()});

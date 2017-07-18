@@ -1,4 +1,20 @@
 <template name="userprofile">
+
+<!-- Page Content -->
+<div class="pagecontent">
+  <button class="button xlarge" id="sbopen">☰</button>
+
+  <div class="sidebar bar-block border-right" style="display:none" id="sidebar">
+    <ul>
+    <li><button id="sbclose" class="sbclose">Close <i class="glyphicon glyphicon-remove"></i></button></li>
+    <li><a href="#" class="bar-item button"><sb-p>Personal Profile</sb-p></a></li>
+    <li><a href="#" class="bar-item button"><sb-p>Friend List</sb-p></a></li>
+    <li><a href="#" class="bar-item button"><sb-p>Group(s) Joined</sb-p></a></li>
+    </ul>
+  </div>
+
+  <div class="container">
+
   <body id="pageProfile">
   <h1>User Profile</h1>
   {{#if currentUser}}
@@ -13,6 +29,10 @@
   <h1>Please sign-up for an account.</h1>
   {{/if}}
   </body>
+
+  </div>
+
+</div>
 </template>
 
 
@@ -80,7 +100,7 @@
             </tr>
 
             <tr>
-              <td>Picture</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="pic" name="pic" accept="image/*" data-type='image' /></td>
+              <td>Upload Pic</td> <td><input type="file" id="pic" name="pic" accept="image/*" data-type='image' /></td>
             </tr>
           </tbody>
         </table>
@@ -137,11 +157,11 @@
               <td>Bio: {{user.bio}}</td>
             </tr>
             <tr>
-              <td>Picture: <img class="center" src="data:image/jpeg;base64, {{user.pic}}" style="display:block; max-width:300px;"></td>
+              <td>Pic: <img src="data:image/jpeg;base64, {{user.pic}}" style="display:block; max-width:300px;"></td>
             </tr>
         </tbody>
       </table>
-      <button id="edit">Edit Info</button><br><br>
+      <button id="edit">Edit Info</button><br>
   </div>
 
 
@@ -199,14 +219,14 @@
                     </tr>
 
                     <tr>
-                      <td>Locatio</td> <td><input type="text" class="editlocation" placeholder="Location" value="{{user.location}}"></td>
+                      <td>Location</td> <td><input type="text" class="editlocation" placeholder="Location" value="{{user.location}}"></td>
                     </tr>
 
                     <tr>
-                      <td>Biography</td> <td><textarea class="editbio" placeholder="Enter bio here" value="{{user.bio}}"></textarea></td>
+                      <td>Bio</td> <td><textarea class="editbio" placeholder="Enter bio here" value="{{user.bio}}"></textarea></td>
                     </tr>
                     <tr>
-                      <td>Picture</td> <td><input type="file" id="editpic" name="pic" accept="image/*" data-type='image'/></td>
+                      <td>Pic</td> <td><input type="file" id="editpic" name="pic" accept="image/*" data-type='image'/></td>
                     </tr>
                   </tbody>
                 </table>
@@ -222,15 +242,4 @@
 
   </div>
 
-</template>
-
-<template name="friendlist">
-  <div class="showprofilediv">
-    <h2> Friend List</h2>
-      <ol>
-         <li>friendA</li>
-         <li>friendB</li>
-         <li>friendC</li>
-      </ol>
-  </div>
 </template>

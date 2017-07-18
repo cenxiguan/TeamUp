@@ -20,10 +20,11 @@
     <td>&nbsp;<strong>{{u.firstname}} {{u.lastname}}</strong><br><p class="infoformat"><em>&nbsp;&nbsp;&nbsp;&#9679;&nbsp;{{u.occupation}} at {{u.institution}}</em></p></td>
     <td>
       {{#if isConnection}}
-        <button id="unconnect">Unconnect</button>
-      {{else}}
-        <button id="connect">Add Connection</button>
+        <button id="unconnect">Unconnect</button><br><br>
+=      {{else}}
+        <button id="connect">Add Connection</button><br><br>
       {{/if}}
+      &nbsp;&nbsp;&nbsp;<button id="messagebutton">Send Message</button>
     </td>
   </tr>
 </template>

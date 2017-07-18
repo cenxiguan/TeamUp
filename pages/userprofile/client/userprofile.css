@@ -38,3 +38,32 @@ h-b {
     border: 5px solid navy;
     padding: 5px;
 }
+
+#sidebar{
+  font-size: 25px;
+  color: white;
+  background-color: rgb(56,119,216);
+  border:left;
+}
+
+#sbopen{
+  font-size: 25px;
+  color:white;
+  background-color: rgb(56,119,216);
+  border-radius: 8px;
+  padding:16px;
+  border:blue;
+}
+
+#sbclose{
+  font-size: 25px;
+  color:white;
+  background-color: rgb(56,119,216);
+  border-radius: 8px;
+  padding:16px;
+  border:blue;
+}
+
+sb-p{
+  color:white;
+}

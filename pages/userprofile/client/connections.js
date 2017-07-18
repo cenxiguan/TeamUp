@@ -2,6 +2,10 @@ Template.connections.onCreated(function(){
   Meteor.subscribe('connections');
 });
 
+//Template.usermessages.onCreated(function(){
+//  Meteor.subscribe('usermessages');
+//});
+
 Template.connections.helpers({
   connectionslist(){return User.find()},
 })
@@ -19,5 +23,8 @@ Template.person.events({
     console.log('removing');
     console.log(r)
     Meteor.call('connections.remove',r._id);
+  },
+  "click #messagebutton" (elt,instance) {
+    Router.go('/usermessages/+_id');
   },
 })
