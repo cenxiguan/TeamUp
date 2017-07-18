@@ -22,6 +22,7 @@ Template.groupInfo.events({
         groupdesc:groupdesc,
         grouploc:grouploc,
         owner:Meteor.userId(),
+        dateCreated: new Date(),
         members:[]  //members array
         // Need to implement groupid somehow which makes
         // individual pages and unique groups
@@ -30,12 +31,19 @@ Template.groupInfo.events({
     //first need to check if groupname is free, if not return error
     Meteor.call('groups.insert', groupinfo);
 
-    
+
     //find all groups where user is owner
 
 
-    console.dir('this');
-    //Router.go('teamPage/:'+_id); //must define group id to add to path, possibly without :
+    //console.dir('this');
+    // console.log('last group')
+    // console.log(Groups.findOne({}, {sort: {'dateCreated':-1}}));
+
+    var lastGroupId = Groups.findOne({}, {sort: {'dateCreated':-1}})._id;
+
+    //console.log(Groups.findOne({}, {sort: {'dateCreated':-1}})._id);
+    //setTimeout(function(){Router.go('/teamPage/'+lastGroupId); }, 3000);
+    Router.go('/teamPage/'+lastGroupId);
 
     //Router.go('templatename',{},{query: {group:groupId}});
     console.dir(Groups.find({}).fetch());

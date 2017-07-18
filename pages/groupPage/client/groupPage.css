@@ -29,6 +29,13 @@
   margin-bottom: 20px;
 }
 
+.messageText{
+  height: 250px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .js-joingroupbtn{
     background-color: lightgrey;
     border-color: rgba(0, 68, 102, 1);
