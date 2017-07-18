@@ -8,6 +8,11 @@ Meteor.publish('groups', function(){
 Meteor.publish('user', function(){
   return User.find();
 })
+
+Meteor.publish('users', function(userId){
+  return User.find({owner: userId});
+})
+
 Meteor.publish('connections', function(){
   return Connections.find();
 })
