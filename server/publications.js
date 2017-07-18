@@ -5,7 +5,11 @@ Meteor.publish('groups', function(){
   return Groups.find();
 })
 
-Meteor.publish('user', function(userId){
+Meteor.publish('user', function(){
+  return User.find();
+})
+
+Meteor.publish('users', function(userId){
   return User.find({owner: userId});
 })
 

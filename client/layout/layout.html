@@ -22,15 +22,11 @@
 		      <a class="navbar-brand" href="{{pathFor 'home'}}">
 		      	<strong><em>TeamUp</em></strong></a>
 		    </div>
-				<script>
-					getId = Meteor.userId();
-				</script>
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      	<ul class="nav navbar-nav">
-							{{#if currentUser}}s
+							{{#if currentUser}}
 							<li><a href="{{pathFor route='profile.show' data=currentUser}}">Profile</a></li>
-
 							<li><a href="{{pathFor 'connections'}}">Connections</a></li>
 							<li><a href="{{pathFor 'forums'}}">Public Forums</a></li>
 							<li><a href="{{pathFor 'calendar'}}">Calendar</a></li>
