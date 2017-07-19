@@ -11,11 +11,9 @@
 
 <template name="addbiomessages">
   <div class="jumbotron">
-     Type a message...<br>
+     {{> biolisten}} or type a post...<br>
     <textarea id="biomessagebox" rows="5" cols="70"></textarea><br><br>
-    {{> biolisten}}Name:
-    <input id="name" type="text">
-    &nbsp;&nbsp;<button id="addbiomessages"><strong>Send</strong></button><br>
+    <button id="addbiomessages"><strong>Send</strong></button>
     <hr>
     {{> showbiomessages}}
   </div>
@@ -38,7 +36,7 @@
 </template>
 
 <template name="biomessagerow">
-  <li> {{message.biomessagebox}}
+  <li> {{message.messagebox}}
     <br><strong>- {{message.name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
     <hr size="100">

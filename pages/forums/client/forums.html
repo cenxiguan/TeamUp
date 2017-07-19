@@ -11,11 +11,9 @@
 
 <template name="addmessages">
   <div class="jumbotron">
-     Type a message...<br>
+     {{> listen}} Or type a post...<br>
     <textarea id="messagebox" rows="5" cols="70"></textarea><br><br>
-    {{> listen}}Name:
-    <input id="name" type="text">
-    &nbsp;&nbsp;<button id="addmessages"><strong>Send</strong></button><br>
+    <button id="addmessages"><strong>Send</strong></button><br>
     <hr>
     {{> showmessages}}
   </div>

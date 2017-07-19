@@ -1,25 +1,25 @@
 Template.forums.onCreated(function() {
   Meteor.subscribe('messages');
+  Meteor.subscribe('user');
 })
 
 Template.showmessages.helpers({
   messagelist() {
-
-    return Messages.find()
-
+    return Messages.find({field: "public"})
   },
 })
 
 Template.addmessages.events({
   'click button'(elt,instance) {
     const messagebox = instance.$('#messagebox').val();
-    const name = instance.$('#name').val();
+    const name = User.findOne({owner: Meteor.userId()}).firstname + " " + User.findOne({owner: Meteor.userId()}).lastname;
     console.log('adding '+name);
+
     instance.$('#messagebox').val("");
     var messagesinfo =
       { messagebox:messagebox,
-        name:name
-        //owner:Meteor.userID()
+        name:name,
+        field: "public"
       };
     Meteor.call('messages.insert', messagesinfo);
 
