@@ -22,9 +22,6 @@ Meteor.publish('connections', function(){
   return Connections.find();
 })
 
-Meteor.publish('calendar', function(){
-  return Calendar.find();
-})
 Meteor.publish('groupmessages', function(_id){
   return Groupmessages.find({groupid:_id});
 })
