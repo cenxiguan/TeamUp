@@ -12,12 +12,13 @@
 
 .messageString{
   color: black;
-  position: relative;
+  /*position: absolute;*/
+  width: 70%;
 }
 
-.messageString input{
-  position: absolute;
-  width: 100%;
+.inputMsgSpan{
+  overflow: hidden;
+  padding-right: 10px;
 }
 
 .js-sendGrpMsg{
@@ -45,6 +46,10 @@
   overflow: scroll;
   display: flex;
   flex-direction: column-reverse;
+}
+
+.messageSpan{
+  color: black;
 }
 
 .js-joingroupbtn{

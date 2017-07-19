@@ -72,6 +72,18 @@ Template.showMessages.helpers({
   showingMessages() {return Groupmessages.find()},
 })
 
+Template.individualMessage.helpers({
+  getUsername(thisid) {
+    var profile = User.findOne({owner: thisid});
+    var fname = profile.firstname;
+    var lname = profile.lastname;
+    var personname = fname+' '+lname;
+    return personname;
+  }
+})
+
+// User.findOne({owner: object.messagesArray.messageOwner})
+
 // Template.groupPage.onCreated(function() {
 //    Meteor.subscribe('groups');
 // })

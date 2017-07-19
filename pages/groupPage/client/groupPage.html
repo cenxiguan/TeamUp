@@ -16,8 +16,8 @@
     <h2 class="groupTitle">Team: {{groupname}}</h2>
     <hr>
     <div class="descriptionBox">
-      Description: {{groupdesc}}<br>
       Location: {{grouploc}}<br>
+      Description: {{groupdesc}}<br>
       <div class="joinButton">
         <button id="js-editGroup" class="editGroup">Edit Group</button>
         <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
@@ -39,7 +39,7 @@
 </template>
 
 <template name="groupMessage">
-  <input type="text" class="messageString" id="js-messageString">
+  <span class="inputMsgSpan"><input type="text" class="messageString" id="js-messageString"></span>
   <button id="js-sendGroupMessage" class="js-sendGrpMsg">Send message</button>
 </template>
 
@@ -53,7 +53,7 @@
 
 <template name="individualMessage">
   {{#each item in x.messagesArray}}
-    {{item.message}}<br>
+    <p>{{getUsername item.messageOwner}}: <span class="messageSpan">{{item.message}}</span></p>
   {{/each}}
 </template>
 
