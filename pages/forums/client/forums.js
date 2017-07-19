@@ -5,9 +5,7 @@ Template.forums.onCreated(function() {
 
 Template.showmessages.helpers({
   messagelist() {
-
-    return Messages.find()
-
+    return Messages.find({field: "public"})
   },
 })
 
@@ -20,7 +18,8 @@ Template.addmessages.events({
     instance.$('#messagebox').val("");
     var messagesinfo =
       { messagebox:messagebox,
-        name:name
+        name:name,
+        field: "public"
       };
     Meteor.call('messages.insert', messagesinfo);
 
