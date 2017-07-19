@@ -4,20 +4,24 @@ Template.userprofile.onCreated(function(){
 
 Template.userprofile.helpers({
   "hasProfile": function(){
-    return Template.instance().data;
+    return User.findOne({owner: Meteor.userId()});
   },
-  "makeProfile": function(){
-    if (User.findOne({owner: Meteor.userId()})) {
-      return false;
-    }
-    return true;
+})
+
+Template.userprofile.events({
+  'click button#sbopen'(elt,instance) {
+    instance.$("#sidebar").css("display", "block");
+  },
+  'click button#sbclose'(elt,instance) {
+    instance.$("#sidebar").css("display", "none");
   },
 })
 
 Template.showprofile.helpers({
   "user": function(){
-    return User.findOne();
+    return User.findOne({owner:Meteor.userId()});
   },
+
 })
 
 Template.showprofile.events({
@@ -126,8 +130,15 @@ Template.showprofile.events({
            $("#save").attr("class", "ui right floated blue button");
          }
        }else{
-         $("#editpic1").attr("src","");
-         $("#editpic1").css("display","none");
+         Meteor.call('userprofile.update',Meteor.userId(), userprofile, function(err, result){
+           if(err){
+             alert(err.message);
+             $("#save").attr("class","ui right floated blue botton");
+             return;
+           }
+           instance.$(".editinfo").css("display", "none");
+           instance.$(".showprofilediv").css("display", "block");
+         });
        }
      }else{
            alert('You must check the box to insert your profile');
@@ -156,15 +167,8 @@ Template.addprofile.events({
          alert('This is not an image file!');
       }
     }else{
-      Meteor.call('userprofile.insert',userprofile, function(err, result){
-                if(err){
-                  alert(err.message);
-                  $("#submit").attr("class","ui right floated blue botton");
-                  return;
-                }
-                instance.$(".addprofilediv").css("display", "none");
-                instance.$(".showprofilediv").css("display", "block");
-       });
+      $("#pic1").attr("src","");
+      $("#pic1").css("display","none");
     }
   },
 
@@ -248,14 +252,14 @@ Template.addprofile.events({
         }
       }else{
         Meteor.call('userprofile.insert',userprofile, function(err, result){
-                if(err){
-                  alert(err.message);
-                  $("#submit").attr("class","ui right floated blue botton");
-                  return;
-                }
-                instance.$(".addprofilediv").css("display", "none");
-                instance.$(".showprofilediv").css("display", "block");
-             });
+          if(err){
+            alert(err.message);
+            $("#submit").attr("class","ui right floated blue botton");
+            return;
+          }
+          instance.$(".addprofilediv").css("display", "none");
+          instance.$(".showprofilediv").css("display", "block");
+        });
       }
     }else{
           alert('You must check the box to insert your profile');
