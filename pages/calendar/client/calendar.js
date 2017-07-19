@@ -93,13 +93,13 @@ var count = 0;
 Template.calendar.helpers({
 	eventlist() {
 		if (Template.instance().eventslist) {
-			count++;
 			console.log(count);
 			return Template.instance().eventslist.get();
 		}
   },
 
 	eventNo() {
+		count++;
 		return count;
 	}
 })
