@@ -14,8 +14,6 @@ Template.showmessages.helpers({
 Template.addmessages.events({
   'click button'(elt,instance) {
     const messagebox = instance.$('#messagebox').val();
-    //const name = instance.$('#name').val();
-
     const name = User.findOne({owner: Meteor.userId()}).firstname + " " + User.findOne({owner: Meteor.userId()}).lastname;
     console.log('adding '+name);
 
@@ -23,7 +21,6 @@ Template.addmessages.events({
     var messagesinfo =
       { messagebox:messagebox,
         name:name
-        //owner:Meteor.userID()
       };
     Meteor.call('messages.insert', messagesinfo);
 
