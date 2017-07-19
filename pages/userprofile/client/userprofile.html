@@ -1,20 +1,40 @@
 <template name="userprofile">
+
+<!-- Page Content -->
+<div class="pagecontent">
+  <button class="button xlarge" id="sbopen">☰</button>
+
+  <div class="sidebar bar-block border-right" style="display:none" id="sidebar">
+    <ul>
+    <li><button id="sbclose" class="sbclose">Close <i class="glyphicon glyphicon-remove"></i></button></li>
+    <li><a href="#" class="bar-item button"><sb-p>Personal Profile</sb-p></a></li>
+    <li><a href="#" class="bar-item button"><sb-p>Friend List</sb-p></a></li>
+    <li><a href="#" class="bar-item button"><sb-p>Group(s) Joined</sb-p></a></li>
+    </ul>
+  </div>
+
+  <div class="container">
+
   <body id="pageProfile">
   <h1>User Profile</h1>
   {{#if currentUser}}
-    {{#if makeProfile}}
+    {{#if hasProfile}}
+      {{> showprofile}}
+    {{else}}
       <h2>Create User Profile</h2><br>
       {{> addprofile}}
-    {{else}}
-      {{#if hasProfile}}
-        {{> showprofile}}
-      {{/if}}
     {{/if}}
   {{else}}
   <h1>Please sign-up for an account.</h1>
   {{/if}}
   </body>
+
+  </div>
+
+</div>
 </template>
+
+
 
 <template name="addprofile">
   <div class="addprofilediv">
@@ -79,7 +99,7 @@
             </tr>
 
             <tr>
-              <td>Picture</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="fonting" type="file" id="pic" name="pic" accept="image/*" data-type='image' /></td>
+              <td>Upload Pic</td> <td><input type="file" id="pic" name="pic" accept="image/*" data-type='image' /></td>
             </tr>
           </tbody>
         </table>
@@ -136,11 +156,11 @@
               <td>Bio: {{user.bio}}</td>
             </tr>
             <tr>
-              <td>Picture: <img class="center" src="data:image/jpeg;base64, {{user.pic}}" style="display:block; max-width:300px;"></td>
+              <td>Pic: <img src="data:image/jpeg;base64, {{user.pic}}" style="display:block; max-width:300px;"></td>
             </tr>
         </tbody>
       </table>
-      <button id="edit">Edit Info</button><br><br>
+      <button id="edit">Edit Info</button><br>
   </div>
 
 
@@ -202,14 +222,14 @@
                     </tr>
 
                     <tr>
-                      <td>Biography</td> <td><textarea class="editbio" placeholder="Enter bio here" value="{{user.bio}}"></textarea></td>
+                      <td>Bio</td> <td><textarea class="editbio" placeholder="Enter bio here" value="{{user.bio}}"></textarea></td>
                     </tr>
                     <tr>
-                      <td>Picture</td> <td><input class="fonting" type="file" id="editpic" name="pic" accept="image/*" data-type='image'/></td>
+                      <td>Pic</td> <td><input type="file" id="editpic" name="pic" accept="image/*" data-type='image'/></td>
                     </tr>
                   </tbody>
                 </table>
-                <img style="display:none; max-width:150px;" id="editpic1">
+                <img style="display:none; max-width:150px;" id="editpic1" value=“{{user.pic}}”>
                 <label class="form-check-label">
                   <input class="editagree" type="checkbox" display=“inline-block” id="editagree" style="zoom:2">
                   &nbsp;I agree to allow my info to be published.
