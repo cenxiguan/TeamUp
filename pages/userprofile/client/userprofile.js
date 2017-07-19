@@ -1,7 +1,3 @@
-Template.userprofile.onCreated(function(){
-  Meteor.subscribe('user');
-});
-
 Template.userprofile.helpers({
   "hasProfile": function(){
     return Template.instance().data;
