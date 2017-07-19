@@ -1,19 +1,20 @@
-Template.userprofile.onCreated(function(){
-  Meteor.subscribe('user');
-});
-
 Template.userprofile.helpers({
   "hasProfile": function(){
-    return User.findOne({owner: Meteor.userId()});
+    if(!Template.instance().data && Template.instance().data.owner !== Meteor.userId()){
+      window.alert("No such profile");
+      Router.go("/");
+      return;
+    }
+    return Template.instance().data;
   },
-})
-
-Template.userprofile.events({
-  'click button#sbopen'(elt,instance) {
-    instance.$("#sidebar").css("display", "block");
-  },
-  'click button#sbclose'(elt,instance) {
-    instance.$("#sidebar").css("display", "none");
+  "makeProfile": function(){
+    //check if the current profile belongs to the current user
+    if(!Template.instance().data) return true;
+    if(Template.instance().data.owner === Meteor.userId()){
+      return !User.findOne()? true : false;
+    } else {
+      return false;
+    }
   },
 })
 
