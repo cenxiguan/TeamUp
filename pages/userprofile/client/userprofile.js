@@ -126,7 +126,8 @@ Template.showprofile.events({
            $("#save").attr("class", "ui right floated blue button");
          }
        }else{
-         alert('There is no image file');
+         $("#editpic1").attr("src","");
+         $("#editpic1").css("display","none");
        }
      }else{
            alert('You must check the box to insert your profile');
