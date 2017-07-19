@@ -11,7 +11,6 @@ Template.connections.onCreated(
       return;
     }
   });
-  console.log(connectionsData);
 });
 
 Template.connections.helpers({
@@ -28,9 +27,9 @@ Template.person.helpers({
 
 Template.person.events({
   "click #connect"(event, instance){
-    const connectionsData = Connections.findOne({"connectionsData.connectionid":Meteor.userId()});
-    console.log(connectionsData);
+    var connectionsData = Connections.findOne({"connectionsData.connectionid":Meteor.userId()});
     Meteor.call('connections.update', connectionsData, this.u.owner, Meteor.userId());
+    console.log(connectionsData);
   },
   "click #unconnect"(event,instance){
     var r = Connections.findOne({connection:this.u.owner,owner:Meteor.userId()});
