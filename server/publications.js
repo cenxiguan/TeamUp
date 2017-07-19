@@ -1,5 +1,5 @@
-Meteor.publish('messages', function(){
-  return Messages.find();
+Meteor.publish('post', function(){
+  return Post.find();
 })
 
 Meteor.publish('groups', function(){

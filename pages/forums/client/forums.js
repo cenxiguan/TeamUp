@@ -1,39 +1,39 @@
 Template.forums.onCreated(function() {
-  Meteor.subscribe('messages');
+  Meteor.subscribe('post');
   Meteor.subscribe('user');
 })
 
-Template.showmessages.helpers({
-  messagelist() {
-    return Messages.find({field: "public"})
+Template.showpost.helpers({
+  postlist() {
+    return Post.find({field: "public"})
   },
 })
 
-Template.addmessages.events({
+Template.addpost.events({
   'click button'(elt,instance) {
-    const messagebox = instance.$('#messagebox').val();
+    const postbox = instance.$('#postbox').val();
     const name = User.findOne({owner: Meteor.userId()}).firstname + " " + User.findOne({owner: Meteor.userId()}).lastname;
     console.log('adding '+name);
 
-    instance.$('#messagebox').val("");
-    var messagesinfo =
-      { messagebox:messagebox,
+    instance.$('#postbox').val("");
+    var posttext =
+      { postbox:postbox,
         name:name,
         field: "public"
       };
-    Meteor.call('messages.insert', messagesinfo);
+    Meteor.call('post.insert', posttext);
 
-    // var msg = new SpeechSynthesisUtterance('message is sent!');
+    // var msg = new SpeechSynthesisUtterance('post is sent!');
     // window.speechSynthesis.speak(msg);
   }
 })
 
 
-Template.messagerow.events({
+Template.postrow.events({
   'click span'(elt,instance) {
     console.dir(this);
-    var id = this.message._id
+    var id = this.post._id
     console.log(id);
-    Meteor.call('messages.remove', id);
+    Meteor.call('post.remove', id);
   }
 })

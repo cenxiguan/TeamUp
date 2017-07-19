@@ -1,38 +1,38 @@
 Template.bioforum.onCreated(function() {
-  Meteor.subscribe('messages');
+  Meteor.subscribe('post');
   Meteor.subscribe('user');
 })
 
-Template.showbiomessages.helpers({
-  biomessagelist() {
-    return Messages.find({field: "bio"})
+Template.showbiopost.helpers({
+  biopostlist() {
+    return Post.find({field: "bio"})
   },
 })
 
-Template.addbiomessages.events({
+Template.addbiopost.events({
   'click button'(elt,instance) {
-    const biomessagebox = instance.$('#biomessagebox').val();
+    const biopostbox = instance.$('#biopostbox').val();
     const name = User.findOne({owner: Meteor.userId()}).firstname + " " + User.findOne({owner: Meteor.userId()}).lastname;
-    console.log(biomessagebox);
+    console.log(biopostbox);
 
-    instance.$('#biomessagebox').val("");
-    var messagesinfo =
-      { messagebox:biomessagebox,
+    instance.$('#biopostbox').val("");
+    var posttext =
+      { postbox:biopostbox,
         name:name,
         field: "bio"
       };
-    Meteor.call('messages.insert', messagesinfo);
+    Meteor.call('post.insert', posttext);
 
     // var msg = new SpeechSynthesisUtterance('message is sent!');
     // window.speechSynthesis.speak(msg);
   }
 })
 
-Template.biomessagerow.events({
+Template.biopostrow.events({
   'click span'(elt,instance) {
     console.dir(this);
-    var id = this.message._id
+    var id = this.post._id
     console.log(id);
-    Meteor.call('messages.remove', id);
+    Meteor.call('post.remove', id);
   }
 })
