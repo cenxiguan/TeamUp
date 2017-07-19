@@ -1,12 +1,20 @@
 Template.userprofile.helpers({
   "hasProfile": function(){
+    if(!Template.instance().data && Template.instance().data.owner !== Meteor.userId()){
+      window.alert("No such profile");
+      Router.go("/");
+      return;
+    }
     return Template.instance().data;
   },
   "makeProfile": function(){
-    if (User.findOne({owner: Meteor.userId()})) {
+    //check if the current profile belongs to the current user
+    if(!Template.instance().data) return true;
+    if(Template.instance().data.owner === Meteor.userId()){
+      return !User.findOne()? true : false;
+    } else {
       return false;
     }
-    return true;
   },
 })
 
