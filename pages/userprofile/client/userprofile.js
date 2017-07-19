@@ -20,9 +20,8 @@ Template.userprofile.helpers({
 
 Template.showprofile.helpers({
   "user": function(){
-    return User.findOne({owner:Meteor.userId()});
+    return User.findOne();
   },
-
 })
 
 Template.showprofile.events({
@@ -131,15 +130,7 @@ Template.showprofile.events({
            $("#save").attr("class", "ui right floated blue button");
          }
        }else{
-         Meteor.call('userprofile.update',Meteor.userId(), userprofile, function(err, result){
-           if(err){
-             alert(err.message);
-             $("#save").attr("class","ui right floated blue botton");
-             return;
-           }
-           instance.$(".editinfo").css("display", "none");
-           instance.$(".showprofilediv").css("display", "block");
-         });
+         alert('There is no image file');
        }
      }else{
            alert('You must check the box to insert your profile');
@@ -252,15 +243,7 @@ Template.addprofile.events({
           $("#submit").attr("class", "ui right floated blue button");
         }
       }else{
-        Meteor.call('userprofile.insert',userprofile, function(err, result){
-          if(err){
-            alert(err.message);
-            $("#submit").attr("class","ui right floated blue botton");
-            return;
-          }
-          instance.$(".addprofilediv").css("display", "none");
-          instance.$(".showprofilediv").css("display", "block");
-        });
+        alert('There is no image file');
       }
     }else{
           alert('You must check the box to insert your profile');
