@@ -15,7 +15,11 @@ Meteor.publish('user', function(){
 })
 
 Meteor.publish('users', function(userId){
-  return User.find({owner: userId});
+  if(userId){
+    return User.find({owner: userId});
+  } else {
+    return User.find({owner: this.userId});
+  }
 })
 
 Meteor.publish('connections', function(){

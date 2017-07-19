@@ -3,22 +3,28 @@
 </template>
 
 <template name="showGroups">
-  <div class="ownedBox">
-    Teams you own:
-    <ul>
-      {{#each item in yourGroups}}
-        <li><a href="/teamPage/{{item._id}}">Team name: "{{item.groupname}}"</a></li>
-        <!-- <li>item:{{item.identification}}</li> -->
-      {{/each}}
-    </ul>
-  </div>
-  <div class="memberOfBox">
-    Teams you are a member of:
-    <ul>
-      {{#each item in memberOfGroups}}
-        <li><a href="/teamPage/{{item._id}}">Team name: "{{item.groupname}}"</a></li>
-      {{/each}}
-    </ul>
+  <div class="showGroupsDiv">
+    <div class="ownedBox">
+      Teams you own:
+      <div class="ownedContents">
+        <ul>
+          {{#each item in yourGroups}}
+            <li><a href="/teamPage/{{item._id}}">Team name: "{{item.groupname}}"</a></li>
+            <!-- <li>item:{{item.identification}}</li> -->
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <div class="memberOfBox">
+      Teams you are a member of:
+      <div class="memberOfContents">
+        <ul>
+          {{#each item in memberOfGroups}}
+            <li><a href="/teamPage/{{item._id}}">Team name: "{{item.groupname}}"</a></li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
   </div>
 
   <!-- {{yourGroupsIds}} -->
