@@ -1,0 +1,13 @@
+.ownedBox{
+  background-color: lightgrey;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.memberOfBox{
+  background-color: lightgrey;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 40px;
+}

@@ -53,6 +53,8 @@ Template.groupMessage.events({
           ]
         }
 
+        instance.$('#js-messageString').val("");
+
         //if Groupmessages collection exists for the group add message
         if (Groupmessages.findOne({groupid:this._id})) {
           console.log('updating message');

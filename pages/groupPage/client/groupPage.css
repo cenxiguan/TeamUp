@@ -12,6 +12,16 @@
 
 .messageString{
   color: black;
+  position: relative;
+}
+
+.messageString input{
+  position: absolute;
+  width: 100%;
+}
+
+.js-sendGrpMsg{
+  float: right;
 }
 
 .descriptionBox{
@@ -27,6 +37,7 @@
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
+  /*display: inline-block;*/
 }
 
 .messageText{
