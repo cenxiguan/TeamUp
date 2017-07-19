@@ -14,14 +14,18 @@
 }
 
 #pageConnections button {
-    background-color: #d9d9d9; /* Grey */
-    border: none;
-    color: rgba(0, 68, 102, 1);
-    border: 3px solid;
-    border-radius: 25px;
-    padding: 4px 9px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 22px;
+  background-color: #d9d9d9; /* Grey */
+  border: none;
+  color: rgba(0, 68, 102, 1);
+  border: 3px solid;
+  border-radius: 25px;
+  padding: 4px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 22px;
+}
+
+#pageConnections .fontcolor {
+  color: white;
 }

@@ -1,6 +1,5 @@
 Template.connections.onCreated(
   function(){
-  Meteor.subscribe('connections');
   var connectionsData = {
     connectionsid:Meteor.userId(),
     connectionsArray: [],
@@ -16,25 +15,40 @@ Template.connections.onCreated(
 Template.connections.helpers({
   connectionslist(){return User.find()},
   // Must return array of friends list of specified user.
-  madeconnectionslist(){return Connections.find({"connectionsData.connectionid":Meteor.userId()})},
+  madeconnectionslist(){
+    return Connections.findOne({"connectionsid":Meteor.userId()}).connectionsArray
+  },
 })
 
 Template.person.helpers({
+  notCurrentUser(){
+    return this.u.owner != Meteor.userId()},
   // Must check by using MID to find matching Connection object, then by checking if their friends array contains this.u.owner.
   isConnection(){
-    return Connections.findOne({"connectionsData.connectionid":Meteor.userId()}).connectionsArray.includes(this.u.owner)},
+    return Connections.findOne({"connectionsid":Meteor.userId()}).connectionsArray.includes(this.u.owner)},
 })
 
 Template.person.events({
   "click #connect"(event, instance){
-    var connectionsData = Connections.findOne({"connectionsData.connectionid":Meteor.userId()});
-    Meteor.call('connections.update', connectionsData, this.u.owner, Meteor.userId());
-    console.log(connectionsData);
+    const connectionsData = Connections.findOne({"connectionsid":Meteor.userId()});
+    Meteor.call('connections.update', connectionsData, this.u.owner);
   },
   "click #unconnect"(event,instance){
-    var r = Connections.findOne({connection:this.u.owner,owner:Meteor.userId()});
+    const connectionsData = Connections.findOne({"connectionsid":Meteor.userId()});
     console.log('removing');
-    console.log(r)
-    Meteor.call('connections.remove',r._id);
+    Meteor.call('connections.remove', connectionsData, this.u.owner);
+    const connectionsDataAfter = Connections.findOne({"connectionsid":Meteor.userId()});
+    console.log(connectionsDataAfter);
   },
+})
+
+Template.madeconnections.helpers({
+  getFirstName: function(id){
+    var user = User.findOne({owner: id});
+    return user.firstname;
+  },
+  getLastName: function(id){
+    var user = User.findOne({owner: id});
+    return user.lastname;
+  }
 })
