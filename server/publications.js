@@ -2,6 +2,10 @@ Meteor.publish('post', function(){
   return Post.find();
 })
 
+Meteor.publish('todo', function(){
+  return ToDo.find();
+})
+
 Meteor.publish('groups', function(){
   return Groups.find();
 })
