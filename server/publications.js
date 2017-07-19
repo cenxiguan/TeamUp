@@ -1,11 +1,6 @@
 Meteor.publish('messages', function(){
   return Messages.find();
 })
-
-Meteor.publish('biomessages', function(){
-  return Biomessages.find();
-})
-
 Meteor.publish('groups', function(){
   return Groups.find();
 })
