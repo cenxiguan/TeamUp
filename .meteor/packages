@@ -25,3 +25,6 @@ spacebars
 ian:accounts-ui-bootstrap-3
 http@1.2.12
 reactive-dict@1.1.9
+easy:search
+easysearch:elasticsearch
+easysearch:autosuggest

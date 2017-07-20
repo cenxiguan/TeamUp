@@ -45,7 +45,7 @@ Template.calendar.onCreated(function() {
 					console.log(result.data.result.parameters.date);
 					console.log(result.data.result.parameters.event);
 					console.log(result.data.result.parameters.location);
-					console.log(result.data.result.parameters.person);
+					console.log(result.data.result.parameters.title);
 					console.log(result.data.result.parameters.time);
 
 					if(!!result.data.result.parameters){
@@ -64,6 +64,19 @@ Template.calendar.onCreated(function() {
 					}
 
 					eventValue.set(entities);
+
+					var todoevent =
+			      { //thing:result.data.result.parameters.event,
+			        time:result.data.result.parameters.time,
+			        date:result.data.result.parameters.date,
+							location:result.data.result.parameters.location,
+							title: result.data.result.parameters.title,
+							detail:text
+			      };
+			    Meteor.call('todo.insert', todoevent, function(error, result){
+						console.dir(ToDo.find().fetch());
+					});
+
 					var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
 					window.speechSynthesis.speak(eventsave);
 				}
@@ -92,10 +105,12 @@ var count = 0;
 
 Template.calendar.helpers({
 	eventlist() {
-		if (Template.instance().eventslist) {
-			console.log(count);
-			return Template.instance().eventslist.get();
-		}
+		// if (Template.instance().eventslist) {
+		// 	console.log(count);
+		// 	return Template.instance().eventslist.get();
+		// }
+		console.dir(ToDo.find().fetch());
+		return ToDo.find();
   },
 
 	eventNo() {
