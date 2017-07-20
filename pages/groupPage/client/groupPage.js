@@ -69,17 +69,21 @@ Template.groupMessage.events({
 })
 
 Template.showMessages.helpers({
-  showingMessages() {return Groupmessages.find()},
+  showingMessages() {
+    console.log(Groupmessages.find().fetch())
+    return Groupmessages.find()
+  },
 })
 
 Template.individualMessage.helpers({
   getUsername(thisid) {
+    console.log(User.findOne({owner: thisid}));
     var profile = User.findOne({owner: thisid});
     var fname = profile.firstname;
     var lname = profile.lastname;
     var personname = fname+' '+lname;
     return personname;
-  }
+  },
 })
 
 // User.findOne({owner: object.messagesArray.messageOwner})
