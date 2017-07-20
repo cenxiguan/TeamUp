@@ -1,16 +1,20 @@
-Template.userprofile.onCreated(function(){
-  Meteor.subscribe('user');
-});
-
 Template.userprofile.helpers({
   "hasProfile": function(){
+    if(!Template.instance().data && Template.instance().data.owner !== Meteor.userId()){
+      window.alert("No such profile");
+      Router.go("/");
+      return;
+    }
     return Template.instance().data;
   },
   "makeProfile": function(){
-    if (User.findOne({owner: Meteor.userId()})) {
+    //check if the current profile belongs to the current user
+    if(!Template.instance().data) return true;
+    if(Template.instance().data.owner === Meteor.userId()){
+      return !User.findOne()? true : false;
+    } else {
       return false;
     }
-    return true;
   },
 })
 
@@ -126,8 +130,7 @@ Template.showprofile.events({
            $("#save").attr("class", "ui right floated blue button");
          }
        }else{
-         $("#editpic1").attr("src","");
-         $("#editpic1").css("display","none");
+         alert('There is no image file');
        }
      }else{
            alert('You must check the box to insert your profile');
@@ -156,15 +159,8 @@ Template.addprofile.events({
          alert('This is not an image file!');
       }
     }else{
-      Meteor.call('userprofile.insert',userprofile, function(err, result){
-                if(err){
-                  alert(err.message);
-                  $("#submit").attr("class","ui right floated blue botton");
-                  return;
-                }
-                instance.$(".addprofilediv").css("display", "none");
-                instance.$(".showprofilediv").css("display", "block");
-       });
+      $("#pic1").attr("src","");
+      $("#pic1").css("display","none");
     }
   },
 
@@ -247,15 +243,7 @@ Template.addprofile.events({
           $("#submit").attr("class", "ui right floated blue button");
         }
       }else{
-        Meteor.call('userprofile.insert',userprofile, function(err, result){
-                if(err){
-                  alert(err.message);
-                  $("#submit").attr("class","ui right floated blue botton");
-                  return;
-                }
-                instance.$(".addprofilediv").css("display", "none");
-                instance.$(".showprofilediv").css("display", "block");
-             });
+        alert('There is no image file');
       }
     }else{
           alert('You must check the box to insert your profile');

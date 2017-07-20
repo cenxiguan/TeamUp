@@ -3,7 +3,7 @@
       http://ctrlq.org/code/19680-html5-web-speech-api
 */
 
-Template.listen.onCreated(function() {
+Template.itlisten.onCreated(function() {
 	this.recognizing = new ReactiveVar(false);
 	const recognizing_status = this.recognizing;
 
@@ -52,7 +52,7 @@ Template.listen.onCreated(function() {
 	        }
 	      }
 	      final_transcript = capitalize(final_transcript);
-	      postbox.innerHTML = linebreak(final_transcript);
+	      itpostbox.innerHTML = linebreak(final_transcript);
 				const text = event.results[0][0].transcript;
 	    };
 
@@ -71,7 +71,7 @@ function capitalize(s) {
 
 })
 
-Template.listen.events({
+Template.itlisten.events({
 	'click #start_button': function(event){
 		alert("Please speak your post slowly with break between sentences and end it with 'finish'!");
 
@@ -84,6 +84,6 @@ Template.listen.events({
 			return;
 		}
 		recognition.start();
-		postbox.innerHTML = '';
+		itpostbox.innerHTML = '';
 	}
 });

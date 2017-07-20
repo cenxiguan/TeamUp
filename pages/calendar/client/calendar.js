@@ -4,6 +4,8 @@
 */
 
 Template.calendar.onCreated(function() {
+	Meteor.subscribe('todo');
+
 	this.recognizing = new ReactiveVar(false);
 	this.eventslist = new ReactiveVar();
 	const recognizing_status = this.recognizing;
@@ -86,10 +88,18 @@ Template.calendar.events({
 	}
 });
 
+var count = 0;
+
 Template.calendar.helpers({
-	"eventlist":function() {
+	eventlist() {
 		if (Template.instance().eventslist) {
+			console.log(count);
 			return Template.instance().eventslist.get();
 		}
   },
+
+	eventNo() {
+		count++;
+		return count;
+	}
 })

@@ -1,32 +1,47 @@
 <template name="forums">
   <body id="pageForums">
     {{#if currentUser}}
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><strong style="color:rgba(0, 68, 102, 1)"><em>Forums</em></strong></li><br>
+              <li><a href="{{pathFor 'bioforum'}}">Bio->CS</a></li>
+              <li><a href="{{pathFor 'CSforum'}}">Brandeis CS</a></li>
+              <li><a href="{{pathFor 'itforum'}}">IT Forum</a></li>
+              <li><a href="{{pathFor 'petforum'}}">Pet Assistant</a></li>
+            </ul>
+        </div>
+      </div><!-- /.container-fluid -->
+    </nav>
+
       <h1>Public Forum</h1><br>
-        {{> addmessages}}
+        {{> addpost}}
     {{else}}
       <h1>You must be logged in.</h1>
     {{/if}}
   </body>
 </template>
 
-<template name="addmessages">
+<template name="addpost">
   <div class="jumbotron">
      {{> listen}} Or type a post...<br>
-    <textarea id="messagebox" rows="5" cols="70"></textarea><br><br>
-    <button id="addmessages"><strong>Send</strong></button><br>
+    <textarea id="postbox" rows="5" cols="70"></textarea><br><br>
+    <button id="addpost"><strong>Send</strong></button><br>
     <hr>
-    {{> showmessages}}
+    {{> showpost}}
   </div>
 
 </template>
 
 
-<template name="showmessages">
+<template name="showpost">
   <div class="flex-container">
     {{#if currentUser}}
     <ul>
-      {{#each m in messagelist}}
-        {{> messagerow message=m}}
+      {{#each p in postlist}}
+        {{> postrow post=p}}
       {{/each}}
     </ul>
     {{else}}
@@ -35,9 +50,9 @@
   </div>
 </template>
 
-<template name="messagerow">
-  <li> {{message.messagebox}}
-    <br><strong>- {{message.name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<template name="postrow">
+  <li> {{post.postbox}}
+    <br><strong>- {{post.name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
     <hr size="100">
   </li>

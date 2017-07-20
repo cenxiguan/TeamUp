@@ -1,32 +1,47 @@
 <template name="bioforum">
   <body id="pageForums">
     {{#if currentUser}}
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><strong style="color:rgba(0, 68, 102, 1)"><em>Forums</em></strong></li><br>
+              <li><a href="{{pathFor 'forums'}}">Public Forum</a></li>
+              <li><a href="{{pathFor 'CSforum'}}">Brandeis CS</a></li>
+              <li><a href="{{pathFor 'itforum'}}">IT Forum</a></li>
+              <li><a href="{{pathFor 'petforum'}}">Pet Assistant</a></li>
+            </ul>
+        </div>
+      </div><!-- /.container-fluid -->
+    </nav>
+
       <h1>From Biology to Computer Science</h1><br>
-        {{> addbiomessages}}
+        {{> addbiopost}}
     {{else}}
       <h1>You must be logged in.</h1>
     {{/if}}
   </body>
 </template>
 
-<template name="addbiomessages">
+<template name="addbiopost">
   <div class="jumbotron">
      {{> biolisten}} or type a post...<br>
-    <textarea id="biomessagebox" rows="5" cols="70"></textarea><br><br>
-    <button id="addbiomessages"><strong>Send</strong></button>
+    <textarea id="biopostbox" rows="5" cols="70"></textarea><br><br>
+    <button id="addbiopost"><strong>Send</strong></button>
     <hr>
-    {{> showbiomessages}}
+    {{> showbiopost}}
   </div>
 
 </template>
 
 
-<template name="showbiomessages">
+<template name="showbiopost">
   <div class="flex-container">
     {{#if currentUser}}
     <ul>
-      {{#each m in biomessagelist}}
-        {{> biomessagerow message=m}}
+      {{#each p in biopostlist}}
+        {{> biopostrow post=p}}
       {{/each}}
     </ul>
     {{else}}
@@ -35,9 +50,9 @@
   </div>
 </template>
 
-<template name="biomessagerow">
-  <li> {{message.messagebox}}
-    <br><strong>- {{message.name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<template name="biopostrow">
+  <li> {{post.postbox}}
+    <br><strong>- {{post.name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
     <hr size="100">
   </li>

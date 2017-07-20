@@ -36,7 +36,7 @@ Template.biolisten.onCreated(function() {
 			var words = event.results[i][0].transcript;
 			if (words.includes("finish")) {
 				recognition.stop();
-				var msgsave0 = new SpeechSynthesisUtterance('message is saved!');
+				var msgsave0 = new SpeechSynthesisUtterance('post is saved!');
 		    window.speechSynthesis.speak(msgsave0);
 				return;
 			} else if (words.includes("read it back")){
@@ -52,7 +52,7 @@ Template.biolisten.onCreated(function() {
 	        }
 	      }
 	      final_transcript = capitalize(final_transcript);
-	      biomessagebox.innerHTML = linebreak(final_transcript);
+	      biopostbox.innerHTML = linebreak(final_transcript);
 				const text = event.results[0][0].transcript;
 	    };
 
@@ -73,17 +73,17 @@ function capitalize(s) {
 
 Template.biolisten.events({
 	'click #start_button': function(event){
-		alert("Please speak your message slowly with break between sentences and end it with 'finish'!");
+		alert("Please speak your post slowly with break between sentences and end it with 'finish'!");
 
 		var recognition = Template.instance().recognition;
 
 		if (Template.instance().recognizing.get()) {
 			recognition.stop();
-			var msgsave = new SpeechSynthesisUtterance('message is saved!');
+			var msgsave = new SpeechSynthesisUtterance('post is saved!');
 			window.speechSynthesis.speak(msgsave);
 			return;
 		}
 		recognition.start();
-		biomessagebox.innerHTML = '';
+		biopostbox.innerHTML = '';
 	}
 });

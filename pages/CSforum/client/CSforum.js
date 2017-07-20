@@ -1,25 +1,25 @@
-Template.bioforum.onCreated(function() {
+Template.CSforum.onCreated(function() {
   Meteor.subscribe('post');
   Meteor.subscribe('user');
 })
 
-Template.showbiopost.helpers({
-  biopostlist() {
-    return Post.find({field: "bio"})
+Template.showCSpost.helpers({
+  CSpostlist() {
+    return Post.find({field: "CS"})
   },
 })
 
-Template.addbiopost.events({
+Template.addCSpost.events({
   'click button'(elt,instance) {
-    const biopostbox = instance.$('#biopostbox').val();
+    const CSpostbox = instance.$('#CSpostbox').val();
     const name = User.findOne({owner: Meteor.userId()}).firstname + " " + User.findOne({owner: Meteor.userId()}).lastname;
-    console.log(biopostbox);
+    console.log(CSpostbox);
 
-    instance.$('#biopostbox').val("");
+    instance.$('#CSpostbox').val("");
     var posttext =
-      { postbox:biopostbox,
+      { postbox:CSpostbox,
         name:name,
-        field: "bio"
+        field: "CS"
       };
     Meteor.call('post.insert', posttext);
 
@@ -28,7 +28,7 @@ Template.addbiopost.events({
   }
 })
 
-Template.biopostrow.events({
+Template.CSpostrow.events({
   'click span'(elt,instance) {
     console.dir(this);
     var id = this.post._id

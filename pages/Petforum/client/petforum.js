@@ -1,25 +1,25 @@
-Template.bioforum.onCreated(function() {
+Template.petforum.onCreated(function() {
   Meteor.subscribe('post');
   Meteor.subscribe('user');
 })
 
-Template.showbiopost.helpers({
-  biopostlist() {
-    return Post.find({field: "bio"})
+Template.showpetpost.helpers({
+  petpostlist() {
+    return Post.find({field: "pet"})
   },
 })
 
-Template.addbiopost.events({
+Template.addpetpost.events({
   'click button'(elt,instance) {
-    const biopostbox = instance.$('#biopostbox').val();
+    const petpostbox = instance.$('#petpostbox').val();
     const name = User.findOne({owner: Meteor.userId()}).firstname + " " + User.findOne({owner: Meteor.userId()}).lastname;
-    console.log(biopostbox);
+    console.log(petpostbox);
 
-    instance.$('#biopostbox').val("");
+    instance.$('#petpostbox').val("");
     var posttext =
-      { postbox:biopostbox,
+      { postbox:petpostbox,
         name:name,
-        field: "bio"
+        field: "pet"
       };
     Meteor.call('post.insert', posttext);
 
@@ -28,7 +28,7 @@ Template.addbiopost.events({
   }
 })
 
-Template.biopostrow.events({
+Template.petpostrow.events({
   'click span'(elt,instance) {
     console.dir(this);
     var id = this.post._id
