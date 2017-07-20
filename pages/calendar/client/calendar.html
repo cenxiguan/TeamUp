@@ -30,14 +30,34 @@
   </div>
   <table class="table table-bordered table-striped">
     <tbody>
-      <tr>
-        <td>Event </td>
-        <td>{{eventNo}}</td>
-      </tr>
       {{#each entity in eventlist}}
       <tr>
-        <td>{{entity.name}}</td>
-        <td>{{entity.value}}</td>
+        <td>Event</td>
+        <td>{{count}}</td>
+      </tr>
+      <tr>
+        <td>date</td>
+        <td>{{entity.date}}</td>
+      </tr>
+      <tr>
+        <td>time</td>
+        <td>{{entity.time}}</td>
+      </tr>
+      <tr>
+        <td>person</td>
+        <td>{{entity.title}}</td>
+      </tr>
+      <tr>
+        <td>location</td>
+        <td>{{entity.location}}</td>
+      </tr>
+      <tr>
+        <td>detail</td>
+        <td>{{entity.detail}}</td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td> </td>
       </tr>
       {{/each}}
     </tbody>
