@@ -1,15 +1,15 @@
 <template name="userprofile">
   <body id="pageProfile" onload="location.reload()">
-  <h1>User Profile</h1>
   {{#if currentUser}}
+  <div class="jumbotron">
     {{#if makeProfile}}
-      <h2>Create User Profile</h2><br>
       {{> addprofile}}
     {{else}}
       {{#if hasProfile}}
         {{> showprofile}}
       {{/if}}
     {{/if}}
+  </div>
   {{else}}
   <h1>Please sign-up for an account.</h1>
   {{/if}}
@@ -18,17 +18,18 @@
 
 <template name="addprofile">
   <div class="addprofilediv">
+    <h2>Create User Profile</h2><br>
   <div class="table-container">
       <table class="table table-striped table-hoverable" >
         <tbody>
 
           <tr>
-            <td>First Name</td>
+            <td>First Name </td>
             <td><input type="text" id="firstname" placeholder="First Name"></td>
           </tr>
 
           <tr>
-            <td>Last Name</td>
+            <td>Last Name </td>
             <td><input type="text" id="lastname" placeholder="Last Name"></td>
           </tr>
 
@@ -75,7 +76,7 @@
             </tr>
 
             <tr>
-              <td>Bio</td> <td><textarea id="bio" placeholder="Enter bio here"></textarea></td>
+              <td>Biography</td> <td><textarea id="bio" placeholder="Enter bio here"></textarea></td>
             </tr>
 
             <tr>
@@ -98,45 +99,58 @@
 </template>
 
 <template name="showprofile">
-  <br>
   <div class="showprofilediv">
+    <h2>User Profile</h2><br>
       <table class="table table-striped table-hoverable" >
         <tbody>
             <tr>
-              <td>First Name: {{user.firstname}}</td>
+              <td>First Name</td>
+              <td><strong>{{user.firstname}}</strong></td>
             </tr>
             <tr>
-              <td>Last Name: {{user.lastname}}</td>
+              <td>Last Name</td>
+              <td><strong>{{user.lastname}}</strong></td>
             </tr>
             <tr>
-              <td>E-mail: {{user.email}}</td>
+              <td>E-mail</td>
+              <td><strong>{{user.email}}</strong></td>
             </tr>
             <tr>
-              <td>Phone Number: {{user.phone}}</td>
+              <td>Phone Number</td>
+              <td><strong>{{user.phone}}</strong></td>
             </tr>
             <tr>
-              <td>Date Of Birth: {{user.dateofbirth}}</td>
+              <td>Date of Birth</td>
+              <td><strong>{{user.dateofbirth}}</strong></td>
             </tr>
             <tr>
-              <td>Gender: {{user.gender}}</td>
+              <td>Gender</td>
+              <td><strong>{{user.gender}}</strong></td>
             </tr>
             <tr>
-              <td>Occupaton: {{user.occupation}}</td>
+              <td>Occupaton</td>
+              <td><strong>{{user.occupation}}</strong></td>
             </tr>
             <tr>
-              <td>Academic Field(s): {{user.academicfield}}</td>
+              <td>Academic Field(s)</td>
+              <td><strong>{{user.academicfield}}</strong></td>
             </tr>
             <tr>
-              <td>Institution: {{user.institution}}</td>
+              <td>Institution</td>
+              <td><strong>{{user.institution}}</strong></td>
             </tr>
             <tr>
-              <td>Location: {{user.location}}</td>
+              <td>Location</td>
+              <td><strong>{{user.location}}</strong></td>
             </tr>
             <tr>
-              <td>Bio: {{user.bio}}</td>
+              <td>Biography</td>
+              <td><strong>{{user.bio}}</strong></td>
             </tr>
             <tr>
-              <td>Picture: <img class="center" src="data:image/jpeg;base64, {{user.pic}}" style="display:block; max-width:300px;"></td>
+              <td>Picture</td>
+              <td><img class="center" src="data:image/jpeg;base64, {{user.pic}}" style="display:block; max-width:300px;"></td>
+
             </tr>
         </tbody>
       </table>
@@ -145,7 +159,7 @@
 
 
   <div class="editinfo">
-
+      <h2>Edit User Profile</h2><br>
         <table class="table table-striped table-hoverable" >
                 <tbody>
 
@@ -202,7 +216,7 @@
                     </tr>
 
                     <tr>
-                      <td>Biography</td> <td><textarea class="editbio" placeholder="Enter bio here" value="{{user.bio}}"></textarea></td>
+                      <td>Biography</td> <td><textarea class="editbio" placeholder="Biography" value="{{user.bio}}"></textarea></td>
                     </tr>
                     <tr>
                       <td>Picture</td> <td><input class="fonting" type="file" id="editpic" name="pic" accept="image/*" data-type='image'/></td>

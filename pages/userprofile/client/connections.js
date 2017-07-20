@@ -50,5 +50,9 @@ Template.madeconnections.helpers({
   getLastName: function(id){
     var user = User.findOne({owner: id});
     return user.lastname;
+  },
+  getSubject: function(id){
+    var user = User.findOne({owner: id});
+    return user.academicfield;
   }
 })

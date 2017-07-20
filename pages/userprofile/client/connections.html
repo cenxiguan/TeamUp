@@ -1,13 +1,18 @@
 <template name="connections">
   <body id="pageConnections">
   {{#if currentUser}}
-  <h1>Connections</h1>
-  <ul>
+  <div class="jumbotron">
+  <h2>Connections</h2><br>
+  <table class="table table-bordered table-striped">
+    <tbody>
       {{#each u in madeconnectionslist}}
         {{> madeconnections u=u}}
       {{/each}}
-  </ul>
-  <h1>Add/Remove Connections</h1><br>
+    </tbody>
+  </table>
+</div>
+  <div class="jumbotron">
+  <h2>Add/Remove Connections</h2><br>
   <table class="table table-bordered table-striped">
     <tbody>
       {{#each u in connectionslist}}
@@ -15,6 +20,7 @@
       {{/each}}
     </tbody>
   </table>
+  </div>
   {{else}}
   <h1>Please sign-up for an account.</h1>
   {{/if}}
@@ -38,5 +44,7 @@
 </template>
 
 <template name="madeconnections">
-    <li>&nbsp;<a class="fontcolor" href="{{pathFor route='profile.show' _id=u}}"><strong>{{getFirstName u}} {{getLastName u}}</strong></a></li>
+  <tr>
+    <td>&nbsp;<a href="{{pathFor route='profile.show' _id=u}}"><strong>{{getFirstName u}} {{getLastName u}}</strong></a></td><td>{{getSubject u}}</td>
+  </tr>
 </template>
