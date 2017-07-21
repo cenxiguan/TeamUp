@@ -2,10 +2,10 @@
   <style type="text/css">
     span {
       font-size: 20px;
-      text-align: left;
-      color:darkblue;
+      text-align: right;
+      color:red;
     }
-    p {
+    p{
       color: darkblue;
     }
     table {
@@ -32,8 +32,8 @@
     <tbody>
       {{#each entity in eventlist}}
       <tr>
-        <td>Event</td>
-        <td>{{eventNo @index}}</td>
+        <td>Event {{eventNo @index}}</td>
+        <td><strong><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></strong></td>
       </tr>
       <tr>
         <td>date</td>
