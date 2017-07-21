@@ -44,7 +44,7 @@
 </template>
 
 <template name="showMessages">
-  <div class="messageText">
+  <div id="messageTextId" class="messageText ">
     {{#each item in showingMessages}} <!--each entire group object in collection-->
       {{> individualMessage x=item}} <!--individual group object collection-->
     {{/each}}
