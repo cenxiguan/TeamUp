@@ -90,7 +90,6 @@ Template.calendar.onCreated(function() {
 
 Template.calendar.events({
 	'click #start_button': function(event){
-		count++;
 		var recognition = Template.instance().recognition;
 		recognition.lang = 'en-US';
 		if (Template.instance().recognizing.get()) {
@@ -103,19 +102,13 @@ Template.calendar.events({
 	}
 });
 
-var count = 0;
-
 Template.calendar.helpers({
 	eventlist() {
-		// if (Template.instance().eventslist) {
-		// 	console.log(count);
-		// 	return Template.instance().eventslist.get();
-		// }
 		console.dir(ToDo.find().fetch());
 		return ToDo.find({owner: Meteor.userId()});
   },
 
 	eventNo() {
-		return count;
+		return ToDo.find({owner: Meteor.userId()}).count();
 	}
 })
