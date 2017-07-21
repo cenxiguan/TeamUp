@@ -53,7 +53,11 @@
 <template name="itpostrow">
   <li> {{post.postbox}}
     <br><strong>- {{post.name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    <p>{{post.createAt}}
+      {{#if isOwner}}
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      {{/if}}
+    </p>
     <hr size="100">
   </li>
 </template>

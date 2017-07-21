@@ -19,6 +19,8 @@ Template.addCSpost.events({
     var posttext =
       { postbox:CSpostbox,
         name:name,
+        owner:Meteor.userId(),
+        createAt:new Date(),
         field: "CS"
       };
     Meteor.call('post.insert', posttext);
@@ -26,6 +28,10 @@ Template.addCSpost.events({
     // var msg = new SpeechSynthesisUtterance('message is sent!');
     // window.speechSynthesis.speak(msg);
   }
+})
+
+Template.CSpostrow.helpers({
+  isOwner() {return this.post.owner == Meteor.userId()}
 })
 
 Template.CSpostrow.events({
