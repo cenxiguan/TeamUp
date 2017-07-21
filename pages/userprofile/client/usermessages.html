@@ -9,17 +9,19 @@
 </template>
 
 <template name="messagehistory">
-  <h-chat>
+  <div name="messagehistory" class="messagehistory">
+    <ul>
      {{#each m in usermessageslist}}
-       {{>usermessagerow message=m}}
+      <li> {{>messagerow message=m}} </li>
      {{/each}}
-  </h-chat>
+   </ul>
+ </div>
 </template>
 
-<template name="usermessagerow">
+<template name="messagerow">
     {{user.pic message.author}}::{{user.firstname message.author}}{{user.lastname message.author}}<br>
-    {{message.time}}<br>
-    {{message.text}}<hr>
+    {{usermessages.time}}<br>
+    {{usermessages.text}}<hr>
 </template>
 
 <template name="sendmessage">

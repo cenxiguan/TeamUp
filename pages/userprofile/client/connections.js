@@ -48,7 +48,7 @@ Template.person.events({
   console.log(this.u);
   var connectionvar = this.u.owner;
   var selfvar = Meteor.userId();
-  Router.go('/usermessages/', {}, {query: 'userid='+ connectionvar + '&userid2='+ selfvar});
+  Router.go('usermessages', {}, {query: 'userid='+ connectionvar + '&userid2='+ selfvar});
 
 },
 })
