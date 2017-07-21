@@ -4,7 +4,7 @@
     font-size: 25px;
     padding:8px;
     text-align: left;
-    border: 5px solid grey;
+    border: 5px solid;
     background-color: white;
     color:rgb(33, 69, 124);
 }
@@ -48,4 +48,13 @@
 #pageProfile .fonting {
   font-size: 15px;
   padding-top: 10px;
+}
+
+#pageProfile .nameformat {
+  font-size: 55px;
+  padding-top: 10px;
+}
+
+#pageProfile .bottompad {
+  padding-bottom: 10px;
 }

@@ -72,6 +72,21 @@ Template.showprofile.events({
     const editpic=instance.$('#editpic')[0].files[0];
     const editagree = $(".editagree").is(":checked");
 
+    function formatDate(date) {
+      var monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+      ];
+
+      var day = date.getDate();
+      var monthIndex = date.getMonth();
+      var year = date.getFullYear();
+
+      return monthNames[monthIndex] + '/' + day + '/' + year;
+    }
+
   //usernameinputs = instance,$("#")
   //console.log('adding '+name);
 
