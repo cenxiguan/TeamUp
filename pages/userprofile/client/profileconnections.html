@@ -1,0 +1,20 @@
+<template name="profileconnections">
+  <body id="pageProfileConnections">
+  <div class="jumbotron">
+    <h2>Connections</h2><br>
+    <table class="table table-bordered table-striped">
+      <tbody>
+        {{#each u in madeconnectionslist}}
+          {{> connectionslist u=u}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</body>
+</template>
+
+<template name="connectionslist">
+  <tr>
+    <td>&nbsp;<a href="{{pathFor route='profile.show' _id=u}}"><strong>{{getFirstName u}} {{getLastName u}}</strong></a></td>
+  </tr>
+</template>

@@ -73,24 +73,8 @@ Template.showprofile.events({
     const editpic=instance.$('#editpic')[0].files[0];
     const editagree = $(".editagree").is(":checked");
 
-    function formatDate(date) {
-      var monthNames = [
-        "January", "February", "March",
-        "April", "May", "June", "July",
-        "August", "September", "October",
-        "November", "December"
-      ];
-
-      var day = date.getDate();
-      var monthIndex = date.getMonth();
-      var year = date.getFullYear();
-
-      return monthNames[monthIndex] + '/' + day + '/' + year;
-    }
-
   //usernameinputs = instance,$("#")
   //console.log('adding '+name);
-
 
     var userprofile = {firstname:editfirstname,
                  lastname:editlastname,
@@ -105,7 +89,7 @@ Template.showprofile.events({
                  location:editlocation,
                  bio:editbio,
                  owner:Meteor.userId()};
-                 console.log(userprofile);
+     console.log(userprofile);
      if (editagree) {
        var image_base64;
        //client-side validation
@@ -147,13 +131,13 @@ Template.showprofile.events({
            $("#save").attr("class", "ui right floated blue button");
          }
        }else{
-         Meteor.call('userprofile.insert',userprofile, function(err, result){
+         Meteor.call('userprofile.update', Meteor.userId(), userprofile, function(err, result){
                 if(err){
                   alert(err.message);
-                  $("#submit").attr("class","ui right floated blue botton");
+                  $("#submit").attr("class","ui right floated blue button");
                   return;
                 }
-                instance.$(".addprofilediv").css("display", "none");
+                instance.$(".editinfo").css("display", "none");
                 instance.$(".showprofilediv").css("display", "block");
           });
        }
@@ -270,6 +254,7 @@ Template.addprofile.events({
           $("#submit").attr("class", "ui right floated blue button");
         }
       }else{
+        // userprofile.pic = ;
         Meteor.call('userprofile.insert',userprofile, function(err, result){
                 if(err){
                   alert(err.message);
