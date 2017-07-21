@@ -71,7 +71,8 @@ Template.calendar.onCreated(function() {
 			        date:result.data.result.parameters.date,
 							location:result.data.result.parameters.location,
 							title: result.data.result.parameters.title,
-							detail:text
+							detail:text,
+							owner: Meteor.userId()
 			      };
 			    Meteor.call('todo.insert', todoevent, function(error, result){
 						console.dir(ToDo.find().fetch());
@@ -89,6 +90,7 @@ Template.calendar.onCreated(function() {
 
 Template.calendar.events({
 	'click #start_button': function(event){
+		count++;
 		var recognition = Template.instance().recognition;
 		recognition.lang = 'en-US';
 		if (Template.instance().recognizing.get()) {
@@ -110,11 +112,10 @@ Template.calendar.helpers({
 		// 	return Template.instance().eventslist.get();
 		// }
 		console.dir(ToDo.find().fetch());
-		return ToDo.find();
+		return ToDo.find({owner: Meteor.userId()});
   },
 
 	eventNo() {
-		count++;
 		return count;
 	}
 })
