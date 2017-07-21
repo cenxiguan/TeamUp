@@ -43,6 +43,9 @@ Template.calendar.onCreated(function() {
 					console.log(result);
 					console.log(result.data.result.metadata.intentName);
 					console.log(result.data.result.parameters.date);
+					console.log(result.data.result.parameters.date.substring(0,4));
+					console.log(result.data.result.parameters.date.substring(5,7));
+					console.log(result.data.result.parameters.date.substring(8,10));
 					console.log(result.data.result.parameters.event);
 					console.log(result.data.result.parameters.location);
 					console.log(result.data.result.parameters.title);
@@ -105,10 +108,36 @@ Template.calendar.events({
 Template.calendar.helpers({
 	eventlist() {
 		console.dir(ToDo.find().fetch());
-		return ToDo.find({owner: Meteor.userId()});
+		return ToDo.find({owner: Meteor.userId()})
+		// .fetch().sort(function(event1, event2) {
+		// 	if (!event1) {
+		// 		return -1;
+		// 	} else if (!event2) {
+		// 		return 1;
+		// 	} else {
+		// 		var year1 = parseInt(event1.date.substring(0, 4));
+		// 		var year2 = parseInt(event2.date.substring(0, 4));
+		// 		if (year1 != year2) {
+		// 			return year1 - year2;
+		// 		} else {
+		// 			var month1 = parseInt(event1.date.substring(5, 7));
+		// 			var month2 = parseInt(event2.date.substring(5, 7));
+		// 			if (month1 != month2) {
+		// 				return month1 - month2;
+		// 			} else {
+		// 				var day1 = parseInt(event1.date.substring(8,10));
+		// 				var day2 = parseInt(event2.date.substring(8,10));
+		// 				return day1 - day2;
+		// 			}
+		// 		}
+		// 	}
+		//
+		// })
+		;
   },
 
 	eventNo(index) {
 		return index + 1;
-	}
+	},
+
 })
