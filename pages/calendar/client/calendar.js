@@ -103,12 +103,13 @@ Template.calendar.events({
 			final_span.innerHTML = '';
 		}
 	}
+
 });
 
 Template.calendar.helpers({
 	eventlist() {
 		console.dir(ToDo.find().fetch());
-		return ToDo.find({owner: Meteor.userId()})
+		return ToDo.find({owner: Meteor.userId()}).fetch();
 		// .fetch().sort(function(event1, event2) {
 		// 	if (!event1) {
 		// 		return -1;
@@ -134,10 +135,18 @@ Template.calendar.helpers({
 		//
 		// })
 		;
-  },
+  }
 
+})
+
+Template.eventrow.events({
+	'click span'(elt, instance) {
+		Meteor.call('todo.remove', this.entity._id, function(error, result){});
+	}
+})
+
+Template.eventrow.helpers({
 	eventNo(index) {
 		return index + 1;
 	},
-
 })

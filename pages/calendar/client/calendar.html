@@ -31,36 +31,40 @@
   <table class="table table-bordered table-striped">
     <tbody>
       {{#each entity in eventlist}}
-      <tr>
-        <td>Event {{eventNo @index}}</td>
-        <td><strong><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></strong></td>
-      </tr>
-      <tr>
-        <td>date</td>
-        <td>{{entity.date}}</td>
-      </tr>
-      <tr>
-        <td>time</td>
-        <td>{{entity.time}}</td>
-      </tr>
-      <tr>
-        <td>person</td>
-        <td>{{entity.title}}</td>
-      </tr>
-      <tr>
-        <td>location</td>
-        <td>{{entity.location}}</td>
-      </tr>
-      <tr>
-        <td>detail</td>
-        <td>{{entity.detail}}</td>
-      </tr>
-      <tr>
-        <td> </td>
-        <td> </td>
-      </tr>
+        {{>eventrow entity=entity index=@index}}
       {{/each}}
     </tbody>
   </table>
 
+</template>
+
+<template name="eventrow">
+  <tr>
+    <td>Event{{eventNo index}}</td>
+    <td><strong><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></strong></td>
+  </tr>
+  <tr>
+    <td>date</td>
+    <td>{{entity.date}}</td>
+  </tr>
+  <tr>
+    <td>time</td>
+    <td>{{entity.time}}</td>
+  </tr>
+  <tr>
+    <td>person</td>
+    <td>{{entity.title}}</td>
+  </tr>
+  <tr>
+    <td>location</td>
+    <td>{{entity.location}}</td>
+  </tr>
+  <tr>
+    <td>detail</td>
+    <td>{{entity.detail}}</td>
+  </tr>
+  <tr>
+    <td> </td>
+    <td> </td>
+  </tr>
 </template>
