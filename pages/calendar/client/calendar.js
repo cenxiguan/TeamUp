@@ -108,7 +108,7 @@ Template.calendar.helpers({
 		return ToDo.find({owner: Meteor.userId()});
   },
 
-	eventNo() {
-		return ToDo.find({owner: Meteor.userId()}).count();
+	eventNo(index) {
+		return index + 1;
 	}
 })
