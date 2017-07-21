@@ -70,7 +70,7 @@
             <tr>
               <td>Institution</td> <td><input type="text" id="institution" placeholder="Institution"></td>
             </tr>
-          
+
           <tr>
               <td>Alma Mater</td> <td><input type="text" id="almamater" placeholder="Alma Mater"></td>
             </tr>
@@ -103,7 +103,7 @@
 </template>
 
 <template name="showprofile">
-  <div class="jumbortron fonting">
+  <div class="jumbortron fonting showprofilediv">
     <p><img class="center" src="data:image/jpeg;base64, {{user.pic}}" style="display:block; max-width:320px;float:left;">
       &nbsp;&nbsp;&nbsp;
     <div>
@@ -178,7 +178,7 @@
                     <tr>
                       <td>Institution</td> <td><input type="text" class="editinstitution" placeholder="Institution" value="{{user.institution}}"></td>
                     </tr>
-                  
+
                     <tr>
                       <td>Alma Mater</td> <td><input type="text" class="editalmamater" placeholder="Alma Mater" value="{{user.almamater}}"></td>
                     </tr>
