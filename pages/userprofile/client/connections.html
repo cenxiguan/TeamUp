@@ -2,16 +2,6 @@
   <body id="pageConnections">
   {{#if currentUser}}
   <div class="jumbotron">
-  <h2>Connections</h2><br>
-  <table class="table table-bordered table-striped">
-    <tbody>
-      {{#each u in madeconnectionslist}}
-        {{> madeconnections u=u}}
-      {{/each}}
-    </tbody>
-  </table>
-  </div>
-  <div class="jumbotron">
   <h2>Add/Remove Connections</h2><br>
   <table class="table table-bordered table-striped">
     <tbody>
@@ -40,11 +30,5 @@
       &nbsp;&nbsp;&nbsp;<button id="messagebutton">Send Message</button>
     </td>
     {{/if}}
-  </tr>
-</template>
-
-<template name="madeconnections">
-  <tr>
-    <td>&nbsp;<a href="{{pathFor route='profile.show' _id=u}}"><strong>{{getFirstName u}} {{getLastName u}}</strong></a></td><td>{{getSubject u}}</td>
   </tr>
 </template>
