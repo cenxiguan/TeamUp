@@ -1,3 +1,9 @@
+Template.showMessages.onRendered(function() {
+  var element = document.getElementById("messageTextId");
+  //var element = instance.$('.messageText');
+  element.scrollTop = element.scrollHeight;
+});
+
 Template.groupMain.events({
      'click button#js-requestjoingroup'(elt,instance) {
         elt.preventDefault();
@@ -43,6 +49,11 @@ Template.groupMessage.events({
         const messageString = instance.$('#js-messageString').val();
         //const groupIdRef = this._id;
 
+        function updateScroll(){
+          var element = document.getElementById("messageTextId");
+          element.scrollTop = element.scrollHeight;
+        }
+
         var messageData = {
           groupid:this._id,
           messagesArray: [
@@ -59,9 +70,11 @@ Template.groupMessage.events({
         if (Groupmessages.findOne({groupid:this._id})) {
           console.log('updating message');
           Meteor.call('groupmessages.addmessage', this._id, messageData.messagesArray);
+          updateScroll();
         } else { //else, add init message
           Meteor.call('groupmessages.addinitmessage', messageData);
           console.log('adding init message');
+          updateScroll();
         }
         console.log('Groupmessages findOne: ');
         console.dir(Groupmessages.findOne({groupid:this._id}));
@@ -70,14 +83,12 @@ Template.groupMessage.events({
 
 Template.showMessages.helpers({
   showingMessages() {
-    console.log(Groupmessages.find().fetch())
     return Groupmessages.find()
   },
 })
 
 Template.individualMessage.helpers({
   getUsername(thisid) {
-    console.log(User.findOne({owner: thisid}));
     var profile = User.findOne({owner: thisid});
     var fname = profile.firstname;
     var lname = profile.lastname;
