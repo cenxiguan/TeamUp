@@ -12,6 +12,17 @@
 
 .messageString{
   color: black;
+  /*position: absolute;*/
+  width: 70%;
+}
+
+.inputMsgSpan{
+  overflow: hidden;
+  padding-right: 10px;
+}
+
+.js-sendGrpMsg{
+  float: right;
 }
 
 .descriptionBox{
@@ -19,6 +30,25 @@
   color: rgba(0, 68, 102, 1);
   padding: 20px;
   border-radius: 10px;
+}
+
+.groupMessageBox{
+  background-color: lightgrey;
+  color: rgba(0, 68, 102, 1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.messageText{
+  height: 250px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.messageSpan{
+  color: black;
 }
 
 .js-joingroupbtn{

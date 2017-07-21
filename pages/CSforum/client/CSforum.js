@@ -1,35 +1,34 @@
-Template.forums.onCreated(function() {
+Template.CSforum.onCreated(function() {
   Meteor.subscribe('post');
   Meteor.subscribe('user');
 })
 
-Template.showpost.helpers({
-  postlist() {
-    return Post.find({field: "public"})
+Template.showCSpost.helpers({
+  CSpostlist() {
+    return Post.find({field: "CS"})
   },
 })
 
-Template.addpost.events({
+Template.addCSpost.events({
   'click button'(elt,instance) {
-    const postbox = instance.$('#postbox').val();
+    const CSpostbox = instance.$('#CSpostbox').val();
     const name = User.findOne({owner: Meteor.userId()}).firstname + " " + User.findOne({owner: Meteor.userId()}).lastname;
-    console.log('adding '+name);
+    console.log(CSpostbox);
 
-    instance.$('#postbox').val("");
+    instance.$('#CSpostbox').val("");
     var posttext =
-      { postbox:postbox,
+      { postbox:CSpostbox,
         name:name,
-        field: "public"
+        field: "CS"
       };
     Meteor.call('post.insert', posttext);
 
-    // var msg = new SpeechSynthesisUtterance('post is sent!');
+    // var msg = new SpeechSynthesisUtterance('message is sent!');
     // window.speechSynthesis.speak(msg);
   }
 })
 
-
-Template.postrow.events({
+Template.CSpostrow.events({
   'click span'(elt,instance) {
     console.dir(this);
     var id = this.post._id

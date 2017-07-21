@@ -1,10 +1,20 @@
-Template.userprofile.onCreated(function(){
-  Meteor.subscribe('user');
-});
-
 Template.userprofile.helpers({
   "hasProfile": function(){
-    return User.findOne({owner: Meteor.userId()});
+    if(!Template.instance().data && Template.instance().data.owner !== Meteor.userId()){
+      window.alert("No such profile");
+      Router.go("/");
+      return;
+    }
+    return Template.instance().data;
+  },
+  "makeProfile": function(){
+    //check if the current profile belongs to the current user
+    if(!Template.instance().data) return true;
+    if(Template.instance().data.owner === Meteor.userId()){
+      return !User.findOne()? true : false;
+    } else {
+      return false;
+    }
   },
 })
 
@@ -19,9 +29,8 @@ Template.userprofile.events({
 
 Template.showprofile.helpers({
   "user": function(){
-    return User.findOne({owner:Meteor.userId()});
+    return User.findOne();
   },
-
 })
 
 Template.showprofile.events({
@@ -72,6 +81,21 @@ Template.showprofile.events({
     const editbio = instance.$('.editbio').val();
     const editpic=instance.$('#editpic')[0].files[0];
     const editagree = $(".editagree").is(":checked");
+
+    function formatDate(date) {
+      var monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+      ];
+
+      var day = date.getDate();
+      var monthIndex = date.getMonth();
+      var year = date.getFullYear();
+
+      return monthNames[monthIndex] + '/' + day + '/' + year;
+    }
 
   //usernameinputs = instance,$("#")
   //console.log('adding '+name);

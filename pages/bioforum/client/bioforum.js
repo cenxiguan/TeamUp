@@ -1,35 +1,34 @@
-Template.forums.onCreated(function() {
+Template.bioforum.onCreated(function() {
   Meteor.subscribe('post');
   Meteor.subscribe('user');
 })
 
-Template.showpost.helpers({
-  postlist() {
-    return Post.find({field: "public"})
+Template.showbiopost.helpers({
+  biopostlist() {
+    return Post.find({field: "bio"})
   },
 })
 
-Template.addpost.events({
+Template.addbiopost.events({
   'click button'(elt,instance) {
-    const postbox = instance.$('#postbox').val();
+    const biopostbox = instance.$('#biopostbox').val();
     const name = User.findOne({owner: Meteor.userId()}).firstname + " " + User.findOne({owner: Meteor.userId()}).lastname;
-    console.log('adding '+name);
+    console.log(biopostbox);
 
-    instance.$('#postbox').val("");
+    instance.$('#biopostbox').val("");
     var posttext =
-      { postbox:postbox,
+      { postbox:biopostbox,
         name:name,
-        field: "public"
+        field: "bio"
       };
     Meteor.call('post.insert', posttext);
 
-    // var msg = new SpeechSynthesisUtterance('post is sent!');
+    // var msg = new SpeechSynthesisUtterance('message is sent!');
     // window.speechSynthesis.speak(msg);
   }
 })
 
-
-Template.postrow.events({
+Template.biopostrow.events({
   'click span'(elt,instance) {
     console.dir(this);
     var id = this.post._id

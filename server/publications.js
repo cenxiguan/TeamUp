@@ -1,6 +1,11 @@
-Meteor.publish('messages', function(){
-  return Messages.find();
+Meteor.publish('post', function(){
+  return Post.find();
 })
+
+Meteor.publish('todo', function(){
+  return ToDo.find();
+})
+
 Meteor.publish('groups', function(){
   return Groups.find();
 })
@@ -8,13 +13,19 @@ Meteor.publish('groups', function(){
 Meteor.publish('user', function(){
   return User.find();
 })
+
+Meteor.publish('users', function(userId){
+  if(userId){
+    return User.find({owner: userId});
+  } else {
+    return User.find({owner: this.userId});
+  }
+})
+
 Meteor.publish('connections', function(){
   return Connections.find();
 })
 
-Meteor.publish('calendar', function(){
-  return Calendar.find();
-})
 Meteor.publish('groupmessages', function(_id){
   return Groupmessages.find({groupid:_id});
 })

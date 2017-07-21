@@ -53,6 +53,8 @@ Template.groupMessage.events({
           ]
         }
 
+        instance.$('#js-messageString').val("");
+
         //if Groupmessages collection exists for the group add message
         if (Groupmessages.findOne({groupid:this._id})) {
           console.log('updating message');
@@ -61,11 +63,26 @@ Template.groupMessage.events({
           Meteor.call('groupmessages.addinitmessage', messageData);
           console.log('adding init message');
         }
-
         console.log('Groupmessages findOne: ');
         console.dir(Groupmessages.findOne({groupid:this._id}));
     }
 })
+
+Template.showMessages.helpers({
+  showingMessages() {return Groupmessages.find()},
+})
+
+Template.individualMessage.helpers({
+  getUsername(thisid) {
+    var profile = User.findOne({owner: thisid});
+    var fname = profile.firstname;
+    var lname = profile.lastname;
+    var personname = fname+' '+lname;
+    return personname;
+  }
+})
+
+// User.findOne({owner: object.messagesArray.messageOwner})
 
 // Template.groupPage.onCreated(function() {
 //    Meteor.subscribe('groups');

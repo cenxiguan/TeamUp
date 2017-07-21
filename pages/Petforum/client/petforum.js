@@ -1,35 +1,34 @@
-Template.forums.onCreated(function() {
+Template.petforum.onCreated(function() {
   Meteor.subscribe('post');
   Meteor.subscribe('user');
 })
 
-Template.showpost.helpers({
-  postlist() {
-    return Post.find({field: "public"})
+Template.showpetpost.helpers({
+  petpostlist() {
+    return Post.find({field: "pet"})
   },
 })
 
-Template.addpost.events({
+Template.addpetpost.events({
   'click button'(elt,instance) {
-    const postbox = instance.$('#postbox').val();
+    const petpostbox = instance.$('#petpostbox').val();
     const name = User.findOne({owner: Meteor.userId()}).firstname + " " + User.findOne({owner: Meteor.userId()}).lastname;
-    console.log('adding '+name);
+    console.log(petpostbox);
 
-    instance.$('#postbox').val("");
+    instance.$('#petpostbox').val("");
     var posttext =
-      { postbox:postbox,
+      { postbox:petpostbox,
         name:name,
-        field: "public"
+        field: "pet"
       };
     Meteor.call('post.insert', posttext);
 
-    // var msg = new SpeechSynthesisUtterance('post is sent!');
+    // var msg = new SpeechSynthesisUtterance('message is sent!');
     // window.speechSynthesis.speak(msg);
   }
 })
 
-
-Template.postrow.events({
+Template.petpostrow.events({
   'click span'(elt,instance) {
     console.dir(this);
     var id = this.post._id
