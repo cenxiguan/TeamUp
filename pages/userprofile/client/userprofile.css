@@ -48,6 +48,7 @@
 #pageProfile .fonting {
   font-size: 15px;
   padding-top: 10px;
+  font-family: "Open Sans";
 }
 
 #pageProfile .nameformat {
@@ -55,6 +56,41 @@
   padding-top: 10px;
 }
 
+#pageProfile .infoformat {
+  font-size: 17px;
+  display: inline;
+}
+
+#pageProfile .infotitles {
+  font-size: 27px;
+}
+
 #pageProfile .bottompad {
   padding-bottom: 10px;
+}
+
+#pageProfile .nameformat {
+  background-color: white;
+  padding: 2px 30px;
+  border-top: 6px solid;
+  border-right: 7px solid;
+  border-bottom: 8px solid;
+}
+
+#pageProfile .positionpad {
+  padding-left: 70px;
+}
+
+#pageProfile .nameformat {
+  background-color: white;
+  padding: 2px 30px;
+  border-top: 7px solid;
+  border-right: 7px solid;
+  border-bottom: 7px solid;
+}
+
+#pageProfile .aboutcontactdiv {
+  border-collapse: collapse;
+  background-color: white;
+  border: 6px solid;
 }
