@@ -1,0 +1,17 @@
+#pageCalendar span {
+  font-size: 20px;
+  text-align: left;
+  color:darkblue;
+}
+
+#pageCalendar p {
+  color: darkblue;
+}
+
+#pageCalendar table {
+  color: red;
+}
+
+#pageCalendar h1 {
+  font-size: 50px;
+}

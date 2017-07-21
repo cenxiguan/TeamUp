@@ -19,6 +19,8 @@ Template.addpost.events({
     var posttext =
       { postbox:postbox,
         name:name,
+        owner:Meteor.userId(),
+        createAt:new Date(),
         field: "public"
       };
     Meteor.call('post.insert', posttext);
@@ -28,6 +30,9 @@ Template.addpost.events({
   }
 })
 
+Template.postrow.helpers({
+  isOwner() {return this.post.owner == Meteor.userId()}
+})
 
 Template.postrow.events({
   'click span'(elt,instance) {

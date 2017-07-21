@@ -15,9 +15,6 @@ Template.connections.onCreated(
 Template.connections.helpers({
   connectionslist(){return User.find()},
   // Must return array of friends list of specified user.
-  madeconnectionslist(){
-    return Connections.findOne({"connectionsid":Meteor.userId()}).connectionsArray
-  },
 })
 
 Template.person.helpers({
@@ -40,19 +37,4 @@ Template.person.events({
     const connectionsDataAfter = Connections.findOne({"connectionsid":Meteor.userId()});
     console.log(connectionsDataAfter);
   },
-})
-
-Template.madeconnections.helpers({
-  getFirstName: function(id){
-    var user = User.findOne({owner: id});
-    return user.firstname;
-  },
-  getLastName: function(id){
-    var user = User.findOne({owner: id});
-    return user.lastname;
-  },
-  getSubject: function(id){
-    var user = User.findOne({owner: id});
-    return user.academicfield;
-  }
 })
