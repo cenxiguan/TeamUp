@@ -47,3 +47,7 @@
     height: 3px;
     background-color: rgba(0, 68, 102, 1);
 }
+
+#pageForums a {
+    text-decoration:none;
+}
