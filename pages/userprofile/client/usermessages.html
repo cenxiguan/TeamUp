@@ -1,10 +1,28 @@
 <template name="usermessages">
-  <div name="usermessage">
-    {{> messagehistory}}
-    {{> sendmessage}}
+
+
+  <div name="content">
+      <h1> Friend A</h1>
+      {{> messagehistory}}
+      {{> sendmessage}}
   </div>
 </template>
 
 <template name="messagehistory">
+  <h-chat>
+     {{#each m in usermessageslist}}
+       {{>usermessagerow message=m}}
+     {{/each}}
+  </h-chat>
+</template>
 
+<template name="usermessagerow">
+    {{user.pic message.author}}::{{user.firstname message.author}}{{user.lastname message.author}}<br>
+    {{message.time}}<br>
+    {{message.text}}<hr>
+</template>
+
+<template name="sendmessage">
+  <input type="text" name="text" class="text" size=300px> <br> <hr>
+  <button type="button" id="send" class="send">send</button>
 </template>

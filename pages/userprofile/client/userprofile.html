@@ -20,7 +20,6 @@
   {{#if currentUser}}
     {{#if hasProfile}}
       {{> showprofile}}
-      {{> friendlist}}
     {{else}}
       <h2>Create User Profile</h2><br>
       {{> addprofile}}
@@ -92,6 +91,10 @@
             </tr>
 
             <tr>
+              <td>Alma mater</td> <td><input type="text" id="almamater" placeholder="Alma mater"></td>
+            </tr>
+
+            <tr>
               <td>Location</td> <td><input type="text" id="location" placeholder="Location"></td>
             </tr>
 
@@ -149,6 +152,9 @@
             </tr>
             <tr>
               <td>Institution: {{user.institution}}</td>
+            </tr>
+            <tr>
+              <td>Alma Mater: {{user.almamater}}</td>
             </tr>
             <tr>
               <td>Location: {{user.location}}</td>
@@ -219,6 +225,10 @@
                     </tr>
 
                     <tr>
+                      <td>Alma Mater</td> <td><input type="text" class="editalmamater" placeholder="Alma Mater" value="{{user.almamater}}"></td>
+                    </tr>
+
+                    <tr>
                       <td>Location</td> <td><input type="text" class="editlocation" placeholder="Location" value="{{user.location}}"></td>
                     </tr>
 
@@ -230,7 +240,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <img style="display:none; max-width:150px;" id="editpic1">
+                <img style="display:none; max-width:150px;" id="editpic1" value=“{{user.pic}}”>
                 <label class="form-check-label">
                   <input class="editagree" type="checkbox" display=“inline-block” id="editagree" style="zoom:2">
                   &nbsp;I agree to allow my info to be published.

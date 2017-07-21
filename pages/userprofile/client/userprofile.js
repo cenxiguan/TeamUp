@@ -67,6 +67,7 @@ Template.showprofile.events({
     const editoccupation = instance.$('.editoccupation').val();
     const editacademicfield = instance.$('.editacademicfield').val();
     const editinstitution = instance.$('.editinstitution').val();
+    const almamater = instance.$('.almamater').val();
     const editlocation = instance.$('.editlocation').val();
     const editbio = instance.$('.editbio').val();
     const editpic=instance.$('#editpic')[0].files[0];
@@ -85,6 +86,7 @@ Template.showprofile.events({
                  occupation:editoccupation,
                  academicfield:editacademicfield,
                  institution:editinstitution,
+                 almamater:editalmamater,
                  location:editlocation,
                  bio:editbio,
                  owner:Meteor.userId()};
@@ -130,7 +132,15 @@ Template.showprofile.events({
            $("#save").attr("class", "ui right floated blue button");
          }
        }else{
-         alert('There is no image file');
+         Meteor.call('userprofile.update',Meteor.userId(), userprofile, function(err, result){
+           if(err){
+             alert(err.message);
+             $("#save").attr("class","ui right floated blue botton");
+             return;
+           }
+           instance.$(".editinfo").css("display", "none");
+           instance.$(".showprofilediv").css("display", "block");
+         });
        }
      }else{
            alert('You must check the box to insert your profile');
@@ -243,7 +253,15 @@ Template.addprofile.events({
           $("#submit").attr("class", "ui right floated blue button");
         }
       }else{
-        alert('There is no image file');
+        Meteor.call('userprofile.insert',userprofile, function(err, result){
+          if(err){
+            alert(err.message);
+            $("#submit").attr("class","ui right floated blue botton");
+            return;
+          }
+          instance.$(".addprofilediv").css("display", "none");
+          instance.$(".showprofilediv").css("display", "block");
+        });
       }
     }else{
           alert('You must check the box to insert your profile');

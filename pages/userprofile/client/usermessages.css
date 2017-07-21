@@ -1,0 +1,20 @@
+#send{
+  font-size: 25px;
+  color:white;
+  background-color: lightblue;
+  size: large;
+}
+
+.text{
+  font-size: 25px;
+  color: black;
+  background-color: white;
+  size: 500px;
+  float:left;
+  position:relative;
+}
+
+.sendmessage{
+  font-size: 25px;
+  background-color: rgb(56,119,216);
+}

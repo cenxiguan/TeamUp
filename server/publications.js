@@ -18,6 +18,6 @@ Meteor.publish('calendar', function(){
 Meteor.publish('groupmessages', function(_id){
   return Groupmessages.find({groupid:_id});
 })
-Meteor.publish('usermessages', function(){
-  return Usermessages.find();
+Meteor.publish('usermessages', function(id1, id2){
+  return Usermessages.find({ ids: { $all: [id1, id2] } });
 })
