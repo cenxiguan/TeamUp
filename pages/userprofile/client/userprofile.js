@@ -18,15 +18,6 @@ Template.userprofile.helpers({
   },
 })
 
-Template.userprofile.events({
-  'click button#sbopen'(elt,instance) {
-    instance.$("#sidebar").css("display", "block");
-  },
-  'click button#sbclose'(elt,instance) {
-    instance.$("#sidebar").css("display", "none");
-  },
-})
-
 Template.showprofile.helpers({
   "user": function(){
     return User.findOne();
@@ -76,7 +67,7 @@ Template.showprofile.events({
     const editoccupation = instance.$('.editoccupation').val();
     const editacademicfield = instance.$('.editacademicfield').val();
     const editinstitution = instance.$('.editinstitution').val();
-    const almamater = instance.$('.almamater').val();
+    const editalmamater = instance.$('.editalmamater').val();
     const editlocation = instance.$('.editlocation').val();
     const editbio = instance.$('.editbio').val();
     const editpic=instance.$('#editpic')[0].files[0];
@@ -156,15 +147,15 @@ Template.showprofile.events({
            $("#save").attr("class", "ui right floated blue button");
          }
        }else{
-         Meteor.call('userprofile.update',Meteor.userId(), userprofile, function(err, result){
-           if(err){
-             alert(err.message);
-             $("#save").attr("class","ui right floated blue botton");
-             return;
-           }
-           instance.$(".editinfo").css("display", "none");
-           instance.$(".showprofilediv").css("display", "block");
-         });
+         Meteor.call('userprofile.insert',userprofile, function(err, result){
+                if(err){
+                  alert(err.message);
+                  $("#submit").attr("class","ui right floated blue botton");
+                  return;
+                }
+                instance.$(".addprofilediv").css("display", "none");
+                instance.$(".showprofilediv").css("display", "block");
+          });
        }
      }else{
            alert('You must check the box to insert your profile');
@@ -212,6 +203,7 @@ Template.addprofile.events({
     const occupation = instance.$('#occupation').val();
     const academicfield = instance.$('#academicfield').val();
     const institution = instance.$('#institution').val();
+    const almamater = instance.$('#almamater').val();
     const location = instance.$('#location').val();
     const bio = instance.$('#bio').val();
     const pic=instance.$('#pic')[0].files[0];
@@ -232,6 +224,7 @@ Template.addprofile.events({
                    occupation:occupation,
                    academicfield:academicfield,
                    institution:institution,
+                   almamater:almamater,
                    location:location,
                    bio:bio,
                    owner:Meteor.userId()};
@@ -278,14 +271,14 @@ Template.addprofile.events({
         }
       }else{
         Meteor.call('userprofile.insert',userprofile, function(err, result){
-          if(err){
-            alert(err.message);
-            $("#submit").attr("class","ui right floated blue botton");
-            return;
-          }
-          instance.$(".addprofilediv").css("display", "none");
-          instance.$(".showprofilediv").css("display", "block");
-        });
+                if(err){
+                  alert(err.message);
+                  $("#submit").attr("class","ui right floated blue botton");
+                  return;
+                }
+                instance.$(".addprofilediv").css("display", "none");
+                instance.$(".showprofilediv").css("display", "block");
+         });
       }
     }else{
           alert('You must check the box to insert your profile');

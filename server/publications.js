@@ -29,6 +29,7 @@ Meteor.publish('connections', function(){
 Meteor.publish('groupmessages', function(_id){
   return Groupmessages.find({groupid:_id});
 })
+
 Meteor.publish('usermessages', function(id1, id2){
   return Usermessages.find({ ids: { $all: [id1, id2] } });
 })

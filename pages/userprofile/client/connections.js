@@ -12,10 +12,6 @@ Template.connections.onCreated(
   });
 });
 
-Template.usermessages.onCreated(function(){
-  Meteor.subscribe('usermessages');
-});
-
 Template.connections.helpers({
   connectionslist(){return User.find()},
   // Must return array of friends list of specified user.
@@ -44,6 +40,17 @@ Template.person.events({
     const connectionsDataAfter = Connections.findOne({"connectionsid":Meteor.userId()});
     console.log(connectionsDataAfter);
   },
+  "click #messagebutton" (elt,instance) {
+  var owner = Connections.findOne({connection:this.u.owner,owner:Meteor.userId()});
+//  var friend = Connections.findOne({connection:this.u, owner:Meteor.userId()});
+
+  console.log(this.u.owner);
+  console.log(this.u);
+  var connectionvar = this.u.owner;
+  var selfvar = Meteor.userId();
+  Router.go('/usermessages/', {}, {query: 'userid='+ connectionvar + '&userid2='+ selfvar});
+
+},
 })
 
 Template.madeconnections.helpers({
@@ -55,19 +62,8 @@ Template.madeconnections.helpers({
     var user = User.findOne({owner: id});
     return user.lastname;
   },
-  "click #messagebutton" (elt,instance) {
-    var owner = Connections.findOne({connection:this.u.owner,owner:Meteor.userId()});
-  //  var friend = Connections.findOne({connection:this.u, owner:Meteor.userId()});
-
-    console.log(this.u.owner);
-    console.log(this.u);
-    var connectionvar = this.u.owner;
-    var selfvar = Meteor.userId();
-    Router.go('/usermessages/', {}, {query: 'userid='+ connectionvar + '&userid2='+ selfvar});
-
-  },
   getSubject: function(id){
     var user = User.findOne({owner: id});
     return user.academicfield;
-  },
+  }
 })
