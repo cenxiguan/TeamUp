@@ -1,8 +1,8 @@
 #pageForums .flex-container {
     display: -webkit-flex;
     display: flex;
-    width: 100%;
-    height: 100%;
+    width: 820px;
+    height: 470px;
     background-color: white;
     border: 15px solid: #fffff;
     border: 1px solid rgba(0, 68, 102, 1);
@@ -40,14 +40,10 @@
 }
 
 #pageForums li {
-    font-size: 19px;
+    font-size: 22px;
 }
 
 #pageForums hr {
     height: 3px;
     background-color: rgba(0, 68, 102, 1);
-}
-
-#pageForums a {
-    text-decoration:none;
 }
