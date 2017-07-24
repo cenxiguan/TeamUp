@@ -3,6 +3,11 @@ a.bluelink{
   text-align: left;
 }
 
+.centertext{
+  text-align: center;
+}
+
 .groupsearchbar{
   color: black;
+  text-align: center;
 }

@@ -6,7 +6,7 @@ Template.teamsearch.helpers({
 
   //all functions etc described starting around 15:30 or 15:40
   inputAttributes: function() {
-    return {'class' : 'easy-search-input', 'placeholder': 'start searching'};
+    return {'class' : 'easy-search-input', 'placeholder': 'Search keywords here'};
   },
   players: function() {
     return Groups.find({}, {sort: {dateCreated: -1}}); //sorted -1 so newest @ top
