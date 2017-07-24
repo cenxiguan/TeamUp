@@ -1,8 +1,7 @@
 
 h-s{
   font-size: 20px;
-  font-family: fantasy;
-  color:rgb(204, 209, 209);
+  color:black;
   font-weight:bold;
 }
 
@@ -28,8 +27,8 @@ h-s{
 
 #messagebox{
   display: inline-block;
-  background-color: rgb(151, 154, 154);
-  color: white;
+  background-color: white;
+  color: black;
   font-size: 25px;
   border-radius: 10px;
   overflow: auto;
@@ -70,7 +69,7 @@ h-s{
 }
 
 .message{
-  color: white;
+  color: black;
 }
 
 
