@@ -93,6 +93,7 @@ Template.calendar.onCreated(function() {
 	}
 })
 
+var count1 = 0;
 
 Template.calendar.events({
 	'click #start_button': function(event){
@@ -105,8 +106,29 @@ Template.calendar.events({
 			recognition.start();
 			final_span.innerHTML = '';
 		}
-	}
+	},
 
+	'click #result'(elt, instance){
+		const searchdate = instance.$('#search').val();
+		todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
+		console.log(todo);
+
+		var thing ="";
+
+		for (i = 0; i < todo.length; i++) {
+			console.log(todo[i].detail);
+    	thing += " " + todo[i].detail + " ";
+		}
+
+		var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
+		if (count1 % 2 === 0) {
+			window.speechSynthesis.speak(msg);
+			count1++;
+		} else {
+			window.speechSynthesis.cancel();
+			count1++;
+		}
+	}
 });
 
 Template.calendar.helpers({
