@@ -1,4 +1,3 @@
-
 Template.userprofile.helpers({
   "hasProfile": function(){
     if(!Template.instance().data && Template.instance().data.owner !== Meteor.userId()){
@@ -67,12 +66,12 @@ Template.showprofile.events({
   'click button#save'(elt,instance) {
     $("#save").attr("class", "ui right floated blue loading disabled button");
     console.log("clicked");
-    const editfirstname = instance.$('.editfirstname').val();
+    const editfirstname = instance.$('.editfirstname').val()+" ";
     const editlastname = instance.$('.editlastname').val();
+    const editfullname = instance.$('.editfirstname').val()+" "+instance.$('.editlastname').val();
     const editemail = instance.$('.editemail').val();
     const editphone = instance.$('.editphone').val();
     const editdateofbirth = instance.$('.editdateofbirth').val();
-  //  var editgender = var conceptName = $('#gender').find(":selected").text();
     const editgender = instance.$('.editgender').val();
     const editoccupation = instance.$('.editoccupation').val();
     const editacademicfield = instance.$('.editacademicfield').val();
@@ -88,6 +87,7 @@ Template.showprofile.events({
 
     var userprofile = {firstname:editfirstname,
                  lastname:editlastname,
+                 fullname:editfullname,
                  email:editemail,
                  phone:editphone,
                  dateofbirth:editdateofbirth,
@@ -190,6 +190,7 @@ Template.addprofile.events({
 
     const firstname = instance.$('#firstname').val();
     const lastname = instance.$('#lastname').val();
+    const fullname = instance.$('#firstname').val()+" "+instance.$('#lastname').val();
     const email = instance.$('#email').val();
     const phone = instance.$('#phone').val();
     const dateofbirth = instance.$('#dateofbirth').val();
@@ -211,6 +212,7 @@ Template.addprofile.events({
 
     var userprofile = {firstname:firstname,
                    lastname:lastname,
+                   fullname:fullname,
                    email:email,
                    phone:phone,
                    dateofbirth:dateofbirth,
