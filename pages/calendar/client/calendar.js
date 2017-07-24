@@ -51,39 +51,42 @@ Template.calendar.onCreated(function() {
 					console.log(result.data.result.parameters.title);
 					console.log(result.data.result.parameters.time);
 
-					if(!!result.data.result.parameters){
-						const parameters = result.data.result.parameters;
-						//const entities = [];
-						var entities = [];
+					if (result.data.result.parameters.date == "") {
+						alert("Please speak the event you want to add once more.");
+					} else {
+						if(!!result.data.result.parameters){
+							const parameters = result.data.result.parameters;
+							//const entities = [];
+							var entities = [];
 
-					//save results to ReactiveDict
-					for(entity in parameters){
-						if(parameters[entity]){
-							entities.push({
-								name: entity,
-								value: parameters[entity]
-							})
+							//save results to ReactiveDict
+							for(entity in parameters){
+								if(parameters[entity]){
+									entities.push({
+										name: entity,
+										value: parameters[entity]
+									})
+								}
+							}
+
+							eventValue.set(entities);
+
+							var todoevent =
+				      	{ //thing:result.data.result.parameters.event,
+				        	time:result.data.result.parameters.time,
+				        	date:result.data.result.parameters.date,
+									location:result.data.result.parameters.location,
+									title: result.data.result.parameters.title,
+									detail:text,
+									owner: Meteor.userId()
+				      	};
+				    	Meteor.call('todo.insert', todoevent, function(error, result){
+							});
+
+							var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
+							window.speechSynthesis.speak(eventsave);
 						}
 					}
-
-					eventValue.set(entities);
-
-					var todoevent =
-			      { //thing:result.data.result.parameters.event,
-			        time:result.data.result.parameters.time,
-			        date:result.data.result.parameters.date,
-							location:result.data.result.parameters.location,
-							title: result.data.result.parameters.title,
-							detail:text,
-							owner: Meteor.userId()
-			      };
-			    Meteor.call('todo.insert', todoevent, function(error, result){
-						console.dir(ToDo.find().fetch());
-					});
-
-					var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
-					window.speechSynthesis.speak(eventsave);
-				}
 			});
 		};
 		this.recognition = recognition;
