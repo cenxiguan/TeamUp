@@ -1,5 +1,11 @@
 <template name="userprofile">
-  <body id="pageProfile" onload="location.reload()">
+
+<!-- Page Content -->
+<div class="pagecontent">
+
+  <div class="container">
+
+  <body id="pageProfile">
   {{#if currentUser}}
   <div class="jumbotron">
     {{#if makeProfile}}
@@ -14,6 +20,10 @@
   <h1>Please sign-up for an account.</h1>
   {{/if}}
   </body>
+
+  </div>
+
+</div>
 </template>
 
 <template name="addprofile">
@@ -84,7 +94,7 @@
             </tr>
 
             <tr>
-              <td>Picture</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="fonting" type="file" id="pic" name="pic" accept="image/*" data-type='image' /></td>
+              <td>Upload Pic</td> <td><input type="file" id="pic" name="pic" accept="image/*" data-type='image' /></td>
             </tr>
           </tbody>
         </table>
@@ -185,6 +195,10 @@
                       <td>Institution</td> <td><input type="text" class="editinstitution" placeholder="Institution" value="{{user.institution}}"></td>
                     </tr>
 
+                  <!--  <tr>
+                      <td>Alma Mater</td> <td><input type="text" class="editalmamater" placeholder="Alma Mater" value="{{user.almamater}}"></td>
+                    </tr> -->
+
                     <tr>
                       <td>Alma Mater</td> <td><input type="text" class="editalmamater" placeholder="Alma Mater" value="{{user.almamater}}"></td>
                     </tr>
@@ -194,14 +208,14 @@
                     </tr>
 
                     <tr>
-                      <td>Biography</td> <td><textarea class="editbio" placeholder="Biography" value="{{user.bio}}"></textarea></td>
+                      <td>Bio</td> <td><textarea class="editbio" placeholder="Enter bio here" value="{{user.bio}}"></textarea></td>
                     </tr>
                     <tr>
-                      <td>Picture</td> <td><input class="fonting" type="file" id="editpic" name="pic" accept="image/*" data-type='image'/></td>
+                      <td>Pic</td> <td><input type="file" id="editpic" name="pic" accept="image/*" data-type='image'/></td>
                     </tr>
                   </tbody>
                 </table>
-                <img style="display:none; max-width:150px;" id="editpic1">
+                <img style="display:none; max-width:150px;" id="editpic1" value=“{{user.pic}}”>
                 <label class="form-check-label">
                   <input class="editagree" type="checkbox" display=“inline-block” id="editagree" style="zoom:2">
                   &nbsp;I agree to allow my info to be published.

@@ -64,14 +64,14 @@
   float:left;
   color:black;
   background-color: white;
-  border-color:grey:
+  border-color:grey;
   border:5px;
 }
 #next{
   float:right;
   color:black;
   background-color: white;
-  border-color:grey:
+  border-color:grey;
   border:5px;
 }
 @-webkit-keyframes fade {

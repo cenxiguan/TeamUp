@@ -43,4 +43,15 @@ Template.person.events({
     const connectionsDataAfter = Connections.findOne({"connectionsid":Meteor.userId()});
     console.log(connectionsDataAfter);
   },
+  "click #messagebutton" (elt,instance) {
+  var owner = Connections.findOne({connection:this.u.owner,owner:Meteor.userId()});
+//  var friend = Connections.findOne({connection:this.u, owner:Meteor.userId()});
+
+  console.log(this.u.owner);
+  console.log(this.u);
+  var connectionvar = this.u.owner;
+  var selfvar = Meteor.userId();
+  Router.go('usermessages', {}, {query: 'userid='+ connectionvar + '&userid2='+ selfvar});
+
+},
 })
