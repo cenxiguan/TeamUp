@@ -13,8 +13,14 @@ Template.connections.onCreated(
 });
 
 Template.connections.helpers({
-  connectionslist(){return User.find()},
-  // Must return array of friends list of specified user.
+  connectionslist() {
+    // If something entered in search.
+    if (false) {
+      return User.find({firstname:/p/}).fetch();
+    } else {
+      return User.find();
+    }
+  },
 })
 
 Template.person.helpers({
