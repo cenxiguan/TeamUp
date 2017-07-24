@@ -10,12 +10,14 @@ Template.sendmessage.events({
          var element =instance.$("#input");
          element.scrollTop = element.scrollHeight;
        }
+       const id1 = Router.current().params.query.userid,
+             id2 = Router.current().params.query.userid2
 
        var messageDataKey = {
-         ids:[Router.current().params.query.userid,Router.current().params.query.userid2],
+         ids:[id1, id2],
          messagesArray: [
            {
-             "message": input,
+             "message": messageStringKey,
              "author": Meteor.userId()
            }
          ]
@@ -24,10 +26,13 @@ Template.sendmessage.events({
 
        instance.$('#input').val("");
 
-      if (Usermessages.findOne({ids:{$all:[Router.current().params.query.userid,Router.current().params.query.userid2]}})) {
+      if (Usermessages.findOne({ids:{$all:messageDataKey.ids}})) {
          console.log('updating message');
 
-         Meteor.call('usermessages.addmessage', messageDataKey)//, messageDataKey.ids, messageDataKey.messagesArray);
+         Meteor.call('usermessages.addmessage', messageDataKey.ids, messageDataKey.messagesArray,
+         function(error, result){
+           updateScrollKey();
+         });
        } else { //else, add init message
          Meteor.call('usermessages.addinitmessage', messageDataKey,
          function(error, result){
