@@ -111,22 +111,28 @@ Template.calendar.events({
 	'click #result'(elt, instance){
 		const searchdate = instance.$('#search').val();
 		todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
-		console.log(todo);
+		console.log(todo.length);
 
-		var thing ="";
-
-		for (i = 0; i < todo.length; i++) {
-			console.log(todo[i].detail);
-    	thing += " " + todo[i].detail + " ";
-		}
-
-		var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
-		if (count1 % 2 === 0) {
-			window.speechSynthesis.speak(msg);
-			count1++;
+		if (todo.length == 0) {
+			var nothing = new SpeechSynthesisUtterance('You have nothing that date on your todo list.');
+			window.speechSynthesis.speak(nothing);
 		} else {
-			window.speechSynthesis.cancel();
-			count1++;
+			var thing ="";
+
+			for (i = 0; i < todo.length; i++) {
+				console.log(todo[i].detail);
+	    	thing += " " + todo[i].detail + " ";
+			}
+
+			var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
+			if (count1 % 2 === 0) {
+				window.speechSynthesis.speak(msg);
+				count1++;
+			} else {
+				window.speechSynthesis.cancel();
+				count1++;
+			}
+
 		}
 	}
 });
