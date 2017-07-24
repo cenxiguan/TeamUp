@@ -43,13 +43,8 @@
   <button id="js-sendGroupMessage" class="js-sendGrpMsg">Send message</button>
 </template>
 
-<<<<<<< HEAD
-<template name="showMessages"> <!--messagehistory-->
-  <div id="messagetextId" class="messageText">
-=======
 <template name="showMessages">
   <div id="messageTextId" class="messageText ">
->>>>>>> master
     {{#each item in showingMessages}} <!--each entire group object in collection-->
       {{> individualMessage x=item}} <!--individual group object collection-->
     {{/each}}

@@ -6,8 +6,6 @@
 #pageLayout a {
   color: rgba(0, 68, 102, 1);
   font-family: "Open Sans";
-<<<<<<< HEAD
-=======
 }
 
 #pageLayout .logo {
@@ -49,5 +47,4 @@ li.dropdown {
 
 .dropdown:hover .dropdown-content {
     display: block;
->>>>>>> master
 }
