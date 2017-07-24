@@ -51,8 +51,8 @@ Template.calendar.onCreated(function() {
 					console.log(result.data.result.parameters.title);
 					console.log(result.data.result.parameters.time);
 
-					if (result.data.result.parameters.date == "") {
-						alert("Please speak the event you want to add once more.");
+					if (result.data.result.parameters.date == "" || typeof result.data.result.parameters.date == "undefined") {
+						alert("I didn't get the date of your event. Please click the microphone and repeat it.");
 					} else {
 						if(!!result.data.result.parameters){
 							const parameters = result.data.result.parameters;
