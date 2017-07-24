@@ -108,6 +108,24 @@ Template.calendar.events({
 		}
 	},
 
+	'click #voice': function(elt, instance){
+
+			if ('webkitSpeechRecognition' in window) {
+			var recognition2 = new webkitSpeechRecognition();
+				recognition2.continuous = false;
+
+				recognition2.onaudioend = function() {
+		      //homeDict.set("notTalking", true);
+		    },
+
+				recognition2.onresult = function(event) {
+		      const text2 = event.results[0][0].transcript;
+					instance.$("#search").val(text2);
+				}
+				recognition2.start();
+			};
+		},
+
 	'click #result'(elt, instance){
 		const searchdate = instance.$('#search').val();
 		todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
