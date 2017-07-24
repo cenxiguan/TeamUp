@@ -191,7 +191,7 @@ Template.calendar.events({
 			}
 		}
 	}
-	
+
 });
 
 Template.calendar.helpers({
