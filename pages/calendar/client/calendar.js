@@ -43,16 +43,14 @@ Template.calendar.onCreated(function() {
 					console.log(result);
 					console.log(result.data.result.metadata.intentName);
 					console.log(result.data.result.parameters.date);
-					console.log(result.data.result.parameters.date.substring(0,4));
-					console.log(result.data.result.parameters.date.substring(5,7));
-					console.log(result.data.result.parameters.date.substring(8,10));
 					console.log(result.data.result.parameters.event);
 					console.log(result.data.result.parameters.location);
 					console.log(result.data.result.parameters.title);
 					console.log(result.data.result.parameters.time);
 
 					if (result.data.result.parameters.date == "" || typeof result.data.result.parameters.date == "undefined") {
-						alert("I didn't get the date of your event. Please click the microphone and repeat it.");
+						var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please click the microphone and repeat it.");
+						window.speechSynthesis.speak(repeatDate);
 					} else {
 						if(!!result.data.result.parameters){
 							const parameters = result.data.result.parameters;
