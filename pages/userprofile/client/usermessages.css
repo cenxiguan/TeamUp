@@ -1,0 +1,79 @@
+
+h-s{
+  font-size: 20px;
+  font-family: fantasy;
+  color:rgb(204, 209, 209);
+  font-weight:bold;
+}
+
+.input{
+  color: black;
+  /*position: absolute;*/
+  width: 70%;
+}
+
+.inputMessage{
+  overflow: hidden;
+  padding-right: 10px;
+}
+
+#send{
+  background-color: rgb(84, 153, 199);
+  color: white;
+  border-radius: 10px;
+  border-width: 5px;
+  font-family: fantasy;
+  border-color: rgb(174, 214, 241);
+}
+
+#messagebox{
+  display: inline-block;
+  background-color: rgb(151, 154, 154);
+  color: white;
+  font-size: 25px;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+#input{
+  border-radius: 10px;
+  border-width: 5px;
+}
+
+#messagerowcss{
+    background-color: white;
+    width: 1000px;
+    height: 500px;
+    overflow: auto;
+    border-radius: 10px;
+    border-width: 5px;
+    border-color: rgb(204, 209, 209);
+}
+
+.content{
+  background-color: lightgrey;
+  color: rgba(0, 68, 102, 1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.messageText{
+  height: 250px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.messagecss{
+  background-color: white;
+}
+
+.message{
+  color: white;
+}
+
+
+.send{
+  background-color: grey;
+}

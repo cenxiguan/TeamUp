@@ -1,3 +1,4 @@
+
 Template.userprofile.helpers({
   "hasProfile": function(){
     if(!Template.instance().data && Template.instance().data.owner !== Meteor.userId()){
@@ -15,6 +16,15 @@ Template.userprofile.helpers({
     } else {
       return false;
     }
+  },
+})
+
+Template.userprofile.events({
+  'click button#sbopen'(elt,instance) {
+    instance.$("#sidebar").css("display", "block");
+  },
+  'click button#sbclose'(elt,instance) {
+    instance.$("#sidebar").css("display", "none");
   },
 })
 
