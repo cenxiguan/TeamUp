@@ -24,3 +24,9 @@
   border-style: solid;
   border-width: 2px;
 }
+
+#pageAbout .titlefont {
+    font-size: 35px;
+    font-weight: bold;
+    text-align: justify;
+}

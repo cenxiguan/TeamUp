@@ -19,6 +19,8 @@ Template.addbiopost.events({
     var posttext =
       { postbox:biopostbox,
         name:name,
+        owner:Meteor.userId(),
+        createAt:new Date(),
         field: "bio"
       };
     Meteor.call('post.insert', posttext);
@@ -26,6 +28,10 @@ Template.addbiopost.events({
     // var msg = new SpeechSynthesisUtterance('message is sent!');
     // window.speechSynthesis.speak(msg);
   }
+})
+
+Template.biopostrow.helpers({
+  isOwner() {return this.post.owner == Meteor.userId()}
 })
 
 Template.biopostrow.events({

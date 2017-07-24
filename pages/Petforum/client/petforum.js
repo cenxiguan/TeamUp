@@ -19,6 +19,8 @@ Template.addpetpost.events({
     var posttext =
       { postbox:petpostbox,
         name:name,
+        owner:Meteor.userId(),
+        createAt:new Date(),
         field: "pet"
       };
     Meteor.call('post.insert', posttext);
@@ -26,6 +28,10 @@ Template.addpetpost.events({
     // var msg = new SpeechSynthesisUtterance('message is sent!');
     // window.speechSynthesis.speak(msg);
   }
+})
+
+Template.petpostrow.helpers({
+  isOwner() {return this.post.owner == Meteor.userId()}
 })
 
 Template.petpostrow.events({

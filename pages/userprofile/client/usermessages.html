@@ -1,0 +1,36 @@
+<template name="usermessages">
+
+
+  <div name="content">
+      <h1> Send messages</h1>
+      {{> messagehistory}}
+      {{> sendmessage}}
+  </div>
+</template>
+
+
+
+<template name="messagehistory">
+  <div name="messageText">
+     {{#each m in showingMessages}}
+        {{> messagerow message=m}}
+     {{/each}}
+ </div>
+</template>
+
+<template name="messagerow">
+  <div name="messagerowcss" id="messagerowcss">
+  {{#each m in message.messagesArray}}
+     <p><h-s><img src="data:image/jpeg;base64, {{getUserpic m.author}}" style="display:block; max-width:50px; max-height:50px;">{{getUsername m.author}}:</h-s>
+         <div name="messagebox" id="messagebox"><span class="message">{{m.message}}</span></div></p><hr>
+  {{/each}}
+   </div>
+    <!--{{user.pic message.author}}::{{user.firstname message.author}}{{user.lastname message.author}}<br>
+    {{usermessages.time}}<br>
+    {{usermessages.text}}<hr>-->
+</template>
+
+<template name="sendmessage">
+  <span class="inputMessage"><textarea type="input" class="input" id="input" rows="5" cols="50"></textarea></span><br>
+  <button id="send" class="send">Send message</button>
+</template>

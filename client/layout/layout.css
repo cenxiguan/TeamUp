@@ -1,6 +1,17 @@
+#pageLayout body {
+  color: rgba(0, 68, 102, 1);
+  font-family: "Open Sans";
+}
+
 #pageLayout a {
   color: rgba(0, 68, 102, 1);
   font-family: "Open Sans";
+}
+
+#pageLayout .logo {
+  height: 35px;
+  width: 35px;
+  padding-bottom: 5px;
 }
 
 li a, .dropbtn {

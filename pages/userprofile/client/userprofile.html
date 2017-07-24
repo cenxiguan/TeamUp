@@ -1,5 +1,11 @@
 <template name="userprofile">
-  <body id="pageProfile" onload="location.reload()">
+
+<!-- Page Content -->
+<div class="pagecontent">
+
+  <div class="container">
+
+  <body id="pageProfile">
   {{#if currentUser}}
   <div class="jumbotron">
     {{#if makeProfile}}
@@ -14,6 +20,10 @@
   <h1>Please sign-up for an account.</h1>
   {{/if}}
   </body>
+
+  </div>
+
+</div>
 </template>
 
 <template name="addprofile">
@@ -84,7 +94,7 @@
             </tr>
 
             <tr>
-              <td>Picture</td> <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="fonting" type="file" id="pic" name="pic" accept="image/*" data-type='image' /></td>
+              <td>Upload Pic</td> <td><input type="file" id="pic" name="pic" accept="image/*" data-type='image' /></td>
             </tr>
           </tbody>
         </table>
@@ -117,25 +127,21 @@
     </div><br>
     <div>
       <strong><center>&#9679;&nbsp;<em>{{user.occupation}}</em> at {{user.institution}}</center></strong><br>
-      <strong><center>"{{user.bio}}"</center></strong>
+      <strong><center>"{{user.bio}}"</center></strong><br>
     </div>
       <br></p>
-      <br>
-  <div>
   <div class="aboutcontactdiv col-md-5" style="float:left;">
     <p class="infotitles"><strong>About</strong></p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{user.location}}</strong></p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-gift" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{user.dateofbirth}}</strong></p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-book" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{user.academicfield}}</strong></p>
   </div>
-
   <div class="aboutcontactdiv col-md-5 col-md-offset-2" style="float:right;">
     <p class="infotitles"><strong>Contact Info</strong></p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{user.phone}}</strong></p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{user.email}}</strong></p>
   </div>
-      <br><br><br><br><br><br><br><br><br><br><br><br><button id="edit">Edit Info</button><br>
-  </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><button id="edit">Edit Info</button><br>
   </div>
   <br>
   <div class="editinfo">
@@ -189,6 +195,10 @@
                       <td>Institution</td> <td><input type="text" class="editinstitution" placeholder="Institution" value="{{user.institution}}"></td>
                     </tr>
 
+                  <!--  <tr>
+                      <td>Alma Mater</td> <td><input type="text" class="editalmamater" placeholder="Alma Mater" value="{{user.almamater}}"></td>
+                    </tr> -->
+
                     <tr>
                       <td>Alma Mater</td> <td><input type="text" class="editalmamater" placeholder="Alma Mater" value="{{user.almamater}}"></td>
                     </tr>
@@ -198,14 +208,14 @@
                     </tr>
 
                     <tr>
-                      <td>Biography</td> <td><textarea class="editbio" placeholder="Biography" value="{{user.bio}}"></textarea></td>
+                      <td>Bio</td> <td><textarea class="editbio" placeholder="Enter bio here" value="{{user.bio}}"></textarea></td>
                     </tr>
                     <tr>
-                      <td>Picture</td> <td><input class="fonting" type="file" id="editpic" name="pic" accept="image/*" data-type='image'/></td>
+                      <td>Pic</td> <td><input type="file" id="editpic" name="pic" accept="image/*" data-type='image'/></td>
                     </tr>
                   </tbody>
                 </table>
-                <img style="display:none; max-width:150px;" id="editpic1">
+                <img style="display:none; max-width:150px;" id="editpic1" value=“{{user.pic}}”>
                 <label class="form-check-label">
                   <input class="editagree" type="checkbox" display=“inline-block” id="editagree" style="zoom:2">
                   &nbsp;I agree to allow my info to be published.

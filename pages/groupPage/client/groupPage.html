@@ -5,8 +5,8 @@
   <br>
   <hr>
   <div class="groupMessageBox">
-    {{> showMessages}}
-    {{> groupMessage}} <!--add overflow scroll -->
+    {{> showMessages}} <!--messagehistory-->
+    {{> groupMessage}} <!--add overflow scroll --> <!--sendmessage-->
   </div>
 </template>
 
@@ -38,7 +38,7 @@
   </div>
 </template>
 
-<template name="groupMessage">
+<template name="groupMessage"> <!--sendmessage-->
   <span class="inputMsgSpan"><input type="text" class="messageString" id="js-messageString"></span>
   <button id="js-sendGroupMessage" class="js-sendGrpMsg">Send message</button>
 </template>
@@ -51,7 +51,7 @@
   </div>
 </template>
 
-<template name="individualMessage">
+<template name="individualMessage"> <!--messagerow-->
   {{#each item in x.messagesArray}}
     <p>{{getUsername item.messageOwner}}: <span class="messageSpan">{{item.message}}</span></p>
   {{/each}}
