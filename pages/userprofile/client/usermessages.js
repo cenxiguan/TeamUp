@@ -21,14 +21,13 @@ Template.sendmessage.events({
          ]
        };
 
+
        instance.$('#input').val("");
 
       if (Usermessages.findOne({ids:{$all:[Router.current().params.query.userid,Router.current().params.query.userid2]}})) {
          console.log('updating message');
-         Meteor.call('usermessages.addmessage', [Router.current().params.query.userid,Router.current().params.query.userid2], messageDataKey.messagesArray,
-         function(error, result){
-           updateScrollKey();
-         });
+
+         Meteor.call('usermessages.addmessage', messageDataKey)//, messageDataKey.ids, messageDataKey.messagesArray);
        } else { //else, add init message
          Meteor.call('usermessages.addinitmessage', messageDataKey,
          function(error, result){
@@ -78,7 +77,7 @@ Template.sendmessage.events({
 
 
 Template.messagehistory.onRendered(function() {
-  var element = instance.$("#input");
+  var element = $("#input");
   //var element = instance.$('.messageText');
   element.scrollTop = element.scrollHeight;
 });
