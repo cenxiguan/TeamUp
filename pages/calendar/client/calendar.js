@@ -130,7 +130,13 @@ Template.calendar.helpers({
 					} else {
 						var day1 = parseInt(event1.date.substring(8,10));
 						var day2 = parseInt(event2.date.substring(8,10));
-						return day1 - day2;
+						if (day1 != day2) {
+							return day1 - day2;
+						} else {
+							var time1 = parseInt(event1.time.substring(0,2));
+							var time2 = parseInt(event2.time.substring(0,2));
+							return time1 - time2;
+						}
 					}
 				}
 			}
