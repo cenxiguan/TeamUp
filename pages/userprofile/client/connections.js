@@ -27,7 +27,7 @@ Template.connections.events({
     const regex = new RegExp(query);
     console.log(regex);
     // undefined
-    Template.instance().userDict.set('searchList', User.find({fullname:regex}).fetch());
+    Template.instance().userDict.set('searchList', User.find({fullname:regex}, {sort: {lastname: 1}}).fetch());
     // Returns documents matching. How so?
     console.log(Template.instance().userDict.get('searchList'));
     console.log(Template.instance().userDict.get('searchList').length);
