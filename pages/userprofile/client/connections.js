@@ -13,10 +13,13 @@ Template.connections.onCreated(
 });
 
 Template.connections.helpers({
-  connectionslist(){return User.find()},
-  // Must return array of friends list of specified user.
-  madeconnectionslist(){
-    return Connections.findOne({"connectionsid":Meteor.userId()}).connectionsArray
+  connectionslist() {
+    // If something entered in search.
+    if (false) {
+      return User.find({firstname:/p/}).fetch();
+    } else {
+      return User.find();
+    }
   },
 })
 
@@ -51,19 +54,4 @@ Template.person.events({
   Router.go('usermessages', {}, {query: 'userid='+ connectionvar + '&userid2='+ selfvar});
 
 },
-})
-
-Template.madeconnections.helpers({
-  getFirstName: function(id){
-    var user = User.findOne({owner: id});
-    return user.firstname;
-  },
-  getLastName: function(id){
-    var user = User.findOne({owner: id});
-    return user.lastname;
-  },
-  getSubject: function(id){
-    var user = User.findOne({owner: id});
-    return user.academicfield;
-  }
 })

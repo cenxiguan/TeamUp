@@ -93,9 +93,15 @@
               <td>Institution</td> <td><input type="text" id="institution" placeholder="Institution"></td>
             </tr>
 
+<<<<<<< HEAD
         <!--    <tr>
               <td>Alma mater</td> <td><input type="text" id="almamater" placeholder="Alma mater"></td>
             </tr> -->
+=======
+          <tr>
+              <td>Alma Mater</td> <td><input type="text" id="almamater" placeholder="Alma Mater"></td>
+            </tr>
+>>>>>>> master
 
             <tr>
               <td>Location</td> <td><input type="text" id="location" placeholder="Location"></td>
@@ -125,6 +131,7 @@
 </template>
 
 <template name="showprofile">
+<<<<<<< HEAD
   <br>
   <div class="showprofilediv">
       <table class="table table-striped table-hoverable" >
@@ -171,21 +178,48 @@
         </tbody>
       </table>
       <button id="edit">Edit Info</button><br>
-  </div>
+=======
+  <div class="jumbortron fonting showprofilediv">
+    <p>
+      {{#if user.pic}}
+        <img class="center" src="data:image/jpeg;base64, {{user.pic}}" style="display:block; max-width:320px;float:left;">
+      {{else}}
+        <img class="center" src="/images/defaultpic.png" style="display:block; max-width:250px;float:left;">
+      {{/if}}
+        &nbsp;&nbsp;&nbsp;
 
-  <div>
-    <p><strong>Contact Info:</strong></p>
+    <div>
+      <strong class="nameformat">{{user.firstname}} {{user.lastname}}</strong>
+    </div><br>
+    <div>
+      <strong><center>&#9679;&nbsp;<em>{{user.occupation}}</em> at {{user.institution}}</center></strong><br>
+      <strong><center>"{{user.bio}}"</center></strong><br>
+    </div>
+      <br></p>
+  <div class="aboutcontactdiv col-md-5" style="float:left;">
+    <p class="infotitles"><strong>About</strong></p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{user.location}}</strong></p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-gift" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{user.dateofbirth}}</strong></p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-book" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{user.academicfield}}</strong></p>
+>>>>>>> master
+  </div>
+  <div class="aboutcontactdiv col-md-5 col-md-offset-2" style="float:right;">
+    <p class="infotitles"><strong>Contact Info</strong></p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{user.phone}}</strong></p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{user.email}}</strong></p>
   </div>
+<<<<<<< HEAD
       <br><br><button id="edit">Edit Info</button><br><br>
 
 
+=======
+    <br><br><br><br><br><br><br><br><br><br><br><br><button id="edit">Edit Info</button><br>
+  </div>
+  <br>
+>>>>>>> master
   <div class="editinfo">
           <table class="table table-striped table-hoverable" >
                 <tbody>
-
                   <tr>
                     <td>First Name</td>
                     <td><input type="text" class="editfirstname" value="{{user.firstname}}"></td>
@@ -237,6 +271,10 @@
                   <!--  <tr>
                       <td>Alma Mater</td> <td><input type="text" class="editalmamater" placeholder="Alma Mater" value="{{user.almamater}}"></td>
                     </tr> -->
+
+                    <tr>
+                      <td>Alma Mater</td> <td><input type="text" class="editalmamater" placeholder="Alma Mater" value="{{user.almamater}}"></td>
+                    </tr>
 
                     <tr>
                       <td>Location</td> <td><input type="text" class="editlocation" placeholder="Location" value="{{user.location}}"></td>

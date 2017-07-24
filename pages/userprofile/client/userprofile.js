@@ -77,30 +77,18 @@ Template.showprofile.events({
     const editoccupation = instance.$('.editoccupation').val();
     const editacademicfield = instance.$('.editacademicfield').val();
     const editinstitution = instance.$('.editinstitution').val();
+<<<<<<< HEAD
     //const almamater = instance.$('.almamater').val();
+=======
+    const editalmamater = instance.$('.editalmamater').val();
+>>>>>>> master
     const editlocation = instance.$('.editlocation').val();
     const editbio = instance.$('.editbio').val();
     const editpic=instance.$('#editpic')[0].files[0];
     const editagree = $(".editagree").is(":checked");
 
-    function formatDate(date) {
-      var monthNames = [
-        "January", "February", "March",
-        "April", "May", "June", "July",
-        "August", "September", "October",
-        "November", "December"
-      ];
-
-      var day = date.getDate();
-      var monthIndex = date.getMonth();
-      var year = date.getFullYear();
-
-      return monthNames[monthIndex] + '/' + day + '/' + year;
-    }
-
   //usernameinputs = instance,$("#")
   //console.log('adding '+name);
-
 
     var userprofile = {firstname:editfirstname,
                  lastname:editlastname,
@@ -111,11 +99,15 @@ Template.showprofile.events({
                  occupation:editoccupation,
                  academicfield:editacademicfield,
                  institution:editinstitution,
+<<<<<<< HEAD
                 // almamater:editalmamater,
+=======
+                 almamater:editalmamater,
+>>>>>>> master
                  location:editlocation,
                  bio:editbio,
                  owner:Meteor.userId()};
-                 console.log(userprofile);
+     console.log(userprofile);
      if (editagree) {
        var image_base64;
        //client-side validation
@@ -157,6 +149,7 @@ Template.showprofile.events({
            $("#save").attr("class", "ui right floated blue button");
          }
        }else{
+<<<<<<< HEAD
          Meteor.call('userprofile.update',Meteor.userId(), userprofile, function(err, result){
            if(err){
              alert(err.message);
@@ -166,6 +159,17 @@ Template.showprofile.events({
            instance.$(".editinfo").css("display", "none");
            instance.$(".showprofilediv").css("display", "block");
          });
+=======
+         Meteor.call('userprofile.update', Meteor.userId(), userprofile, function(err, result){
+                if(err){
+                  alert(err.message);
+                  $("#submit").attr("class","ui right floated blue button");
+                  return;
+                }
+                instance.$(".editinfo").css("display", "none");
+                instance.$(".showprofilediv").css("display", "block");
+          });
+>>>>>>> master
        }
      }else{
            alert('You must check the box to insert your profile');
@@ -213,7 +217,11 @@ Template.addprofile.events({
     const occupation = instance.$('#occupation').val();
     const academicfield = instance.$('#academicfield').val();
     const institution = instance.$('#institution').val();
+<<<<<<< HEAD
   //  const almamater = instance.$('#almamater').val();
+=======
+    const almamater = instance.$('#almamater').val();
+>>>>>>> master
     const location = instance.$('#location').val();
     const bio = instance.$('#bio').val();
     const pic=instance.$('#pic')[0].files[0];
@@ -234,7 +242,11 @@ Template.addprofile.events({
                    occupation:occupation,
                    academicfield:academicfield,
                    institution:institution,
+<<<<<<< HEAD
                 //   almamater:almamater,
+=======
+                   almamater:almamater,
+>>>>>>> master
                    location:location,
                    bio:bio,
                    owner:Meteor.userId()};
@@ -280,6 +292,7 @@ Template.addprofile.events({
           $("#submit").attr("class", "ui right floated blue button");
         }
       }else{
+<<<<<<< HEAD
         Meteor.call('userprofile.insert',userprofile, function(err, result){
           if(err){
             alert(err.message);
@@ -289,6 +302,18 @@ Template.addprofile.events({
           instance.$(".addprofilediv").css("display", "none");
           instance.$(".showprofilediv").css("display", "block");
         });
+=======
+        // userprofile.pic = ;
+        Meteor.call('userprofile.insert',userprofile, function(err, result){
+                if(err){
+                  alert(err.message);
+                  $("#submit").attr("class","ui right floated blue botton");
+                  return;
+                }
+                instance.$(".addprofilediv").css("display", "none");
+                instance.$(".showprofilediv").css("display", "block");
+         });
+>>>>>>> master
       }
     }else{
           alert('You must check the box to insert your profile');

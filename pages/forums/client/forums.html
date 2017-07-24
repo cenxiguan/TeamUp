@@ -4,7 +4,7 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
               <li><strong style="color:rgba(0, 68, 102, 1)"><em>Forums</em></strong></li><br>
               <li><a href="{{pathFor 'bioforum'}}">Bio->CS</a></li>
@@ -15,8 +15,6 @@
         </div>
       </div><!-- /.container-fluid -->
     </nav>
-
-      <h1>Public Forum</h1><br>
         {{> addpost}}
     {{else}}
       <h1>You must be logged in.</h1>
@@ -53,7 +51,11 @@
 <template name="postrow">
   <li> {{post.postbox}}
     <br><strong>- {{post.name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    <p>{{post.createAt}}
+      {{#if isOwner}}
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      {{/if}}
+    </p>
     <hr size="100">
   </li>
 </template>

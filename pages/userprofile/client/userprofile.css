@@ -39,7 +39,7 @@
 }
 
 #pageProfile .center {
-  margin: left;
+    margin: left;
     width: 70%;
     border: 5px solid;
     border-width: 10px;
@@ -94,3 +94,29 @@
   background-color: white;
   border: 6px solid;
 }
+<<<<<<< HEAD
+=======
+
+#pageProfile ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+}
+
+#pageProfile li {
+    float: left;
+}
+
+#pageProfile li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#pageProfile li a:hover {
+    background-color: lightgrey;
+}
+>>>>>>> master

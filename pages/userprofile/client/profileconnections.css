@@ -1,0 +1,10 @@
+#pageProfileConnections .table{
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 25px;
+    padding:8px;
+    text-align: left;
+    border: 5px solid;
+    background-color: white;
+    color:rgb(33, 69, 124);
+}

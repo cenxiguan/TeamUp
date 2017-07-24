@@ -35,3 +35,9 @@
 .memberOfContents{
   overflow: auto;
 }
+
+.titleformat {
+  font-size: 22px;
+  font-family: "Open Sans";
+  color: rgba(0, 68, 102, 1);
+}

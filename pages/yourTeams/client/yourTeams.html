@@ -5,7 +5,7 @@
 <template name="showGroups">
   <div class="showGroupsDiv">
     <div class="ownedBox">
-      Teams you own:
+      <strong class="titleformat">Teams Owned</strong><br>
       <div class="ownedContents">
         <ul>
           {{#each item in yourGroups}}
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="memberOfBox">
-      Teams you are a member of:
+      <strong class="titleformat">Teams Joined</strong><br>
       <div class="memberOfContents">
         <ul>
           {{#each item in memberOfGroups}}

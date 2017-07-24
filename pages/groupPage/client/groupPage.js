@@ -1,3 +1,9 @@
+Template.showMessages.onRendered(function() {
+  var element = document.getElementById("messageTextId");
+  //var element = instance.$('.messageText');
+  element.scrollTop = element.scrollHeight;
+});
+
 Template.groupMain.events({
      'click button#js-requestjoingroup'(elt,instance) {
         elt.preventDefault();
@@ -38,10 +44,54 @@ Template.groupMain.events({
 })
 
 Template.groupMessage.events({
+     'keypress #js-messageString': function (e, instance){
+        if (e.which == 13) {
+          console.log('enter key pressed')
+          //elt.preventDefault();
+          const messageStringKey = instance.$('#js-messageString').val();
+
+          function updateScrollKey(){
+            var element = document.getElementById("messageTextId");
+            element.scrollTop = element.scrollHeight;
+          }
+
+          var messageDataKey = {
+            groupid:this._id,
+            messagesArray: [
+              {
+                "message": messageStringKey,
+                "messageOwner": Meteor.userId()
+              }
+            ]
+          }
+
+          instance.$('#js-messageString').val("");
+
+          if (Groupmessages.findOne({groupid:this._id})) {
+            console.log('updating message');
+            Meteor.call('groupmessages.addmessage', this._id, messageDataKey.messagesArray,
+            function(error, result){
+              updateScrollKey();
+            });
+          } else { //else, add init message
+            Meteor.call('groupmessages.addinitmessage', messageDataKey,
+            function(error, result){
+              updateScrollKey();
+            });
+            console.log('adding init message');
+          }
+        }
+        //console.log('enter key pressed');
+      },
      'click button#js-sendGroupMessage'(elt,instance) {
         elt.preventDefault();
         const messageString = instance.$('#js-messageString').val();
         //const groupIdRef = this._id;
+
+        function updateScroll(){
+          var element = document.getElementById("messageTextId");
+          element.scrollTop = element.scrollHeight;
+        }
 
         var messageData = {
           groupid:this._id,
@@ -58,9 +108,15 @@ Template.groupMessage.events({
         //if Groupmessages collection exists for the group add message
         if (Groupmessages.findOne({groupid:this._id})) {
           console.log('updating message');
-          Meteor.call('groupmessages.addmessage', this._id, messageData.messagesArray);
+          Meteor.call('groupmessages.addmessage', this._id, messageData.messagesArray,
+          function(error, result){
+            updateScroll();
+          });
         } else { //else, add init message
-          Meteor.call('groupmessages.addinitmessage', messageData);
+          Meteor.call('groupmessages.addinitmessage', messageData,
+          function(error, result){
+            updateScroll();
+          });
           console.log('adding init message');
         }
         console.log('Groupmessages findOne: ');
@@ -69,7 +125,9 @@ Template.groupMessage.events({
 })
 
 Template.showMessages.helpers({
-  showingMessages() {return Groupmessages.find()},
+  showingMessages() {
+    return Groupmessages.find()
+  },
 })
 
 Template.individualMessage.helpers({
@@ -79,7 +137,7 @@ Template.individualMessage.helpers({
     var lname = profile.lastname;
     var personname = fname+' '+lname;
     return personname;
-  }
+  },
 })
 
 // User.findOne({owner: object.messagesArray.messageOwner})
