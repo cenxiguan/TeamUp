@@ -3,6 +3,10 @@
   {{#if currentUser}}
   <div class="jumbotron">
   <h2>Add/Remove Connections</h2><br>
+  <form>
+  <input id="search_id" type="text" name="search" placeholder="Search by name...">&nbsp;&nbsp;<button id="submit">Submit</button>
+  </form><br>
+  <div class="tablediv">
   <table class="table table-bordered table-striped">
     <tbody>
       {{#each u in connectionslist}}
@@ -10,6 +14,7 @@
       {{/each}}
     </tbody>
   </table>
+</div>
   </div>
   {{else}}
   <h1>Please sign-up for an account.</h1>

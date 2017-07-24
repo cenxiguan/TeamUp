@@ -20,7 +20,7 @@ shell-server@0.2.4            # Server-side component of the `meteor shell` comm
 iron:router
 twbs:bootstrap
 accounts-password@1.4.0
-accounts-google@1.2.0
+accounts-google
 spacebars
 ian:accounts-ui-bootstrap-3
 http@1.2.12
@@ -28,3 +28,4 @@ reactive-dict@1.1.9
 easy:search
 easysearch:elasticsearch
 easysearch:autosuggest
+google-config-ui
