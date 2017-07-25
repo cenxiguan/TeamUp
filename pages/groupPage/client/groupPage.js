@@ -126,7 +126,7 @@ Template.groupMessage.events({
 
 Template.showMessages.helpers({
   showingMessages() {
-    return Groupmessages.find()
+    return Groupmessages.find();
   },
 })
 
