@@ -1,4 +1,6 @@
-Template.connections.onCreated(
+Template.connections.onCreated( function(){
+    this.userDict = new ReactiveDict();
+  },
   function(){
   var connectionsData = {
     connectionsid:Meteor.userId(),
@@ -13,13 +15,22 @@ Template.connections.onCreated(
 });
 
 Template.connections.helpers({
-  connectionslist() {
-    // If something entered in search.
-    if (false) {
-      return User.find({firstname:/p/}).fetch();
-    } else {
-      return User.find();
-    }
+  searchlist: function() {
+     return Template.instance().userDict.get('searchList');
+    // Must put objects into array to display properly!
+  },
+});
+
+Template.connections.events({
+  "click #submit"(event, instance){
+    const query = instance.$('#search_id').val();
+    const regex = new RegExp(query);
+    console.log(regex);
+    // undefined
+    Template.instance().userDict.set('searchList', User.find({fullname:regex}, {sort: {lastname: 1}}).fetch());
+    // Returns documents matching. How so?
+    console.log(Template.instance().userDict.get('searchList'));
+    console.log(Template.instance().userDict.get('searchList').length);
   },
 })
 
