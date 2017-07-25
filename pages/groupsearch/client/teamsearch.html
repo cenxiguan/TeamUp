@@ -6,41 +6,42 @@
         {{> EasySearch.Input index=index attributes=inputAttributes }}
       </div>
       <hr>
-      {{#EasySearch.IfInputEmpty index=index}}
-        <div class="padded examples black"></div> <!-- text under searchbar-->
-      {{else}}
-        {{#if resultsCount}}
-          <div class="padded count-results black">{{resultsCount}} results found.</div>
-        {{/if}}
-      {{/EasySearch.IfInputEmpty}}
+      <div class="box">
+        {{#EasySearch.IfInputEmpty index=index}}
+          <div class="padded examples black"></div> <!-- text under searchbar-->
+        {{else}}
+          {{#if resultsCount}}
+            <div class="padded count-results black">{{resultsCount}} results found.</div>
+          {{/if}}
+        {{/EasySearch.IfInputEmpty}}
 
-      {{#EasySearch.IfSearching index=index}}
-        <div>Searching</div>
-      {{/EasySearch.IfSearching}}
+        {{#EasySearch.IfSearching index=index}}
+          <div>Searching</div>
+        {{/EasySearch.IfSearching}}
 
-      <ul class="leaderboard">
-        {{#EasySearch.Each index=index}}
-          {{> UserTemplate}}
-        {{/EasySearch.Each}}
-      </ul>
-
-      {{#EasySearch.IfNoResults index=index}}
-        <div class="padded no-results black">No search results found</div>
-      {{else}}
-      {{/EasySearch.IfNoResults}}
-
-      {{> EasySearch.Pagination index=index maxPages=10}} <!--Sets max amount of search result pages-->
-      {{! > EasySearch.LoadMore index=index}} <!--Giving pages to sort through -->
-
-      {{#if showMore }} <!--explained aroung 32:20 -->
-        {{> EasySearch.Input name="mini-index" index=index attributes=inputAttributes}}
-        <ul>
-          {{#EasySearch.Each name="mini-index" index=index}}
-            <li>{{name}}</li>
+        <ul class="leaderboard">
+          {{#EasySearch.Each index=index}}
+            {{> UserTemplate}}
           {{/EasySearch.Each}}
         </ul>
-      {{/if}}
 
+        {{#EasySearch.IfNoResults index=index}}
+          <div class="padded no-results black">No search results found</div>
+        {{else}}
+        {{/EasySearch.IfNoResults}}
+
+        {{> EasySearch.Pagination index=index maxPages=10}} <!--Sets max amount of search result pages-->
+        {{! > EasySearch.LoadMore index=index}} <!--Giving pages to sort through -->
+
+        {{#if showMore }} <!--explained aroung 32:20 -->
+          {{> EasySearch.Input name="mini-index" index=index attributes=inputAttributes}}
+          <ul>
+            {{#EasySearch.Each name="mini-index" index=index}}
+              <li>{{name}}</li>
+            {{/EasySearch.Each}}
+          </ul>
+        {{/if}}
+      </div>
     </div>
   {{/if}}
 </template>

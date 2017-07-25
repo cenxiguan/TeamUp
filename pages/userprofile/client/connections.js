@@ -1,5 +1,4 @@
-Template.connections.onCreated(
-  function(){
+Template.connections.onCreated( function(){
     this.userDict = new ReactiveDict();
     var connectionsData = {
       connectionsid:Meteor.userId(),
@@ -11,9 +10,7 @@ Template.connections.onCreated(
         return;
       }
     });
-
-
-  });
+});
 
 Template.connections.helpers({
   searchlist: function() {
