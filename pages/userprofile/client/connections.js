@@ -22,13 +22,12 @@ Template.connections.helpers({
 Template.connections.events({
   "click #submit"(event, instance){
     const query = instance.$('#search_id').val();
-    const regex = new RegExp(query);
+    const regex = new RegExp(query, "i");
     console.log(regex);
     // undefined
     Template.instance().userDict.set('searchList', User.find({fullname:regex}, {sort: {lastname: 1}}).fetch());
     // Returns documents matching. How so?
     console.log(Template.instance().userDict.get('searchList'));
-    console.log(Template.instance().userDict.get('searchList').length);
   },
 })
 
@@ -54,14 +53,11 @@ Template.person.events({
     console.log(connectionsDataAfter);
   },
   "click #messagebutton" (elt,instance) {
-  var owner = Connections.findOne({connection:this.u.owner,owner:Meteor.userId()});
-//  var friend = Connections.findOne({connection:this.u, owner:Meteor.userId()});
-
-  console.log(this.u.owner);
-  console.log(this.u);
-  var connectionvar = this.u.owner;
-  var selfvar = Meteor.userId();
-  Router.go('usermessages', {}, {query: 'userid='+ connectionvar + '&userid2='+ selfvar});
-
-},
+    var owner = Connections.findOne({connection:this.u.owner,owner:Meteor.userId()});
+    console.log(this.u.owner);
+    console.log(this.u);
+    var connectionvar = this.u.owner;
+    var selfvar = Meteor.userId();
+    Router.go('usermessages', {}, {query: 'userid='+ connectionvar + '&userid2='+ selfvar});
+  },
 })
