@@ -8,17 +8,9 @@
 
     <h-f>Forum descritpion</h-f><br>
       {{>listen}}<h-sf> *Listen or type in the forum description</h-sf><br><br>
-      <textarea type="text" id="descritpion" rows="5" cols="50" placeholder="Please enter the description of the forum"></textarea><br><br>
+      <textarea type="text" id="description" rows="5" cols="50" placeholder="Please enter the description of the forum"></textarea><br><br>
 
-    <h-f>Attachment (image only)</h-f><br>
-    <button type="button" id="attachpic"> Attachment </button><hr>
-      <div name="attachment" id="attachment">
-        <input type="file" id="pic" name="pic" accept="image/*" data-type='image' /><hr>
-        <img style="display:none; max-width:150px;" id="pic1">
-       </div>
-
-
-    <input type="checkbox" id="checkbox"><h-f> I agree to publish and share my forum</h-f><hr>
+    <input type="checkbox" id="agree"><h-f> I agree to publish and share my forum</h-f><hr>
     <button type="button" id="submit"> Submit Forum </button>
 
   </div>

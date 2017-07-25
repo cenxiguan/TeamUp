@@ -1,38 +1,34 @@
 Template.forums.onCreated(function() {
   Meteor.subscribe('forums');
-  Meteor.subscribe('user');
 })
 
-Template.addpost.events({
-  'click button'(elt,instance) {
-    const postbox = instance.$('#postbox').val();
-    const name = User.findOne({owner: Meteor.userId()}).firstname + " " + User.findOne({owner: Meteor.userId()}).lastname;
-    console.log('adding '+name);
+Template.forums.events({
 
-    instance.$('#postbox').val("");
-    var posttext =
-      { postbox:postbox,
-        name:name,
-        owner:Meteor.userId(),
-        createAt:new Date(),
-        field: "public"
-      };
-    Meteor.call('post.insert', posttext);
+  'click button#submit'(elt,instance) {
 
-    // var msg = new SpeechSynthesisUtterance('post is sent!');
-    // window.speechSynthesis.speak(msg);
-  }
-})
+    $("#submit").attr("class", "ui right floated blue loading disabled button");
+    const title = instance.$('#title').val();
+    const description = instance.$('#description').val();
+    const agree = $("#agree").is(":checked");
 
-Template.postrow.helpers({
-  isOwner() {return this.post.owner == Meteor.userId()}
-})
+    var forum = {title:title,
+               description:description,
+               onCreated:new Date(),
+               creator:Meteor.userId()};
 
-Template.postrow.events({
-  'click span'(elt,instance) {
-    console.dir(this);
-    var id = this.post._id
-    console.log(id);
-    Meteor.call('post.remove', id);
-  }
+    if (agree) {
+          console.log(description)
+          console.log(forum)
+          Meteor.call('forums.insert', forum, function(err, result){
+            if(err){
+                alert(err.message);
+                $("#submit").attr("class","ui right floated blue botton");
+                return;
+            }
+          });
+    }else{
+       alert('You must check the box to insert your profile');
+    }
+  },
+
 })
