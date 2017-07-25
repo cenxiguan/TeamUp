@@ -1,17 +1,15 @@
 Template.connections.onCreated( function(){
     this.userDict = new ReactiveDict();
-  },
-  function(){
-  var connectionsData = {
-    connectionsid:Meteor.userId(),
-    connectionsArray: [],
-  }
-  Meteor.call('connections.insert', connectionsData, function(err, result){
-    if(err){
-      window.alert(err);
-      return;
+    var connectionsData = {
+      connectionsid:Meteor.userId(),
+      connectionsArray: [],
     }
-  });
+    Meteor.call('connections.insert', connectionsData, function(err, result){
+      if(err){
+        window.alert(err);
+        return;
+      }
+    });
 });
 
 Template.connections.helpers({
@@ -45,6 +43,7 @@ Template.person.helpers({
 Template.person.events({
   "click #connect"(event, instance){
     const connectionsData = Connections.findOne({"connectionsid":Meteor.userId()});
+    console.log(connectionsData);
     Meteor.call('connections.update', connectionsData, this.u.owner);
   },
   "click #unconnect"(event,instance){
