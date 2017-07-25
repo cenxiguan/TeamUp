@@ -1,4 +1,3 @@
-
 Template.sendmessage.events({
   'keypress #input': function (e, instance){
      if (e.which == 13) {

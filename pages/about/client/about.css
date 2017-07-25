@@ -12,14 +12,6 @@
   color: cornflowerblue;
 }
 
-.founders{
-  background-color: lightgrey;
-  color: rgba(0, 68, 102, 1);
-  padding: 40px;
-  border-radius: 6px;
-  margin-bottom: 40px;
-}
-
 .foundersrow{
   border-style: solid;
   border-width: 2px;
@@ -29,4 +21,9 @@
     font-size: 35px;
     font-weight: bold;
     text-align: justify;
+}
+
+#pageAbout h2 {
+    font-weight: bold;
+    font-size: 30px;
 }
