@@ -2,6 +2,8 @@
   This code comes from this blog post by Amit Agarwal
       http://ctrlq.org/code/19680-html5-web-speech-api
 */
+var count1 = 0;
+const today = new Date();
 
 Template.calendar.onCreated(function() {
 	Meteor.subscribe('todo');
@@ -52,9 +54,47 @@ Template.calendar.onCreated(function() {
 					if(!!result.data.result.parameters){
 							const parameters = result.data.result.parameters;
 
-							if (!result.data.result.parameters.date) {
-								var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please click the microphone and repeat it.");
-								window.speechSynthesis.speak(repeatDate);
+							if (!parameters.date) {
+								if (!!parameters.relativedate) {
+
+									if (parameters.relativedate == "tomorrow") {
+										console.log("It is tomorrow.");
+										//######## need to change to fit more situations
+										result.data.result.parameters.date = getTomorrow();
+									}
+									var entities = [];
+
+									//save results to ReactiveDict
+									for(entity in parameters){
+										if(parameters[entity]){
+											entities.push({
+												name: entity,
+												value: parameters[entity]
+											})
+										}
+									}
+
+									eventValue.set(entities);
+
+									var todoevent =
+					      	{ //thing:result.data.result.parameters.event,
+					        	time:result.data.result.parameters.time,
+					        	date:result.data.result.parameters.date,
+										location:result.data.result.parameters.location,
+										title: result.data.result.parameters.title,
+										detail:text,
+										owner: Meteor.userId()
+					      	};
+					    		Meteor.call('todo.insert', todoevent, function(error, result){
+									});
+
+									var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
+									window.speechSynthesis.speak(eventsave);
+								} else {
+									var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please click the microphone and repeat it.");
+									window.speechSynthesis.speak(repeatDate);
+								}
+
 							} else {
 								//const entities = [];
 								var entities = [];
@@ -93,8 +133,6 @@ Template.calendar.onCreated(function() {
 	}
 })
 
-var count1 = 0;
-
 Template.calendar.events({
 	'click #start_button': function(event){
 		var recognition = Template.instance().recognition;
@@ -110,8 +148,7 @@ Template.calendar.events({
 
 	'click #voice': function(elt, instance){
 
-		console.log(instance.$('#search').val() + "11111");
-		if (instance.$('#search').val() == "") {
+			if (instance.$('#search').val() == "") {
 			if ('webkitSpeechRecognition' in window) {
 			var recognition2 = new webkitSpeechRecognition();
 				recognition2.continuous = false;
@@ -136,10 +173,8 @@ Template.calendar.events({
 						if(!!result.data.result.parameters){
 								text3 = result.data.result.parameters.date;
 								instance.$("#search").val(text3);
-								console.log(instance.$('#search').val() + "2222");
 						};
 						const searchdate = instance.$('#search').val();
-						console.log(instance.$('#search').val() + "33333");
 						todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
 						console.log(todo.length);
 
@@ -196,7 +231,6 @@ Template.calendar.events({
 		}
 	},
 
-
 });
 
 Template.calendar.helpers({
@@ -246,3 +280,31 @@ Template.eventrow.helpers({
 		return index + 1;
 	},
 })
+
+function day() {
+		return today.getDate();
+}
+
+function month() {
+	if (today.getMonth() < 9) {
+		var currentM = today.getMonth() + 1;
+		var m = "0" + currentM;
+	} else {
+		var m = today.getMonth()+1;
+	}
+		return m;
+}
+
+function year() {
+		return today.getFullYear();
+}
+
+function getToday() {
+	return year() + "-" + month() + "-" + day();
+}
+
+/*##### need to revise to fit more situation */
+function getTomorrow() {
+	var tmr = day()+1;
+	return year() + "-" + month() + "-" + tmr;
+}
