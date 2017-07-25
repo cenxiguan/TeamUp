@@ -1,12 +1,6 @@
 Template.forums.onCreated(function() {
-  Meteor.subscribe('post');
+  Meteor.subscribe('forums');
   Meteor.subscribe('user');
-})
-
-Template.showpost.helpers({
-  postlist() {
-    return Post.find({field: "public"})
-  },
 })
 
 Template.addpost.events({

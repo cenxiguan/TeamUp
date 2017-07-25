@@ -1,64 +1,29 @@
 <template name="forums">
-  <body id="pageForums">
-    {{#if currentUser}}
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li><strong style="color:rgba(0, 68, 102, 1)"><em>Forums</em></strong></li><br>
-              <li><a href="{{pathFor 'bioforum'}}">Bio->CS</a></li>
-              <li><a href="{{pathFor 'CSforum'}}">Brandeis CS</a></li>
-              <li><a href="{{pathFor 'itforum'}}">IT Forum</a></li>
-              <li><a href="{{pathFor 'petforum'}}">Pet Assistant</a></li>
-            </ul>
-        </div>
-      </div><!-- /.container-fluid -->
-    </nav>
-        {{> addpost}}
-    {{else}}
-      <h1>You must be logged in.</h1>
-    {{/if}}
-  </body>
-</template>
+  <div name="createforum" id="createforum">
+    <h-fh>Create A Forum</h-fh><hr>
 
-<template name="addpost">
-  <div class="jumbotron">
-     {{> listen}} or type a post...<br>
-    <textarea id="postbox" rows="5" cols="70"></textarea><br><br>
-    <button id="addpost"><strong>Send</strong></button><br>
-    <hr>
-    {{> showpost}}
-  </div>
+    <h-f>Forum Title</h-f><br>
+      {{>listen}}<h-sf> *Listen or type in the forum title</h-sf><br><br>
+      <input type="text" id="title" size="35" placeholder="Please enter the title of the forum"><br><br>
 
-</template>
+    <h-f>Forum descritpion</h-f><br>
+      {{>listen}}<h-sf> *Listen or type in the forum description</h-sf><br><br>
+      <textarea type="text" id="descritpion" rows="5" cols="50" placeholder="Please enter the description of the forum"></textarea><br><br>
+
+    <h-f>Attachment (image only)</h-f><br>
+    <button type="button" id="attachpic"> Attachment </button><hr>
+      <div name="attachment" id="attachment">
+        <input type="file" id="pic" name="pic" accept="image/*" data-type='image' /><hr>
+        <img style="display:none; max-width:150px;" id="pic1">
+       </div>
 
 
-<template name="showpost">
-  <div class="flex-container">
-    {{#if currentUser}}
-    <ul>
-      {{#each p in postlist}}
-        {{> postrow post=p}}
-      {{/each}}
-    </ul>
-    {{else}}
-      <h1>Please sign-up for an account.</h1>
-    {{/if}}
+    <input type="checkbox" id="checkbox"><h-f> I agree to publish and share my forum</h-f><hr>
+    <button type="button" id="submit"> Submit Forum </button>
+
   </div>
 </template>
 
-<template name="postrow">
-  <li> {{post.postbox}}
-    <br><strong>- {{post.name}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <p>{{post.createAt}}
-      {{#if isOwner}}
-        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-      {{/if}}
-    </p>
-    <hr size="100">
-  </li>
-</template>
 
 <template name="listen">
     <a href="#" id="start_button">

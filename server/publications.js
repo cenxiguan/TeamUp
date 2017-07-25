@@ -10,6 +10,10 @@ Meteor.publish('groups', function(){
   return Groups.find();
 })
 
+Meteor.publish('forums', function(){
+  return Forums.find();
+})
+
 Meteor.publish('user', function(){
   return User.find();
 })
