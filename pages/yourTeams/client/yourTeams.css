@@ -35,9 +35,12 @@
   order: 1;
 }
 
+.leftLink{
+  text-align: left;
+}
+
 .memberOfContents{
   overflow: auto;
-  text-align: left;
 }
 
 .titleformat {
