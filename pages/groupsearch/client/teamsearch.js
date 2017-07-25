@@ -6,10 +6,10 @@ Template.teamsearch.helpers({
 
   //all functions etc described starting around 15:30 or 15:40
   inputAttributes: function() {
-    return {'class' : 'easy-search-input', 'placeholder': 'start searching'};
+    return {'class' : 'easy-search-input', 'placeholder': 'Search keywords here'};
   },
   players: function() {
-    return Groups.find({}, {sort: {dateCreated: -1}}); //sorted -1 so newest @ top
+    return Groups.find({}, {sort: {lastname: -1}}); //sorted -1 so newest @ top
   },
   selectedName: function() {
     var group = GroupsIndex.config.mongoCollection.findOne({__originalId: Session.get("selectedGroup")}); //will need to define this session, in video it is called selectedJoke

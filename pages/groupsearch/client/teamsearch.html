@@ -1,10 +1,11 @@
 <template name="teamsearch">
   {{#if currentUser}}
+    <div class="centertext">Search for a team by either team name or description keyword:<br></div>
     <div id="search-wrap"> <!-- Easy search-->
       <div class="groupsearchbar">
         {{> EasySearch.Input index=index attributes=inputAttributes }}
       </div>
-
+      <hr>
       {{#EasySearch.IfInputEmpty index=index}}
         <div class="padded examples black"></div> <!-- text under searchbar-->
       {{else}}

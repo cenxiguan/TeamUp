@@ -23,7 +23,7 @@ accounts-google
 spacebars
 ian:accounts-ui-bootstrap-3
 http@1.2.12
-reactive-dict@1.1.9
+reactive-dict
 semantic:ui
 less@2.7.9
 juliancwirko:postcss
