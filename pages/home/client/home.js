@@ -92,20 +92,5 @@ Template.home.events({
     mySlides[0].style.display = "none";
     mySlides[1].style.display = "none";
     mySlides[2].style.display = "block";
-<<<<<<< HEAD
-=======
-  },
-  'click span#slide4'(elt,instance) {
-    var mySlides = instance.$(".mySlides");
-    mySlides[0].style.display = "none";
-    mySlides[1].style.display = "none";
-    mySlides[2].style.display = "none";
-  },
-  'click span#slide5'(elt,instance) {
-    var mySlides = instance.$(".mySlides");
-    mySlides[0].style.display = "none";
-    mySlides[1].style.display = "none";
-    mySlides[2].style.display = "none";
->>>>>>> d8f73afb26761e5ed44316125b11967293880d0c
   },
 })
