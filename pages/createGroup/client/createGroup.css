@@ -1,4 +1,4 @@
-.js-submitgroupbtn {
+#pageCreateGroup .js-submitgroupbtn {
       background-color: #d9d9d9; /* Grey */
       border: none;
       color: rgba(0, 68, 102, 1);
@@ -11,10 +11,14 @@
       font-size: 20px;
   }
 
-.blacktext{
+#pageCreateGroup .blacktext{
   color: black;
 }
 
-.bottompadding{
+#pageCreateGroup .bottompadding{
   padding-bottom:30px;
+}
+
+#pageCreateGroup h2 {
+  font-weight: bold;
 }

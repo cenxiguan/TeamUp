@@ -84,9 +84,12 @@
 }
 
 #pageProfile .aboutcontactdiv {
+  margin: 0 auto;
+  position: relative;
   border-collapse: collapse;
   background-color: white;
   border: 6px solid;
+  margin-bottom: 25px;
 }
 
 #pageProfile ul {
