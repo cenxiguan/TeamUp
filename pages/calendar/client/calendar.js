@@ -64,20 +64,6 @@ Template.calendar.onCreated(function() {
 										result.data.result.parameters.date = getToday();
 									}
 
-									// var entities = [];
-									//
-									// //save results to ReactiveDict
-									// for(entity in parameters){
-									// 	if(parameters[entity]){
-									// 		entities.push({
-									// 			name: entity,
-									// 			value: parameters[entity]
-									// 		})
-									// 	}
-									// }
-									//
-									// eventValue.set(entities);
-
 									var todoevent =
 					      	{ //thing:result.data.result.parameters.event,
 					        	time:result.data.result.parameters.time,
@@ -98,20 +84,6 @@ Template.calendar.onCreated(function() {
 								}
 
 							} else {
-
-								// var entities = [];
-								//
-								// //save results to ReactiveDict
-								// for(entity in parameters){
-								// 	if(parameters[entity]){
-								// 		entities.push({
-								// 			name: entity,
-								// 			value: parameters[entity]
-								// 		})
-								// 	}
-								// }
-								//
-								// eventValue.set(entities);
 
 								var todoevent =
 				      	{ //thing:result.data.result.parameters.event,
@@ -206,12 +178,12 @@ Template.calendar.events({
 			}
 		} else {
 			const searchdate = instance.$('#search').val();
-			console.log(instance.$('#search').val() + "33333");
+
 			todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
 			console.log(todo.length);
 
 			if (todo.length == 0) {
-				var nothing = new SpeechSynthesisUtterance('You have nothing that date on your todo list.');
+				var nothing = new SpeechSynthesisUtterance('You have nothing to do on that day.');
 				window.speechSynthesis.speak(nothing);
 			} else {
 				var thing ="";
@@ -269,7 +241,6 @@ Template.calendar.helpers({
 			}
 		});
   }
-
 })
 
 Template.eventrow.events({
@@ -285,7 +256,12 @@ Template.eventrow.helpers({
 })
 
 function day() {
-		return today.getDate();
+	if (today.getDate() < 10) {
+		var d = "0" + today.getDate();
+	} else {
+		var d = "" + today.getDate();
+	}
+		return d;
 }
 
 function month() {
