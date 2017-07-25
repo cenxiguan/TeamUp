@@ -4,6 +4,11 @@ Template.showMessages.onRendered(function() {
   element.scrollTop = element.scrollHeight;
 });
 
+Template.groupPage.helpers({
+  isMember(){
+    return Groups.findOne({"_id":this._id}).members.includes(Meteor.userId())},
+})
+
 Template.groupMain.events({
      'click button#js-requestjoingroup'(elt,instance) {
         elt.preventDefault();

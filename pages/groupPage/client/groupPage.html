@@ -4,10 +4,19 @@
   {{> groupMain}}
   <br>
   <hr>
-  <div class="groupMessageBox">
-    {{> showMessages}} <!--messagehistory-->
-    {{> groupMessage}} <!--add overflow scroll --> <!--sendmessage-->
-  </div>
+  {{#if currentUser}}
+    {{#if isMember}}
+      <p>Team messages</p>
+      <div class="groupMessageBox">
+        {{> showMessages}} <!--messagehistory-->
+        {{> groupMessage}} <!--add overflow scroll --> <!--sendmessage-->
+      </div>
+    {{else}}
+      <p align="center">You are not a member of this team.</p>
+    {{/if}}
+  {{else}}
+    <p align="center">You need to be signed in and be a member of this team in in order to access team features!</p>
+  {{/if}}
 </template>
 
 

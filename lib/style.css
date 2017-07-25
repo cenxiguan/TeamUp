@@ -5,7 +5,17 @@ body {
   font-size: 20px;
 }
 
-.jumbotron{
+.container .jumbotron{
+  background-color: lightgrey;
+  width: 100%;
+  color: rgba(0, 68, 102, 1);
+}
+
+.container .box {
   background-color: lightgrey;
   color: rgba(0, 68, 102, 1);
+  padding: 40px;
+  border: solid 7px white;
+  border-radius: 35px;
+  margin-bottom: 40px;
 }

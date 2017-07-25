@@ -4,23 +4,23 @@
 
 <template name="showGroups">
   <div class="showGroupsDiv">
-    <div class="ownedBox">
+    <div class="ownedBox box">
       <strong class="titleformat">Teams Owned</strong><br>
       <div class="ownedContents">
         <ul>
           {{#each item in yourGroups}}
-            <li><a href="/teamPage/{{item._id}}">Team name: "{{item.groupname}}"</a></li>
+            <li><a href="/teamPage/{{item._id}}" class="leftLink">Team name: "{{item.groupname}}"</a></li>
             <!-- <li>item:{{item.identification}}</li> -->
           {{/each}}
         </ul>
       </div>
     </div>
-    <div class="memberOfBox">
+    <div class="memberOfBox box">
       <strong class="titleformat">Teams Joined</strong><br>
       <div class="memberOfContents">
         <ul>
           {{#each item in memberOfGroups}}
-            <li><a href="/teamPage/{{item._id}}">Team name: "{{item.groupname}}"</a></li>
+            <li><a href="/teamPage/{{item._id}}" class="leftLink">Team name: "{{item.groupname}}"</a></li>
           {{/each}}
         </ul>
       </div>
