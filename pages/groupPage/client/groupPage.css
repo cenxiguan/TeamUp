@@ -40,11 +40,11 @@
   margin-bottom: 20px;
 }
 
-.messageText{
+.messageTextBB{
   height: 250px;
   overflow: scroll;
-  /*display: flex;
-  flex-direction: column-reverse;*/
+  /*display: flex !important;
+  flex-direction: column !important;*/
 }
 
 .messageSpan{
