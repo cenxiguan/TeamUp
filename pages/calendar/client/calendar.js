@@ -61,7 +61,10 @@ Template.calendar.onCreated(function() {
 										console.log("It is tomorrow.");
 										//######## need to change to fit more situations
 										result.data.result.parameters.date = getTomorrow();
+									} else if (parameters.relativedate == "today" || parameters.relativedate == "tonight" || parameters.relativedate == "this evening") {
+										result.data.result.parameters.date = getToday();
 									}
+
 									var entities = [];
 
 									//save results to ReactiveDict
@@ -162,7 +165,6 @@ Template.calendar.events({
 					Meteor.call("send_text_for_APIAI_processing", text2, function(err, result){
 						if(err){
 							window.alert(err);
-							//voiceDict.set("api_status", "inactive");
 							return;
 						}
 
