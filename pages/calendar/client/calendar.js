@@ -38,7 +38,6 @@ Template.calendar.onCreated(function() {
 				Meteor.call("send_text_for_APIAI_processing", text, function(err, result){
 					if(err){
 						window.alert(err);
-						//voiceDict.set("api_status", "inactive");
 						return;
 					}
 
@@ -65,19 +64,19 @@ Template.calendar.onCreated(function() {
 										result.data.result.parameters.date = getToday();
 									}
 
-									var entities = [];
-
-									//save results to ReactiveDict
-									for(entity in parameters){
-										if(parameters[entity]){
-											entities.push({
-												name: entity,
-												value: parameters[entity]
-											})
-										}
-									}
-
-									eventValue.set(entities);
+									// var entities = [];
+									//
+									// //save results to ReactiveDict
+									// for(entity in parameters){
+									// 	if(parameters[entity]){
+									// 		entities.push({
+									// 			name: entity,
+									// 			value: parameters[entity]
+									// 		})
+									// 	}
+									// }
+									//
+									// eventValue.set(entities);
 
 									var todoevent =
 					      	{ //thing:result.data.result.parameters.event,
@@ -99,20 +98,20 @@ Template.calendar.onCreated(function() {
 								}
 
 							} else {
-								//const entities = [];
-								var entities = [];
 
-								//save results to ReactiveDict
-								for(entity in parameters){
-									if(parameters[entity]){
-										entities.push({
-											name: entity,
-											value: parameters[entity]
-										})
-									}
-								}
-
-								eventValue.set(entities);
+								// var entities = [];
+								//
+								// //save results to ReactiveDict
+								// for(entity in parameters){
+								// 	if(parameters[entity]){
+								// 		entities.push({
+								// 			name: entity,
+								// 			value: parameters[entity]
+								// 		})
+								// 	}
+								// }
+								//
+								// eventValue.set(entities);
 
 								var todoevent =
 				      	{ //thing:result.data.result.parameters.event,
@@ -135,6 +134,7 @@ Template.calendar.onCreated(function() {
 		this.recognition = recognition;
 	}
 })
+
 
 Template.calendar.events({
 	'click #start_button': function(event){
@@ -234,6 +234,7 @@ Template.calendar.events({
 	},
 
 });
+
 
 Template.calendar.helpers({
 	eventlist() {
