@@ -1,11 +1,7 @@
 <template name="userprofile">
-
+<body id="pageProfile">
 <!-- Page Content -->
 <div class="pagecontent">
-
-  <div class="container">
-
-  <body id="pageProfile">
   {{#if currentUser}}
   <div class="box">
     {{#if makeProfile}}
@@ -19,11 +15,9 @@
   {{else}}
   <h1>Please sign-up for an account.</h1>
   {{/if}}
-  </body>
 
   </div>
-
-</div>
+</body>
 </template>
 
 <template name="addprofile">

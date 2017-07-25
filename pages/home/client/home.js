@@ -80,39 +80,17 @@ Template.home.events({
     mySlides[0].style.display = "block";
     mySlides[1].style.display = "none";
     mySlides[2].style.display = "none";
-    mySlides[3].style.display = "none";
-    mySlides[4].style.display = "none";
   },
   'click span#slide2'(elt,instance) {
     var mySlides = instance.$(".mySlides");
     mySlides[0].style.display = "none";
     mySlides[1].style.display = "block";
     mySlides[2].style.display = "none";
-    mySlides[3].style.display = "none";
-    mySlides[4].style.display = "none";
   },
   'click span#slide3'(elt,instance) {
     var mySlides = instance.$(".mySlides");
     mySlides[0].style.display = "none";
     mySlides[1].style.display = "none";
     mySlides[2].style.display = "block";
-    mySlides[3].style.display = "none";
-    mySlides[4].style.display = "none";
-  },
-  'click span#slide4'(elt,instance) {
-    var mySlides = instance.$(".mySlides");
-    mySlides[0].style.display = "none";
-    mySlides[1].style.display = "none";
-    mySlides[2].style.display = "none";
-    mySlides[3].style.display = "block";
-    mySlides[4].style.display = "none";
-  },
-  'click span#slide5'(elt,instance) {
-    var mySlides = instance.$(".mySlides");
-    mySlides[0].style.display = "none";
-    mySlides[1].style.display = "none";
-    mySlides[2].style.display = "none";
-    mySlides[3].style.display = "none";
-    mySlides[4].style.display = "block";
   },
 })
