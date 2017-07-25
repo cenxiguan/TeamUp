@@ -93,16 +93,4 @@ Template.home.events({
     mySlides[1].style.display = "none";
     mySlides[2].style.display = "block";
   },
-  'click span#slide4'(elt,instance) {
-    var mySlides = instance.$(".mySlides");
-    mySlides[0].style.display = "none";
-    mySlides[1].style.display = "none";
-    mySlides[2].style.display = "none";
-  },
-  'click span#slide5'(elt,instance) {
-    var mySlides = instance.$(".mySlides");
-    mySlides[0].style.display = "none";
-    mySlides[1].style.display = "none";
-    mySlides[2].style.display = "none";
-  },
 })
