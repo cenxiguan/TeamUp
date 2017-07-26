@@ -9,14 +9,20 @@ Template.calendar.onCreated(function() {
 	Meteor.subscribe('todo');
 
 	this.recognizing = new ReactiveVar(false);
+	this.lastquestion = new ReactiveVar(false);
+	//this.isQuestionAAnswered = new ReactiveVar(false);
+	//this.isQuestionBAnswered = new ReactiveVar(false);
+
 	this.eventslist = new ReactiveVar();
 	const recognizing_status = this.recognizing;
 	const eventValue = this.eventslist;
+	const isFinal = this.lastquestion;
+	var pendingevent = "";
 
 	if ('webkitSpeechRecognition' in window) {
 		console.log("webkit is available!");
 		var recognition = new webkitSpeechRecognition();
-			recognition.continuous = false;
+			recognition.continuous = true;
 
 			recognition.onstart = function() {
 				recognizing_status.set(true);
@@ -27,50 +33,89 @@ Template.calendar.onCreated(function() {
 			};
 
 			recognition.onend = function() {
-				recognizing_status.set(false);
+				//is final
+				if (isFinal.get()) {
+					recognizing_status.set(false);
+				} else {
+					recognition.start();
+				}
+
 			};
 
 			recognition.onresult = function(event) {
 
 				const text = event.results[0][0].transcript;
 				final_span.innerHTML = text;
+				console.log(text);
 
-				// var checkmsg = new SpeechSynthesisUtterance('Is this the event you want to add to todo list?');
-				// window.speechSynthesis.speak(checkmsg);
+				if ( text != "yes" && text != "no") {
+					pendingevent = text;
+					var checkmsg = new SpeechSynthesisUtterance('Is this the event you want to add to todo list?');
+					window.speechSynthesis.speak(checkmsg);
+					recognition.stop();
+				} else if ( text.includes("no") && text.indexOf("no") === 0) {
+					var repeatmsg = new SpeechSynthesisUtterance('Please repeat the event you want to add.');
+					window.speechSynthesis.speak(repeatmsg);
+					recognition.stop();
+				} else if ( text.includes("yes") && text.indexOf("ye") === 0) {
+					isFinal.set(true);
+					Meteor.call("send_text_for_APIAI_processing", pendingevent, function(err, result){
+						if(err){
+							window.alert(err);
+							return;
+						}
 
-				Meteor.call("send_text_for_APIAI_processing", text, function(err, result){
-					if(err){
-						window.alert(err);
-						return;
-					}
-
-					console.log(result);
-					console.log(result.data.result.metadata.intentName);
-					console.log(result.data.result.parameters.date);
-					console.log(result.data.result.parameters.event);
-					console.log(result.data.result.parameters.location);
-					console.log(result.data.result.parameters.title);
-					console.log(result.data.result.parameters.time);
+						console.log(result);
+						console.log(result.data.result.metadata.intentName);
+						console.log(result.data.result.parameters.date);
+						console.log(result.data.result.parameters.event);
+						console.log(result.data.result.parameters.location);
+						console.log(result.data.result.parameters.title);
+						console.log(result.data.result.parameters.time);
 
 
-					if(!!result.data.result.parameters){
-							const parameters = result.data.result.parameters;
-							var detail = text;
-							console.log(detail+"before change");
-							if (!parameters.date) {
-								if (!!parameters.relativedate) {
+						if(!!result.data.result.parameters){
+								const parameters = result.data.result.parameters;
+								var detail = pendingevent;
+								console.log(detail+"before change");
+								detail = detail.replace(/(add|next)/gi, ""),
+								console.log(detail+"after change");
+								if (!parameters.date) {
+									if (!!parameters.relativedate) {
 
-									if (parameters.relativedate == "tomorrow") {
-										result.data.result.parameters.date = getTomorrow();
+										if (parameters.relativedate == "tomorrow" || parameters.relativedate == "the next day") {
+											result.data.result.parameters.date = getTomorrow();
 
-									} else if (parameters.relativedate == "today") {
-										result.data.result.parameters.date = getToday();
+										} else if (parameters.relativedate == "today") {
+											result.data.result.parameters.date = getToday();
 
-									} else if (parameters.relativedate == "tonight") {
-										result.data.result.parameters.date = getToday();
-									} else if (parameters.relativedate == "this evening") {
-										result.data.result.parameters.date = getToday();
+										} else if (parameters.relativedate == "tonight") {
+											result.data.result.parameters.date = getToday();
+										} else if (parameters.relativedate == "this evening") {
+											result.data.result.parameters.date = getToday();
+										}
+
+										var todoevent =
+						      	{ //thing:result.data.result.parameters.event,
+						        	time:result.data.result.parameters.time,
+						        	date:result.data.result.parameters.date,
+											location:result.data.result.parameters.location,
+											title: result.data.result.parameters.title,
+											detail: detail.replace(/(add|next|tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
+											owner: Meteor.userId()
+						      	};
+										console.log(todoevent.detail);
+						    		Meteor.call('todo.insert', todoevent, function(error, result){
+										});
+
+										var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
+										window.speechSynthesis.speak(eventsave);
+									} else {
+										var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please click the microphone and repeat it.");
+										window.speechSynthesis.speak(repeatDate);
 									}
+
+								} else {
 
 									var todoevent =
 					      	{ //thing:result.data.result.parameters.event,
@@ -78,7 +123,7 @@ Template.calendar.onCreated(function() {
 					        	date:result.data.result.parameters.date,
 										location:result.data.result.parameters.location,
 										title: result.data.result.parameters.title,
-										detail: detail.replace(/(tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
+										detail: detail.replace(/(add|next|tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
 										owner: Meteor.userId()
 					      	};
 					    		Meteor.call('todo.insert', todoevent, function(error, result){
@@ -86,30 +131,14 @@ Template.calendar.onCreated(function() {
 
 									var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
 									window.speechSynthesis.speak(eventsave);
-								} else {
-									var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please click the microphone and repeat it.");
-									window.speechSynthesis.speak(repeatDate);
 								}
+						 }
+				});
+					recognition.stop();
+				};
 
-							} else {
+				return;
 
-								var todoevent =
-				      	{ //thing:result.data.result.parameters.event,
-				        	time:result.data.result.parameters.time,
-				        	date:result.data.result.parameters.date,
-									location:result.data.result.parameters.location,
-									title: result.data.result.parameters.title,
-									detail:text,
-									owner: Meteor.userId()
-				      	};
-				    		Meteor.call('todo.insert', todoevent, function(error, result){
-								});
-
-								var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
-								window.speechSynthesis.speak(eventsave);
-							}
-					 }
-			});
 		};
 		this.recognition = recognition;
 	}
