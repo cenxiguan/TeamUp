@@ -2,8 +2,8 @@
   <body id="pageConnections">
   {{#if currentUser}}
   <div class="box">
-  <h2>Add/Remove Connections</h2><br>
-  <input id="search_id" type="text" name="search" placeholder="Search by name...">&nbsp;&nbsp;<button id="submit">Submit</button>
+  <h2><strong class="titleformat">Find Connections</strong></h2><br>
+  <input id="search_id" class="glowing-border" type="text" name="search" placeholder="Search by name...">&nbsp;&nbsp;<button id="submit">Submit</button>
   <br><br>
   <div class="tablediv">
   <table class="table table-bordered table-striped">
@@ -27,11 +27,11 @@
     <td>&nbsp;<strong>{{u.fullname}}</strong><br><p class="infoformat"><em>&nbsp;&nbsp;&nbsp;&#9679;&nbsp;{{u.occupation}} at {{u.institution}}</em></p></td>
     <td>
       {{#if isConnection}}
-        <button id="unconnect">Unconnect</button>
+        <button id="unconnect" class="unconnectedb">Unconnect</button>
       {{else}}
-        <button id="connect">Add Connection</button>
+        <button id="connect" class="connectedb">Add Connection</button>
       {{/if}}
-      &nbsp;&nbsp;&nbsp;<button id="messagebutton">Send Message</button>
+      &nbsp;&nbsp;&nbsp;<button id="messagebutton"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Message</button>
     </td>
     {{/if}}
   </tr>
