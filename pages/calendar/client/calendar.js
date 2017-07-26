@@ -35,6 +35,9 @@ Template.calendar.onCreated(function() {
 				const text = event.results[0][0].transcript;
 				final_span.innerHTML = text;
 
+				// var checkmsg = new SpeechSynthesisUtterance('Is this the event you want to add to todo list?');
+				// window.speechSynthesis.speak(checkmsg);
+
 				Meteor.call("send_text_for_APIAI_processing", text, function(err, result){
 					if(err){
 						window.alert(err);
