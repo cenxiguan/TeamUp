@@ -57,7 +57,7 @@ Template.calendar.onCreated(function() {
 					var repeatmsg = new SpeechSynthesisUtterance('Please repeat the event you want to add.');
 					window.speechSynthesis.speak(repeatmsg);
 					recognition.stop();
-				} else if ( text.includes("yes") && text.indexOf("ye") === 0) {
+				} else if ( text.includes("yes") ) { //&& text.indexOf("ye") === 0
 					isFinal.set(true);
 					Meteor.call("send_text_for_APIAI_processing", pendingevent, function(err, result){
 						if(err){
@@ -93,51 +93,62 @@ Template.calendar.onCreated(function() {
 											result.data.result.parameters.date = getToday();
 										} else if (parameters.relativedate == "this evening") {
 											result.data.result.parameters.date = getToday();
-										}
+										};
 
+										if (ToDo.findOne({date:result.data.result.parameters.date,
+																			time:result.data.result.parameters.time,
+																			owner:Meteor.userId()}) ){
+											var occupied = new SpeechSynthesisUtterance("You have things to do at that time.");
+											window.speechSynthesis.speak(occupied);
+										} else {
+											var todoevent =
+							      	{ //thing:result.data.result.parameters.event,
+							        	time:result.data.result.parameters.time,
+							        	date:result.data.result.parameters.date,
+												location:result.data.result.parameters.location,
+												title: result.data.result.parameters.title,
+												detail: detail.replace(/(add|next|tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
+												owner: Meteor.userId()
+							      	};
+							    		Meteor.call('todo.insert', todoevent, function(error, result){
+											});
+
+											var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
+											window.speechSynthesis.speak(eventsave);
+										}
+									} else {
+										var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please click the microphone and repeat it.");
+										window.speechSynthesis.speak(repeatDate);
+									};
+
+								} else {
+
+									if (ToDo.findOne({date:result.data.result.parameters.date,
+																		time:result.data.result.parameters.time,
+																		owner:Meteor.userId()}) ){
+										var occupied = new SpeechSynthesisUtterance("You have things to do at that time.");
+										window.speechSynthesis.speak(occupied);
+									} else {
 										var todoevent =
-						      	{ //thing:result.data.result.parameters.event,
-						        	time:result.data.result.parameters.time,
-						        	date:result.data.result.parameters.date,
+										{ //thing:result.data.result.parameters.event,
+											time:result.data.result.parameters.time,
+											date:result.data.result.parameters.date,
 											location:result.data.result.parameters.location,
 											title: result.data.result.parameters.title,
 											detail: detail.replace(/(add|next|tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
 											owner: Meteor.userId()
-						      	};
-										console.log(todoevent.detail);
-						    		Meteor.call('todo.insert', todoevent, function(error, result){
+										};
+										Meteor.call('todo.insert', todoevent, function(error, result){
 										});
 
 										var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
 										window.speechSynthesis.speak(eventsave);
-									} else {
-										var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please click the microphone and repeat it.");
-										window.speechSynthesis.speak(repeatDate);
 									}
-
-								} else {
-
-									var todoevent =
-					      	{ //thing:result.data.result.parameters.event,
-					        	time:result.data.result.parameters.time,
-					        	date:result.data.result.parameters.date,
-										location:result.data.result.parameters.location,
-										title: result.data.result.parameters.title,
-										detail: detail.replace(/(add|next|tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
-										owner: Meteor.userId()
-					      	};
-									// Make collection with object having 2 fields, one the ID of the Team and the other being the array
-									// containing all the stored events by any of that Team's members.
-					    		Meteor.call('todo.insert', todoevent, function(error, result){
-									});
-
-									var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
-									window.speechSynthesis.speak(eventsave);
-								}
 						 }
+					}
 				});
 					recognition.stop();
-				};
+			};
 
 				return;
 
