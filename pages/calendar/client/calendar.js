@@ -52,7 +52,7 @@ Template.calendar.onCreated(function() {
 
 					if(!!result.data.result.parameters){
 							const parameters = result.data.result.parameters;
-
+							var detail = text;
 							if (!parameters.date) {
 								if (!!parameters.relativedate) {
 
@@ -60,6 +60,8 @@ Template.calendar.onCreated(function() {
 										console.log("It is tomorrow.");
 										//######## need to change to fit more situations
 										result.data.result.parameters.date = getTomorrow();
+										detail = detail.replace("tomorrow", "");
+
 									} else if (parameters.relativedate == "today" || parameters.relativedate == "tonight" || parameters.relativedate == "this evening") {
 										result.data.result.parameters.date = getToday();
 									}
@@ -70,7 +72,7 @@ Template.calendar.onCreated(function() {
 					        	date:result.data.result.parameters.date,
 										location:result.data.result.parameters.location,
 										title: result.data.result.parameters.title,
-										detail:text,
+										detail: detail,
 										owner: Meteor.userId()
 					      	};
 					    		Meteor.call('todo.insert', todoevent, function(error, result){
@@ -284,6 +286,11 @@ function getToday() {
 
 /*##### need to revise to fit more situation */
 function getTomorrow() {
-	var tmr = day()+1;
-	return year() + "-" + month() + "-" + tmr;
+	var tmr = today.getDate()+1;
+	if (tmr < 10) {
+		var tmrToString = "0" + tmr;
+	} else {
+		var tmrToString = "" + tmr;
+	}
+	return year() + "-" + month() + "-" + tmrToString;
 }
