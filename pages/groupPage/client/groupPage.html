@@ -7,7 +7,7 @@
   {{#if currentUser}}
     {{#if isMember}}
       <p>Team messages</p>
-      <div class="groupMessageBox">
+      <div class="groupMessageBox box">
         {{> showMessages}} <!--messagehistory-->
         {{> groupMessage}} <!--add overflow scroll --> <!--sendmessage-->
       </div>
@@ -62,7 +62,7 @@
 
 <template name="individualMessage"> <!--messagerow-->
   {{#each item in x.messagesArray}}
-    <p>{{getUsername item.messageOwner}}: <span class="messageSpan">{{item.message}}</span></p>
+    <p>{{getUsername item.messageOwner}} ({{item.timeCreated.getHours}}:{{item.timeCreated.getMinutes}} on {{item.timeCreated.getMonth}}/{{item.timeCreated.getDate}}): <span class="messageSpan">{{item.message}}</span></p>
   {{/each}}
 </template>
 

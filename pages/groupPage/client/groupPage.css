@@ -6,6 +6,14 @@
   color: rgba(0, 68, 102, 1);
 }
 
+.groupMainDiv{
+  background-color: lightgrey;
+  color: rgb(0, 68, 102, 1);
+  padding: 40px;
+  border: solid 7px white;
+  border-radius: 35px; 
+}
+
 .groupTitle-edit{
   text-align: center;
 }
