@@ -51,6 +51,24 @@
   width: 1130px;
 }
 
+@media only screen and (max-width: 1199px) {
+    #pageConnections h2 {
+        width: 930px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    #pageConnections h2 {
+        width: 710px;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    #pageConnections h2 {
+        width: 300px;
+    }
+}
+
 #pageConnections input[type=text] {
     width: 300px;
     box-sizing: border-box;
@@ -74,4 +92,9 @@
 
 #pageConnections .titleformat {
   font-size: 40px;
+}
+
+#pageConnections .imgformat {
+  height: 130px;
+  width: 150px;
 }

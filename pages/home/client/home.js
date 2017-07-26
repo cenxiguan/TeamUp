@@ -1,5 +1,12 @@
+Template.home.onDestroyed(function(){
+  $("body").css("background-image", "url(\"images/Shatteredblue.png\")");
+})
+
 Template.home.onRendered(
   function() {
+    $("body").css("background-image", "url(\"../images/homeback.jpg\")");
+    $("body").css("background-size", "100% 105%");
+    opacity: 0.5;
     var mySlides;
     var dots;
     var slideIndex = 1;
