@@ -83,7 +83,16 @@
   border-bottom: 7px solid;
 }
 
-#pageProfile .aboutcontactdiv {
+#pageProfile .aboutdiv {
+  margin: 0 auto;
+  position: relative;
+  border-collapse: collapse;
+  background-color: white;
+  border: 6px solid;
+  margin-bottom: 25px;
+}
+
+#pageProfile .contactdiv {
   margin: 0 auto;
   position: relative;
   border-collapse: collapse;
