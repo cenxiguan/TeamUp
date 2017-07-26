@@ -81,6 +81,8 @@ Template.calendar.onCreated(function() {
 										detail: detail.replace(/(tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
 										owner: Meteor.userId()
 					      	};
+									// Make collection with object having 2 fields, one the ID of the Team and the other being the array
+									// containing all the stored events by any of that Team's members.
 					    		Meteor.call('todo.insert', todoevent, function(error, result){
 									});
 
