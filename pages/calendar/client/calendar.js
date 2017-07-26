@@ -158,10 +158,6 @@ Template.calendar.events({
 							return;
 						}
 
-						console.log(result);
-						console.log(result.data.result.metadata.intentName);
-						console.log(result.data.result.parameters.date);
-
 						if(!!result.data.result.parameters){
 								text3 = result.data.result.parameters.date;
 								instance.$("#search").val(text3);
@@ -177,8 +173,8 @@ Template.calendar.events({
 							var thing ="";
 
 							for (i = 0; i < todo.length; i++) {
-								console.log(todo[i].detail);
-								thing += " " + todo[i].detail + " ";
+								no = i+1;
+								thing += "number " + no + " " + todo[i].detail + " ";
 							}
 
 							var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
@@ -207,8 +203,8 @@ Template.calendar.events({
 				var thing ="";
 
 				for (i = 0; i < todo.length; i++) {
-					console.log(todo[i].detail);
-					thing += " " + todo[i].detail + " ";
+					no = i+1;
+					thing += "number " + no + " " + todo[i].detail + " ";
 				}
 
 				var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
