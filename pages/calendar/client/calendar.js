@@ -53,6 +53,7 @@ Template.calendar.onCreated(function() {
 					if(!!result.data.result.parameters){
 							const parameters = result.data.result.parameters;
 							var detail = text;
+							console.log(detail+"before change");
 							if (!parameters.date) {
 								if (!!parameters.relativedate) {
 
@@ -62,8 +63,20 @@ Template.calendar.onCreated(function() {
 										result.data.result.parameters.date = getTomorrow();
 										detail = detail.replace("tomorrow", "");
 
-									} else if (parameters.relativedate == "today" || parameters.relativedate == "tonight" || parameters.relativedate == "this evening") {
+									} else if (parameters.relativedate == "today") {
 										result.data.result.parameters.date = getToday();
+										detail = detail.replace("today", "");
+										console.log(detail+" after change");
+
+									} else if (parameters.relativedate == "tonight") {
+										result.data.result.parameters.date = getToday();
+										detail = detail.replace("tonight", "");
+										console.log(detail+" after change");
+
+									} else if (parameters.relativedate == "this evening") {
+										result.data.result.parameters.date = getToday();
+										detail = detail.replace("this evening", "");
+										console.log(detail+" after change");
 									}
 
 									var todoevent =
