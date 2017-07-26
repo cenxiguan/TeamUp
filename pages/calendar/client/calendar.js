@@ -289,20 +289,33 @@ function month() {
 }
 
 function year() {
-		return today.getFullYear();
+		return "" + today.getFullYear();
 }
 
 function getToday() {
 	return year() + "-" + month() + "-" + day();
 }
 
-/*##### need to revise to fit more situation */
+/* Currently only consider no-leap year*/
 function getTomorrow() {
 	var tmr = today.getDate()+1;
 	if (tmr < 10) {
 		var tmrToString = "0" + tmr;
+		return year() + "-" + month() + "-" + tmrToString;
+	} else if (tmr < 28) {
+		return year() + "-" + month() + "-" + tmr;
+	} else if (tmr == 28 && today.getMonth() == 1) {
+		return year() + "-03-01";
+	} else if (tmr == 30 && (today.getMonth() == 3 || today.getMonth() == 5 || today.getMonth() == 8 || today.getMonth() == 10 )) {
+		var nextMonth = today.getMonth() + 2;
+		return year() + "-" + nextMonth + "-01";
+	} else if (tmr == 31 && (today.getMonth() == 0 || today.getMonth() == 2 || today.getMonth() == 4 || today.getMonth() == 6 || today.getMonth() == 7 || today.getMonth() == 9)){
+		var nextMonth = today.getMonth() + 2;
+		return year() + "-" + nextMonth + "-01";
+	} else if (tmr == 31 && today.getMonth() == 11) {
+		var nextYear = today.getFullYear() + 1;
+		return nextYear + "-01-01";
 	} else {
-		var tmrToString = "" + tmr;
+		return year() + "-" + month() + "-" + tmr;
 	}
-	return year() + "-" + month() + "-" + tmrToString;
 }
