@@ -3,6 +3,7 @@
       http://ctrlq.org/code/19680-html5-web-speech-api
 */
 var count1 = 0;
+var countCheck = 0;
 const today = new Date();
 
 Template.calendar.onCreated(function() {
@@ -36,6 +37,7 @@ Template.calendar.onCreated(function() {
 				//is final
 				if (isFinal.get()) {
 					recognizing_status.set(false);
+					countCheck = 0;
 				} else {
 					recognition.start();
 				}
@@ -46,14 +48,32 @@ Template.calendar.onCreated(function() {
 
 				const text = event.results[0][0].transcript;
 				final_span.innerHTML = text;
-				console.log(text);
 
-				if ( text != "yes" && text != "no") {
+				if ( !text.includes("no") && !text.includes("yes")) {
 					pendingevent = text;
-					var checkmsg = new SpeechSynthesisUtterance('Is this the event you want to add to todo list?');
-					window.speechSynthesis.speak(checkmsg);
-					recognition.stop();
-				} else if ( text.includes("no") && text.indexOf("no") === 0) {
+					if (countCheck === 0 ) {
+						var checkmsg = new SpeechSynthesisUtterance('Is this the event you want to add to todo list?');
+						countCheck++;
+						console.log(countCheck);
+						window.speechSynthesis.speak(checkmsg);
+						recognition.stop();
+					} else if (countCheck === 1 ) {
+						var checkmsg2 = new SpeechSynthesisUtterance('Is this what you want to be added? ');
+						countCheck++;
+						console.log(countCheck);
+						window.speechSynthesis.speak(checkmsg2);
+						recognition.stop();
+					} else if (countCheck === 2 ) {
+						var checkmsg3 = new SpeechSynthesisUtterance('Is everything correct and ready for submission?');
+						countCheck++;
+						console.log(countCheck);
+						window.speechSynthesis.speak(checkmsg3);
+						recognition.stop();
+					} else {
+						return;
+					}
+
+				} else if ( text.includes("no") ) { //&& text.indexOf("no") === 0
 					var repeatmsg = new SpeechSynthesisUtterance('Please repeat the event you want to add.');
 					window.speechSynthesis.speak(repeatmsg);
 					recognition.stop();
