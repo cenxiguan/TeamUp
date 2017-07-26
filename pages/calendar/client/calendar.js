@@ -61,25 +61,15 @@ Template.calendar.onCreated(function() {
 								if (!!parameters.relativedate) {
 
 									if (parameters.relativedate == "tomorrow") {
-										console.log("It is tomorrow.");
-										//######## need to change to fit more situations
 										result.data.result.parameters.date = getTomorrow();
-										detail = detail.replace("tomorrow", "");
 
 									} else if (parameters.relativedate == "today") {
 										result.data.result.parameters.date = getToday();
-										detail = detail.replace("today", "");
-										console.log(detail+" after change");
 
 									} else if (parameters.relativedate == "tonight") {
 										result.data.result.parameters.date = getToday();
-										detail = detail.replace("tonight", "");
-										console.log(detail+" after change");
-
 									} else if (parameters.relativedate == "this evening") {
 										result.data.result.parameters.date = getToday();
-										detail = detail.replace("this evening", "");
-										console.log(detail+" after change");
 									}
 
 									var todoevent =
@@ -88,7 +78,7 @@ Template.calendar.onCreated(function() {
 					        	date:result.data.result.parameters.date,
 										location:result.data.result.parameters.location,
 										title: result.data.result.parameters.title,
-										detail: detail,
+										detail: detail.replace(/(tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
 										owner: Meteor.userId()
 					      	};
 					    		Meteor.call('todo.insert', todoevent, function(error, result){
@@ -245,10 +235,12 @@ Template.calendar.helpers({
 						var day2 = parseInt(event2.date.substring(8,10));
 						if (day1 != day2) {
 							return day1 - day2;
-						} else {
+						} else if (!!event1.time) {
 							var time1 = parseInt(event1.time.substring(0,2));
 							var time2 = parseInt(event2.time.substring(0,2));
 							return time1 - time2;
+						} else {
+
 						}
 					}
 				}
