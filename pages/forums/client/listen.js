@@ -84,6 +84,6 @@ Template.listen.events({
 			return;
 		}
 		recognition.start();
-		postbox.innerHTML = '';
+		commentinput.innerHTML = '';
 	}
 });
