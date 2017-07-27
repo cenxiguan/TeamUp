@@ -126,7 +126,50 @@ Template.groupMessage.events({
         }
         console.log('Groupmessages findOne: ');
         console.dir(Groupmessages.findOne({groupid:this._id}));
+    },
+    'click button#js-sendGroupLink'(elt,instance) {
+      elt.preventDefault();
+      const linkString = instance.$('#js-linkString').val();
+      var link = linkString.link(linkString);
+      //const groupIdRef = this._id;
+
+      function updateScroll(){
+        var element = document.getElementById("messageTextId");
+        element.scrollTop = element.scrollHeight;
+      }
+
+      var messageData = {
+        groupid:this._id,
+        messagesArray: [
+          {
+            "message": link,
+            "url":linkString,
+            "messageOwner": Meteor.userId()
+          }
+        ]
+      }
+
+      instance.$('#js-linkString').val("");
+
+      //if Groupmessages collection exists for the group add message
+      if (Groupmessages.findOne({groupid:this._id})) {
+        console.log('updating message');
+        Meteor.call('groupmessages.addmessage', this._id, messageData.messagesArray,
+        function(error, result){
+          updateScroll();
+        });
+      } else { //else, add init message
+        Meteor.call('groupmessages.addinitmessage', messageData,
+        function(error, result){
+          updateScroll();
+        });
+        console.log('adding init message');
+      }
+      console.log('Groupmessages findOne: ');
+      console.dir(Groupmessages.findOne({groupid:this._id}));
     }
+
+
 })
 
 Template.showMessages.helpers({
@@ -142,6 +185,27 @@ Template.individualMessage.helpers({
     var lname = profile.lastname;
     var personname = fname+' '+lname;
     return personname;
+  },
+  month(m) {
+    return m+1;
+  }
+})
+
+Template.grpMemberList.helpers({
+  groupMemberList() {
+    var thisgroupmems = Groups.find({_id:this._id}).fetch()[0].members;
+    var thisgroupmemslength = thisgroupmems.length;
+    var membernames = []
+    for (var i=0; i<thisgroupmemslength; i++){
+      var profile = User.findOne({owner: thisgroupmems[i]});
+      var fname = profile.firstname;
+      var lname = profile.lastname;
+      var personname = fname+' '+lname;
+      membernames[i] = personname;
+    }
+    console.log(thisgroupmems);
+    console.log(membernames);
+    return membernames;
   },
 })
 

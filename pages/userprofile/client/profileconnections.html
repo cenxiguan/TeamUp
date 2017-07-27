@@ -16,5 +16,13 @@
 <template name="connectionslist">
   <tr>
     <td>&nbsp;&#9679;&nbsp;&nbsp;<a href="{{pathFor route='profile.show' _id=u}}"><strong>{{getFirstName u}} {{getLastName u}}</strong></a></td>
+    <td>
+      {{#if isConnection u}}
+        <button id="unconnect" class="unconnectedb">Unconnect</button>
+      {{else}}
+        <button id="connect" class="connectedb">Add Connection</button>
+      {{/if}}
+      &nbsp;&nbsp;&nbsp;<button id="messagebutton"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Message</button>
+    </td>
   </tr>
 </template>

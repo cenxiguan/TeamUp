@@ -6,6 +6,28 @@
   color: rgba(0, 68, 102, 1);
 }
 
+.groupMainDiv{
+  background-color: lightgrey;
+  color: rgb(0, 68, 102, 1);
+  padding: 40px;
+  border: solid 7px white;
+  border-radius: 35px;
+  float: left;
+  height: 300px;
+  overflow: auto;
+  width: 68%;
+  position: relative;
+}
+
+.grpMemberBox{
+  position: relative;
+  float: right;
+  margin-bottom: 0px !important;
+  width: 30%;
+  height: 300px;
+  overflow: auto;
+}
+
 .groupTitle-edit{
   text-align: center;
 }
@@ -32,12 +54,19 @@
   border-radius: 10px;
 }
 
+.messageOuter{
+  clear: both;
+  width: auto;
+  position: relative;
+}
+
 .groupMessageBox{
   background-color: lightgrey;
   color: rgba(0, 68, 102, 1);
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
+  width: auto;
 }
 
 .messageTextBB{
@@ -86,4 +115,21 @@
 
 .groupEditDiv{
   display: none;
+}
+
+@media all and (max-width: 725px){
+  .groupMainDiv{
+    width: 100%;
+    float: none;
+    clear: both;
+  }
+  .grpMemberBox{
+    width: 100%;
+    float: none;
+    clear: both;
+  }
+  .messageOuter, .groupMessageBox{
+    width: 100%;
+  }
+
 }

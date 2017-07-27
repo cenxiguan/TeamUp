@@ -1,5 +1,10 @@
 <template name="yourTeams">
-  {{> showGroups}}
+  {{#if currentUser}}
+    {{> showGroups}}
+  {{else}}
+    <br><br>
+    <h3 align="center">You need to log in to be able to see the teams you're connected to!</h3>
+  {{/if}}
 </template>
 
 <template name="showGroups">
