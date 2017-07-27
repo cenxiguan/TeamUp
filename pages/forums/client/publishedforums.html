@@ -15,8 +15,8 @@
       {{#each forum in showingForums}}
       <tr>
         <td>
-          <a href = "{{pathFor 'individualforumtitle=' forum.title}}"> </a>
-
+          <a href = "{{pathFor 'individualforumtitle=' title=forum.title}}"> </a>
+          {{forum.title}}
         </td>
         <td>{{forum.description}}</td>
         <td>{{getForumCreator forum.creator}}</td>

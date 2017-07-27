@@ -1,40 +1,26 @@
 <template name="forums">
-<<<<<<< HEAD
-  <div name="createforum" id="createforum">
-    <h-fh>Create A Forum</h-fh><hr>
+  {{#if currentUser}}
+    <div name="createforum" id="createforum">
+      <h-fh>Create A Forum</h-fh><hr>
 
-    <h-f>Forum Title</h-f><br>
-      {{>listen}}<h-sf> *Listen or type in the forum title</h-sf><br><br>
-      <input type="text" id="title" size="35" placeholder="Please enter the title of the forum"><br><br>
-=======
-  <body id="pageForums">
-    {{#if currentUser}}
-        {{> addpost}}
-    {{else}}
-      <h1>You must be logged in.</h1>
-    {{/if}}
-  </body>
+      <h-f>Forum Title</h-f><br>
+        {{>listen}}<h-sf> *Listen or type in the forum title</h-sf><br><br>
+        <input type="text" id="title" size="35" placeholder="Please enter the title of the forum"><br><br>
+
+        <h-f>Forum descritpion</h-f><br>
+        {{>listen}}<h-sf> *Listen or type in the forum description</h-sf><br><br>
+        <textarea type="text" id="description" rows="5" cols="50" placeholder="Please enter the description of the forum"></textarea><br><br>
+
+        <input type="checkbox" id="agree"><h-f> I agree to publish and share my forum</h-f><hr>
+        <button type="button" id="submit"> Submit Forum </button>
+    </div>
+  {{else}}
+    <h1>You must be logged in.</h1>
+  {{/if}}
 </template>
 
-<template name="addpost">
-  <div class="box">
-     {{> listen}} or type a post...<br><br>
-    <textarea id="postbox" rows="5" cols="70"></textarea><br><br>
-    <button id="addpost"><strong>Send</strong></button><br>
-    <hr>
-    {{> showpost}}
-  </div>
->>>>>>> master
 
-    <h-f>Forum descritpion</h-f><br>
-      {{>listen}}<h-sf> *Listen or type in the forum description</h-sf><br><br>
-      <textarea type="text" id="description" rows="5" cols="50" placeholder="Please enter the description of the forum"></textarea><br><br>
 
-    <input type="checkbox" id="agree"><h-f> I agree to publish and share my forum</h-f><hr>
-    <button type="button" id="submit"> Submit Forum </button>
-
-  </div>
-</template>
 
 
 <template name="listen">
