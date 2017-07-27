@@ -90,6 +90,7 @@
   background-color: white;
   border: 6px solid;
   margin-bottom: 25px;
+  float:left;
 }
 
 #pageProfile .contactdiv {
@@ -99,6 +100,14 @@
   background-color: white;
   border: 6px solid;
   margin-bottom: 25px;
+  float:right;
+}
+
+@media only screen and (max-width: 698px) {
+    #pageProfile .contactdiv {
+      float:left;
+
+    }
 }
 
 #pageProfile ul {

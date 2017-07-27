@@ -14,7 +14,7 @@ Template.addpost.events({
     const postbox = instance.$('#postbox').val();
     const name = User.findOne({owner: Meteor.userId()}).firstname + " " + User.findOne({owner: Meteor.userId()}).lastname;
     console.log('adding '+name);
-
+    
     instance.$('#postbox').val("");
     var posttext =
       { postbox:postbox,

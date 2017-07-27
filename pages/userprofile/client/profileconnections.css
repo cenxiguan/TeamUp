@@ -8,3 +8,25 @@
     background-color: white;
     color:rgb(33, 69, 124);
 }
+
+#pageProfileConnections button {
+  background-color: white; /* Grey */
+  border: none;
+  color: rgba(0, 68, 102, 1);
+  border: 3px solid;
+  border-radius: 25px;
+  padding: 4px 9px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+}
+
+#pageProfileConnections .unconnectedb {
+  background-color: #ff9999; /* Grey */
+}
+
+#pageProfileConnections .connectedb {
+  background-color: #ccffcc; /* Grey */
+}
