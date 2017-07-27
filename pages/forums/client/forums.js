@@ -3,9 +3,7 @@ Template.forums.onCreated(function() {
 })
 
 Template.forums.events({
-
   'click button#submit'(elt,instance) {
-
     $("#submit").attr("class", "ui right floated blue loading disabled button");
     const title = instance.$('#title').val();
 
