@@ -4,11 +4,9 @@
       <h-fh>Create A Forum</h-fh><hr>
 
       <h-f>Forum Title</h-f><br>
-        {{>listen}}<h-sf> *Listen or type in the forum title</h-sf><br><br>
         <input type="text" id="title" size="35" placeholder="Please enter the title of the forum"><br><br>
 
         <h-f>Forum descritpion</h-f><br>
-        {{>listen}}<h-sf> *Listen or type in the forum description</h-sf><br><br>
         <textarea type="text" id="description" rows="5" cols="50" placeholder="Please enter the description of the forum"></textarea><br><br>
 
         <input type="checkbox" id="agree"><h-f> I agree to publish and share my forum</h-f><hr>
@@ -17,14 +15,4 @@
   {{else}}
     <h1>You must be logged in.</h1>
   {{/if}}
-</template>
-
-
-
-
-
-<template name="listen">
-    <a href="#" id="start_button">
-      <img width="35" id="voiceIconMic" class="voiceDemoIcon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MDkuMjg3IDUwOS4yODciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUwOS4yODcgNTA5LjI4NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxjaXJjbGUgc3R5bGU9ImZpbGw6IzZFQjFFMTsiIGN4PSIyNTQuNjQ0IiBjeT0iMjU0LjY0NCIgcj0iMjU0LjY0NCIvPgo8cmVjdCB4PSIyMTkuMDQxIiB5PSIzODYuNTQzIiBzdHlsZT0iZmlsbDojREVERURGOyIgd2lkdGg9IjcxLjU0NCIgaGVpZ2h0PSI4MS4wMzgiLz4KPHBhdGggc3R5bGU9ImZpbGw6IzY0NkI3OTsiIGQ9Ik0yNTQuNjQ0LDE2LjI3NUwyNTQuNjQ0LDE2LjI3NWMtNTAuODYxLDAtOTIuMjI4LDQxLjM2Ny05Mi4yMjgsOTIuMjI4djE0Ni4xNCAgYzAsNTAuODYxLDQxLjM2Nyw5Mi4yMjgsOTIuMjI4LDkyLjIyOGwwLDBjNTAuODYxLDAsOTIuMjI4LTQxLjM2Nyw5Mi4yMjgtOTIuMjI4di0xNDYuMTQgIEMzNDYuODcyLDU3LjY0MiwzMDUuNTA1LDE2LjI3NSwyNTQuNjQ0LDE2LjI3NXoiLz4KPGc+Cgk8cGF0aCBzdHlsZT0iZmlsbDojRjFGM0Y3OyIgZD0iTTI1NC42NDQsMzk4LjQxMWMtNzcuMzA5LDAtMTQwLjM3Ni02My4wNjgtMTQwLjM3Ni0xNDAuMzc2di05NC42MDEgICBjMC02LjQ0Miw1LjQyNS0xMS44NjgsMTEuODY4LTExLjg2OGM2LjQ0MiwwLDExLjg2OCw1LjQyNSwxMS44NjgsMTEuODY4djk0LjYwMWMwLDY0LjQyNCw1Mi4yMTcsMTE2LjY0MSwxMTYuNjQxLDExNi42NDEgICBzMTE2LjY0MS01Mi4yMTcsMTE2LjY0MS0xMTYuNjQxdi05NC42MDFjMC02LjQ0Miw1LjQyNS0xMS44NjgsMTEuODY4LTExLjg2OHMxMS44NjgsNS40MjUsMTEuODY4LDExLjg2OHY5NC42MDEgICBDMzk1LjAyLDMzNS4zNDMsMzMxLjk1MiwzOTguNDExLDI1NC42NDQsMzk4LjQxMXoiLz4KCTxyZWN0IHg9IjE2MS43MzgiIHk9IjQ1NS4zNzUiIHN0eWxlPSJmaWxsOiNGMUYzRjc7IiB3aWR0aD0iMTg1LjgxMiIgaGVpZ2h0PSIyMy43MzUiLz4KPC9nPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM0MTQ3NTM7IiBkPSJNMjE0LjYzMywxMTguNjc1aC01Mi4yMTd2MjkuMTZoNTIuMjE3YzguMTM4LDAsMTQuNTgtNi40NDIsMTQuNTgtMTQuNTggICBDMjI5LjIxMywxMjUuMTE4LDIyMi43NzEsMTE4LjY3NSwyMTQuNjMzLDExOC42NzV6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNDE0NzUzOyIgZD0iTTIxNC42MzMsMTY3LjE2M2gtNTIuMjE3djI5LjE2aDUyLjIxN2M4LjEzOCwwLDE0LjU4LTYuNDQyLDE0LjU4LTE0LjU4ICAgQzIyOS4yMTMsMTczLjYwNSwyMjIuNzcxLDE2Ny4xNjMsMjE0LjYzMywxNjcuMTYzeiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzQxNDc1MzsiIGQ9Ik0yMTQuNjMzLDIxNS42NWgtNTIuMjE3djI5LjE2aDUyLjIxN2M4LjEzOCwwLDE0LjU4LTYuNDQyLDE0LjU4LTE0LjU4ICAgQzIyOS4yMTMsMjIyLjA5MywyMjIuNzcxLDIxNS42NSwyMTQuNjMzLDIxNS42NXoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM0MTQ3NTM7IiBkPSJNMjk0LjY1NCwyNDQuODExaDUyLjIxN3YtMjkuMTZoLTUyLjIxN2MtOC4xMzgsMC0xNC41OCw2LjQ0Mi0xNC41OCwxNC41OCAgIEMyODAuMDc0LDIzOC4wMjksMjg2LjUxNywyNDQuODExLDI5NC42NTQsMjQ0LjgxMXoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM0MTQ3NTM7IiBkPSJNMjk0LjY1NCwxOTYuMzIzaDUyLjIxN3YtMjkuMTZoLTUyLjIxN2MtOC4xMzgsMC0xNC41OCw2LjQ0Mi0xNC41OCwxNC41OCAgIEMyODAuMDc0LDE4OS44ODEsMjg2LjUxNywxOTYuMzIzLDI5NC42NTQsMTk2LjMyM3oiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM0MTQ3NTM7IiBkPSJNMjk0LjY1NCwxNDcuODM2aDUyLjIxN3YtMjkuMTZoLTUyLjIxN2MtOC4xMzgsMC0xNC41OCw2LjQ0Mi0xNC41OCwxNC41OCAgIFMyODYuNTE3LDE0Ny44MzYsMjk0LjY1NCwxNDcuODM2eiIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
-    </a>
 </template>
