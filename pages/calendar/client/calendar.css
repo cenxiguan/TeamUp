@@ -13,5 +13,16 @@
 }
 
 #pageCalendar h1 {
-  font-size: 50px;
+  font-size: 45px;
+}
+
+#pageCalendar .bg-info {
+  border: 5px solid white;
+  border-radius: 35px;
+}
+
+#pageCalendar .textformat {
+  font-size: 20px;
+  color: rgba(0, 68, 102, 1);
+  padding: 20px;
 }

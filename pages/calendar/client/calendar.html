@@ -1,29 +1,28 @@
 <template name="calendar">
   <body id="pageCalendar">
-  <div class="jumbotron">
+  <div class="box">
     <h1><strong>Add Events To Your To-Do List</strong></h1>
     <br>
     <p><a href="#" id="start_button">
       <img width="35" id="voiceIconMic" class="voiceDemoIcon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MDkuMjg3IDUwOS4yODciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUwOS4yODcgNTA5LjI4NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxjaXJjbGUgc3R5bGU9ImZpbGw6IzZFQjFFMTsiIGN4PSIyNTQuNjQ0IiBjeT0iMjU0LjY0NCIgcj0iMjU0LjY0NCIvPgo8cmVjdCB4PSIyMTkuMDQxIiB5PSIzODYuNTQzIiBzdHlsZT0iZmlsbDojREVERURGOyIgd2lkdGg9IjcxLjU0NCIgaGVpZ2h0PSI4MS4wMzgiLz4KPHBhdGggc3R5bGU9ImZpbGw6IzY0NkI3OTsiIGQ9Ik0yNTQuNjQ0LDE2LjI3NUwyNTQuNjQ0LDE2LjI3NWMtNTAuODYxLDAtOTIuMjI4LDQxLjM2Ny05Mi4yMjgsOTIuMjI4djE0Ni4xNCAgYzAsNTAuODYxLDQxLjM2Nyw5Mi4yMjgsOTIuMjI4LDkyLjIyOGwwLDBjNTAuODYxLDAsOTIuMjI4LTQxLjM2Nyw5Mi4yMjgtOTIuMjI4di0xNDYuMTQgIEMzNDYuODcyLDU3LjY0MiwzMDUuNTA1LDE2LjI3NSwyNTQuNjQ0LDE2LjI3NXoiLz4KPGc+Cgk8cGF0aCBzdHlsZT0iZmlsbDojRjFGM0Y3OyIgZD0iTTI1NC42NDQsMzk4LjQxMWMtNzcuMzA5LDAtMTQwLjM3Ni02My4wNjgtMTQwLjM3Ni0xNDAuMzc2di05NC42MDEgICBjMC02LjQ0Miw1LjQyNS0xMS44NjgsMTEuODY4LTExLjg2OGM2LjQ0MiwwLDExLjg2OCw1LjQyNSwxMS44NjgsMTEuODY4djk0LjYwMWMwLDY0LjQyNCw1Mi4yMTcsMTE2LjY0MSwxMTYuNjQxLDExNi42NDEgICBzMTE2LjY0MS01Mi4yMTcsMTE2LjY0MS0xMTYuNjQxdi05NC42MDFjMC02LjQ0Miw1LjQyNS0xMS44NjgsMTEuODY4LTExLjg2OHMxMS44NjgsNS40MjUsMTEuODY4LDExLjg2OHY5NC42MDEgICBDMzk1LjAyLDMzNS4zNDMsMzMxLjk1MiwzOTguNDExLDI1NC42NDQsMzk4LjQxMXoiLz4KCTxyZWN0IHg9IjE2MS43MzgiIHk9IjQ1NS4zNzUiIHN0eWxlPSJmaWxsOiNGMUYzRjc7IiB3aWR0aD0iMTg1LjgxMiIgaGVpZ2h0PSIyMy43MzUiLz4KPC9nPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM0MTQ3NTM7IiBkPSJNMjE0LjYzMywxMTguNjc1aC01Mi4yMTd2MjkuMTZoNTIuMjE3YzguMTM4LDAsMTQuNTgtNi40NDIsMTQuNTgtMTQuNTggICBDMjI5LjIxMywxMjUuMTE4LDIyMi43NzEsMTE4LjY3NSwyMTQuNjMzLDExOC42NzV6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNDE0NzUzOyIgZD0iTTIxNC42MzMsMTY3LjE2M2gtNTIuMjE3djI5LjE2aDUyLjIxN2M4LjEzOCwwLDE0LjU4LTYuNDQyLDE0LjU4LTE0LjU4ICAgQzIyOS4yMTMsMTczLjYwNSwyMjIuNzcxLDE2Ny4xNjMsMjE0LjYzMywxNjcuMTYzeiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzQxNDc1MzsiIGQ9Ik0yMTQuNjMzLDIxNS42NWgtNTIuMjE3djI5LjE2aDUyLjIxN2M4LjEzOCwwLDE0LjU4LTYuNDQyLDE0LjU4LTE0LjU4ICAgQzIyOS4yMTMsMjIyLjA5MywyMjIuNzcxLDIxNS42NSwyMTQuNjMzLDIxNS42NXoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM0MTQ3NTM7IiBkPSJNMjk0LjY1NCwyNDQuODExaDUyLjIxN3YtMjkuMTZoLTUyLjIxN2MtOC4xMzgsMC0xNC41OCw2LjQ0Mi0xNC41OCwxNC41OCAgIEMyODAuMDc0LDIzOC4wMjksMjg2LjUxNywyNDQuODExLDI5NC42NTQsMjQ0LjgxMXoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM0MTQ3NTM7IiBkPSJNMjk0LjY1NCwxOTYuMzIzaDUyLjIxN3YtMjkuMTZoLTUyLjIxN2MtOC4xMzgsMC0xNC41OCw2LjQ0Mi0xNC41OCwxNC41OCAgIEMyODAuMDc0LDE4OS44ODEsMjg2LjUxNywxOTYuMzIzLDI5NC42NTQsMTk2LjMyM3oiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM0MTQ3NTM7IiBkPSJNMjk0LjY1NCwxNDcuODM2aDUyLjIxN3YtMjkuMTZoLTUyLjIxN2MtOC4xMzgsMC0xNC41OCw2LjQ0Mi0xNC41OCwxNC41OCAgIFMyODYuNTE3LDE0Ny44MzYsMjk0LjY1NCwxNDcuODM2eiIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
       &nbsp;Record a new event you want to add</a>
     </p>
-    <br>
-    <p>
-      <a href="#" id="voice">
-        <img width="40" id="voiceIconSpeaking" class="voiceDemoIcon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MDggNTA4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MDggNTA4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGNpcmNsZSBzdHlsZT0iZmlsbDojMzI0QTVFOyIgY3g9IjI1NCIgY3k9IjI1NCIgcj0iMjU0Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRkQwNUI7IiBkPSJNMTgxLjIsMTE4LjRjLTQsMi44LTUuNiw4LTQuOCwxMi40YzEuNiw3LjYsMCwxNi40LDAsMjQuNGMwLjQsMTYuOCw3LjIsMzMuMiw0LDUwICBjLTMuNiwxOS42LTIwLjgsMjMuMi0zMCw0MC40Yy0yLjQsNC40LDAuOCw5LjYsNS42LDEwLjRjMy42LDAuNCw2LjgsMiw3LjYsNS42YzAuOCwyLjQtMC44LDEzLjItMC44LDE1LjYgIGMwLDkuMiwyNi40LDE0LjgsMzQuNCwxOS4yYy02LjQsMS4yLTIzLjYsNi40LTI4LjQsMTIuNGMtMS4yLDEuNi0wLjQsNCwxLjYsNC40YzYuOCwyLjQsMTEuMiwxMC40LDEyLjQsMThjMS4yLDguOC0wLjQsMTcuNiwxLjYsMjYgIGM0LjQsMTguNCwzMC40LDEyLDQ3LjIsMi44bC0xLjYsNDguNGwxMTkuMi0yMHYtMTAuOGMwLDAtMy4yLTQwLDEwLjgtNjZjNy42LTE0LjQsMTMuMi0yOCwyMC44LTQyLjRjMTAtMjAsMTQuNC00MS42LDE1LjYtNjMuNiAgQzQwMS42LDEwNC40LDI4NCw0MCwxODEuMiwxMTguNHoiLz4KPGc+Cgk8cmVjdCB4PSI2NCIgeT0iMjkyIiBzdHlsZT0iZmlsbDojRTZFOUVFOyIgd2lkdGg9IjgxLjYiIGhlaWdodD0iMTIuNCIvPgoJPHBvbHlnb24gc3R5bGU9ImZpbGw6I0U2RTlFRTsiIHBvaW50cz0iMTQwLjQsMjc2LjggOTAuOCwyNTUuMiA5NiwyNDQgMTQ1LjIsMjY1LjYgICIvPgoJPHBvbHlnb24gc3R5bGU9ImZpbGw6I0U2RTlFRTsiIHBvaW50cz0iMTQwLjQsMzE5LjIgOTAuOCwzNDAuOCA5NiwzNTIuNCAxNDUuMiwzMzAuOCAgIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
-      </a>      <!-- <button class="btn btn-info btn-s" id="voice">voice search</button> -->
-      <input type="text" id="search" placeholder="the date...">
-    </p>
-  <br>
-
-  </div>
-
   <br>
   <div id="results" class="bg-info">
-    <p><strong>&nbsp;Calendar</strong></p>
-    <br>
-    <span id="final_span" class="final"></span>
+    <p><strong class="textformat">Input</strong></p>
+
+    <span id="final_span" class="final spanpad"></span>
   </div>
+  <br>
+  <p>
+    <!-- <a href="#" id="voice">
+      <img width="40" id="voiceIconSpeaking" class="voiceDemoIcon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MDggNTA4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MDggNTA4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGNpcmNsZSBzdHlsZT0iZmlsbDojMzI0QTVFOyIgY3g9IjI1NCIgY3k9IjI1NCIgcj0iMjU0Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRkQwNUI7IiBkPSJNMTgxLjIsMTE4LjRjLTQsMi44LTUuNiw4LTQuOCwxMi40YzEuNiw3LjYsMCwxNi40LDAsMjQuNGMwLjQsMTYuOCw3LjIsMzMuMiw0LDUwICBjLTMuNiwxOS42LTIwLjgsMjMuMi0zMCw0MC40Yy0yLjQsNC40LDAuOCw5LjYsNS42LDEwLjRjMy42LDAuNCw2LjgsMiw3LjYsNS42YzAuOCwyLjQtMC44LDEzLjItMC44LDE1LjYgIGMwLDkuMiwyNi40LDE0LjgsMzQuNCwxOS4yYy02LjQsMS4yLTIzLjYsNi40LTI4LjQsMTIuNGMtMS4yLDEuNi0wLjQsNCwxLjYsNC40YzYuOCwyLjQsMTEuMiwxMC40LDEyLjQsMThjMS4yLDguOC0wLjQsMTcuNiwxLjYsMjYgIGM0LjQsMTguNCwzMC40LDEyLDQ3LjIsMi44bC0xLjYsNDguNGwxMTkuMi0yMHYtMTAuOGMwLDAtMy4yLTQwLDEwLjgtNjZjNy42LTE0LjQsMTMuMi0yOCwyMC44LTQyLjRjMTAtMjAsMTQuNC00MS42LDE1LjYtNjMuNiAgQzQwMS42LDEwNC40LDI4NCw0MCwxODEuMiwxMTguNHoiLz4KPGc+Cgk8cmVjdCB4PSI2NCIgeT0iMjkyIiBzdHlsZT0iZmlsbDojRTZFOUVFOyIgd2lkdGg9IjgxLjYiIGhlaWdodD0iMTIuNCIvPgoJPHBvbHlnb24gc3R5bGU9ImZpbGw6I0U2RTlFRTsiIHBvaW50cz0iMTQwLjQsMjc2LjggOTAuOCwyNTUuMiA5NiwyNDQgMTQ1LjIsMjY1LjYgICIvPgoJPHBvbHlnb24gc3R5bGU9ImZpbGw6I0U2RTlFRTsiIHBvaW50cz0iMTQwLjQsMzE5LjIgOTAuOCwzNDAuOCA5NiwzNTIuNCAxNDUuMiwzMzAuOCAgIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
+    </a>    -->
+    <button class="btn btn-primary btn-s" id="voice"><strong>Speak/Type Search for Date</Strong></button>&nbsp;&nbsp;
+    <input type="text" id="search" placeholder="YYYY-MM-DD">
+  </p>
+  </div>
+
   <table class="table table-bordered">
     <tbody>
       {{#each entity in eventlist}}
@@ -60,7 +59,7 @@
     <td>{{entity.detail}}</td>
   </tr>
   <tr>
-    <td> * * * * * * </td>
-    <td> * * * * * * </td>
+    <td> * * * * * * * </td>
+    <td> * * * * * * * * * * * * * * </td>
   </tr>
 </template>

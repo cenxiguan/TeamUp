@@ -14,6 +14,11 @@
   padding-bottom: 5px;
 }
 
+#pageLayout .teamupformat {
+  font-size: 25px;
+  font-weight: bold;
+}
+
 li a, .dropbtn {
     display: inline-block;
     color: white;

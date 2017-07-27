@@ -1,15 +1,17 @@
 <template name="createTeam">
+  <body id="pageCreateGroup">
   {{#if currentUser}}
     {{> groupInfo}}
   {{else}}
   <h1>Please sign-up for an account.</h1>
   {{/if}}
+</body>
 </template>
 
 <template name="groupInfo">
   <form>
     <br>
-    <div class="teamBox">
+    <div class="box">
       <strong><h2>Create A Team</h2></strong><br>
       <strong>Team Name</strong><br>
       <textarea rows="1" cols="50" id="js-groupname" placeholder="Enter team name here." class="blacktext"></textarea>

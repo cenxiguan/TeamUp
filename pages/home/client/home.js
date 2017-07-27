@@ -1,5 +1,12 @@
+Template.home.onDestroyed(function(){
+  $("body").css("background-image", "url(\"images/Shatteredblue.png\")");
+})
+
 Template.home.onRendered(
   function() {
+    $("body").css("background-image", "url(\"../images/homeback.jpg\")");
+    $("body").css("background-size", "100% 105%");
+    opacity: 0.5;
     var mySlides;
     var dots;
     var slideIndex = 1;
@@ -80,39 +87,17 @@ Template.home.events({
     mySlides[0].style.display = "block";
     mySlides[1].style.display = "none";
     mySlides[2].style.display = "none";
-    mySlides[3].style.display = "none";
-    mySlides[4].style.display = "none";
   },
   'click span#slide2'(elt,instance) {
     var mySlides = instance.$(".mySlides");
     mySlides[0].style.display = "none";
     mySlides[1].style.display = "block";
     mySlides[2].style.display = "none";
-    mySlides[3].style.display = "none";
-    mySlides[4].style.display = "none";
   },
   'click span#slide3'(elt,instance) {
     var mySlides = instance.$(".mySlides");
     mySlides[0].style.display = "none";
     mySlides[1].style.display = "none";
     mySlides[2].style.display = "block";
-    mySlides[3].style.display = "none";
-    mySlides[4].style.display = "none";
-  },
-  'click span#slide4'(elt,instance) {
-    var mySlides = instance.$(".mySlides");
-    mySlides[0].style.display = "none";
-    mySlides[1].style.display = "none";
-    mySlides[2].style.display = "none";
-    mySlides[3].style.display = "block";
-    mySlides[4].style.display = "none";
-  },
-  'click span#slide5'(elt,instance) {
-    var mySlides = instance.$(".mySlides");
-    mySlides[0].style.display = "none";
-    mySlides[1].style.display = "none";
-    mySlides[2].style.display = "none";
-    mySlides[3].style.display = "none";
-    mySlides[4].style.display = "block";
   },
 })

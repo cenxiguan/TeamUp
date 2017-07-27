@@ -45,12 +45,6 @@
     border-width: 10px;
 }
 
-#pageProfile .fonting {
-  font-size: 15px;
-  padding-top: 10px;
-  font-family: "Open Sans";
-}
-
 #pageProfile .nameformat {
   font-size: 55px;
   padding-top: 10px;
@@ -89,10 +83,22 @@
   border-bottom: 7px solid;
 }
 
-#pageProfile .aboutcontactdiv {
+#pageProfile .aboutdiv {
+  margin: 0 auto;
+  position: relative;
   border-collapse: collapse;
   background-color: white;
   border: 6px solid;
+  margin-bottom: 25px;
+}
+
+#pageProfile .contactdiv {
+  margin: 0 auto;
+  position: relative;
+  border-collapse: collapse;
+  background-color: white;
+  border: 6px solid;
+  margin-bottom: 25px;
 }
 
 #pageProfile ul {

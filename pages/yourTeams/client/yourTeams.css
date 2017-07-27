@@ -4,7 +4,8 @@
   flex-flow: row;
   margin-left: 150px;
   margin-right: auto;
-  height: 500px;
+  min-height: 100px;
+  max-height: 500px;
 }
 
 .ownedBox{
@@ -13,7 +14,8 @@
   padding: 20px;
   margin-bottom: 40px;
   margin-left: 100px;
-  height: 500px;
+  min-height: 100px;
+  max-height: 500px;
   order: 2;
   overflow: auto;
 }
@@ -26,10 +28,15 @@
   background-color: lightgrey;
   border-radius: 8px;
   padding: 20px;
-  height: 500px;
+  min-height: 100px;
+  max-height: 500px;
   overflow: auto;
   margin-bottom: 40px;
   order: 1;
+}
+
+.leftLink{
+  text-align: left;
 }
 
 .memberOfContents{
