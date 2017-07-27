@@ -4,15 +4,20 @@
   font-size: 25px;
 }
 
-table {
+.hoverTable {
     border-collapse: collapse;
     width: 100%;
 }
 
-th, td {
+.hoverTable th, td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
-tr:hover{background-color:rgb(85,151,175)}
+.hoverTable tr:hover{background-color:rgb(85,151,175)}
+.hoverTable tr:nth-child(even){background-color: silver}
+
+h-l{
+  color:white;
+}

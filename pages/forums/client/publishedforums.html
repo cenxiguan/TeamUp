@@ -5,7 +5,7 @@
 
 <template name="forumsrow">
   <div name="forumsrow" id=forumsrow>
-    <table class="table striped" name="forumstable" id="forumstable">
+    <table class="hoverTable" name="forumstable" id="forumstable">
       <tr>
         <td>Forum Title</td>
         <td>Forum Description</td>
@@ -14,8 +14,8 @@
       </tr>
       {{#each forum in showingForums}}
       <tr>
-        <td><a href = "/individualforum?title={{forum.title}}">{{forum.title}}</a></td>
-        <td><a href = "/individualforum?title={{forum.title}}">{{forum.description}}</a></td>
+        <td><a href = "/individualforum?title={{forum.title}}"><h-l>{{forum.title}}</h-l></a></td>
+        <td><a href = "/individualforum?title={{forum.title}}"><h-l>{{forum.description}}</h-l></a></td>
         <td>{{getForumCreator forum.creator}}</td>
         <td>{{forum.createdAt}}</td>
       </tr>
