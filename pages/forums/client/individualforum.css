@@ -1,0 +1,33 @@
+#forumtop{
+  background-color: white;
+  color:black;
+  font-size: 25px;
+}
+
+h-footer{
+  font-size: 10px;
+  color:grey;
+}
+
+h-c{
+  font-size:15px;
+  color:rgb(136,159,167);
+}
+
+#commentsubmit {
+  color:black;
+  background-color: white;
+  font-size: 15px;
+}
+
+#commentinput {
+  color:black;
+  background-color: white;
+  font-size: 25px;
+}
+
+#commentrow {
+  color: black;
+  background-color: white;
+  font-size:15px;
+}

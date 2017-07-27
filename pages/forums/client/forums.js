@@ -1,44 +1,41 @@
 Template.forums.onCreated(function() {
-  Meteor.subscribe('post');
-  Meteor.subscribe('user');
+  Meteor.subscribe('forums');
 })
 
-Template.showpost.helpers({
-  postlist() {
-    return Post.find({field: "public"})
+Template.forums.events({
+
+  'click button#submit'(elt,instance) {
+    
+    $("#submit").attr("class", "ui right floated blue loading disabled button");
+    const title = instance.$('#title').val();
+
+    if (Forums.findOne({title:title})){
+      alert('This forum title already exists, you need to create a new title');
+    }else{
+
+      const description = instance.$('#description').val();
+      const agree = $("#agree").is(":checked");
+
+      var forum = {title:title,
+               description:description,
+               createdAt:new Date(),
+               creator:Meteor.userId()};
+
+      if (agree) {
+          console.log(description)
+          console.log(forum)
+          Meteor.call('forums.insert', forum, function(err, result){
+            if(err){
+                alert(err.message);
+                $("#submit").attr("class", "ui right floated blue botton");
+                return;
+            }
+          });
+          Router.go('individualforum', {}, {query: 'title=' + title});
+       }else{
+          alert('You must check the box to insert your profile');
+       }
+    }
   },
-})
 
-Template.addpost.events({
-  'click button'(elt,instance) {
-    const postbox = instance.$('#postbox').val();
-    const name = User.findOne({owner: Meteor.userId()}).firstname + " " + User.findOne({owner: Meteor.userId()}).lastname;
-    console.log('adding '+name);
-
-    instance.$('#postbox').val("");
-    var posttext =
-      { postbox:postbox,
-        name:name,
-        owner:Meteor.userId(),
-        createAt:new Date(),
-        field: "public"
-      };
-    Meteor.call('post.insert', posttext);
-
-    // var msg = new SpeechSynthesisUtterance('post is sent!');
-    // window.speechSynthesis.speak(msg);
-  }
-})
-
-Template.postrow.helpers({
-  isOwner() {return this.post.owner == Meteor.userId()}
-})
-
-Template.postrow.events({
-  'click span'(elt,instance) {
-    console.dir(this);
-    var id = this.post._id
-    console.log(id);
-    Meteor.call('post.remove', id);
-  }
 })

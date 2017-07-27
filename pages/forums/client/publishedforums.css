@@ -1,0 +1,22 @@
+#forumstable{
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 25px;
+}
+
+.hoverTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.hoverTable th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.hoverTable tr:hover{background-color:rgb(85,151,175)}
+
+h-l{
+  color:white;
+}

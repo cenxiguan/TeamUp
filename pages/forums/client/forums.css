@@ -47,3 +47,40 @@
     height: 3px;
     background-color: rgba(0, 68, 102, 1);
 }
+
+
+h-fh{
+  font-size: 35px;
+  font-weight:bold;
+  color:white;
+}
+
+h-f{
+  font-size:20px;
+  color:white
+}
+
+h-sf{
+  font-size:15px;
+  color:grey;
+}
+
+#createforum{
+  color:black;
+}
+
+#descritpion{
+  border-radius: 5px;
+}
+
+#submit{
+  border-radius:5px;
+  background-color: white;
+}
+#attachpic{
+  border-radius:5px;
+  background-color: white;
+}
+#attachment{
+  display:none;
+}

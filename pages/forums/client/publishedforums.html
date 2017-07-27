@@ -1,0 +1,25 @@
+<template name="publishedforums">
+  <h1> Search/Find forums</h1>
+  {{>forumsrow}}
+</template>
+
+<template name="forumsrow">
+  <div name="forumsrow" id=forumsrow>
+    <table class="hoverTable" name="forumstable" id="forumstable">
+      <tr>
+        <td>Forum Title</td>
+        <td>Forum Description</td>
+        <td>Forum Creator</td>
+        <td>Forum Created Time</td>
+      </tr>
+      {{#each forum in showingForums}}
+      <tr>
+        <td><a href = "/individualforum?title={{forum.title}}"><h-l>{{forum.title}}</h-l></a></td>
+        <td><a href = "/individualforum?title={{forum.title}}"><h-l>{{forum.description}}</h-l></a></td>
+        <td>{{getForumCreator forum.creator}}</td>
+        <td>{{forum.createdAt}}</td>
+      </tr>
+      {{/each}}
+    </table>
+  </div>
+</template>

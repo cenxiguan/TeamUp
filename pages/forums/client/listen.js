@@ -52,7 +52,7 @@ Template.listen.onCreated(function() {
 	        }
 	      }
 	      final_transcript = capitalize(final_transcript);
-	      postbox.innerHTML = linebreak(final_transcript);
+	      commentinput.innerHTML = linebreak(final_transcript);
 				const text = event.results[0][0].transcript;
 	    };
 
