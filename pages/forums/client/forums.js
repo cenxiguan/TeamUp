@@ -8,26 +8,33 @@ Template.forums.events({
 
     $("#submit").attr("class", "ui right floated blue loading disabled button");
     const title = instance.$('#title').val();
-    const description = instance.$('#description').val();
-    const agree = $("#agree").is(":checked");
 
-    var forum = {title:title,
+    if (Forums.findOne({title:title})){
+      alert('This forum title already exists, you need to create a new title');
+    }else{
+
+      const description = instance.$('#description').val();
+      const agree = $("#agree").is(":checked");
+
+      var forum = {title:title,
                description:description,
-               onCreated:new Date(),
+               createdAt:new Date(),
                creator:Meteor.userId()};
 
-    if (agree) {
+      if (agree) {
           console.log(description)
           console.log(forum)
           Meteor.call('forums.insert', forum, function(err, result){
             if(err){
                 alert(err.message);
-                $("#submit").attr("class","ui right floated blue botton");
+                $("#submit").attr("class", "ui right floated blue botton");
                 return;
             }
           });
-    }else{
-       alert('You must check the box to insert your profile');
+          Router.go('individualforum', {}, {query: 'title=' + title});
+       }else{
+          alert('You must check the box to insert your profile');
+       }
     }
   },
 

@@ -1,0 +1,32 @@
+<template name="individualforum">
+  <h1>Forum Title: {{forumtitle}}</h1><hr>
+  {{>forumtop}}
+  {{>commentrow}}
+  {{>comment}}
+</template>
+
+<template name="forumtop">
+  <div name="forumtop" id="forumtop">
+      <span class="message">{{foruminfo}}</span><br><br>
+      <h-footer>Creator: {{getUsername}}</h-footer><br>
+      <h-footer>{{getCreatedtime}}</h-footer><hr>
+  </div>
+</template>
+
+
+
+
+<template name="commentrow">
+  <div name="commentrow" id="commentrow">
+  {{#each comment in showingComments}}
+   <h-c><img src="data:image/jpeg;base64, {{getUserpic comment.author}}" style="display:block; max-width:50px; max-height:50px;">{{getUsername comment.author}}:</h-c>
+       <div name="comment" id="comment"><span class="message">{{comment.comment}}</span></div>
+       <h-footer>{{comment.createdAt}}</h-footer><hr>
+  {{/each}}
+  </div>
+</template>
+
+<template name="comment">
+  <span class="comment"><textarea type="input" class="commentinput" id="commentinput" rows="5" cols="50"></textarea></span><br>
+  <button id="commentsubmit" class="commentsubmit">Submit Comment</button>
+</template>
