@@ -16,7 +16,6 @@
 }
 
 .hoverTable tr:hover{background-color:rgb(85,151,175)}
-.hoverTable tr:nth-child(even){background-color: silver}
 
 h-l{
   color:white;
