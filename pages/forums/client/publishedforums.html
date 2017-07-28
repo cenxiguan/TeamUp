@@ -1,9 +1,10 @@
 <template name="publishedforums">
-  <body id="pagePublishForums">
-  <div class="box">
-  <h2><strong class="titleformat">Find Forums</strong></h2><br>
-  <input id="search_id" class="glowing-border" type="text" name="search" placeholder="Search by name...">&nbsp;&nbsp;<button id="submit">Submit</button>
-  <div name="forumsrow" id=forumsrow><br>
+  <h1> Search/Find forums</h1>
+  {{>forumsrow forum=forum}}
+</template>
+
+<template name="forumsrow">
+  <div name="forumsrow" id=forumsrow>
     <table class="hoverTable" name="forumstable" id="forumstable">
       <tr>
         <td>Forum Title</td>
@@ -11,20 +12,14 @@
         <td>Forum Creator</td>
         <td>Forum Created Time</td>
       </tr>
-    {{#each f in searchlist}}
-      {{> forumsrow f=f}}
-    {{/each}}
-  </table>
-</div>
-</div>
-</body>
-</template>
-
-<template name="forumsrow">
+      {{#each forum in showingForums}}
       <tr>
-        <td><strong><em><a href = "/individualforum?forumId={{f._id}}"><h-l>{{f.title}}</h-l></a></em></strong></td>
-        <td><a href = "/individualforum?forumId={{f._id}}"><h-l>{{f.description}}</h-l></a></td>
-        <td>{{getForumCreator f.creator}}</td>
-        <td>{{f.createdAt}}</td>
+        <td><a href = "/individualforum?forumId={{forum._id}}"><h-l>{{forum.title}}</h-l></a></td>
+        <td><a href = "/individualforum?forumId={{forum._id}}"><h-l>{{forum.description}}</h-l></a></td>
+        <td>{{getForumCreator forum.creator}}</td>
+        <td>{{forum.createdAt}}</td>
       </tr>
+      {{/each}}
+    </table>
+  </div>
 </template>

@@ -57,10 +57,9 @@ Template.comment.events({
          var element =instance.$("#input");
          element.scrollTop = element.scrollHeight;
        }
-       const forum = Forums.findOne({_id:Router.current().params.query.forumId})
-       const title = forum.title
+       const forumId = Router.current().params.query.forumId
 
-       var messageDataKey = {title,
+       var messageDataKey = {forumId,
          commentsArray: [
            {
              "comment": messageStringKey,
@@ -73,7 +72,7 @@ Template.comment.events({
 
        instance.$('#commentinput').val("");
 
-         Meteor.call('forums.addcomment', messageDataKey.title, messageDataKey.commentsArray,
+         Meteor.call('forums.addcomment', messageDataKey.forumId, messageDataKey.commentsArray,
          function(error, result){
            updateScrollKey();
          });

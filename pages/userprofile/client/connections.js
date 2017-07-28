@@ -14,20 +14,20 @@ Template.connections.onCreated( function(){
 
 Template.connections.helpers({
   searchlist: function() {
-     return Template.instance().userDict.get('searchList');
-    // Must put objects into array to display properly!
+    return User.find().fetch();
   },
 });
 
 Template.connections.events({
   "click #submit"(event, instance){
     const query = instance.$('#search_id').val();
-    const regex = new RegExp(query, "i");
-    console.log(regex);
-    // undefined
-    Template.instance().userDict.set('searchList', User.find({fullname:regex}, {sort: {lastname: 1}}).fetch());
-    // Returns documents matching. How so?
-    console.log(Template.instance().userDict.get('searchList'));
+
+    if(instance.subscription){
+      instance.subscription.stop();
+    }
+
+    const subscription = Meteor.subscribe("users_search", query);
+    instance.subscription = subscription;
   },
 })
 
