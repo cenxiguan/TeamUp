@@ -1,4 +1,5 @@
 .groupTitle{
+  color: rgba(0, 68, 102, 1);
   text-align: center;
 }
 
@@ -34,8 +35,13 @@
 
 .messageString{
   color: black;
-  /*position: absolute;*/
-  width: 70%;
+  position: relative;
+  width: 80%;
+}
+
+.linkString{
+  color: black;
+  width: 80%;
 }
 
 .inputMsgSpan{
@@ -43,8 +49,19 @@
   padding-right: 10px;
 }
 
+.inputLnkSpan{
+  overflow: hidden;
+  padding-right: 10px;
+}
+
 .js-sendGrpMsg{
-  float: right;
+  position: relative;
+  width: 150px;
+}
+
+.js-sendGrpLnk{
+  position: relative;
+  width: 150px;
 }
 
 .descriptionBox{
