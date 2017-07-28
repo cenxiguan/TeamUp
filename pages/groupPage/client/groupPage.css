@@ -41,17 +41,18 @@
 
 .linkString{
   color: black;
+  position: relative;
   width: 80%;
 }
 
 .inputMsgSpan{
   overflow: hidden;
-  padding-right: 10px;
+  /*padding-right: 10px;*/
 }
 
 .inputLnkSpan{
   overflow: hidden;
-  padding-right: 10px;
+  /*padding-right: 10px;*/
 }
 
 .js-sendGrpMsg{
@@ -120,10 +121,6 @@
   padding-left:10px;
   padding-right:10px;
   color: rgba(0, 68, 102, 1);
-}
-
-.js-sendGrpMsg{
-  background-color: grey;
 }
 
 .joinButton{
