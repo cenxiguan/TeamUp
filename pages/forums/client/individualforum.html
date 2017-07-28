@@ -1,5 +1,5 @@
 <template name="individualforum">
-  <h1>Forum Title: {{forumtitle}}</h1><hr>
+  <h1>{{forumtitle}}</h1><hr>
   {{>forumtop}}
   {{#each comment in showingComments}}
     {{>commentrow comment=comment}}
