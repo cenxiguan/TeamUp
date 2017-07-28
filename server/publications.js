@@ -23,6 +23,11 @@ Meteor.publish('user', function(){
   return User.find();
 })
 
+Meteor.publish('users_search', function(keyword){
+  const search_regex = new RegExp(keyword.replace(/[^a-z0-9]/gi, "\\$&"), "gi");
+  return User.find({fullname: {$regex: search_regex}}, {$sort: {lastname: 1}});
+})
+
 Meteor.publish('users', function(userId){
   if(userId){
     return User.find({owner: userId});
