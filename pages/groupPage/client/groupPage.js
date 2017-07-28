@@ -6,7 +6,14 @@ Template.showMessages.onRendered(function() {
 
 Template.groupPage.helpers({
   isMember(){
-    return Groups.findOne({"_id":this._id}).members.includes(Meteor.userId())},
+    return Groups.findOne({"_id":this._id}).members.includes(Meteor.userId());
+  },
+})
+
+Template.groupMain.helpers({
+  isMember(){
+    return Groups.findOne({"_id":this._id}).members.includes(Meteor.userId());
+  },
 })
 
 Template.groupMain.events({
