@@ -24,7 +24,6 @@ h-l{
 button#submit {
   background-color: white; /* Grey */
   border: none;
-  color: rgba(0, 68, 102, 1);
   border: 3px solid;
   border-radius: 40px;
   padding: 4px 9px;
@@ -33,9 +32,11 @@ button#submit {
   text-decoration: none;
   display: inline-block;
   font-size: 15px;
+  color: rgba(0, 68, 102, 1);
 }
 
-input[type=text] {
+input[type=text]#search_id {
+    color: rgba(0, 68, 102, 1);
     width: 300px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -52,6 +53,6 @@ input[type=text] {
 }
 
 /* When the input field gets focus, change its width to 100% */
-input[type=text]:focus {
+input[type=text]:focus#search_id {
     width: 90%;
 }

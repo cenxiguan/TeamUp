@@ -1,18 +1,11 @@
-Template.connections.onCreated( function(){
+Template.publishedforums.onCreated( function(){
     this.forumDict = new ReactiveDict();
 });
 
-Template.publishedforums.helpers({
+Template.forumsrow.helpers({
   searchlist: function() {
      return Template.instance().forumDict.get('searchList');
     // Must put objects into array to display properly!
-  },
-});
-
-Template.forumsrow.helpers({
-  showingForums() {
-    var forums=Forums.find().fetch();
-    return forums;
   },
 
   getForumCreator(creator){
@@ -30,8 +23,8 @@ Template.publishedforums.events({
     const regex = new RegExp(query, "i");
     console.log(regex);
     // undefined
-    Template.instance().userDict.set('searchList', User.find({fullname:regex}, {sort: {lastname: 1}}).fetch());
+    Template.instance().forumDict.set('searchList', Forums.find({title:regex}, {sort: {title: 1}}).fetch());
     // Returns documents matching. How so?
-    console.log(Template.instance().userDict.get('searchList'));
+    console.log(Template.instance().forumDict.get('searchList'));
   },
 })
