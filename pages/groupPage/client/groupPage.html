@@ -32,10 +32,13 @@
     <div class="descriptionBox">
       Location: {{grouploc}}<br>
       Description: {{groupdesc}}<br>
-      <div class="joinButton">
-        <button id="js-editGroup" class="editGroup">Edit Group</button>
-        <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
-      </div>
+        <div class="joinButton">
+          {{#if isMember}}
+            <button id="js-editGroup" class="editGroup">Edit Group</button>
+          {{else}}
+            <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
+          {{/if}}
+        </div>
     </div>
     <!--check if user is group member, if they are show the following-->
     <!--if not-->

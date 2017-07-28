@@ -23,7 +23,7 @@ Template.groupInfo.events({
         grouploc:grouploc,
         owner:Meteor.userId(),
         dateCreated: new Date(),
-        members:[]  //members array
+        members:[Meteor.userId()]  //members array
         // Need to implement groupid somehow which makes
         // individual pages and unique groups
       };
