@@ -20,3 +20,38 @@
 h-l{
   color:white;
 }
+
+button#submit {
+  background-color: white; /* Grey */
+  border: none;
+  color: rgba(0, 68, 102, 1);
+  border: 3px solid;
+  border-radius: 40px;
+  padding: 4px 9px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+}
+
+input[type=text] {
+    width: 300px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('images/searchicon.png');
+    background-size: 22px;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.3s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+    width: 90%;
+}

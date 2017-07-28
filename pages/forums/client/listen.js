@@ -3,6 +3,11 @@
       http://ctrlq.org/code/19680-html5-web-speech-api
 */
 
+Template.listen.onDestroyed(function(){
+	Template.instance().recognition.stop();
+	return;
+})
+
 Template.listen.onCreated(function() {
 	this.recognizing = new ReactiveVar(false);
 	const recognizing_status = this.recognizing;
@@ -84,6 +89,6 @@ Template.listen.events({
 			return;
 		}
 		recognition.start();
-		postbox.innerHTML = '';
+		commentinput.innerHTML = '';
 	}
 });
