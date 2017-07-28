@@ -4,24 +4,24 @@
   font-size: 25px;
 }
 
-.hoverTable {
+#pagePublishForums .hoverTable {
     border-collapse: collapse;
     width: 100%;
 }
 
-.hoverTable th, td {
+#pagePublishForums .hoverTable th, td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
-.hoverTable tr:hover{background-color:rgb(85,151,175)}
+#pagePublishForums .hoverTable tr:hover{background-color:rgb(85,151,175)}
 
 h-l{
   color:white;
 }
 
-button#submit {
+#pagePublishForums button {
   background-color: white; /* Grey */
   border: none;
   border: 3px solid;
@@ -35,7 +35,7 @@ button#submit {
   color: rgba(0, 68, 102, 1);
 }
 
-input[type=text]#search_id {
+#pagePublishForums input[type=text] {
     color: rgba(0, 68, 102, 1);
     width: 300px;
     box-sizing: border-box;
@@ -53,6 +53,38 @@ input[type=text]#search_id {
 }
 
 /* When the input field gets focus, change its width to 100% */
-input[type=text]:focus#search_id {
-    width: 90%;
+#pagePublishForums input[type=text]:focus {
+    width: 80%;
+}
+
+#pagePublishForums .titleformat {
+  font-size: 40px;
+}
+
+#pagePublishForums h2 {
+  font-size: 35px;
+  font-weight: bold;
+  text-align: center;
+  background-color: white;
+  position: relative;
+  right: 40px;
+  width: 1130px;
+}
+
+@media only screen and (max-width: 1199px) {
+    #pagePublishForums h2 {
+        width: 930px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    #pagePublishForums h2 {
+        width: 710px;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    #pagePublishForums h2 {
+        width: 300px;
+    }
 }

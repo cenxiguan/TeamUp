@@ -2,12 +2,13 @@ Template.publishedforums.onCreated( function(){
     this.forumDict = new ReactiveDict();
 });
 
-Template.forumsrow.helpers({
+Template.publishedforums.helpers({
   searchlist: function() {
-     return Template.instance().forumDict.get('searchList');
-    // Must put objects into array to display properly!
+    return Template.instance().forumDict.get('searchList');
   },
+})
 
+Template.forumsrow.helpers({
   getForumCreator(creator){
     var creator = User.findOne({owner:creator});
     var fname = creator.firstname;
