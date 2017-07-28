@@ -4,7 +4,7 @@ Template.publishedforums.onCreated( function(){
 
 Template.publishedforums.helpers({
   searchlist: function() {
-    return Template.instance().forumDict.get('searchList');
+    return Forums.find().fetch();
   },
 })
 
@@ -21,11 +21,12 @@ Template.forumsrow.helpers({
 Template.publishedforums.events({
   "click #submit"(event, instance){
     const query = instance.$('#search_id').val();
-    const regex = new RegExp(query, "i");
-    console.log(regex);
-    // undefined
-    Template.instance().forumDict.set('searchList', Forums.find({title:regex}, {sort: {title: 1}}).fetch());
-    // Returns documents matching. How so?
-    console.log(Template.instance().forumDict.get('searchList'));
+
+    if(instance.subscription){
+      instance.subscription.stop();
+    }
+
+    const subscription = Meteor.subscribe("forums_search", query);
+    instance.subscription = subscription;
   },
 })
