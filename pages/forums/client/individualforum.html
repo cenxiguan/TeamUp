@@ -1,7 +1,9 @@
 <template name="individualforum">
-  <h1>Forum Title: {{forumtitle}}</h1><hr>
+  <h1>{{forumtitle}}</h1><hr>
   {{>forumtop}}
-  {{>commentrow}}
+  {{#each comment in showingComments}}
+    {{>commentrow comment=comment}}
+  {{/each}}
   {{>comment}}
 </template>
 
@@ -18,11 +20,13 @@
 
 <template name="commentrow">
   <div name="commentrow" id="commentrow">
-  {{#each comment in showingComments}}
+
    <h-c><img src="data:image/jpeg;base64, {{getUserpic comment.author}}" style="display:block; max-width:50px; max-height:50px;">{{getUsername comment.author}}:</h-c>
        <div name="comment" id="comment"><span class="message">{{comment.comment}}</span></div>
-       <h-footer>{{comment.createdAt}}</h-footer><hr>
-  {{/each}}
+       <h-footer>{{comment.createdAt}}</h-footer><br>
+       <button type="button" class="btn btn-default btn-sm" id="commentremove">
+          <span class="glyphicon glyphicon-remove"></span> Delete Comment
+       </button><hr>
   </div>
 </template>
 

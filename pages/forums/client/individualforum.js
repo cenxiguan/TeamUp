@@ -1,15 +1,24 @@
 Template.individualforum.helpers({
   'forumtitle': function(){
-    var title=Router.current().params.query.title;
+    var forum=Forums.findOne({_id:Router.current().params.query.forumId});
+    console.log(forum);
+
+    var title=forum.title;
     console.log(title)
     return title;
+  },
+  showingComments() {
+    var forum=Forums.findOne({_id:Router.current().params.query.forumId});
+    console.log(Forums.find().fetch());
+    console.log(forum);
+    return forum.commentsArray;
   },
 })
 
 Template.forumtop.helpers({
 
   'getUsername': function(){
-    var forum=Forums.findOne({title:Router.current().params.query.title});
+    var forum=Forums.findOne({_id:Router.current().params.query.forumId});
     var user=User.findOne({owner:forum.creator});
     var fname = user.firstname;
     var lname = user.lastname;
@@ -18,14 +27,14 @@ Template.forumtop.helpers({
   },
 
   'getCreatedtime': function(){
-    var forum=Forums.findOne({title:Router.current().params.query.title});
+    var forum=Forums.findOne({_id:Router.current().params.query.forumId});
     var createdtime=forum.createdAt;
     console.log(createdtime);
     return createdtime;
   },
 
   'foruminfo': function(){
-    var forum=Forums.findOne({title:Router.current().params.query.title});
+    var forum=Forums.findOne({_id:Router.current().params.query.forumId});
     var description = forum.description;
     console.log(description)
     return description;
@@ -48,7 +57,8 @@ Template.comment.events({
          var element =instance.$("#input");
          element.scrollTop = element.scrollHeight;
        }
-       const title = Router.current().params.query.title
+       const forum = Forums.findOne({_id:Router.current().params.query.forumId})
+       const title = forum.title
 
        var messageDataKey = {title,
          commentsArray: [
@@ -82,22 +92,19 @@ Template.comment.events({
           element.scrollTop = element.scrollHeight;
         }
 
-        const title = Router.current().params.query.title
+        const comment = {
+          "comment": input,
+          "author": Meteor.userId()
+        }
 
+        Meteor.call('forums.addcomment', Forums.findOne()._id, comment, function(err, result){
+          if(err){
+            window.alert(err);
+            return;
+          }
 
-        var messageDataKey = {title,
-          commentsArray: [
-            {
-              "comment": input,
-              "author": Meteor.userId(),
-              "createdAt":new Date()
-            }
-          ]
-        };
-
-        instance.$('#commentinput').val("");
-        Meteor.call('forums.addcomment', messageDataKey.title, messageDataKey.commentsArray);
-        console.log('adding comment2');
+          instance.$('#commentinput').val("");
+        });
       },
 });
 
@@ -109,12 +116,6 @@ Template.commentrow.onRendered(function() {
 });
 
 Template.commentrow.helpers({
-  showingComments() {
-    var forum=Forums.findOne({title:Router.current().params.query.title});
-    console.log(Forums.find().fetch());
-    console.log(forum);
-    return forum.commentsArray;
-  },
   getUsername(thisid) {
     var profile = User.findOne({owner: thisid});
     var fname = profile.firstname;
@@ -126,5 +127,16 @@ Template.commentrow.helpers({
     var profile = User.findOne({owner: thisid});
     var pic = profile.pic;
     return pic;
+  },
+})
+
+Template.commentrow.events({
+  'click #commentremove'(elt, instance) {
+    Meteor.call("forums.deletecomment", Forums.findOne()._id, this.comment, function(err, result){
+      if(err){
+        window.alert(err);
+        return;
+      }
+    })
   },
 })
