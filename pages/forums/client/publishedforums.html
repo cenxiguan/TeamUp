@@ -22,8 +22,8 @@
 
 <template name="forumsrow">
       <tr>
-        <td><strong><em><a href = "/individualforum?title={{forum.title}}"><h-l>{{f.title}}</h-l></a></em></strong></td>
-        <td><a href = "/individualforum?title={{forum.title}}"><h-l>{{f.description}}</h-l></a></td>
+        <td><strong><em><a href = "/individualforum?forumId={{f._id}}"><h-l>{{f.title}}</h-l></a></em></strong></td>
+        <td><a href = "/individualforum?forumId={{f._id}}"><h-l>{{f.description}}</h-l></a></td>
         <td>{{getForumCreator f.creator}}</td>
         <td>{{f.createdAt}}</td>
       </tr>
