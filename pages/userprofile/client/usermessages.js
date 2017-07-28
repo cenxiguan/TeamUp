@@ -98,10 +98,8 @@ Template.messagehistory.helpers({
 Template.messagerow.helpers({
   getUsername(thisid) {
     var profile = User.findOne({owner: thisid});
-    var fname = profile.firstname;
-    var lname = profile.lastname;
-    var personname = fname+' '+lname;
-    return personname;
+    var name = profile.fullname;
+    return name;
   },
   getUserpic(thisid){
     var profile = User.findOne({owner: thisid});

@@ -21,8 +21,12 @@
 <template name="messagerow">
   <div name="messagerowcss" id="messagerowcss">
   {{#each m in message.messagesArray}}
-     <p><h-s><img src="data:image/jpeg;base64, {{getUserpic m.author}}" style="display:block; max-width:50px; max-height:50px;">{{getUsername m.author}}:</h-s>
-         <div name="messagebox" id="messagebox"><span class="message">{{m.message}}</span></div></p><hr>
+    {{#if getUserpic m.author}}
+      <p><h-s><img src="data:image/jpeg;base64, {{getUserpic m.author}}" style="display:block; max-width:50px; max-height:50px;">{{getUsername m.author}}:</h-s></p>
+    {{else}}
+      <p><h-s><img class="center" src="/images/defaultpic.png" style="display:block; max-width:50px; max-height:50px;">{{getUsername m.author}}:</h-s></p>
+    {{/if}}
+         <p><div name="messagebox" id="messagebox"><span class="message">{{m.message}}</span></div></p><hr>
   {{/each}}
    </div>
     <!--{{user.pic message.author}}::{{user.firstname message.author}}{{user.lastname message.author}}<br>
