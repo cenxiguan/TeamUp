@@ -1,9 +1,9 @@
 <template name="publishedforums">
   <body id="pagePublishForums">
   <div class="box">
-  <h2><strong class="titleformat">Find Forums</strong></h2>
+  <h2><strong class="titleformat">Find Forums</strong></h2><br>
   <input id="search_id" class="glowing-border" type="text" name="search" placeholder="Search by name...">&nbsp;&nbsp;<button id="submit">Submit</button>
-  <div name="forumsrow" id=forumsrow>
+  <div name="forumsrow" id=forumsrow><br>
     <table class="hoverTable" name="forumstable" id="forumstable">
       <tr>
         <td>Forum Title</td>
@@ -22,7 +22,7 @@
 
 <template name="forumsrow">
       <tr>
-        <td><a href = "/individualforum?title={{forum.title}}"><h-l>{{f.title}}</h-l></a></td>
+        <td><strong><em><a href = "/individualforum?title={{forum.title}}"><h-l>{{f.title}}</h-l></a></em></strong></td>
         <td><a href = "/individualforum?title={{forum.title}}"><h-l>{{f.description}}</h-l></a></td>
         <td>{{getForumCreator f.creator}}</td>
         <td>{{f.createdAt}}</td>
