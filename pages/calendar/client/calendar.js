@@ -161,6 +161,7 @@ Template.calendar.onCreated(function() {
 																		owner:Meteor.userId()}) ){
 										var occupied = new SpeechSynthesisUtterance("You have things to do at that time. Please reschedule and state the event again.");
 										window.speechSynthesis.speak(occupied);
+										console.log(occupied);
 										setTimeout(function(){
 											alert("test");
 											recognition.stop();
