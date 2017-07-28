@@ -1,15 +1,20 @@
 <template name="groupPage">
   <!--Show group data back to user-->
   <!--{{_id}}-->
-  {{> groupMain}}
-  <br>
-  <hr>
+  <div class="topGroupDiv">
+    {{> groupMain}}
+    {{> grpMemberList}}
+  </div>
   {{#if currentUser}}
     {{#if isMember}}
-      <p>Team messages</p>
-      <div class="groupMessageBox">
-        {{> showMessages}} <!--messagehistory-->
-        {{> groupMessage}} <!--add overflow scroll --> <!--sendmessage-->
+      <div class="messageOuter">
+        <br>
+        <hr>
+        <p align="center">Team messages</p>
+        <div class="groupMessageBox box">
+          {{> showMessages}} <!--messagehistory-->
+          {{> groupMessage}} <!--add overflow scroll --> <!--sendmessage-->
+        </div>
       </div>
     {{else}}
       <p align="center">You are not a member of this team.</p>
@@ -27,10 +32,13 @@
     <div class="descriptionBox">
       Location: {{grouploc}}<br>
       Description: {{groupdesc}}<br>
-      <div class="joinButton">
-        <button id="js-editGroup" class="editGroup">Edit Group</button>
-        <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
-      </div>
+        <div class="joinButton">
+          {{#if isMember}}
+            <button id="js-editGroup" class="editGroup">Edit Group</button>
+          {{else}}
+            <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
+          {{/if}}
+        </div>
     </div>
     <!--check if user is group member, if they are show the following-->
     <!--if not-->
@@ -50,6 +58,8 @@
 <template name="groupMessage"> <!--sendmessage-->
   <span class="inputMsgSpan"><input type="text" class="messageString" id="js-messageString"></span>
   <button id="js-sendGroupMessage" class="js-sendGrpMsg">Send message</button>
+  <span class="inputLinkSpan"><input type="text" class="linkString" id="js-linkString"></span>
+  <button id="js-sendGroupLink" class="js-sendGrpLnk">Send link</button>
 </template>
 
 <template name="showMessages">
@@ -62,8 +72,25 @@
 
 <template name="individualMessage"> <!--messagerow-->
   {{#each item in x.messagesArray}}
-    <p>{{getUsername item.messageOwner}}: <span class="messageSpan">{{item.message}}</span></p>
+    <p>{{getUsername item.messageOwner}} ({{item.timeCreated.getHours}}:{{item.timeCreated.getMinutes}} on {{month item.timeCreated.getMonth}}/{{item.timeCreated.getDate}}):
+      {{#if item.url}}
+         <a href="{{item.url}}">{{item.url}}</a>
+      {{else}}
+      <span class="messageSpan">{{item.message}}</span>
+      {{/if}}
+      </p>
   {{/each}}
+</template>
+
+<template name="grpMemberList">
+  <div class="grpMemberBox box">
+    <p><u>Group member list:</u></p>
+    <ul>
+      {{#each item in groupMemberList}}
+        <li>{{item}}</li>
+      {{/each}}
+    </ul>
+  </div>
 </template>
 
 <!--

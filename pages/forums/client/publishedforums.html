@@ -1,5 +1,6 @@
 <template name="publishedforums">
   <h1> Search/Find forums</h1>
+  <input id="search_id" class="glowing-border" type="text" name="search" placeholder="Search by name...">&nbsp;&nbsp;<button id="submit">Submit</button>
   {{>forumsrow}}
 </template>
 
@@ -12,7 +13,7 @@
         <td>Forum Creator</td>
         <td>Forum Created Time</td>
       </tr>
-      {{#each forum in showingForums}}
+      {{#each forum in searchlist}}
       <tr>
         <td><a href = "/individualforum?title={{forum.title}}"><h-l>{{forum.title}}</h-l></a></td>
         <td><a href = "/individualforum?title={{forum.title}}"><h-l>{{forum.description}}</h-l></a></td>

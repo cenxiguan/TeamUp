@@ -1,7 +1,11 @@
+Template.publishedforums.onCreated( function(){
+    this.forumDict = new ReactiveDict();
+});
+
 Template.forumsrow.helpers({
-  showingForums() {
-    var forums=Forums.find().fetch();
-    return forums;
+  searchlist: function() {
+     return Template.instance().forumDict.get('searchList');
+    // Must put objects into array to display properly!
   },
 
   getForumCreator(creator){
@@ -11,6 +15,16 @@ Template.forumsrow.helpers({
     var name = fname + " " + lname;
     return name;
   }
+})
 
-
+Template.publishedforums.events({
+  "click #submit"(event, instance){
+    const query = instance.$('#search_id').val();
+    const regex = new RegExp(query, "i");
+    console.log(regex);
+    // undefined
+    Template.instance().forumDict.set('searchList', Forums.find({title:regex}, {sort: {title: 1}}).fetch());
+    // Returns documents matching. How so?
+    console.log(Template.instance().forumDict.get('searchList'));
+  },
 })

@@ -6,6 +6,12 @@ var count1 = 0;
 var countCheck = 0;
 const today = new Date();
 
+Template.calendar.onDestroyed(function(){
+	Template.instance().recognition.stop();
+	Template.instance().lastquestion.set(true);
+	return;
+})
+
 Template.calendar.onCreated(function() {
 	Meteor.subscribe('todo');
 
@@ -39,16 +45,12 @@ Template.calendar.onCreated(function() {
 					recognizing_status.set(false);
 					countCheck = 0;
 				} else {
-					setTimeout(delayRecord(), 30000);
+					setTimeout(function(){
+						recognition.start();
+					}, 3500);
 
 				}
-
 			};
-
-			function delayRecord() {
-				alert('Wait for your answer.');
-				recognition.start();
-			}
 
 			recognition.onresult = function(event) {
 
