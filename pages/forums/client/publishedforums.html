@@ -5,7 +5,7 @@
   <input id="search_id" class="glowing-border" type="text" name="search" placeholder="Search by name...">&nbsp;&nbsp;<button id="submit">Submit</button>
   <div name="forumsrow" id=forumsrow><br>
     <table class="hoverTable" name="forumstable" id="forumstable">
-      <tr>
+      <tr class="white">
         <td>Forum Title</td>
         <td>Forum Description</td>
         <td>Forum Creator</td>
@@ -22,9 +22,9 @@
 
 <template name="forumsrow">
       <tr>
-        <td><strong><em><a href = "/individualforum?forumId={{f._id}}"><h-l>{{f.title}}</h-l></a></em></strong></td>
-        <td><a href = "/individualforum?forumId={{f._id}}"><h-l>{{f.description}}</h-l></a></td>
-        <td>{{getForumCreator f.creator}}</td>
-        <td>{{f.createdAt}}</td>
+        <td class="bigtext"><strong><em><a href = "/individualforum?forumId={{f._id}}"><h-l>{{f.title}}</h-l></a></em></strong></td>
+        <td class="bigtext"><a href = "/individualforum?forumId={{f._id}}"><h-l>{{f.description}}</h-l></a></td>
+        <td class="smalltext">{{getForumCreator f.creator}}</td>
+        <td class="smalltext">{{f.createdAt}}</td>
       </tr>
 </template>

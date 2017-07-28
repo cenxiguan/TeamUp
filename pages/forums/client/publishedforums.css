@@ -1,7 +1,7 @@
 #forumstable{
   border-collapse: collapse;
   width: 100%;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 #pagePublishForums .hoverTable {
@@ -83,4 +83,16 @@
     #pagePublishForums h2 {
         width: 300px;
     }
+}
+
+#pagePublishForums .white {
+  background-color: white;
+}
+
+#pagePublishForums .bigtext {
+  font-size: 25px;
+}
+
+#pagePublishForums .smalltext {
+  font-size: 15px;
 }
