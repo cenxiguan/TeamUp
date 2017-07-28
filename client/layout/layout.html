@@ -37,16 +37,20 @@
 									<a href="{{pathFor 'yourTeams'}}">Teams</a>
     						</div>
 							</li>
-							<li><a href="{{pathFor 'forums'}}">Forums</a></li>
-							<li><a href="{{pathFor 'publishedforums'}}">Published Forums</a></li>
-							<li><a href="{{pathFor 'createTeam'}}">Create Team</a></li>
-							<li><a href="{{pathFor 'calendar'}}">Calendar</a></li>
 							<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Search</a>
 								<div class="dropdown-content">
 									<a href="{{pathFor 'connections'}}">Find Connections</a>
 									<a href="{{pathFor 'teamsearch'}}">Find Teams</a>
+									<a href="{{pathFor 'publishedforums'}}">Find Forums</a>
     						</div>
 							</li>
+							<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Create</a>
+								<div class="dropdown-content">
+									<a href="{{pathFor 'forums'}}">Create Forum</a>
+									<a href="{{pathFor 'createTeam'}}">Create Team</a>
+    						</div>
+							</li>
+							<li><a href="{{pathFor 'calendar'}}">Calendar</a></li>
 							{{/if}}
 							<li><a href="{{pathFor 'about'}}">About</a></li>
 						</ul>
