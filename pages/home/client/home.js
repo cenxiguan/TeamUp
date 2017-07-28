@@ -1,5 +1,6 @@
 Template.home.onDestroyed(function(){
   $("body").css("background-image", "url(\"images/Shatteredblue.png\")");
+  $("body").css("background-repeat: repeat;");
 })
 
 Template.home.onRendered(

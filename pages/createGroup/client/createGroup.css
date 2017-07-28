@@ -22,3 +22,8 @@
 #pageCreateGroup h2 {
   font-weight: bold;
 }
+
+.createTeamTitle{
+  font-size: 35px;
+  font-weight: bold;
+}

@@ -14,8 +14,18 @@ Meteor.publish('forums', function(forumId){
   return Forums.find(forumId);
 })
 
+Meteor.publish('forums_search', function(keyword){
+  const search_regex = new RegExp(keyword.replace(/[^a-z0-9]/gi, "\\$&"), "gi");
+  return Forums.find({title: {$regex: search_regex}}, {$sort: {title: 1}});
+})
+
 Meteor.publish('user', function(){
   return User.find();
+})
+
+Meteor.publish('users_search', function(keyword){
+  const search_regex = new RegExp(keyword.replace(/[^a-z0-9]/gi, "\\$&"), "gi");
+  return User.find({fullname: {$regex: search_regex}}, {$sort: {lastname: 1}});
 })
 
 Meteor.publish('users', function(userId){
