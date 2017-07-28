@@ -43,11 +43,11 @@ Template.calendar.onCreated(function() {
 				//is final
 				if (isFinal.get()) {
 					recognizing_status.set(false);
-					countCheck = 0;
+					//countCheck = 0;
 				} else {
 					setTimeout(function(){
 						recognition.start();
-					}, 3500);
+					}, 3000);
 
 				}
 			};
@@ -57,34 +57,37 @@ Template.calendar.onCreated(function() {
 				const text = event.results[0][0].transcript;
 				final_span.innerHTML = text;
 				console.log(text);
-				if ( text != "yes" && text != "no") {
+				if (  text != "yes"
+					&& text != "okay"
+					&& !text.includes("yes ")
+					&& !text.includes("okay ")
+					&& text != "no"
+					&& !text.includes("no ") ) {
 					pendingevent = text;
-					if (countCheck === 0 ) {
+					if (countCheck%3 === 0 ) {
 						var checkmsg = new SpeechSynthesisUtterance('Is this the event you want to add to todo list?');
 						countCheck++;
 						window.speechSynthesis.speak(checkmsg);
-						recognition.stop();
-
-					} else if (countCheck === 1 ) {
+					} else if (countCheck%3 === 1 ) {
 						var checkmsg2 = new SpeechSynthesisUtterance('Is this what you want to be added? ');
 						countCheck++;
 						window.speechSynthesis.speak(checkmsg2);
-						recognition.stop();
-					} else if (countCheck === 2 ) {
+					} else {
 						var checkmsg3 = new SpeechSynthesisUtterance('Is everything correct and ready for submission?');
 						countCheck++;
 						window.speechSynthesis.speak(checkmsg3);
-						recognition.stop();
-					} else {
-						return;
 					}
+					recognition.stop();
 
-				} else if ( text == "no" ) {
+				} else if ( text == "no" || text.includes("no ") ) {
 					var repeatmsg = new SpeechSynthesisUtterance('Please state the event you want to add.');
 					window.speechSynthesis.speak(repeatmsg);
 					recognition.stop();
-				} else if ( text == "yes") {
-					isFinal.set(true);
+				} else if ( text == "yes"
+								|| text == "okay"
+								|| text.includes("yes ")
+								|| text.includes("okay ")) {
+
 					Meteor.call("send_text_for_APIAI_processing", pendingevent, function(err, result){
 						if(err){
 							window.alert(err);
@@ -99,7 +102,6 @@ Template.calendar.onCreated(function() {
 						console.log(result.data.result.parameters.title);
 						console.log(result.data.result.parameters.time);
 
-
 						if(!!result.data.result.parameters){
 								const parameters = result.data.result.parameters;
 								var detail = pendingevent;
@@ -108,7 +110,7 @@ Template.calendar.onCreated(function() {
 								console.log(detail+"after change");
 								if (!parameters.date) {
 									if (!!parameters.relativedate) {
-
+										// Change relative date to the date
 										if (parameters.relativedate == "tomorrow" || parameters.relativedate == "the next day") {
 											result.data.result.parameters.date = getTomorrow();
 
@@ -124,8 +126,11 @@ Template.calendar.onCreated(function() {
 										if (ToDo.findOne({date:result.data.result.parameters.date,
 																			time:result.data.result.parameters.time,
 																			owner:Meteor.userId()}) ){
-											var occupied = new SpeechSynthesisUtterance("You have things to do at that time.");
-											window.speechSynthesis.speak(occupied);
+												var occupied = new SpeechSynthesisUtterance("You have things to do at that time. Please reschedule and state the event again.");
+												window.speechSynthesis.speak(occupied);
+												setTimeout(function(){
+													recognition.stop();
+												}, 1500);
 										} else {
 											var todoevent =
 							      	{ //thing:result.data.result.parameters.event,
@@ -141,19 +146,27 @@ Template.calendar.onCreated(function() {
 
 											var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
 											window.speechSynthesis.speak(eventsave);
+											isFinal.set(true);
+											recognition.stop();
 										}
-									} else {
-										var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please click the microphone and repeat it.");
+									} else { // In this case, no date and no relativedate
+										var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please rephrase the event with a date.");
 										window.speechSynthesis.speak(repeatDate);
+										setTimeout(function(){
+											recognition.stop();
+										}, 1500);
 									};
 
-								} else {
+								} else { // has the date
 
 									if (ToDo.findOne({date:result.data.result.parameters.date,
 																		time:result.data.result.parameters.time,
 																		owner:Meteor.userId()}) ){
-										var occupied = new SpeechSynthesisUtterance("You have things to do at that time.");
+										var occupied = new SpeechSynthesisUtterance("You have things to do at that time. Please reschedule and state the event again.");
 										window.speechSynthesis.speak(occupied);
+										setTimeout(function(){
+											recognition.stop();
+										}, 1500);
 									} else {
 										var todoevent =
 										{ //thing:result.data.result.parameters.event,
@@ -169,17 +182,20 @@ Template.calendar.onCreated(function() {
 
 										var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
 										window.speechSynthesis.speak(eventsave);
+										isFinal.set(true);
+										recognition.stop();
 									}
 						 }
 					}
+
 				});
-					recognition.stop();
+
 			};
 
-				return;
 
 		};
 		this.recognition = recognition;
+		return;
 	}
 })
 
