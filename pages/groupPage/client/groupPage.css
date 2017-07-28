@@ -29,6 +29,10 @@
   overflow: auto;
 }
 
+.memberListLink{
+  text-align: left;
+}
+
 .groupTitle-edit{
   text-align: center;
 }
@@ -132,6 +136,10 @@
 }
 
 @media all and (max-width: 725px){
+  body{
+    font-size: 125%;
+  }
+
   .groupMainDiv{
     width: 100%;
     float: none;
@@ -145,5 +153,4 @@
   .messageOuter, .groupMessageBox{
     width: 100%;
   }
-
 }

@@ -237,6 +237,14 @@ Template.individualMessage.helpers({
 })
 
 Template.grpMemberList.helpers({
+  getFirstName: function(id){
+    var user = User.findOne({owner: id});
+    return user.firstname;
+  },
+  getLastName: function(id){
+    var user = User.findOne({owner: id});
+    return user.lastname;
+  },
   groupMemberList() {
     var thisgroupmems = Groups.find({_id:this._id}).fetch()[0].members;
     var thisgroupmemslength = thisgroupmems.length;
@@ -250,7 +258,7 @@ Template.grpMemberList.helpers({
     }
     console.log(thisgroupmems);
     console.log(membernames);
-    return membernames;
+    return thisgroupmems;
   },
 })
 
