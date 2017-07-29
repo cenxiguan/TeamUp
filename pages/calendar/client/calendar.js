@@ -59,8 +59,10 @@ Template.calendar.onCreated(function() {
 				console.log(text);
 				if (  text != "yes"
 					&& text != "okay"
+					&& text != "correct"
 					&& !text.includes("yes ")
 					&& !text.includes("okay ")
+					&& !(text.includes("correct ")&&text.indexOf("correct ")==1)
 					&& text != "no"
 					&& !text.includes("no ") ) {
 					pendingevent = text;
@@ -83,12 +85,7 @@ Template.calendar.onCreated(function() {
 					var repeatmsg = new SpeechSynthesisUtterance('Please state the event you want to add.');
 					window.speechSynthesis.speak(repeatmsg);
 					recognition.stop();
-				} else
-				// if ( text == "yes"
-				// 				|| text == "okay"
-				// 				|| text.includes("yes ")
-				// 				|| text.includes("okay "))
-								{
+				} else {
 
 					Meteor.call("send_text_for_APIAI_processing", pendingevent, function(err, result){
 						if(err){
@@ -191,7 +188,6 @@ Template.calendar.onCreated(function() {
 					}
 
 				});
-
 			};
 
 			};
