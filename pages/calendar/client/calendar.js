@@ -194,9 +194,9 @@ Template.calendar.onCreated(function() {
 
 			};
 
-		};
-		this.recognition = recognition;
-		return;
+			};
+			this.recognition = recognition;
+			return;
 	}
 })
 
@@ -217,81 +217,82 @@ Template.calendar.events({
 	'click #voice': function(elt, instance){
 
 			if (instance.$('#search').val() == "") {
-			if ('webkitSpeechRecognition' in window) {
-			var recognition2 = new webkitSpeechRecognition();
-				recognition2.continuous = false;
+				if ('webkitSpeechRecognition' in window) {
+					var recognition2 = new webkitSpeechRecognition();
+					recognition2.continuous = false;
 
-				recognition2.onaudioend = function() {
-		    };
+					recognition2.onaudioend = function() {
+		    	};
 
-				recognition2.onresult = function(event) {
-		      var text2 = event.results[0][0].transcript;
+					recognition2.onresult = function(event) {
+		      	var text2 = event.results[0][0].transcript;
 
-					Meteor.call("send_text_for_APIAI_processing", text2, function(err, result){
-						if(err){
-							window.alert(err);
-							return;
-						}
+						Meteor.call("send_text_for_APIAI_processing", text2, function(err, result){
+							if(err){
+								window.alert(err);
+								return;
+							}
 
-						if(!!result.data.result.parameters){
+							if(!!result.data.result.parameters){
 								text3 = result.data.result.parameters.date;
 								instance.$("#search").val(text3);
-						};
-						const searchdate = instance.$('#search').val();
-						todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
-						console.log(todo.length);
+							};
+							const searchdate = instance.$('#search').val();
+							todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
+							console.log(todo.length);
 
-						if (todo.length == 0) {
-							var nothing = new SpeechSynthesisUtterance('You have nothing that date on your todo list.');
-							window.speechSynthesis.speak(nothing);
-						} else {
-							var thing ="";
+							if (todo.length == 0) {
+								var nothing = new SpeechSynthesisUtterance('You have nothing that date on your todo list.');
+								window.speechSynthesis.speak(nothing);
+							} else {
+								var thing ="";
 
-							for (i = 0; i < todo.length; i++) {
-								no = i+1;
-								thing += "number " + no + " " + todo[i].detail + " ";
-							}
+								for (i = 0; i < todo.length; i++) {
+									no = i+1;
+									thing += "number " + no + " " + todo[i].detail + " ";
+								}
 
-							var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
-							if (count1 % 2 === 0) {
+								var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
+								if (count1 % 2 === 0) {
 									window.speechSynthesis.speak(msg);
 									count1++;
-							} else {
+								} else {
 									window.speechSynthesis.cancel();
 									count1++;
+								}
 							}
-						}
-					});
-				};
-				recognition2.start();
-			}
-		} else {
-			const searchdate = instance.$('#search').val();
+						});
+					};
 
-			todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
-			console.log(todo.length);
-
-			if (todo.length == 0) {
-				var nothing = new SpeechSynthesisUtterance('You have nothing to do on that day.');
-				window.speechSynthesis.speak(nothing);
-			} else {
-				var thing ="";
-
-				for (i = 0; i < todo.length; i++) {
-					no = i+1;
-					thing += "number " + no + " " + todo[i].detail + " ";
+					recognition2.start();
 				}
+			} else {
+				const searchdate = instance.$('#search').val();
 
-				var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
-				if (count1 % 2 === 0) {
+				todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
+				console.log(todo.length);
+
+				if (todo.length == 0) {
+					var nothing = new SpeechSynthesisUtterance('You have nothing to do on that day.');
+					window.speechSynthesis.speak(nothing);
+				} else {
+					var thing ="";
+
+					for (i = 0; i < todo.length; i++) {
+						no = i+1;
+						thing += "number " + no + " " + todo[i].detail + " ";
+					}
+
+					var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
+					if (count1 % 2 === 0) {
 						window.speechSynthesis.speak(msg);
 						count1++;
-				} else {
+					} else {
 						window.speechSynthesis.cancel();
 						count1++;
+					}
 				}
 			}
-		}
 	},
 
 });
