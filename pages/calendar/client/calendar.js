@@ -47,7 +47,7 @@ Template.calendar.onCreated(function() {
 				} else {
 					setTimeout(function(){
 						recognition.start();
-					}, 3000);
+					}, 5000);
 
 				}
 			};
@@ -130,9 +130,9 @@ Template.calendar.onCreated(function() {
 																			owner:Meteor.userId()}) ){
 												var occupied = new SpeechSynthesisUtterance("You have things to do at that time. Please reschedule and state the event again.");
 												window.speechSynthesis.speak(occupied);
-												setTimeout(function(){
+												//setTimeout(function(){
 													recognition.stop();
-												}, 1500);
+												//}, 1500);
 										} else {
 											var todoevent =
 							      	{ //thing:result.data.result.parameters.event,
@@ -154,9 +154,9 @@ Template.calendar.onCreated(function() {
 									} else { // In this case, no date and no relativedate
 										var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please rephrase the event with a date.");
 										window.speechSynthesis.speak(repeatDate);
-										setTimeout(function(){
+										// setTimeout(function(){
 											recognition.stop();
-										}, 1500);
+										// }, 1500);
 									};
 
 								} else { // has the date
@@ -166,9 +166,9 @@ Template.calendar.onCreated(function() {
 																		owner:Meteor.userId()}) ){
 										var occupied = new SpeechSynthesisUtterance("You have things to do at that time. Please reschedule and state the event again.");
 										window.speechSynthesis.speak(occupied);
-										setTimeout(function(){
+										// setTimeout(function(){
 											recognition.stop();
-										}, 1500);
+										// }, 1500);
 									} else {
 										var todoevent =
 										{ //thing:result.data.result.parameters.event,
