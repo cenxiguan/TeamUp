@@ -174,9 +174,47 @@ Template.groupMessage.events({
       }
       console.log('Groupmessages findOne: ');
       console.dir(Groupmessages.findOne({groupid:this._id}));
-    }
+    },
+    'keypress #js-linkString': function (e, instance){
+       if (e.which == 13) {
+         console.log('enter key pressed')
+         //elt.preventDefault();
+         const linkStringKey = instance.$('#js-linkString').val();
 
+         function updateScrollKey(){
+           var element = document.getElementById("messageTextId");
+           element.scrollTop = element.scrollHeight;
+         }
 
+         var linkDataKey = {
+           groupid:this._id,
+           messagesArray: [
+             {
+               "message": linkStringKey,
+               "url": linkStringKey,
+               "messageOwner": Meteor.userId()
+             }
+           ]
+         }
+
+         instance.$('#js-linkString').val("");
+
+         if (Groupmessages.findOne({groupid:this._id})) {
+           console.log('updating message');
+           Meteor.call('groupmessages.addmessage', this._id, linkDataKey.messagesArray,
+           function(error, result){
+             updateScrollKey();
+           });
+         } else { //else, add init message
+           Meteor.call('groupmessages.addinitmessage', linkDataKey,
+           function(error, result){
+             updateScrollKey();
+           });
+           console.log('adding init message');
+         }
+       }
+       //console.log('enter key pressed');
+     },
 })
 
 Template.showMessages.helpers({
@@ -199,6 +237,14 @@ Template.individualMessage.helpers({
 })
 
 Template.grpMemberList.helpers({
+  getFirstName: function(id){
+    var user = User.findOne({owner: id});
+    return user.firstname;
+  },
+  getLastName: function(id){
+    var user = User.findOne({owner: id});
+    return user.lastname;
+  },
   groupMemberList() {
     var thisgroupmems = Groups.find({_id:this._id}).fetch()[0].members;
     var thisgroupmemslength = thisgroupmems.length;
@@ -212,7 +258,7 @@ Template.grpMemberList.helpers({
     }
     console.log(thisgroupmems);
     console.log(membernames);
-    return membernames;
+    return thisgroupmems;
   },
 })
 

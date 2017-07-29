@@ -58,7 +58,7 @@
 <template name="groupMessage"> <!--sendmessage-->
   <span class="inputMsgSpan"><input type="text" class="messageString" id="js-messageString"></span>
   <button id="js-sendGroupMessage" class="js-sendGrpMsg">Send message</button>
-  <span class="inputLinkSpan"><input type="text" class="linkString" id="js-linkString"></span>
+  <span class="inputLinkSpan"><input type="text" class="linkString" id="js-linkString"> </span>
   <button id="js-sendGroupLink" class="js-sendGrpLnk">Send link</button>
 </template>
 
@@ -87,7 +87,7 @@
     <p><u>Group member list:</u></p>
     <ul>
       {{#each item in groupMemberList}}
-        <li>{{item}}</li>
+        <li><a href="{{pathFor route='profile.show' _id=item}}" class="memberListLink">{{getFirstName item}} {{getLastName item}}</a></li>
       {{/each}}
     </ul>
   </div>

@@ -29,6 +29,10 @@
   overflow: auto;
 }
 
+.memberListLink{
+  text-align: left;
+}
+
 .groupTitle-edit{
   text-align: center;
 }
@@ -41,17 +45,18 @@
 
 .linkString{
   color: black;
+  position: relative;
   width: 80%;
 }
 
 .inputMsgSpan{
   overflow: hidden;
-  padding-right: 10px;
+  /*padding-right: 10px;*/
 }
 
 .inputLnkSpan{
   overflow: hidden;
-  padding-right: 10px;
+  /*padding-right: 10px;*/
 }
 
 .js-sendGrpMsg{
@@ -122,10 +127,6 @@
   color: rgba(0, 68, 102, 1);
 }
 
-.js-sendGrpMsg{
-  background-color: grey;
-}
-
 .joinButton{
   text-align: center;
 }
@@ -135,6 +136,10 @@
 }
 
 @media all and (max-width: 725px){
+  body{
+    font-size: 125%;
+  }
+
   .groupMainDiv{
     width: 100%;
     float: none;
@@ -148,5 +153,4 @@
   .messageOuter, .groupMessageBox{
     width: 100%;
   }
-
 }
