@@ -239,8 +239,11 @@ Template.calendar.events({
 							console.log(todo.length);
 
 							if (todo.length == 0) {
-								var nothing = new SpeechSynthesisUtterance('You have nothing that date on your todo list.');
+								var nothing = new SpeechSynthesisUtterance('You have nothing to do on that day.');
 								window.speechSynthesis.speak(nothing);
+							} else if (todo.length == 1) {
+								var onething = new SpeechSynthesisUtterance('You have only one thing on your to do list. ' + todo[0].detail);
+								window.speechSynthesis.speak(onething);
 							} else {
 								var thing ="";
 
@@ -272,6 +275,9 @@ Template.calendar.events({
 				if (todo.length == 0) {
 					var nothing = new SpeechSynthesisUtterance('You have nothing to do on that day.');
 					window.speechSynthesis.speak(nothing);
+				} else if (todo.length == 1) {
+					var onething = new SpeechSynthesisUtterance('You have only one thing on your to do list. ' + todo[0].detail);
+					window.speechSynthesis.speak(onething);
 				} else {
 					var thing ="";
 
