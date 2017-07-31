@@ -15,3 +15,13 @@ a.bluelink{
   color: black;
   text-align: center;
 }
+
+@media all and (max-width: 750px){
+  body{
+    font-size: 125%;
+  }
+
+  .teamsearchbox{
+    min-width: 300px;
+  }
+}

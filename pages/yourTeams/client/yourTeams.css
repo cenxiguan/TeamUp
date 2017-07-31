@@ -48,3 +48,34 @@
   font-family: "Open Sans";
   color: rgba(0, 68, 102, 1);
 }
+
+@media all and (max-width: 750px){
+  body{
+    font-size: 125%;
+  }
+
+  .showGroupsDiv{
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .memberOfBox{
+    min-height: 300px;
+    min-width: 300px;
+    width: 100%;
+    clear: both;
+    order: 1;
+  }
+
+  .ownedBox{
+    min-height: 300px;
+    margin-left: 0px;
+    min-width: 300px;
+    width: 100%;
+    clear: both;
+    order: 2;
+    /*max-height: none;*/
+  }
+
+}
