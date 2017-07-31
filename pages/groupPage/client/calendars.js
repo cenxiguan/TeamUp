@@ -18,7 +18,7 @@ Template.calendars.onCreated(function() {
 		teamid: Router.current().params._id,
 		todoArray: [],
 	}
-	Meteor.call('connections.insert', calendarData, Router.current().params._id, function(err, result){
+	Meteor.call('calendars.insert', calendarData, Router.current().params._id, function(err, result){
 		if(err){
 			window.alert(err);
 			return;
@@ -146,7 +146,7 @@ Template.calendars.onCreated(function() {
 												detail: detail.replace(/(add|next|tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
 												owner:Meteor.userId()
 							      	};
-							    		Meteor.call('Calendars.update', todoevent, Router.current().params._id,function(error, result){
+							    		Meteor.call('calendars.update', todoevent, Router.current().params._id,function(error, result){
 											});
 
 											var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
@@ -297,8 +297,8 @@ Template.calendars.helpers({
 		return x.groupname;
 	},
 	eventlist() {
-		console.dir(Calendars.find().fetch());
-		return Calendars.find().fetch().sort(function(event1, event2) {
+		console.dir(Calendars.find({teamid:Router.current().params._id}).fetch());
+		return Calendars.find({teamid:Router.current().params._id}).fetch().sort(function(event1, event2) {
 			if (!event1) {
 				return -1;
 			} else if (!event2) {
