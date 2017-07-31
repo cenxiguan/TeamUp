@@ -291,7 +291,7 @@ Template.calendar.events({
 									} else if (i === 1) {
 										thing += "The second event is " + todo[1].detail + " ";
 									} else if (i === 2) {
-										thing += "The third event is " + todo[3].detail + " ";
+										thing += "The third event is " + todo[2].detail + " ";
 									} else {
 										thing += "The " + i + "th event is " + todo[i].detail + " ";
 									}
