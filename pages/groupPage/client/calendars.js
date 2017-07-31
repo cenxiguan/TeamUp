@@ -6,14 +6,24 @@ var count1 = 0;
 var countCheck = 0;
 const today = new Date();
 
-Template.calendar.onDestroyed(function(){
+Template.calendars.onDestroyed(function(){
 	Template.instance().recognition.stop();
 	Template.instance().lastquestion.set(true);
 	return;
 })
 
-Template.calendar.onCreated(function() {
-	Meteor.subscribe('todo');
+Template.calendars.onCreated(function() {
+	console.log(Router.current().params._id);
+	var calendarData = {
+		teamid: Router.current().params._id,
+		todoArray: [],
+	}
+	Meteor.call('connections.insert', calendarData, Router.current().params._id, function(err, result){
+		if(err){
+			window.alert(err);
+			return;
+		}
+	});
 
 	this.recognizing = new ReactiveVar(false);
 	this.lastquestion = new ReactiveVar(false);
@@ -43,11 +53,11 @@ Template.calendar.onCreated(function() {
 				//is final
 				if (isFinal.get()) {
 					recognizing_status.set(false);
-					//countCheck = 0;
+					countCheck = 0;
 				} else {
 					setTimeout(function(){
 						recognition.start();
-					}, 5000);
+					}, 3500);
 
 				}
 			};
@@ -57,36 +67,34 @@ Template.calendar.onCreated(function() {
 				const text = event.results[0][0].transcript;
 				final_span.innerHTML = text;
 				console.log(text);
-				if (  text != "yes"
-					&& text != "okay"
-					&& text != "correct"
-					&& !text.includes("yes ")
-					&& !text.includes("okay ")
-					&& !(text.includes("correct ")&&text.indexOf("correct ")==1)
-					&& text != "no"
-					&& !text.includes("no ") ) {
+				if ( text != "yes" && text != "no") {
 					pendingevent = text;
-					if (countCheck%3 === 0 ) {
+					if (countCheck === 0 ) {
 						var checkmsg = new SpeechSynthesisUtterance('Is this the event you want to add to todo list?');
 						countCheck++;
 						window.speechSynthesis.speak(checkmsg);
-					} else if (countCheck%3 === 1 ) {
+						recognition.stop();
+
+					} else if (countCheck === 1 ) {
 						var checkmsg2 = new SpeechSynthesisUtterance('Is this what you want to be added? ');
 						countCheck++;
 						window.speechSynthesis.speak(checkmsg2);
-					} else {
+						recognition.stop();
+					} else if (countCheck === 2 ) {
 						var checkmsg3 = new SpeechSynthesisUtterance('Is everything correct and ready for submission?');
 						countCheck++;
 						window.speechSynthesis.speak(checkmsg3);
+						recognition.stop();
+					} else {
+						return;
 					}
-					recognition.stop();
 
-				} else if ( text == "no" || text.includes("no ") ) {
+				} else if ( text == "no" ) {
 					var repeatmsg = new SpeechSynthesisUtterance('Please state the event you want to add.');
 					window.speechSynthesis.speak(repeatmsg);
 					recognition.stop();
-				} else {
-
+				} else if ( text == "yes") {
+					isFinal.set(true);
 					Meteor.call("send_text_for_APIAI_processing", pendingevent, function(err, result){
 						if(err){
 							window.alert(err);
@@ -101,6 +109,7 @@ Template.calendar.onCreated(function() {
 						console.log(result.data.result.parameters.title);
 						console.log(result.data.result.parameters.time);
 
+
 						if(!!result.data.result.parameters){
 								const parameters = result.data.result.parameters;
 								var detail = pendingevent;
@@ -109,7 +118,7 @@ Template.calendar.onCreated(function() {
 								console.log(detail+"after change");
 								if (!parameters.date) {
 									if (!!parameters.relativedate) {
-										// Change relative date to the date
+
 										if (parameters.relativedate == "tomorrow" || parameters.relativedate == "the next day") {
 											result.data.result.parameters.date = getTomorrow();
 
@@ -122,14 +131,11 @@ Template.calendar.onCreated(function() {
 											result.data.result.parameters.date = getToday();
 										};
 
-										if (ToDo.findOne({date:result.data.result.parameters.date,
+										if (Calendars.findOne({date:result.data.result.parameters.date,
 																			time:result.data.result.parameters.time,
-																			owner:Meteor.userId()}) ){
-												var occupied = new SpeechSynthesisUtterance("You have things to do at that time. Please reschedule and state the event again.");
-												window.speechSynthesis.speak(occupied);
-												//setTimeout(function(){
-													recognition.stop();
-												//}, 1500);
+																			}) ){
+											var occupied = new SpeechSynthesisUtterance("You have things to do at that time.");
+											window.speechSynthesis.speak(occupied);
 										} else {
 											var todoevent =
 							      	{ //thing:result.data.result.parameters.event,
@@ -138,67 +144,58 @@ Template.calendar.onCreated(function() {
 												location:result.data.result.parameters.location,
 												title: result.data.result.parameters.title,
 												detail: detail.replace(/(add|next|tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
-												owner: Meteor.userId(),
-												teamid:this._id
+												owner:Meteor.userId()
 							      	};
-							    		Meteor.call('todo.insert', todoevent, function(error, result){
+							    		Meteor.call('Calendars.update', todoevent, Router.current().params._id,function(error, result){
 											});
 
 											var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
 											window.speechSynthesis.speak(eventsave);
-											isFinal.set(true);
-											recognition.stop();
 										}
-									} else { // In this case, no date and no relativedate
-										var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please rephrase the event with a date.");
+									} else {
+										var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please click the microphone and repeat it.");
 										window.speechSynthesis.speak(repeatDate);
-										// setTimeout(function(){
-											recognition.stop();
-										// }, 1500);
 									};
 
-								} else { // has the date
+								} else {
 
-									if (ToDo.findOne({date:result.data.result.parameters.date,
+									if (Calendars.findOne({date:result.data.result.parameters.date,
 																		time:result.data.result.parameters.time,
-																		owner:Meteor.userId()}) ){
-										var occupied = new SpeechSynthesisUtterance("You have things to do at that time. Please reschedule and state the event again.");
+																		teamid: Router.current().params._id}) ){
+										var occupied = new SpeechSynthesisUtterance("You have things to do at that time.");
 										window.speechSynthesis.speak(occupied);
-										// setTimeout(function(){
-											recognition.stop();
-										// }, 1500);
 									} else {
 										var todoevent =
-										{ //thing:result.data.result.parameters.event,
+										{
+											//thing:result.data.result.parameters.event,
 											time:result.data.result.parameters.time,
 											date:result.data.result.parameters.date,
 											location:result.data.result.parameters.location,
 											title: result.data.result.parameters.title,
 											detail: detail.replace(/(add|next|tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
-											owner: Meteor.userId()
+											teamid: Meteor.userId()
 										};
-										Meteor.call('todo.insert', todoevent, function(error, result){
+										Meteor.call('calendars.update', todoevent, Router.current().params._id, function(error, result){
 										});
 
 										var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
 										window.speechSynthesis.speak(eventsave);
-										isFinal.set(true);
-										recognition.stop();
 									}
 						 }
 					}
-
 				});
+					recognition.stop();
 			};
 
-			};
-			this.recognition = recognition;
-			return;
+				return;
+
+		};
+		this.recognition = recognition;
 	}
 })
 
 
-Template.calendar.events({
+Template.calendars.events({
 	'click #start_button': function(event){
 		var recognition = Template.instance().recognition;
 		recognition.lang = 'en-US';
@@ -214,91 +211,94 @@ Template.calendar.events({
 	'click #voice': function(elt, instance){
 
 			if (instance.$('#search').val() == "") {
-				if ('webkitSpeechRecognition' in window) {
-					var recognition2 = new webkitSpeechRecognition();
-					recognition2.continuous = false;
+			if ('webkitSpeechRecognition' in window) {
+			var recognition2 = new webkitSpeechRecognition();
+				recognition2.continuous = false;
 
-					recognition2.onaudioend = function() {
-		    	};
+				recognition2.onaudioend = function() {
+		    };
 
-					recognition2.onresult = function(event) {
-		      	var text2 = event.results[0][0].transcript;
+				recognition2.onresult = function(event) {
+		      var text2 = event.results[0][0].transcript;
 
-						Meteor.call("send_text_for_APIAI_processing", text2, function(err, result){
-							if(err){
-								window.alert(err);
-								return;
-							}
+					Meteor.call("send_text_for_APIAI_processing", text2, function(err, result){
+						if(err){
+							window.alert(err);
+							return;
+						}
 
-							if(!!result.data.result.parameters){
+						if(!!result.data.result.parameters){
 								text3 = result.data.result.parameters.date;
 								instance.$("#search").val(text3);
-							};
-							const searchdate = instance.$('#search').val();
-							todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
-							console.log(todo.length);
+						};
+						const searchdate = instance.$('#search').val();
+						todo = Calendars.find().fetch();
+						console.log(todo.length);
 
-							if (todo.length == 0) {
-								var nothing = new SpeechSynthesisUtterance('You have nothing that date on your todo list.');
-								window.speechSynthesis.speak(nothing);
-							} else {
-								var thing ="";
+						if (todo.length == 0) {
+							var nothing = new SpeechSynthesisUtterance('You have nothing that date on your todo list.');
+							window.speechSynthesis.speak(nothing);
+						} else {
+							var thing ="";
 
-								for (i = 0; i < todo.length; i++) {
-									no = i+1;
-									thing += "number " + no + " " + todo[i].detail + " ";
-								}
+							for (i = 0; i < todo.length; i++) {
+								no = i+1;
+								thing += "number " + no + " " + todo[i].detail + " ";
+							}
 
-								var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
-								if (count1 % 2 === 0) {
+							var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
+							if (count1 % 2 === 0) {
 									window.speechSynthesis.speak(msg);
 									count1++;
-								} else {
+							} else {
 									window.speechSynthesis.cancel();
 									count1++;
-								}
 							}
-						});
-					};
+						}
+					});
+				};
+				recognition2.start();
+			}
+		} else {
+			const searchdate = instance.$('#search').val();
 
-					recognition2.start();
-				}
+			todo = Calendars.find();
+			console.log(todo.length);
+
+			if (todo.length == 0) {
+				var nothing = new SpeechSynthesisUtterance('You have nothing to do on that day.');
+				window.speechSynthesis.speak(nothing);
 			} else {
-				const searchdate = instance.$('#search').val();
+				var thing ="";
 
-				todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
-				console.log(todo.length);
+				for (i = 0; i < todo.length; i++) {
+					no = i+1;
+					thing += "number " + no + " " + todo[i].detail + " ";
+				}
 
-				if (todo.length == 0) {
-					var nothing = new SpeechSynthesisUtterance('You have nothing to do on that day.');
-					window.speechSynthesis.speak(nothing);
-				} else {
-					var thing ="";
-
-					for (i = 0; i < todo.length; i++) {
-						no = i+1;
-						thing += "number " + no + " " + todo[i].detail + " ";
-					}
-
-					var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
-					if (count1 % 2 === 0) {
+				var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
+				if (count1 % 2 === 0) {
 						window.speechSynthesis.speak(msg);
 						count1++;
-					} else {
+				} else {
 						window.speechSynthesis.cancel();
 						count1++;
-					}
 				}
 			}
+		}
 	},
 
 });
 
 
-Template.calendar.helpers({
+Template.calendars.helpers({
+	getTeamName() {
+		var x = Groups.findOne({_id:Router.current().params._id});
+		return x.groupname;
+	},
 	eventlist() {
-		console.dir(ToDo.find().fetch());
-		return ToDo.find({owner: Meteor.userId()}).fetch().sort(function(event1, event2) {
+		console.dir(Calendars.find().fetch());
+		return Calendars.find().fetch().sort(function(event1, event2) {
 			if (!event1) {
 				return -1;
 			} else if (!event2) {
@@ -332,13 +332,13 @@ Template.calendar.helpers({
   }
 })
 
-Template.eventrow.events({
+Template.eventrows.events({
 	'click span'(elt, instance) {
-		Meteor.call('todo.remove', this.entity._id, function(error, result){});
+		Meteor.call('calendars.remove', this.entity._id, Router.current().params._id, function(error, result){});
 	}
 })
 
-Template.eventrow.helpers({
+Template.eventrows.helpers({
 	eventNo(index) {
 		return index + 1;
 	},
