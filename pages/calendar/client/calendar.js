@@ -9,6 +9,7 @@ const today = new Date();
 Template.calendar.onDestroyed(function(){
 	Template.instance().recognition.stop();
 	Template.instance().lastquestion.set(true);
+	window.speechSynthesis.cancel();
 	return;
 })
 
@@ -279,14 +280,24 @@ Template.calendar.events({
 											+ todo[0].detail + ". The other is " + todo[1].detail);
 								window.speechSynthesis.speak(twothing);
 							} else {
+								var morething = new SpeechSynthesisUtterance('You have' + todo.length + 'things on your to do list.');
+								window.speechSynthesis.speak(morething);
+
 								var thing ="";
 
 								for (i = 0; i < todo.length; i++) {
-									no = i+1;
-									thing += "number " + no + " " + todo[i].detail + " ";
+									if (i === 0) {
+										thing += "The first event is " + todo[0].detail + " ";
+									} else if (i === 1) {
+										thing += "The second event is " + todo[1].detail + " ";
+									} else if (i === 2) {
+										thing += "The third event is " + todo[3].detail + " ";
+									} else {
+										thing += "The " + i + "th event is " + todo[i].detail + " ";
+									}
 								}
 
-								var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
+								var msg = new SpeechSynthesisUtterance(thing);
 								if (count1 % 2 === 0) {
 									window.speechSynthesis.speak(msg);
 									count1++;
@@ -347,14 +358,27 @@ Template.calendar.events({
 								+ todo[0].detail + ". The other is " + todo[1].detail);
 					window.speechSynthesis.speak(twothing);
 				} else {
+					var morething = new SpeechSynthesisUtterance('You have' + todo.length + 'things on your to do list.');
+					window.speechSynthesis.speak(morething);
+
 					var thing ="";
 
+
 					for (i = 0; i < todo.length; i++) {
-						no = i+1;
-						thing += "number " + no + " " + todo[i].detail + " ";
+
+						if (i === 0) {
+							thing += "The first event is " + todo[0].detail + " ";
+						} else if (i === 1) {
+							thing += "The second event is " + todo[1].detail + " ";
+						} else if (i === 2) {
+							thing += "The third event is " + todo[2].detail + " ";
+						} else {
+							var no = i+1;
+							thing += "The " + no + "th event is " + todo[i].detail + " ";
+						}
 					}
 
-					var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
+					var msg = new SpeechSynthesisUtterance(thing);
 					if (count1 % 2 === 0) {
 						window.speechSynthesis.speak(msg);
 						count1++;
