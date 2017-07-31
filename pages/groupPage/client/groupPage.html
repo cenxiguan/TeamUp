@@ -34,10 +34,12 @@
       Location: {{grouploc}}<br>
       Description: {{groupdesc}}<br>
         <div class="joinButton">
-          {{#if isMember}}
-            <button id="js-editGroup" class="editGroup">Edit Group</button>
-          {{else}}
-            <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
+          {{#if currentUser}}
+            {{#if isMember}}
+              <button id="js-editGroup" class="editGroup">Edit Group</button>
+            {{else}}
+                <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
+            {{/if}}
           {{/if}}
         </div>
     </div>
