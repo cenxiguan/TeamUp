@@ -334,7 +334,9 @@ Template.calendar.events({
 									count1++;
 								}
 							}
-							//instance.$('#search').val("");
+							setTimeout(function(){
+								instance.$('#search').val("");
+							}, 2000);
 						});
 
 					};
@@ -428,6 +430,7 @@ Template.calendar.events({
 					}
 				}
 				instance.$('#search').val("");
+
 			}
 	},
 
