@@ -6,6 +6,14 @@ Meteor.publish('todo', function(){
   return ToDo.find();
 })
 
+Meteor.publish('todoTeam', function(){
+  return ToDo.find();
+})
+
+Meteor.publish('calendars', function(id){
+  return Calendars.find({teamid:id});
+})
+
 Meteor.publish('groups', function(){
   return Groups.find();
 })

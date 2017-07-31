@@ -4,6 +4,8 @@ Template.showMessages.onRendered(function() {
   element.scrollTop = element.scrollHeight;
 });
 
+getTeam = this._id;
+
 Template.groupPage.helpers({
   isMember(){
     return Groups.findOne({"_id":this._id}).members.includes(Meteor.userId());

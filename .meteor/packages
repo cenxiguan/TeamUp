@@ -31,3 +31,4 @@ easy:search
 easysearch:elasticsearch
 easysearch:autosuggest
 google-config-ui
+session

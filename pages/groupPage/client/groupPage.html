@@ -16,6 +16,7 @@
           {{> groupMessage}} <!--add overflow scroll --> <!--sendmessage-->
         </div>
       </div>
+      {{> linkCalendar}}
     {{else}}
       <p align="center">You are not a member of this team.</p>
     {{/if}}
@@ -94,6 +95,14 @@
     </ul>
   </div>
 </template>
+
+<template name="linkCalendar">
+  <div class="positionlink box linktitle">
+    <a href="{{pathFor route='calendar.show' data=getTeam}}">{{groupname}}'s Calendar</a>
+  </div>
+</template>
+
+
 
 <!--
 
