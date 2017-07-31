@@ -298,6 +298,8 @@ Template.calendar.events({
 								}
 
 								var msg = new SpeechSynthesisUtterance(thing);
+								msg.rate = 0.9
+								msg.pitch = 1.1;
 								if (count1 % 2 === 0) {
 									window.speechSynthesis.speak(msg);
 									count1++;
@@ -379,6 +381,8 @@ Template.calendar.events({
 					}
 
 					var msg = new SpeechSynthesisUtterance(thing);
+					msg.rate = 0.9
+					msg.pitch = 1.1;
 					if (count1 % 2 === 0) {
 						window.speechSynthesis.speak(msg);
 						count1++;
