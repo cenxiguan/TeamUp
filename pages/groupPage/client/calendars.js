@@ -6,14 +6,24 @@ var count1 = 0;
 var countCheck = 0;
 const today = new Date();
 
-Template.calendar.onDestroyed(function(){
+Template.calendars.onDestroyed(function(){
 	Template.instance().recognition.stop();
 	Template.instance().lastquestion.set(true);
 	return;
 })
 
-Template.calendar.onCreated(function() {
-	Meteor.subscribe('todo');
+Template.calendars.onCreated(function() {
+	console.log(Router.current().params._id);
+	var calendarData = {
+		teamid: Router.current().params._id,
+		todoArray: [],
+	}
+	Meteor.call('connections.insert', calendarData, Router.current().params._id, function(err, result){
+		if(err){
+			window.alert(err);
+			return;
+		}
+	});
 
 	this.recognizing = new ReactiveVar(false);
 	this.lastquestion = new ReactiveVar(false);
@@ -121,9 +131,9 @@ Template.calendar.onCreated(function() {
 											result.data.result.parameters.date = getToday();
 										};
 
-										if (ToDo.findOne({date:result.data.result.parameters.date,
+										if (Calendars.findOne({date:result.data.result.parameters.date,
 																			time:result.data.result.parameters.time,
-																			owner:Meteor.userId()}) ){
+																			}) ){
 											var occupied = new SpeechSynthesisUtterance("You have things to do at that time.");
 											window.speechSynthesis.speak(occupied);
 										} else {
@@ -134,10 +144,9 @@ Template.calendar.onCreated(function() {
 												location:result.data.result.parameters.location,
 												title: result.data.result.parameters.title,
 												detail: detail.replace(/(add|next|tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
-												owner: Meteor.userId(),
-												teamid:this._id
+												owner:Meteor.userId()
 							      	};
-							    		Meteor.call('todo.insert', todoevent, function(error, result){
+							    		Meteor.call('Calendars.update', todoevent, Router.current().params._id,function(error, result){
 											});
 
 											var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
@@ -150,22 +159,23 @@ Template.calendar.onCreated(function() {
 
 								} else {
 
-									if (ToDo.findOne({date:result.data.result.parameters.date,
+									if (Calendars.findOne({date:result.data.result.parameters.date,
 																		time:result.data.result.parameters.time,
-																		owner:Meteor.userId()}) ){
+																		teamid: Router.current().params._id}) ){
 										var occupied = new SpeechSynthesisUtterance("You have things to do at that time.");
 										window.speechSynthesis.speak(occupied);
 									} else {
 										var todoevent =
-										{ //thing:result.data.result.parameters.event,
+										{
+											//thing:result.data.result.parameters.event,
 											time:result.data.result.parameters.time,
 											date:result.data.result.parameters.date,
 											location:result.data.result.parameters.location,
 											title: result.data.result.parameters.title,
 											detail: detail.replace(/(add|next|tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
-											owner: Meteor.userId()
+											teamid: Meteor.userId()
 										};
-										Meteor.call('todo.insert', todoevent, function(error, result){
+										Meteor.call('calendars.update', todoevent, Router.current().params._id, function(error, result){
 										});
 
 										var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
@@ -185,7 +195,7 @@ Template.calendar.onCreated(function() {
 })
 
 
-Template.calendar.events({
+Template.calendars.events({
 	'click #start_button': function(event){
 		var recognition = Template.instance().recognition;
 		recognition.lang = 'en-US';
@@ -222,7 +232,7 @@ Template.calendar.events({
 								instance.$("#search").val(text3);
 						};
 						const searchdate = instance.$('#search').val();
-						todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
+						todo = Calendars.find().fetch();
 						console.log(todo.length);
 
 						if (todo.length == 0) {
@@ -252,7 +262,7 @@ Template.calendar.events({
 		} else {
 			const searchdate = instance.$('#search').val();
 
-			todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
+			todo = Calendars.find();
 			console.log(todo.length);
 
 			if (todo.length == 0) {
@@ -281,10 +291,14 @@ Template.calendar.events({
 });
 
 
-Template.calendar.helpers({
+Template.calendars.helpers({
+	getTeamName() {
+		var x = Groups.findOne({_id:Router.current().params._id});
+		return x.groupname;
+	},
 	eventlist() {
-		console.dir(ToDo.find().fetch());
-		return ToDo.find({owner: Meteor.userId()}).fetch().sort(function(event1, event2) {
+		console.dir(Calendars.find().fetch());
+		return Calendars.find().fetch().sort(function(event1, event2) {
 			if (!event1) {
 				return -1;
 			} else if (!event2) {
@@ -318,13 +332,13 @@ Template.calendar.helpers({
   }
 })
 
-Template.eventrow.events({
+Template.eventrows.events({
 	'click span'(elt, instance) {
-		Meteor.call('todo.remove', this.entity._id, function(error, result){});
+		Meteor.call('calendars.remove', this.entity._id, Router.current().params._id, function(error, result){});
 	}
 })
 
-Template.eventrow.helpers({
+Template.eventrows.helpers({
 	eventNo(index) {
 		return index + 1;
 	},
