@@ -62,7 +62,7 @@
 
   .memberOfBox{
     min-height: 300px;
-    /*min-width: 300px;*/
+    min-width: 300px;
     width: 100%;
     clear: both;
     order: 1;
@@ -71,7 +71,7 @@
   .ownedBox{
     min-height: 300px;
     margin-left: 0px;
-    /*min-width: 300px;*/
+    min-width: 300px;
     width: 100%;
     clear: both;
     order: 2;
