@@ -69,21 +69,29 @@ Template.calendar.onCreated(function() {
 					pendingevent = text;
 					if (countCheck%3 === 0 ) {
 						var checkmsg = new SpeechSynthesisUtterance('Is this the event you want to add to todo list?');
+						checkmsg.rate = 0.95;
+						checkmsg.pitch = 0.9;
 						countCheck++;
 						window.speechSynthesis.speak(checkmsg);
 					} else if (countCheck%3 === 1 ) {
 						var checkmsg2 = new SpeechSynthesisUtterance('Is this what you want to be added? ');
 						countCheck++;
+						checkmsg2.rate = 0.95;
+						checkmsg2.pitch = 0.9;
 						window.speechSynthesis.speak(checkmsg2);
 					} else {
 						var checkmsg3 = new SpeechSynthesisUtterance('Is everything correct and ready for submission?');
 						countCheck++;
+						checkmsg3.rate = 0.95;
+						checkmsg3.pitch = 0.9;
 						window.speechSynthesis.speak(checkmsg3);
 					}
 					recognition.stop();
 
 				} else if ( text == "no" || text.includes("no ") ) {
 					var repeatmsg = new SpeechSynthesisUtterance('Please state the event you want to add.');
+					repeatmsg.rate = 0.95;
+					repeatmsg.pitch = 0.9;
 					window.speechSynthesis.speak(repeatmsg);
 					recognition.stop();
 				} else {
@@ -127,6 +135,8 @@ Template.calendar.onCreated(function() {
 																			time:result.data.result.parameters.time,
 																			owner:Meteor.userId()}) ){
 												var occupied = new SpeechSynthesisUtterance("You have things to do at that time. Please reschedule and state the event again.");
+												occupied.rate = 0.95;
+												occupied.pitch = 0.9;
 												window.speechSynthesis.speak(occupied);
 												//setTimeout(function(){
 													recognition.stop();
@@ -146,12 +156,16 @@ Template.calendar.onCreated(function() {
 											});
 
 											var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
+											eventsave.rate = 0.95;
+											eventsave.pitch = 0.9;
 											window.speechSynthesis.speak(eventsave);
 											isFinal.set(true);
 											recognition.stop();
 										}
 									} else { // In this case, no date and no relativedate
 										var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please rephrase the event with a date.");
+										repeatDate.rate = 0.95;
+										repeatDate.pitch = 0.9;
 										window.speechSynthesis.speak(repeatDate);
 										// setTimeout(function(){
 											recognition.stop();
@@ -164,6 +178,8 @@ Template.calendar.onCreated(function() {
 																		time:result.data.result.parameters.time,
 																		owner:Meteor.userId()}) ){
 										var occupied = new SpeechSynthesisUtterance("You have things to do at that time. Please reschedule and state the event again.");
+										occupied.rate = 0.95;
+										occupied.pitch = 0.9;
 										window.speechSynthesis.speak(occupied);
 										// setTimeout(function(){
 											recognition.stop();
@@ -182,6 +198,8 @@ Template.calendar.onCreated(function() {
 										});
 
 										var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
+										eventsave.rate = 0.95;
+										eventsave.pitch = 0.9;
 										window.speechSynthesis.speak(eventsave);
 										isFinal.set(true);
 										recognition.stop();
@@ -271,16 +289,24 @@ Template.calendar.events({
 
 							if (todo.length == 0) {
 								var nothing = new SpeechSynthesisUtterance('You have nothing to do on that day.');
+								nothing.rate = 0.95;
+								nothing.pitch = 0.9;
 								window.speechSynthesis.speak(nothing);
 							} else if (todo.length == 1) {
 								var onething = new SpeechSynthesisUtterance('You have only one thing on your to do list. ' + todo[0].detail);
+								onething.rate = 0.95;
+								onething.pitch = 0.9;
 								window.speechSynthesis.speak(onething);
 							} else if (todo.length == 2) {
 								var twothing = new SpeechSynthesisUtterance('You have two things on your to do list. One is '
 											+ todo[0].detail + ". The other is " + todo[1].detail);
+								twothing.rate = 0.95;
+								twothing.pitch = 0.9;
 								window.speechSynthesis.speak(twothing);
 							} else {
 								var morething = new SpeechSynthesisUtterance('You have' + todo.length + 'things on your to do list.');
+								morething.rate = 0.95;
+								morething.pitch = 0.9;
 								window.speechSynthesis.speak(morething);
 
 								var thing ="";
@@ -298,8 +324,8 @@ Template.calendar.events({
 								}
 
 								var msg = new SpeechSynthesisUtterance(thing);
-								msg.rate = 0.9
-								msg.pitch = 1.1;
+								msg.rate = 0.95
+								msg.pitch = 0.9;
 								if (count1 % 2 === 0) {
 									window.speechSynthesis.speak(msg);
 									count1++;
@@ -351,16 +377,24 @@ Template.calendar.events({
 
 				if (todo.length == 0) {
 					var nothing = new SpeechSynthesisUtterance('You have nothing to do on that day.');
+					nothing.rate = 0.95;
+					nothing.pitch = 0.9;
 					window.speechSynthesis.speak(nothing);
 				} else if (todo.length == 1) {
 					var onething = new SpeechSynthesisUtterance('You have only one thing on your to do list. ' + todo[0].detail);
+					onething.rate = 0.95;
+					onething.pitch = 0.9;
 					window.speechSynthesis.speak(onething);
 				} else if (todo.length == 2) {
 					var twothing = new SpeechSynthesisUtterance('You have two things on your to do list. One is '
 								+ todo[0].detail + ". The other is " + todo[1].detail);
+					twothing.rate = 0.95;
+					twothing.pitch = 0.9;
 					window.speechSynthesis.speak(twothing);
 				} else {
 					var morething = new SpeechSynthesisUtterance('You have' + todo.length + 'things on your to do list.');
+					morething.rate = 0.95;
+					morething.pitch = 0.9;
 					window.speechSynthesis.speak(morething);
 
 					var thing ="";
