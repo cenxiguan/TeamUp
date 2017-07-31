@@ -297,8 +297,9 @@ Template.calendars.helpers({
 		return x.groupname;
 	},
 	eventlist() {
-		console.dir(Calendars.find({teamid:Router.current().params._id}).fetch());
-		return Calendars.find({teamid:Router.current().params._id}).fetch().sort(function(event1, event2) {
+		var c = Calendars.findOne({teamid:Router.current().params._id}).todoArray;
+		console.dir(c);
+		return c.sort(function(event1, event2) {
 			if (!event1) {
 				return -1;
 			} else if (!event2) {
