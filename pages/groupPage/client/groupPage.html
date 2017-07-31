@@ -36,7 +36,9 @@
         <div class="joinButton">
           {{#if currentUser}}
             {{#if isMember}}
-              <button id="js-editGroup" class="editGroup">Edit Group</button>
+              {{#if isOwner}}
+                <button id="js-editGroup" class="editGroup">Edit Group</button>
+              {{/if}}
             {{else}}
                 <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
             {{/if}}
