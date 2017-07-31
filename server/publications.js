@@ -11,7 +11,7 @@ Meteor.publish('todoTeam', function(){
 })
 
 Meteor.publish('calendars', function(id){
-  return Calendars.find({teamid:id});
+  return Calendars.find();
 })
 
 Meteor.publish('groups', function(){
