@@ -27,3 +27,17 @@
   font-size: 35px;
   font-weight: bold;
 }
+
+@media all and (max-width: 650px){
+  body{
+    font-size: 125%;
+  }
+
+  .teaminput{
+    width: 100%;
+  }
+
+  .maketeambox{
+    min-width: 300px;
+  }
+}
