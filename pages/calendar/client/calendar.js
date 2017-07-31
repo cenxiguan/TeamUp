@@ -235,7 +235,37 @@ Template.calendar.events({
 								instance.$("#search").val(text3);
 							};
 							const searchdate = instance.$('#search').val();
-							todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
+							todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch().sort(function(event1, event2) {
+								if (!event1) {
+									return -1;
+								} else if (!event2) {
+									return 1;
+								} else {
+									var year1 = parseInt(event1.date.substring(0, 4));
+									var year2 = parseInt(event2.date.substring(0, 4));
+									if (year1 != year2) {
+										return year1 - year2;
+									} else {
+										var month1 = parseInt(event1.date.substring(5, 7));
+										var month2 = parseInt(event2.date.substring(5, 7));
+										if (month1 != month2) {
+											return month1 - month2;
+										} else {
+											var day1 = parseInt(event1.date.substring(8,10));
+											var day2 = parseInt(event2.date.substring(8,10));
+											if (day1 != day2) {
+												return day1 - day2;
+											} else if (!!event1.time) {
+												var time1 = parseInt(event1.time.substring(0,2));
+												var time2 = parseInt(event2.time.substring(0,2));
+												return time1 - time2;
+											} else {
+
+											}
+										}
+									}
+								}
+							});
 							console.log(todo.length);
 
 							if (todo.length == 0) {
@@ -244,6 +274,10 @@ Template.calendar.events({
 							} else if (todo.length == 1) {
 								var onething = new SpeechSynthesisUtterance('You have only one thing on your to do list. ' + todo[0].detail);
 								window.speechSynthesis.speak(onething);
+							} else if (todo.length == 2) {
+								var twothing = new SpeechSynthesisUtterance('You have two things on your to do list. One is '
+											+ todo[0].detail + ". The other is " + todo[1].detail);
+								window.speechSynthesis.speak(twothing);
 							} else {
 								var thing ="";
 
@@ -269,7 +303,37 @@ Template.calendar.events({
 			} else {
 				const searchdate = instance.$('#search').val();
 
-				todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch();
+				todo = ToDo.find({date:searchdate, owner:Meteor.userId()}).fetch().sort(function(event1, event2) {
+					if (!event1) {
+						return -1;
+					} else if (!event2) {
+						return 1;
+					} else {
+						var year1 = parseInt(event1.date.substring(0, 4));
+						var year2 = parseInt(event2.date.substring(0, 4));
+						if (year1 != year2) {
+							return year1 - year2;
+						} else {
+							var month1 = parseInt(event1.date.substring(5, 7));
+							var month2 = parseInt(event2.date.substring(5, 7));
+							if (month1 != month2) {
+								return month1 - month2;
+							} else {
+								var day1 = parseInt(event1.date.substring(8,10));
+								var day2 = parseInt(event2.date.substring(8,10));
+								if (day1 != day2) {
+									return day1 - day2;
+								} else if (!!event1.time) {
+									var time1 = parseInt(event1.time.substring(0,2));
+									var time2 = parseInt(event2.time.substring(0,2));
+									return time1 - time2;
+								} else {
+
+								}
+							}
+						}
+					}
+				});
 				console.log(todo.length);
 
 				if (todo.length == 0) {
@@ -278,6 +342,10 @@ Template.calendar.events({
 				} else if (todo.length == 1) {
 					var onething = new SpeechSynthesisUtterance('You have only one thing on your to do list. ' + todo[0].detail);
 					window.speechSynthesis.speak(onething);
+				} else if (todo.length == 2) {
+					var twothing = new SpeechSynthesisUtterance('You have two things on your to do list. One is '
+								+ todo[0].detail + ". The other is " + todo[1].detail);
+					window.speechSynthesis.speak(twothing);
 				} else {
 					var thing ="";
 
