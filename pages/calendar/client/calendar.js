@@ -334,7 +334,9 @@ Template.calendar.events({
 									count1++;
 								}
 							}
+							//instance.$('#search').val("");
 						});
+
 					};
 
 					recognition2.start();
@@ -425,6 +427,7 @@ Template.calendar.events({
 						count1++;
 					}
 				}
+				instance.$('#search').val("");
 			}
 	},
 
