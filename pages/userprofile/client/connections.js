@@ -1,3 +1,9 @@
+Template.connections.onDestroyed( function(){
+  if(this.subscription){
+    this.subscription.stop();
+  }
+});
+
 Template.connections.onCreated( function(){
     this.userDict = new ReactiveDict();
     var connectionsData = {
