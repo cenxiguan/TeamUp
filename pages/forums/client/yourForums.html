@@ -21,10 +21,10 @@
       {{#each f in createdlist f=f}}
         <!--{{> yourForumsrow f=f}}-->
         <tr>
-          <td><a href = "/individualforum?forumId={{f._id}}"><h-f>Forum Title: "{{f.title}}"</h-f></a></td>
-          <td><a href = "/individualforum?forumId={{f._id}}"><h-f>Forum Description: "{{f.description}}"</h-f></a></td>
-          <td><a href = "/individualforum?forumId={{f._id}}">Forum Creator: "{{getCreatorName f.creator}}"</a></td>
-          <td><a href = "/individualforum?forumId={{f._id}}">Forum CreatedAt "{{f.createdAt}}" </a></td>
+          <td><a href = "/individualforum?forumId={{f._id}}"><h-f>{{f.title}}</h-f></a></td>
+          <td><a href = "/individualforum?forumId={{f._id}}"><h-f>{{f.description}}</h-f></a></td>
+          <td><a href = "/individualforum?forumId={{f._id}}">{{getCreatorName f.creator}}</a></td>
+          <td><a href = "/individualforum?forumId={{f._id}}">{{f.createdAt}}</a></td>
         </tr>
         <hr>
       {{/each}}
