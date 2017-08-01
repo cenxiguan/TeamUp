@@ -134,7 +134,6 @@ Template.commentrow.events({
 
   'click #commentremove'(elt, instance) {
     const forumId = Router.current().params.query.forumId;
-
     Meteor.call("forums.deletecomment", forumId, this.comment, function(err, result){
       if(err){
         window.alert(err);
