@@ -19,7 +19,7 @@ Meteor.publish('groups', function(){
 })
 
 Meteor.publish('forums', function(forumId){
-  return Forums.find({creator: forumId});
+  return Forums.find(forumId);
 })
 
 Meteor.publish('forums_search', function(keyword){
