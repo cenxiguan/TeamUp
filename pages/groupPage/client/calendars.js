@@ -71,18 +71,24 @@ Template.calendars.onCreated(function() {
 				if ( text != "yes" && text != "no") {
 					pendingevent = text;
 					if (countCheck === 0 ) {
-						var checkmsg = new SpeechSynthesisUtterance('Is this the event you want to add to todo list?');
+						var checkmsg = new SpeechSynthesisUtterance('Is this the event you want to add to ?');
+						checkmsg.rate = 0.95;
+						checkmsg.pitch = 0.9;
 						countCheck++;
 						window.speechSynthesis.speak(checkmsg);
 						recognition.stop();
 
 					} else if (countCheck === 1 ) {
 						var checkmsg2 = new SpeechSynthesisUtterance('Is this what you want to be added? ');
+						checkmsg2.rate = 0.95;
+						checkmsg2.pitch = 0.9;
 						countCheck++;
 						window.speechSynthesis.speak(checkmsg2);
 						recognition.stop();
 					} else if (countCheck === 2 ) {
 						var checkmsg3 = new SpeechSynthesisUtterance('Is everything correct and ready for submission?');
+						checkmsg3.rate = 0.95;
+						checkmsg3.pitch = 0.9;
 						countCheck++;
 						window.speechSynthesis.speak(checkmsg3);
 						recognition.stop();
@@ -92,6 +98,8 @@ Template.calendars.onCreated(function() {
 
 				} else if ( text == "no" ) {
 					var repeatmsg = new SpeechSynthesisUtterance('Please state the event you want to add.');
+					repeatmsg.rate = 0.95;
+					repeatmsg.pitch = 0.9;
 					window.speechSynthesis.speak(repeatmsg);
 					recognition.stop();
 				} else if ( text == "yes") {
@@ -136,6 +144,8 @@ Template.calendars.onCreated(function() {
 																			time:result.data.result.parameters.time,
 																			teamid: Router.current().params._id}) ){
 											var occupied = new SpeechSynthesisUtterance("You have things to do at that time.");
+											occupied.rate = 0.95;
+											occupied.pitch = 0.9;
 											window.speechSynthesis.speak(occupied);
 										} else {
 											var todoevent =
@@ -152,10 +162,14 @@ Template.calendars.onCreated(function() {
 											});
 
 											var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
+											eventsave.rate = 0.95;
+											eventsave.pitch = 0.9;
 											window.speechSynthesis.speak(eventsave);
 										}
 									} else {
 										var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please click the microphone and repeat it.");
+										repeatDate.rate = 0.95;
+										repeatDate.pitch = 0.9;
 										window.speechSynthesis.speak(repeatDate);
 									};
 
@@ -165,6 +179,8 @@ Template.calendars.onCreated(function() {
 																		time:result.data.result.parameters.time,
 																		teamid: Router.current().params._id}) ){
 										var occupied = new SpeechSynthesisUtterance("You have things to do at that time.");
+										occupied.rate = 0.95;
+										occupied.pitch = 0.9;
 										window.speechSynthesis.speak(occupied);
 									} else {
 										var todoevent =
@@ -182,6 +198,8 @@ Template.calendars.onCreated(function() {
 										});
 
 										var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
+										eventsave.rate = 0.95;
+										eventsave.pitch = 0.9;
 										window.speechSynthesis.speak(eventsave);
 									}
 						 }
@@ -239,7 +257,9 @@ Template.calendars.events({
 						console.log(todo.length);
 
 						if (todo.length == 0) {
-							var nothing = new SpeechSynthesisUtterance('You have nothing that date on your todo list.');
+							var nothing = new SpeechSynthesisUtterance('You have nothing that date on your group calender.');
+							nothing.rate = 0.95;
+							nothing.pitch = 0.9;
 							window.speechSynthesis.speak(nothing);
 						} else {
 							var thing ="";
@@ -250,6 +270,8 @@ Template.calendars.events({
 							}
 
 							var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
+							msg.rate = 0.95;
+							msg.pitch = 0.9;
 							if (count1 % 2 === 0) {
 									window.speechSynthesis.speak(msg);
 									count1++;
@@ -270,6 +292,8 @@ Template.calendars.events({
 
 			if (todo.length == 0) {
 				var nothing = new SpeechSynthesisUtterance('You have nothing to do on that day.');
+				nothing.rate = 0.95;
+				nothing.pitch = 0.9;
 				window.speechSynthesis.speak(nothing);
 			} else {
 				var thing ="";
@@ -280,6 +304,8 @@ Template.calendars.events({
 				}
 
 				var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
+				msg.rate = 0.95;
+				msg.pitch = 0.9;
 				if (count1 % 2 === 0) {
 						window.speechSynthesis.speak(msg);
 						count1++;
