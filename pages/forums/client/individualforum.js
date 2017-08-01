@@ -125,6 +125,7 @@ Template.commentrow.helpers({
   },
   getUserpic(thisid){
     var profile = User.findOne({owner: thisid});
+    console.log(profile);
     var pic = profile.pic;
     return pic;
   },
