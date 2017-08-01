@@ -97,7 +97,6 @@ Template.comment.events({
           "author": Meteor.userId()
         }
 
-        const forumId = Router.current().params.query.forumId;
         Meteor.call('forums.addcomment', forumId, comment, function(err, result){
           if(err){
             window.alert(err);
