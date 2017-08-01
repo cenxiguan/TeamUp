@@ -1,27 +1,27 @@
-#pageCalendar span {
+#pageCalendars span {
   font-size: 20px;
   text-align: left;
   color:darkblue;
 }
 
-#pageCalendar p {
+#pageCalendars p {
   color: darkblue;
 }
 
-#pageCalendar table {
+#pageCalendars table {
   color: white;
 }
 
-#pageCalendar h1 {
+#pageCalendars h1 {
   font-size: 45px;
 }
 
-#pageCalendar .bg-info {
+#pageCalendars .bg-info {
   border: 5px solid white;
   border-radius: 35px;
 }
 
-#pageCalendar .textformat {
+#pageCalendars .textformat {
   font-size: 20px;
   color: rgba(0, 68, 102, 1);
   padding: 20px;

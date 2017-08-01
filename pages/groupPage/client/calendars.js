@@ -9,6 +9,7 @@ const today = new Date();
 Template.calendars.onDestroyed(function(){
 	Template.instance().recognition.stop();
 	Template.instance().lastquestion.set(true);
+	window.speechSynthesis.cancel();
 	return;
 })
 
@@ -18,7 +19,7 @@ Template.calendars.onCreated(function() {
 		teamid: Router.current().params._id,
 		todoArray: [],
 	}
-	Meteor.call('connections.insert', calendarData, Router.current().params._id, function(err, result){
+	Meteor.call('calendars.insert', calendarData, Router.current().params._id, function(err, result){
 		if(err){
 			window.alert(err);
 			return;
@@ -133,12 +134,13 @@ Template.calendars.onCreated(function() {
 
 										if (Calendars.findOne({date:result.data.result.parameters.date,
 																			time:result.data.result.parameters.time,
-																			}) ){
+																			teamid: Router.current().params._id}) ){
 											var occupied = new SpeechSynthesisUtterance("You have things to do at that time.");
 											window.speechSynthesis.speak(occupied);
 										} else {
 											var todoevent =
 							      	{ //thing:result.data.result.parameters.event,
+												id: new Meteor.Collection.ObjectID()._str,
 							        	time:result.data.result.parameters.time,
 							        	date:result.data.result.parameters.date,
 												location:result.data.result.parameters.location,
@@ -146,7 +148,7 @@ Template.calendars.onCreated(function() {
 												detail: detail.replace(/(add|next|tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
 												owner:Meteor.userId()
 							      	};
-							    		Meteor.call('Calendars.update', todoevent, Router.current().params._id,function(error, result){
+							    		Meteor.call('calendars.update', todoevent, Router.current().params._id,function(error, result){
 											});
 
 											var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
@@ -168,12 +170,13 @@ Template.calendars.onCreated(function() {
 										var todoevent =
 										{
 											//thing:result.data.result.parameters.event,
+											id: new Meteor.Collection.ObjectID()._str,
 											time:result.data.result.parameters.time,
 											date:result.data.result.parameters.date,
 											location:result.data.result.parameters.location,
 											title: result.data.result.parameters.title,
 											detail: detail.replace(/(add|next|tomorrow|today|tonight|this evening|this afternoon)/gi, ""),
-											teamid: Meteor.userId()
+											owner: Meteor.userId()
 										};
 										Meteor.call('calendars.update', todoevent, Router.current().params._id, function(error, result){
 										});
@@ -232,7 +235,7 @@ Template.calendars.events({
 								instance.$("#search").val(text3);
 						};
 						const searchdate = instance.$('#search').val();
-						todo = Calendars.find().fetch();
+						todo = Calendars.find({"teamid":Router.current().params._id}).fetch().todoArray;
 						console.log(todo.length);
 
 						if (todo.length == 0) {
@@ -262,7 +265,7 @@ Template.calendars.events({
 		} else {
 			const searchdate = instance.$('#search').val();
 
-			todo = Calendars.find();
+			todo = Calendars.find({"teamid":Router.current().params._id}).fetch().todoArray;
 			console.log(todo.length);
 
 			if (todo.length == 0) {
@@ -297,8 +300,9 @@ Template.calendars.helpers({
 		return x.groupname;
 	},
 	eventlist() {
-		console.dir(Calendars.find().fetch());
-		return Calendars.find().fetch().sort(function(event1, event2) {
+		var c = Calendars.findOne({teamid:Router.current().params._id}).todoArray;
+		console.dir(c);
+		return c.sort(function(event1, event2) {
 			if (!event1) {
 				return -1;
 			} else if (!event2) {
@@ -334,8 +338,9 @@ Template.calendars.helpers({
 
 Template.eventrows.events({
 	'click span'(elt, instance) {
-		Meteor.call('calendars.remove', this.entity._id, Router.current().params._id, function(error, result){});
-	}
+		console.log(this.entity.id);
+		Meteor.call('calendars.remove', this.entity.id, Router.current().params._id, function(error, result){});
+	},
 })
 
 Template.eventrows.helpers({
@@ -373,21 +378,27 @@ function getToday() {
 
 /* Currently only consider no-leap year*/
 function getTomorrow() {
-	var tmr = today.getDate()+1;
+	var tmr = today.getDate() + 1;
 	if (tmr < 10) {
 		var tmrToString = "0" + tmr;
 		return year() + "-" + month() + "-" + tmrToString;
-	} else if (tmr < 28) {
+	} else if (tmr < 29) {
 		return year() + "-" + month() + "-" + tmr;
-	} else if (tmr == 28 && today.getMonth() == 1) {
+	} else if (tmr == 29 && today.getMonth() == 1) {
 		return year() + "-03-01";
-	} else if (tmr == 30 && (today.getMonth() == 3 || today.getMonth() == 5 || today.getMonth() == 8 || today.getMonth() == 10 )) {
+	} else if (tmr == 31 && (today.getMonth() == 3 || today.getMonth() == 5 || today.getMonth() == 8 )) {
+		var nextMonth = today.getMonth() + 2;
+		return year() + "-0" + nextMonth + "-01";
+	} else if (tmr == 31 && (today.getMonth() == 10 )) {
 		var nextMonth = today.getMonth() + 2;
 		return year() + "-" + nextMonth + "-01";
-	} else if (tmr == 31 && (today.getMonth() == 0 || today.getMonth() == 2 || today.getMonth() == 4 || today.getMonth() == 6 || today.getMonth() == 7 || today.getMonth() == 9)){
+	} else if (tmr == 32 && (today.getMonth() == 0 || today.getMonth() == 2 || today.getMonth() == 4 || today.getMonth() == 6 || today.getMonth() == 7)){
+		var nextMonth = today.getMonth() + 2;
+		return year() + "-0" + nextMonth + "-01";
+	} else if (tmr == 32 && today.getMonth() == 9){
 		var nextMonth = today.getMonth() + 2;
 		return year() + "-" + nextMonth + "-01";
-	} else if (tmr == 31 && today.getMonth() == 11) {
+	} else if (tmr == 32 && today.getMonth() == 11) {
 		var nextYear = today.getFullYear() + 1;
 		return nextYear + "-01-01";
 	} else {

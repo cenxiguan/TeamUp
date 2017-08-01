@@ -16,6 +16,14 @@ Template.groupMain.helpers({
   isMember(){
     return Groups.findOne({"_id":this._id}).members.includes(Meteor.userId());
   },
+  isOwner(){
+    var thisgroupowner = Groups.findOne({"_id":this._id}).owner
+    if (Meteor.userId() == thisgroupowner){
+      return true;
+    }else{
+      return false;
+    }
+  }
 })
 
 Template.groupMain.events({

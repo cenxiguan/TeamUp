@@ -26,7 +26,7 @@
   <table class="table table-bordered">
     <tbody>
       {{#each entity in eventlist}}
-        {{>eventrow entity=entity index=@index}}
+        {{>eventrows entity=entity index=@index}}
       {{/each}}
     </tbody>
   </table>
@@ -36,7 +36,7 @@
 <template name="eventrows">
   <tr>
     <td>{{eventNo index}}</td>
-    <td><strong><span style="color:red" class="glyphicon glyphicon-remove" aria-hidden="true"></span></strong></td>
+    <td><strong><span id="remove" style="color:red" class="glyphicon glyphicon-remove" aria-hidden="true"></span></strong></td>
   </tr>
   <tr>
     <td>date</td>
