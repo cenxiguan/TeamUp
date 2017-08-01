@@ -37,9 +37,11 @@
           {{#if currentUser}}
             {{#if isMember}}
               {{#if isOwner}}
+                <br>
                 <button id="js-editGroup" class="editGroup">Edit Group</button>
               {{/if}}
             {{else}}
+                <br>
                 <button id="js-requestjoingroup" class="js-joingroupbtn">Join team</button>
             {{/if}}
           {{/if}}
