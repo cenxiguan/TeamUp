@@ -1,0 +1,29 @@
+#forumsCreated {
+  background-color: lightgrey;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 40px;
+  margin-left: 100px;
+  min-height: 100px;
+  max-height: 500px;
+  order: 2;
+  overflow: auto;
+
+}
+
+#forumsCommented {
+  background-color: lightgrey;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 40px;
+  margin-left: 100px;
+  min-height: 100px;
+  max-height: 500px;
+  order: 3;
+  overflow: auto;
+}
+
+h-f{
+  font-size: 23px;
+  font-weight: bold;
+}

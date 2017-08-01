@@ -71,18 +71,24 @@ Template.calendars.onCreated(function() {
 				if ( text != "yes" && text != "no") {
 					pendingevent = text;
 					if (countCheck === 0 ) {
-						var checkmsg = new SpeechSynthesisUtterance('Is this the event you want to add to todo list?');
+						var checkmsg = new SpeechSynthesisUtterance('Is this the event you want to add to ?');
+						checkmsg.rate = 0.95;
+						checkmsg.pitch = 0.9;
 						countCheck++;
 						window.speechSynthesis.speak(checkmsg);
 						recognition.stop();
 
 					} else if (countCheck === 1 ) {
 						var checkmsg2 = new SpeechSynthesisUtterance('Is this what you want to be added? ');
+						checkmsg2.rate = 0.95;
+						checkmsg2.pitch = 0.9;
 						countCheck++;
 						window.speechSynthesis.speak(checkmsg2);
 						recognition.stop();
 					} else if (countCheck === 2 ) {
 						var checkmsg3 = new SpeechSynthesisUtterance('Is everything correct and ready for submission?');
+						checkmsg3.rate = 0.95;
+						checkmsg3.pitch = 0.9;
 						countCheck++;
 						window.speechSynthesis.speak(checkmsg3);
 						recognition.stop();
@@ -92,6 +98,8 @@ Template.calendars.onCreated(function() {
 
 				} else if ( text == "no" ) {
 					var repeatmsg = new SpeechSynthesisUtterance('Please state the event you want to add.');
+					repeatmsg.rate = 0.95;
+					repeatmsg.pitch = 0.9;
 					window.speechSynthesis.speak(repeatmsg);
 					recognition.stop();
 				} else if ( text == "yes") {
@@ -136,10 +144,13 @@ Template.calendars.onCreated(function() {
 																			time:result.data.result.parameters.time,
 																			teamid: Router.current().params._id}) ){
 											var occupied = new SpeechSynthesisUtterance("You have things to do at that time.");
+											occupied.rate = 0.95;
+											occupied.pitch = 0.9;
 											window.speechSynthesis.speak(occupied);
 										} else {
 											var todoevent =
 							      	{ //thing:result.data.result.parameters.event,
+												id: new Meteor.Collection.ObjectID()._str,
 							        	time:result.data.result.parameters.time,
 							        	date:result.data.result.parameters.date,
 												location:result.data.result.parameters.location,
@@ -151,10 +162,14 @@ Template.calendars.onCreated(function() {
 											});
 
 											var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
+											eventsave.rate = 0.95;
+											eventsave.pitch = 0.9;
 											window.speechSynthesis.speak(eventsave);
 										}
 									} else {
 										var repeatDate = new SpeechSynthesisUtterance("I did not get the date of your event. Please click the microphone and repeat it.");
+										repeatDate.rate = 0.95;
+										repeatDate.pitch = 0.9;
 										window.speechSynthesis.speak(repeatDate);
 									};
 
@@ -164,11 +179,14 @@ Template.calendars.onCreated(function() {
 																		time:result.data.result.parameters.time,
 																		teamid: Router.current().params._id}) ){
 										var occupied = new SpeechSynthesisUtterance("You have things to do at that time.");
+										occupied.rate = 0.95;
+										occupied.pitch = 0.9;
 										window.speechSynthesis.speak(occupied);
 									} else {
 										var todoevent =
 										{
 											//thing:result.data.result.parameters.event,
+											id: new Meteor.Collection.ObjectID()._str,
 											time:result.data.result.parameters.time,
 											date:result.data.result.parameters.date,
 											location:result.data.result.parameters.location,
@@ -180,6 +198,8 @@ Template.calendars.onCreated(function() {
 										});
 
 										var eventsave = new SpeechSynthesisUtterance('event is added to your calendar!');
+										eventsave.rate = 0.95;
+										eventsave.pitch = 0.9;
 										window.speechSynthesis.speak(eventsave);
 									}
 						 }
@@ -212,179 +232,89 @@ Template.calendars.events({
 	'click #voice': function(elt, instance){
 
 			if (instance.$('#search').val() == "") {
-				if ('webkitSpeechRecognition' in window) {
-					var recognition2 = new webkitSpeechRecognition();
-					recognition2.continuous = false;
+			if ('webkitSpeechRecognition' in window) {
+			var recognition2 = new webkitSpeechRecognition();
+				recognition2.continuous = false;
 
-					recognition2.onaudioend = function() {
-		    	};
+				recognition2.onaudioend = function() {
+		    };
 
-					recognition2.onresult = function(event) {
-		      	var text2 = event.results[0][0].transcript;
+				recognition2.onresult = function(event) {
+		      var text2 = event.results[0][0].transcript;
 
-						Meteor.call("send_text_for_APIAI_processing", text2, function(err, result){
-							if(err){
-								window.alert(err);
-								return;
-							}
+					Meteor.call("send_text_for_APIAI_processing", text2, function(err, result){
+						if(err){
+							window.alert(err);
+							return;
+						}
 
-							if(!!result.data.result.parameters){
+						if(!!result.data.result.parameters){
 								text3 = result.data.result.parameters.date;
 								instance.$("#search").val(text3);
-							};
-							const searchdate = instance.$('#search').val();
-							todo = Calendars.findOne({"teamid":Router.current().params._id}).todoArray.sort(function(event1, event2) {
-								if (!event1) {
-									return -1;
-								} else if (!event2) {
-									return 1;
-								} else {
-									var year1 = parseInt(event1.date.substring(0, 4));
-									var year2 = parseInt(event2.date.substring(0, 4));
-									if (year1 != year2) {
-										return year1 - year2;
-									} else {
-										var month1 = parseInt(event1.date.substring(5, 7));
-										var month2 = parseInt(event2.date.substring(5, 7));
-										if (month1 != month2) {
-											return month1 - month2;
-										} else {
-											var day1 = parseInt(event1.date.substring(8,10));
-											var day2 = parseInt(event2.date.substring(8,10));
-											if (day1 != day2) {
-												return day1 - day2;
-											} else if (!!event1.time) {
-												var time1 = parseInt(event1.time.substring(0,2));
-												var time2 = parseInt(event2.time.substring(0,2));
-												return time1 - time2;
-											} else {
+						};
+						const searchdate = instance.$('#search').val();
+						todo = Calendars.find({"teamid":Router.current().params._id}).fetch().todoArray;
+						console.log(todo.length);
 
-											}
-										}
-									}
-								}
-							});
-							console.log(todo.length);
+						if (todo.length == 0) {
+							var nothing = new SpeechSynthesisUtterance('You have nothing that date on your group calender.');
+							nothing.rate = 0.95;
+							nothing.pitch = 0.9;
+							window.speechSynthesis.speak(nothing);
+						} else {
+							var thing ="";
 
-							if (todo.length == 0) {
-								var nothing = new SpeechSynthesisUtterance('You have nothing to do on that day.');
-								window.speechSynthesis.speak(nothing);
-							} else if (todo.length == 1) {
-								var onething = new SpeechSynthesisUtterance('You have only one thing on your to do list. ' + todo[0].detail);
-								window.speechSynthesis.speak(onething);
-							} else if (todo.length == 2) {
-								var twothing = new SpeechSynthesisUtterance('You have two things on your to do list. One is '
-											+ todo[0].detail + ". The other is " + todo[1].detail);
-								window.speechSynthesis.speak(twothing);
-							} else {
-								var morething = new SpeechSynthesisUtterance('You have' + todo.length + 'things on your to do list.');
-								window.speechSynthesis.speak(morething);
+							for (i = 0; i < todo.length; i++) {
+								no = i+1;
+								thing += "number " + no + " " + todo[i].detail + " ";
+							}
 
-								var thing ="";
-
-								for (i = 0; i < todo.length; i++) {
-									if (i === 0) {
-										thing += "The first event is " + todo[0].detail + " ";
-									} else if (i === 1) {
-										thing += "The second event is " + todo[1].detail + " ";
-									} else if (i === 2) {
-										thing += "The third event is " + todo[2].detail + " ";
-									} else {
-										thing += "The " + i + "th event is " + todo[i].detail + " ";
-									}
-								}
-
-								var msg = new SpeechSynthesisUtterance(thing);
-								if (count1 % 2 === 0) {
+							var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
+							msg.rate = 0.95;
+							msg.pitch = 0.9;
+							if (count1 % 2 === 0) {
 									window.speechSynthesis.speak(msg);
 									count1++;
-								} else {
+							} else {
 									window.speechSynthesis.cancel();
 									count1++;
-								}
 							}
-						});
-					};
+						}
+					});
+				};
+				recognition2.start();
+			}
+		} else {
+			const searchdate = instance.$('#search').val();
 
-					recognition2.start();
-				}
+			todo = Calendars.find({"teamid":Router.current().params._id}).fetch().todoArray;
+			console.log(todo.length);
+
+			if (todo.length == 0) {
+				var nothing = new SpeechSynthesisUtterance('You have nothing to do on that day.');
+				nothing.rate = 0.95;
+				nothing.pitch = 0.9;
+				window.speechSynthesis.speak(nothing);
 			} else {
-				const searchdate = instance.$('#search').val();
+				var thing ="";
 
-				todo = Calendars.findOne({"teamid":Router.current().params._id}).todoArray.sort(function(event1, event2) {
-					if (!event1) {
-						return -1;
-					} else if (!event2) {
-						return 1;
-					} else {
-						var year1 = parseInt(event1.date.substring(0, 4));
-						var year2 = parseInt(event2.date.substring(0, 4));
-						if (year1 != year2) {
-							return year1 - year2;
-						} else {
-							var month1 = parseInt(event1.date.substring(5, 7));
-							var month2 = parseInt(event2.date.substring(5, 7));
-							if (month1 != month2) {
-								return month1 - month2;
-							} else {
-								var day1 = parseInt(event1.date.substring(8,10));
-								var day2 = parseInt(event2.date.substring(8,10));
-								if (day1 != day2) {
-									return day1 - day2;
-								} else if (!!event1.time) {
-									var time1 = parseInt(event1.time.substring(0,2));
-									var time2 = parseInt(event2.time.substring(0,2));
-									return time1 - time2;
-								} else {
+				for (i = 0; i < todo.length; i++) {
+					no = i+1;
+					thing += "number " + no + " " + todo[i].detail + " ";
+				}
 
-								}
-							}
-						}
-					}
-				});
-				console.log(todo.length);
-
-				if (todo.length == 0) {
-					var nothing = new SpeechSynthesisUtterance('You have nothing to do on that day.');
-					window.speechSynthesis.speak(nothing);
-				} else if (todo.length == 1) {
-					var onething = new SpeechSynthesisUtterance('You have only one thing on your to do list. ' + todo[0].detail);
-					window.speechSynthesis.speak(onething);
-				} else if (todo.length == 2) {
-					var twothing = new SpeechSynthesisUtterance('You have two things on your to do list. One is '
-								+ todo[0].detail + ". The other is " + todo[1].detail);
-					window.speechSynthesis.speak(twothing);
-				} else {
-					var morething = new SpeechSynthesisUtterance('You have' + todo.length + 'things on your to do list.');
-					window.speechSynthesis.speak(morething);
-
-					var thing ="";
-
-
-					for (i = 0; i < todo.length; i++) {
-
-						if (i === 0) {
-							thing += "The first event is " + todo[0].detail + " ";
-						} else if (i === 1) {
-							thing += "The second event is " + todo[1].detail + " ";
-						} else if (i === 2) {
-							thing += "The third event is " + todo[2].detail + " ";
-						} else {
-							var no = i+1;
-							thing += "The " + no + "th event is " + todo[i].detail + " ";
-						}
-					}
-
-					var msg = new SpeechSynthesisUtterance(thing);
-					if (count1 % 2 === 0) {
+				var msg = new SpeechSynthesisUtterance('What you need to do is ' + thing);
+				msg.rate = 0.95;
+				msg.pitch = 0.9;
+				if (count1 % 2 === 0) {
 						window.speechSynthesis.speak(msg);
 						count1++;
-					} else {
+				} else {
 						window.speechSynthesis.cancel();
 						count1++;
-					}
 				}
 			}
+		}
 	},
 
 });
@@ -434,8 +364,9 @@ Template.calendars.helpers({
 
 Template.eventrows.events({
 	'click span'(elt, instance) {
-		Meteor.call('calendars.remove', this.entity._id, Router.current().params._id, function(error, result){});
-	}
+		console.log(this.entity.id);
+		Meteor.call('calendars.remove', this.entity.id, Router.current().params._id, function(error, result){});
+	},
 })
 
 Template.eventrows.helpers({

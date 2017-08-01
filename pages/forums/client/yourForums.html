@@ -1,0 +1,63 @@
+<template name="yourForums">
+  <div name="forumsCreated" class="box">
+    <h1>Forums You Created</h1>
+    {{> forumsCreated}}
+  </div>
+  <div name="forumsCommented" class="box">
+    <h1>Forums You Commented</h1>
+      {{> forumsCommented}}
+  </div>
+</template>
+
+
+<template name="forumsCreated">
+    <table class="yourForumstable" id="forumsCreated">
+        <tr class="white">
+          <td>Forum Title</td>
+          <td>Forum Description</td>
+          <td>Forum Creator</td>
+          <td>Forum Created Time</td>
+        </tr>
+      {{#each f in createdlist f=f}}
+        <!--{{> yourForumsrow f=f}}-->
+        <tr>
+          <td><a href = "/individualforum?forumId={{f._id}}"><h-f>Forum Title: "{{f.title}}"</h-f></a></td>
+          <td><a href = "/individualforum?forumId={{f._id}}"><h-f>Forum Description: "{{f.description}}"</h-f></a></td>
+          <td><a href = "/individualforum?forumId={{f._id}}">Forum Creator: "{{getCreatorName f.creator}}"</a></td>
+          <td><a href = "/individualforum?forumId={{f._id}}">Forum CreatedAt "{{f.createdAt}}" </a></td>
+        </tr>
+        <hr>
+      {{/each}}
+    </table>
+</template>
+
+<template name="forumsCommented">
+  <table class="yourForumstable" id="forumsCommented">
+      <tr class="white">
+        <td>Forum Title</td>
+        <td>Forum Description</td>
+        <td>Forum Creator</td>
+        <td>Forum Created Time</td>
+      </tr>
+      {{#each f in commentedlist}}
+      <tr>
+        <td><a href = "/individualforum?forumId={{f._id}}"><h-f>Forum Title: "{{f.title}}"</h-f></a></td>
+        <td><a href = "/individualforum?forumId={{f._id}}"><h-f>Forum Description: "{{f.description}}"</h-f></a></td>
+        <td><a href = "/individualforum?forumId={{f._id}}">Forum Creator: "{{getCreatorName f.creator}}"</a></td>
+        <td><a href = "/individualforum?forumId={{f._id}}">Forum CreatedAt "{{f.createdAt}}" </a></td>
+      </tr>
+      <hr>
+      {{/each}}
+  </table>
+</template>
+
+<!--
+<template name="yourForumsrow">
+      <tr>
+        <td class="bigtext"><strong><em><a href = "/individualforum?forumId={{f._id}}"><h-l>{{f.title}}</h-l></a></em></strong></td>
+        <td class="bigtext"><a href = "/individualforum?forumId={{f._id}}"><h-l>{{f.description}}</h-l></a></td>
+        <td class="smalltext">{{getForumCreator f.creator}}</td>
+        <td class="smalltext">{{f.createdAt}}</td>
+      </tr>
+</template>
+-->

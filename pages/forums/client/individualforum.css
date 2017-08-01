@@ -1,9 +1,16 @@
 #forumtop{
-  background-color: white;
-  color:black;
-  font-size: 25px;
-}
+  background-color: lightgrey;
+  color:rgba(0, 68, 102, 1);
+  font-size: 20px;
+  border-radius: 10px;
+  padding: 10px;
 
+
+}
+h-h{
+  font-size: 30px;
+  font-weight:bold;
+}
 h-footer{
   font-size: 10px;
   color:grey;
@@ -17,17 +24,21 @@ h-c{
 #commentsubmit {
   color:black;
   background-color: white;
-  font-size: 15px;
+  font-size: 10px;
 }
 
 #commentinput {
   color:black;
   background-color: white;
-  font-size: 25px;
+  font-size: 20px;
+  border-radius: 15px;
+  padding:10px;
 }
 
 #commentrow {
   color: black;
   background-color: white;
-  font-size:15px;
+  font-size:20px;
+  border-radius: 10px;
+  padding: 10px;
 }

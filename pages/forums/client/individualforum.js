@@ -1,12 +1,4 @@
 Template.individualforum.helpers({
-  'forumtitle': function(){
-    var forum=Forums.findOne({_id:Router.current().params.query.forumId});
-    console.log(forum);
-
-    var title=forum.title;
-    console.log(title)
-    return title;
-  },
   showingComments() {
     var forum=Forums.findOne({_id:Router.current().params.query.forumId});
     console.log(Forums.find().fetch());
@@ -16,6 +8,14 @@ Template.individualforum.helpers({
 })
 
 Template.forumtop.helpers({
+  'forumtitle': function(){
+    var forum=Forums.findOne({_id:Router.current().params.query.forumId});
+    console.log(forum);
+
+    var title=forum.title;
+    console.log(title)
+    return title;
+  },
 
   'getUsername': function(){
     var forum=Forums.findOne({_id:Router.current().params.query.forumId});
@@ -84,6 +84,7 @@ Template.comment.events({
    'click #commentsubmit'(elt, instance) {
       elt.preventDefault();
       const input = instance.$('#commentinput').val();
+      const forumId = Router.current().params.query.forumId;
 
         //const groupIdRef = this._id;
         function updateScroll(){
@@ -96,7 +97,7 @@ Template.comment.events({
           "author": Meteor.userId()
         }
 
-        Meteor.call('forums.addcomment', Forums.findOne()._id, comment, function(err, result){
+        Meteor.call('forums.addcomment', forumId, comment, function(err, result){
           if(err){
             window.alert(err);
             return;
@@ -130,8 +131,10 @@ Template.commentrow.helpers({
 })
 
 Template.commentrow.events({
+
   'click #commentremove'(elt, instance) {
-    Meteor.call("forums.deletecomment", Forums.findOne()._id, this.comment, function(err, result){
+    const forumId = Router.current().params.query.forumId;
+    Meteor.call("forums.deletecomment", forumId, this.comment, function(err, result){
       if(err){
         window.alert(err);
         return;

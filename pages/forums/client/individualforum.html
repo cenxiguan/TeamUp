@@ -1,17 +1,18 @@
 <template name="individualforum">
-  <h1>{{forumtitle}}</h1><hr>
-  {{>forumtop}}
+  {{>forumtop}}<br><br>
   {{#each comment in showingComments}}
     {{>commentrow comment=comment}}
+    <br>
   {{/each}}
   {{>comment}}
 </template>
 
 <template name="forumtop">
   <div name="forumtop" id="forumtop">
+      <h-h>{{forumtitle}}</h-h><hr>
       <span class="message">{{foruminfo}}</span><br><br>
       <h-footer>Creator: {{getUsername}}</h-footer><br>
-      <h-footer>{{getCreatedtime}}</h-footer><hr>
+      <h-footer>{{getCreatedtime}}</h-footer>
   </div>
 </template>
 
@@ -29,7 +30,7 @@
        <h-footer>{{comment.createdAt}}</h-footer><br>
        <button type="button" class="btn btn-default btn-sm" id="commentremove">
           <span class="glyphicon glyphicon-remove"></span> Delete Comment
-       </button><hr>
+       </button>
   </div>
 </template>
 
