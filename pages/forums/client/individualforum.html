@@ -24,7 +24,7 @@
     {{#if getUserpic comment.author}}
       <h-c><img src="data:image/jpeg;base64, {{getUserpic comment.author}}" style="display:block; max-width:50px; max-height:50px;">{{getUsername comment.author}}:</h-c>
     {{else}}
-      <img class="center" src="/images/defaultpic.png" style="display:block; max-width:50px; max-height:50px;">
+      <h-c><img class="center" src="/images/defaultpic.png" style="display:block; max-width:50px; max-height:50px;">{{getUsername comment.author}}:</h-c>
     {{/if}}
        <div name="comment" id="comment"><span class="message">{{comment.comment}}</span></div>
        <h-footer>{{comment.createdAt}}</h-footer><br>
