@@ -96,7 +96,8 @@ Template.comment.events({
           "author": Meteor.userId()
         }
 
-        Meteor.call('forums.addcomment', Forums.findOne()._id, comment, function(err, result){
+        const forumId = Router.current().params.query.forumId;
+        Meteor.call('forums.addcomment', forumId, comment, function(err, result){
           if(err){
             window.alert(err);
             return;
@@ -131,7 +132,8 @@ Template.commentrow.helpers({
 
 Template.commentrow.events({
   'click #commentremove'(elt, instance) {
-    Meteor.call("forums.deletecomment", Forums.findOne()._id, this.comment, function(err, result){
+    const forumId = Router.current().params.query.forumId;
+    Meteor.call("forums.deletecomment", forumId, this.comment, function(err, result){
       if(err){
         window.alert(err);
         return;
