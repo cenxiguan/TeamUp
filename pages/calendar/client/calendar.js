@@ -113,9 +113,8 @@ Template.calendar.onCreated(function() {
 						if(!!result.data.result.parameters){
 								const parameters = result.data.result.parameters;
 								var detail = pendingevent;
-								console.log(detail+"before change");
-								detail = detail.replace(/(add|next)/gi, ""),
-								console.log(detail+"after change");
+								detail = detail.replace("my", "your"),
+								
 								if (!parameters.date) {
 									if (!!parameters.relativedate) {
 										// Change relative date to the date
